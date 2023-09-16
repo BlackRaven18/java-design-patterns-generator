@@ -12,42 +12,38 @@ const Main = () => {
             name: 'singleton.txt',
             value: "singletonecode"
         },
-        'builder.java': {
+        'builder.txt': {
             name: 'builder.txt',
             value: "buildecode"
         },
     };
-    const [fileName, setFileName] = useState("singleton.java");
+    const [fileName, setFileName] = useState("singleton.txt");
     const file = files[fileName];
     const [fileContent, setFileContent] = useState("");
 
-    const singletonFileURL = "./singleton.txt";
+
+    const handleFileRead = async () => {
+        try {
+            const response = await fetch(fileName);
+            console.log(response);
+            if (!response.ok) {
+                throw new Error('Nie udało się pobrać pliku.');
+            }
+
+            const content = await response.text();
+            console.log(content);
+            setFileContent(content);
+
+        } catch (error) {
+            console.error('Błąd podczas pobierania pliku:', error);
+        }
+    }
 
 
     useEffect(() => {
-
-        const handleFileRead = async () => {
-            try {
-                const response = await fetch('singleton.txt');
-                console.log(response);
-                if (!response.ok) {
-                    throw new Error('Nie udało się pobrać pliku.');
-                }
-
-                const content = await response.text();
-                console.log(content);
-                setFileContent(content);
-
-            } catch (error) {
-                console.error('Błąd podczas pobierania pliku:', error);
-            }
-        }
-
         handleFileRead();
 
-
-
-    }, [])
+    }, [fileName])
 
 
     // const handleListItemClick = (
@@ -60,8 +56,8 @@ const Main = () => {
     const handleListItemClick = (index: number) => {
 
         switch (index) {
-            case 1: setFileName("singleton.java"); break;
-            case 2: setFileName("builder.java"); break;
+            case 1: setFileName("singleton.txt"); break;
+            case 2: setFileName("builder.txt"); break;
 
         }
         setSelectedIndex(index);
