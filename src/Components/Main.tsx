@@ -1,23 +1,53 @@
-import React, { ReactEventHandler } from "react";
+import React, { ReactEventHandler, useEffect } from "react";
 import { useState } from "react";
 import CodeEditor from "./CodeEditor";
 import { Box, Grid, List, ListItemButton, ListItemText, Typography } from "@mui/material";
+import { debug } from "console";
 
 
 const Main = () => {
     const [selectedIndex, setSelectedIndex] = useState(1);
     const files: { [key: string]: { name: string; value: string } } = {
-        'singleton.java' : {
-            name: 'singleton.java',
+        'singleton.txt': {
+            name: 'singleton.txt',
             value: "singletonecode"
         },
         'builder.java': {
-            name: 'builder.java',
+            name: 'builder.txt',
             value: "buildecode"
         },
     };
     const [fileName, setFileName] = useState("singleton.java");
     const file = files[fileName];
+    const [fileContent, setFileContent] = useState("");
+
+    const singletonFileURL = "./singleton.txt";
+
+
+    useEffect(() => {
+
+        const handleFileRead = async () => {
+            try {
+                const response = await fetch('singleton.txt');
+                console.log(response);
+                if (!response.ok) {
+                    throw new Error('Nie udało się pobrać pliku.');
+                }
+
+                const content = await response.text();
+                console.log(content);
+                setFileContent(content);
+
+            } catch (error) {
+                console.error('Błąd podczas pobierania pliku:', error);
+            }
+        }
+
+        handleFileRead();
+
+
+
+    }, [])
 
 
     // const handleListItemClick = (
@@ -29,15 +59,15 @@ const Main = () => {
 
     const handleListItemClick = (index: number) => {
 
-        switch(index){
+        switch (index) {
             case 1: setFileName("singleton.java"); break;
             case 2: setFileName("builder.java"); break;
-        
+
         }
         setSelectedIndex(index);
     };
 
-    
+
 
     return (
         <Box
@@ -49,19 +79,19 @@ const Main = () => {
             <Grid
                 container
                 direction="row"
-                
+
             >
                 <Grid item xs={2}>
                     {<List component="nav" aria-label="secondary mailbox folder">
                         <ListItemButton
                             selected={selectedIndex === 1}
-                            onClick={(event) => handleListItemClick(1)}
+                            onClick={() => handleListItemClick(1)}
                         >
                             <ListItemText primary="Singleton" />
                         </ListItemButton>
                         <ListItemButton
                             selected={selectedIndex === 2}
-                            onClick={(event) => handleListItemClick(2)}
+                            onClick={() => handleListItemClick(2)}
                         >
                             <ListItemText primary="Builder" />
                         </ListItemButton>
@@ -69,8 +99,8 @@ const Main = () => {
 
                 </Grid>
                 <Grid item xs={10}>
-                
-                    <CodeEditor path={file.name} content={file.value}/>
+
+                    <CodeEditor path={file.name} content={fileContent} />
 
                 </Grid>
             </Grid>
