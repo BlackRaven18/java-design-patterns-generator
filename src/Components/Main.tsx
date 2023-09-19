@@ -1,8 +1,32 @@
-import React, { ReactEventHandler, useEffect } from "react";
-import { useState } from "react";
+import { Box, Grid, List, ListItemButton, ListItemText, Tabs, Tab, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import CodeEditor from "./CodeEditor";
-import { Box, Grid, List, ListItemButton, ListItemText, Typography } from "@mui/material";
-import { debug } from "console";
+
+interface TabPanelProps {
+    children?: React.ReactNode;
+    index: number;
+    value: number;
+}
+
+function CustomTabPanel(props: TabPanelProps) {
+    const { children, value, index, ...other } = props;
+
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
+}
 
 
 const Main = () => {
@@ -20,6 +44,7 @@ const Main = () => {
     const [fileName, setFileName] = useState("singleton.txt");
     const file = files[fileName];
     const [fileContent, setFileContent] = useState("");
+    const [value, setValue] = useState(0);
 
 
     const handleFileRead = async () => {
@@ -95,8 +120,19 @@ const Main = () => {
 
                 </Grid>
                 <Grid item xs={10}>
+                    <Tabs>
+                        <Tab label="Item One" />
+                        <Tab label="Item Two" />
+                    </Tabs>
 
-                    <CodeEditor path={file.name} content={fileContent} />
+                    <CustomTabPanel value={value} index={0}>
+                        <CodeEditor path={file.name} content={fileContent} />
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={1}>
+                        <CodeEditor path={file.name} content={fileContent} />
+                    </CustomTabPanel>
+
+
 
                 </Grid>
             </Grid>
@@ -107,5 +143,7 @@ const Main = () => {
         </Box>
     )
 }
+
+
 
 export default Main;
