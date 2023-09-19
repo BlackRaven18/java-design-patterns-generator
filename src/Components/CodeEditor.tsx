@@ -1,5 +1,6 @@
 import React from "react";
 import { Editor } from "@monaco-editor/react";
+import { Box } from "@mui/material";
 
 interface CodeEditorProps{
     path: string,
@@ -11,7 +12,12 @@ const CodeEditor: React.FC<CodeEditorProps> = (props: CodeEditorProps) => {
 
 
     return(
-        <div>
+        <Box
+        sx={{
+            marginLeft: "-15px",
+            marginTop: "-20px"
+        }}
+        >
             <Editor
                  height="90vh"
                  width="80vw"
@@ -20,13 +26,14 @@ const CodeEditor: React.FC<CodeEditorProps> = (props: CodeEditorProps) => {
                  value={props.content}
                  theme='vs-dark'
                  options={{
-                    fontSize: 20
+                    fontSize: 20,
+                    
                  }}
                 
             />
 
 
-        </div>
+        </Box>
     );
 }
 
