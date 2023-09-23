@@ -1,71 +1,60 @@
-import { Box, Grid, List, ListItemButton, ListItemText, Tabs, Tab, Typography, Divider } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Box, Grid, List, ListItemButton, ListItemText, Stack } from "@mui/material";
+import { ReactComponentElement, ReactElement, useEffect, useState } from "react";
 import CodeEditor from "./CodeEditor";
-import StyledTabs from "./StyledTabs";
-import StyledTab from "./StyledTab";
-import CustomTabPanel from "./CustomTabPanel";
 
 const Main = () => {
   const [selectedIndex, setSelectedIndex] = useState(1);
-  const files: { [key: string]: {files: Array<string> } } = {
+  const files: { [key: string]: { files: Array<string> } } = {
     'singleton': {
-      files:["singleton.txt"]
+      files: ["singleton.txt"],
     },
     'builder': {
-      files:["builder.txt", "director.txt"]
+      files: ["builder.txt", "director.txt"],
     },
   };
 
   const [choosenDesignPatternName, setChoosenDesignPatternName] = useState("singleton");
-  const choosenDesignPattern = files[choosenDesignPatternName];
-  const [fileContent, setFileContent] = useState("");
-  const [value, setValue] = useState(0);
 
-  const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    setValue(newValue);
-  };
+  let choosenDesignPattern = files[choosenDesignPatternName];
+  const [currentSelectedTab, setCurrentSelectedTab] = useState(1);
+  //let tmpEditor: React.ReactNode[] = [];
+  const [tmpEditor, setTmpEditor] = useState<React.ReactNode[]>([]);
 
-
-  const handleFileRead = async (filename: string) => {
-    try {
-      const response = await fetch(filename);
-      console.log(response);
-      if (!response.ok) {
-        throw new Error('Nie udało się pobrać pliku.');
-      }
-
-      const content = await response.text();
-      console.log(content);
-      setFileContent(content);
-
-    } catch (error) {
-      console.error('Błąd podczas pobierania pliku:', error);
-    }
+  const updateChoosenDesignPattern = () => {
+    choosenDesignPattern = files[choosenDesignPatternName];
   }
 
+  const updateEditorTabs = () => {
+    //setTmpEditor([<CodeEditor path={choosenDesignPattern.files[0]} pattern={choosenDesignPatternName} />]);
+    tmpEditor.length = 0;
+    choosenDesignPattern.files.map((fileName, index) => {
+      tmpEditor.push(<CodeEditor key={index} path={fileName} pattern={choosenDesignPatternName} />)
+    });
+  }
 
   useEffect(() => {
-    handleFileRead(choosenDesignPattern.files[0]);
+    updateEditorTabs();
 
-  }, [choosenDesignPattern])
+  }, [choosenDesignPatternName])
 
-
-  // const handleListItemClick = (
-  //     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  //     index: number,
-  //   ) => {
-  //     setSelectedIndex(index);
-  //   };
 
   const handleListItemClick = (index: number) => {
 
     switch (index) {
       case 1: setChoosenDesignPatternName("singleton"); break;
       case 2: setChoosenDesignPatternName("builder"); break;
-
     }
+
+    // updateChoosenDesignPattern();
+
     setSelectedIndex(index);
+    setCurrentSelectedTab(1);
+
   };
+
+  const handleTabClick = (index: number) => {
+    setCurrentSelectedTab(index);
+  }
 
 
 
@@ -82,7 +71,7 @@ const Main = () => {
 
       >
         <Grid item xs={2}>
-          {<List component="nav" aria-label="secondary mailbox folder">
+          {<List component="nav">
             <ListItemButton
               selected={selectedIndex === 1}
               onClick={() => handleListItemClick(1)}
@@ -100,35 +89,40 @@ const Main = () => {
         </Grid>
         <Grid item xs={10}>
           <Box sx={{
-            bgcolor: '#2e1534',
+            // bgcolor: '#2e1534',
+            bgcolor: "#ffffff"
           }}>
-            <StyledTabs
-              value={value}
-              onChange={handleChange}
-              aria-label="styled tabs example"
-            >
-              {choosenDesignPattern.files.map(tabName => {
-                return(
-                  <StyledTab label={tabName} />
+
+            <List component={Stack} direction="row">
+              {choosenDesignPattern.files.map((fileName, index) => {
+                return (
+                  <ListItemButton
+                    key={index}
+                    selected={currentSelectedTab === index}
+                    onClick={() => handleTabClick(index)}
+                  >
+
+                    <ListItemText primary={fileName} />
+                  </ListItemButton>
                 );
               })}
-              {/* <StyledTab label="Workflows" />
-              <StyledTab label="Datasets" />
-              <StyledTab label="Connections" /> */}
-            </StyledTabs>
 
-            <Divider />
+            </List>
+            { tmpEditor[currentSelectedTab]}
+            {/* {tmpEditor.map(currentEditorTab => {
+              return(
+                currentEditorTab
+              );
+            })} */}
+            {/* //{tmpEditor[0]} */}
 
-            <CustomTabPanel value={value} index={0}>
-              <CodeEditor path={choosenDesignPattern.files[0]} content={fileContent} />
-            </CustomTabPanel>
-            {/* <CustomTabPanel value={value} index={1}>
-              <CodeEditor path={file.name} content={"ujauja"} />
-            </CustomTabPanel>
-            <CustomTabPanel value={value} index={2}>
-              <CodeEditor path={file.name} content={"hehehe"} />
-            </CustomTabPanel> */}
+
+
+
+
           </Box>
+
+
 
         </Grid>
       </Grid>
