@@ -2,9 +2,68 @@ import { Editor } from "@monaco-editor/react";
 import { Box, Grid, List, ListItemButton, ListItemText, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
 
+interface Config {
+  patternFamillies: PatternFamillyInfo[]
+}
+
+interface PatternFamillyInfo {
+  patternFamillyName: string,
+  patterns: PatternInfo[]
+
+}
+
+interface PatternInfo {
+  patternName: string,
+  filesName: string[]
+}
+
+
 const Main = () => {
-  const [selectedPatternIndex, setSelectedPatternIndex] = useState(0);
-  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+
+  const filesTmp: Config = {
+    patternFamillies: [
+      {
+        patternFamillyName: "Creational",
+        patterns: [
+          {
+            patternName: "Singleton",
+            filesName: ["singleton.txt"]
+          },
+          {
+            patternName: "Builder",
+            filesName: ["builder.txt", "director.txt"]
+          }
+        ]
+      },
+      {
+        patternFamillyName: "Structural",
+        patterns: [
+          {
+            patternName: "S1",
+            filesName: []
+          },
+          {
+            patternName: "S2",
+            filesName: []
+          }
+        ]
+      },
+      {
+        patternFamillyName: "Behavioral",
+        patterns: [
+          {
+            patternName: "B1",
+            filesName: []
+          },
+          {
+            patternName: "B2",
+            filesName: []
+          }
+        ]
+      },
+
+    ]
+  }
 
   const files: { [key: string]: { filesNames: string[] } } = {
     'singleton': {
@@ -16,6 +75,9 @@ const Main = () => {
   };
 
 
+  const [selectedPatternIndex, setSelectedPatternIndex] = useState(0);
+  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+
   const [selectedPattern, setSelectedPattern] = useState(files['singleton']);
   const [editorLoadedFileName, setEditorLoadedFileName] = useState('singleton.txt');
   const [tmpEditorContent, setTmpEditorContent] = useState('bbb');
@@ -26,7 +88,7 @@ const Main = () => {
   }, [])
 
 
-  const handlePatternChange = (patternIndex: number) =>  {
+  const handlePatternChange = (patternIndex: number) => {
 
     let selectedPattern: string = "";
     switch (patternIndex) {
@@ -45,7 +107,7 @@ const Main = () => {
   }
 
   const handleTabChange = (index: number) => {
-      
+
     handleFileRead(selectedPattern.filesNames[index]).then(fileContent => {
       setTmpEditorContent(fileContent);
       setSelectedTabIndex(index);
