@@ -1,0 +1,134 @@
+{
+   "patternFamillies": [
+      {
+         "patternFamillyName": "Creational",
+         "patterns": [
+            {
+               "patternName": "Singleton",
+               "patternFilesDirectory" : "Singleton",
+               "fileNames": [
+                  "singleton.txt"
+               ]
+            },
+            {
+               "patternName": "Builder",
+               "patternFilesDirectory" : "Builder",
+               "fileNames": [
+                  "builder.txt",
+                  "director.txt"
+               ]
+            },
+            {
+               "patternName": "Factory Method",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Abstract Factory",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Prototype",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            }
+         ]
+      },
+      {
+         "patternFamillyName": "Structural",
+         "patterns": [
+            {
+               "patternName": "Adapter",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Bridge",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Composite",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Decorator",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Facade",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Flyweight",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Proxy",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            }
+         ]
+      },
+      {
+         "patternFamillyName": "Behavioral",
+         "patterns": [
+            {
+               "patternName": "Chain of responsibility",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Command",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Iterator",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Mediator",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Memento",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Observer",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "State",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Strategy",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Template Method",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            },
+            {
+               "patternName": "Visitor",
+               "patternFilesDirectory" : "",
+               "fileNames": []
+            }
+         ]
+      }
+   ]
+}
