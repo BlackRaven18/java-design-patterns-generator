@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 
 import AppConfigData from "./../app_config.json";
 import DownloadButton from "./DownloadButton";
+import CustomBackdrop from "./CustomBackdrop";
 
 
 interface Config {
@@ -27,7 +28,6 @@ interface PatternInfo {
 
 const Main = () => {
 
-  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const [appConfig, setAppConfig] = useState<Config>({
     patternFamillies: []
   });
@@ -36,6 +36,7 @@ const Main = () => {
   const [selectedPatternIndex, setSelectedPatternIndex] = useState(0);
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const [open, setOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [selectedPattern, setSelectedPattern] = useState<PatternInfo>({
     patternName: "",
@@ -49,6 +50,8 @@ const Main = () => {
 
   useEffect(() => {
 
+    setIsLoading(true)
+
     let tmp: Config = JSON.parse(JSON.stringify(AppConfigData));
 
     setSelectedPattern(tmp.patternFamillies[0].patterns[0]);
@@ -57,6 +60,8 @@ const Main = () => {
 
     setEditorValueArray(new Array<string>(tmp.patternFamillies[0].patterns[0].fileNames.length))
     setAppConfig(tmp);
+
+    setIsLoading(false);
 
   }, [])
 
@@ -85,6 +90,7 @@ const Main = () => {
 
   const handlePatternChange = (pattern: PatternInfo, index: number) => {
 
+    setIsLoading(true);
     handleFileRead(pattern.patternFilesDirectory + "/" + pattern.fileNames[0]).then(fileContent => {
       setTmpEditorContent(fileContent);
       setSelectedPatternIndex(index);
@@ -92,6 +98,7 @@ const Main = () => {
       setSelectedPattern(pattern);
       setEditorLoadedFileName(pattern.fileNames[0]);
       setEditorValueArray(new Array<string>(pattern.fileNames.length))
+      setIsLoading(false);
     })
 
   }
@@ -153,6 +160,10 @@ const Main = () => {
         backgroundColor: "#3FFF90",
       }}
     >
+      {isLoading ? (
+        <CustomBackdrop label={"Ładowanie..."} />
+      ) : (<></>)}
+
       <Grid
         container
         direction="row"
@@ -250,10 +261,6 @@ const Main = () => {
 
         </Grid>
       </Grid>
-
-
-
-
     </Box>
   )
 }
