@@ -1,34 +1,46 @@
-import JSZip from 'jszip';
-import React from 'react';
 import { saveAs } from 'file-saver';
+import JSZip from 'jszip';
+
+interface PatternInfo {
+    patternName: string,
+    patternFilesDirectory: string,
+    fileNames: string[]
+}
+
+interface DownloadButtonProps {
+    editorValueArray: string[];
+    selectedPattern: PatternInfo;
+}
 
 
-const DownloadButton: React.FC = () => {
+const DownloadButton = (props: DownloadButtonProps) => {
+    const zip = new JSZip();
+
     const handleDownload = async () => {
-        const zip = new JSZip();
-        const text = 'to jest plik txt';
+        props.editorValueArray.map((value, index) => {
+            zip.file(props.selectedPattern.fileNames[index], value);
+        })
 
-        // Dodaj kilka plików txt do archiwum zip
-        zip.file('plik1.txt', text);
-        zip.file('plik2.txt', text);
-        zip.file('plik3.txt', text);
-
-        // Wygeneruj zawartość archiwum zip
         const content = await zip.generateAsync({ type: 'blob' });
 
-        // Zapytaj użytkownika o lokalizację pliku
-        const file = new File([content], 'pliki.zip', { type: 'application/zip' });
+        const zipFile = new File([content],
+            props.selectedPattern.patternName + ".zip", { type: 'application/zip' });
 
-        // Umożliw użytkownikowi wybór lokalizacji
-        saveAs(file);
-    };
+
+        saveAs(zipFile);
+
+    }
 
     return (
         <div>
             <button onClick={handleDownload}>Pobierz archiwum ZIP</button>
         </div>
     );
-};
+
+}
+
+
+
 
 
 

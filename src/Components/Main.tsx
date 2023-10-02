@@ -1,9 +1,8 @@
-import { Editor, OnMount } from "@monaco-editor/react";
+import { Editor } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Collapse, Grid, List, ListItemButton, ListItemText, Stack } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
-import * as monaco_editor from 'monaco-editor';
 import { editor } from 'monaco-editor';
+import { useEffect, useRef, useState } from "react";
 
 import AppConfigData from "./../app_config.json";
 import DownloadButton from "./DownloadButton";
@@ -141,16 +140,6 @@ const Main = () => {
 
   }
 
-  function showValue() {
-    let tmp: string = "";
-
-    editorValueArray.map(value => {
-      tmp += value
-    })
-
-    alert(tmp);
-  }
-
   const handleEditorChange = (value: string) => {
 
     editorValueArray[selectedTabIndex] = value;
@@ -221,8 +210,7 @@ const Main = () => {
             })}
 
           </List>}
-          <DownloadButton />
-          <button onClick={showValue}>Zobacz zawartosc</button>
+          <DownloadButton editorValueArray={editorValueArray} selectedPattern={selectedPattern} />
 
         </Grid>
         <Grid item xs={10}>
