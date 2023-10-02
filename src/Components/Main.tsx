@@ -1,8 +1,13 @@
-import { Editor } from "@monaco-editor/react";
+import { Editor, OnMount } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Collapse, Grid, List, ListItemButton, ListItemText, Stack } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import * as monaco_editor from 'monaco-editor';
+import { editor } from 'monaco-editor';
+
 import AppConfigData from "./../app_config.json";
+import DownloadButton from "./DownloadButton";
+
 
 interface Config {
   patternFamillies: PatternFamillyInfo[]
@@ -23,7 +28,7 @@ interface PatternInfo {
 
 const Main = () => {
 
-
+  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
   const [appConfig, setAppConfig] = useState<Config>({
     patternFamillies: []
   });
@@ -38,62 +43,73 @@ const Main = () => {
     patternFilesDirectory: "",
     fileNames: []
   })
-  //const [selectedPattern, setSelectedPattern] = useState(files['singleton']);
-  const [editorLoadedFileName, setEditorLoadedFileName] = useState('singleton.txt');
-  const [tmpEditorContent, setTmpEditorContent] = useState('bbb');
+  const [editorLoadedFileName, setEditorLoadedFileName] = useState('');
+  const [tmpEditorContent, setTmpEditorContent] = useState('');
+  const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
 
   useEffect(() => {
 
-    getFileContent(handleFileRead(editorLoadedFileName));
-
-    // handleFileRead("D:/Semestr 7/prototyp pracy 3 react ts/my-app/public/app_config.json").then(content => {
-
     let tmp: Config = JSON.parse(JSON.stringify(AppConfigData));
+
     setSelectedPattern(tmp.patternFamillies[0].patterns[0]);
+    setEditorLoadedFileName(tmp.patternFamillies[0].patterns[0].fileNames[0]);
+    getFileContent(handleFileRead(tmp.patternFamillies[0].patterns[0].patternFilesDirectory + "/" + tmp.patternFamillies[0].patterns[0].fileNames[0]));
+
+    setEditorValueArray(new Array<string>(tmp.patternFamillies[0].patterns[0].fileNames.length))
     setAppConfig(tmp);
-    //});
 
   }, [])
 
+  useEffect(() => {
+    loadEditorValueArray();
 
+  }, [selectedPattern])
+
+  const loadEditorValueArray = () => {
+    let tmpArray = new Array<string>(selectedPattern.fileNames.length);
+    selectedPattern.fileNames.map((fileName, index) => {
+      handleFileRead(selectedPattern.patternFilesDirectory + "/" + fileName)
+        .then(fileContent => {
+          tmpArray[index] = fileContent;
+        })
+    })
+
+    setEditorValueArray(tmpArray);
+  }
 
   const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
     setSelectedPatternFamillyIndex(index);
-    //setSelectedPattern(patternFamilly.patterns[0])
     handlePatternChange(patternFamilly.patterns[0], 0);
     setOpen(!open);
   }
 
   const handlePatternChange = (pattern: PatternInfo, index: number) => {
 
-
     handleFileRead(pattern.patternFilesDirectory + "/" + pattern.fileNames[0]).then(fileContent => {
       setTmpEditorContent(fileContent);
-      //setSelectedPatternIndex(patternIndex);
-      //setSelectedPattern(files[selectedPattern]);
       setSelectedPatternIndex(index);
       setSelectedTabIndex(0);
       setSelectedPattern(pattern);
       setEditorLoadedFileName(pattern.fileNames[0]);
+      setEditorValueArray(new Array<string>(pattern.fileNames.length))
     })
 
   }
 
   const handleTabChange = (index: number) => {
 
-    handleFileRead(selectedPattern.fileNames[index]).then(fileContent => {
-      setTmpEditorContent(fileContent);
-      setSelectedTabIndex(index);
-      setEditorLoadedFileName(selectedPattern.fileNames[index]);
-    })
+    handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.fileNames[index])
+      .then(fileContent => {
+        setTmpEditorContent(fileContent);
+        setSelectedTabIndex(index);
+        setEditorLoadedFileName(selectedPattern.fileNames[index]);
+      })
 
   }
 
 
   const handleFileRead = async (filename: string) => {
-
-    //console.log(fs.readFileSync("tmp.txt"))
 
     let content = "";
     try {
@@ -122,6 +138,22 @@ const Main = () => {
       setTmpEditorContent(content);
 
     })
+
+  }
+
+  function showValue() {
+    let tmp: string = "";
+
+    editorValueArray.map(value => {
+      tmp += value
+    })
+
+    alert(tmp);
+  }
+
+  const handleEditorChange = (value: string) => {
+
+    editorValueArray[selectedTabIndex] = value;
 
   }
 
@@ -166,12 +198,12 @@ const Main = () => {
                         return (
                           <ListItemButton
                             key={index}
-                            sx={{ 
+                            sx={{
                               pl: 4,
                               '&.Mui-selected': {
                                 backgroundColor: '#82E0AA ',
                               },
-                             }}
+                            }}
                             selected={selectedPatternIndex === index}
                             onClick={() => handlePatternChange(pattern, index)}
                           >
@@ -189,6 +221,8 @@ const Main = () => {
             })}
 
           </List>}
+          <DownloadButton />
+          <button onClick={showValue}>Zobacz zawartosc</button>
 
         </Grid>
         <Grid item xs={10}>
@@ -220,6 +254,7 @@ const Main = () => {
             path={editorLoadedFileName}
             defaultLanguage={"java"}
             defaultValue={tmpEditorContent}
+            onChange={(value) => handleEditorChange(value ?? "")}
           />
 
 

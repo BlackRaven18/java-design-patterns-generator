@@ -14,8 +14,10 @@
                "patternName": "Builder",
                "patternFilesDirectory" : "Builder",
                "fileNames": [
-                  "builder.txt",
-                  "director.txt"
+                  "Builder.java",
+                  "Director.java",
+                  "ConcreteBuilder.java",
+                  "Product.java"
                ]
             },
             {
