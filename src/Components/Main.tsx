@@ -1,12 +1,11 @@
 import { Editor } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Collapse, Grid, List, ListItemButton, ListItemText, Stack } from "@mui/material";
-import { editor } from 'monaco-editor';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import AppConfigData from "./../app_config.json";
-import DownloadButton from "./DownloadButton";
 import CustomBackdrop from "./CustomBackdrop";
+import DownloadButton from "./DownloadButton";
 
 
 interface Config {
@@ -158,6 +157,8 @@ const Main = () => {
       sx={{
         padding: "5px",
         backgroundColor: "#3FFF90",
+        height: "100%",
+        
       }}
     >
       {isLoading ? (
@@ -167,9 +168,14 @@ const Main = () => {
       <Grid
         container
         direction="row"
-
       >
-        <Grid item xs={2}>
+        <Grid
+          item
+          xs={2}
+          sx={{
+            minWidth: 150
+          }}
+          >
           {<List component="nav">
 
             {appConfig.patternFamillies.map((patternFamilly, index) => {
@@ -248,7 +254,7 @@ const Main = () => {
 
           </Box>
           <Editor
-            height="80vh"
+            height="90vh"
             theme="vs-dark"
             path={editorLoadedFileName}
             defaultLanguage={"java"}

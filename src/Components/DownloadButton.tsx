@@ -1,3 +1,4 @@
+import { Box, Button } from '@mui/material';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 
@@ -32,9 +33,24 @@ const DownloadButton = (props: DownloadButtonProps) => {
     }
 
     return (
-        <div>
-            <button onClick={handleDownload}>Pobierz archiwum ZIP</button>
-        </div>
+        <Box
+            sx={{
+               margin: 'auto',
+               alignItems: "center",
+               justifyContent: "center",
+            
+            }}
+        >
+            <Button
+                onClick={handleDownload}
+                variant='contained'
+            >
+                Download pattern files
+            </Button>
+        </Box>
+        // <div>
+        //     <button onClick={handleDownload}>Pobierz archiwum ZIP</button>
+        // </div>
     );
 
 }
