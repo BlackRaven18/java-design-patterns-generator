@@ -5,23 +5,27 @@
          "patterns": [
             {
                "patternName": "Singleton",
-               "patternFilesDirectory" : "Singleton",
+               "patternFilesDirectory" : "singleton",
                "fileNames": [
-                  "singleton.txt"
+                  "Singleton.java"
                ]
             },
             {
                "patternName": "Builder",
-               "patternFilesDirectory" : "Builder",
+               "patternFilesDirectory" : "builder",
                "fileNames": [
-                  "builder.txt",
-                  "director.txt"
+                  "Builder.java",
+                  "Director.java",
+                  "ConcreteBuilder.java",
+                  "Product.java"
                ]
             },
             {
                "patternName": "Factory Method",
-               "patternFilesDirectory" : "",
-               "fileNames": []
+               "patternFilesDirectory" : "factorymethod",
+               "fileNames": [
+                  "Creator.java"
+               ]
             },
             {
                "patternName": "Abstract Factory",

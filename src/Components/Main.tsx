@@ -2,6 +2,9 @@ import { Editor } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Collapse, Grid, List, ListItemButton, ListItemText, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
+import CustomBackdrop from "./CustomBackdrop";
+import DownloadButton from "./DownloadButton";
+
 import AppConfigData from "./../app_config.json";
 
 interface Config {
@@ -32,68 +35,86 @@ const Main = () => {
   const [selectedPatternIndex, setSelectedPatternIndex] = useState(0);
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
   const [open, setOpen] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [selectedPattern, setSelectedPattern] = useState<PatternInfo>({
     patternName: "",
     patternFilesDirectory: "",
     fileNames: []
   })
-  //const [selectedPattern, setSelectedPattern] = useState(files['singleton']);
-  const [editorLoadedFileName, setEditorLoadedFileName] = useState('singleton.txt');
-  const [tmpEditorContent, setTmpEditorContent] = useState('bbb');
+  const [editorLoadedFileName, setEditorLoadedFileName] = useState('');
+  const [tmpEditorContent, setTmpEditorContent] = useState('');
+  const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
 
   useEffect(() => {
 
-    getFileContent(handleFileRead(editorLoadedFileName));
-
-    // handleFileRead("D:/Semestr 7/prototyp pracy 3 react ts/my-app/public/app_config.json").then(content => {
+    setIsLoading(true)
 
     let tmp: Config = JSON.parse(JSON.stringify(AppConfigData));
+
     setSelectedPattern(tmp.patternFamillies[0].patterns[0]);
+    setEditorLoadedFileName(tmp.patternFamillies[0].patterns[0].fileNames[0]);
+    getFileContent(handleFileRead(tmp.patternFamillies[0].patterns[0].patternFilesDirectory + "/" + tmp.patternFamillies[0].patterns[0].fileNames[0]));
+
+    setEditorValueArray(new Array<string>(tmp.patternFamillies[0].patterns[0].fileNames.length))
     setAppConfig(tmp);
-    //});
+
+    setIsLoading(false);
 
   }, [])
 
+  useEffect(() => {
+    loadEditorValueArray();
 
+  }, [selectedPattern])
+
+  const loadEditorValueArray = () => {
+    let tmpArray = new Array<string>(selectedPattern.fileNames.length);
+    selectedPattern.fileNames.map((fileName, index) => {
+      handleFileRead(selectedPattern.patternFilesDirectory + "/" + fileName)
+        .then(fileContent => {
+          tmpArray[index] = fileContent;
+        })
+    })
+
+    setEditorValueArray(tmpArray);
+  }
 
   const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
     setSelectedPatternFamillyIndex(index);
-    //setSelectedPattern(patternFamilly.patterns[0])
     handlePatternChange(patternFamilly.patterns[0], 0);
     setOpen(!open);
   }
 
   const handlePatternChange = (pattern: PatternInfo, index: number) => {
 
-
+    setIsLoading(true);
     handleFileRead(pattern.patternFilesDirectory + "/" + pattern.fileNames[0]).then(fileContent => {
       setTmpEditorContent(fileContent);
-      //setSelectedPatternIndex(patternIndex);
-      //setSelectedPattern(files[selectedPattern]);
       setSelectedPatternIndex(index);
       setSelectedTabIndex(0);
       setSelectedPattern(pattern);
       setEditorLoadedFileName(pattern.fileNames[0]);
+      setEditorValueArray(new Array<string>(pattern.fileNames.length))
+      setIsLoading(false);
     })
 
   }
 
   const handleTabChange = (index: number) => {
 
-    handleFileRead(selectedPattern.fileNames[index]).then(fileContent => {
-      setTmpEditorContent(fileContent);
-      setSelectedTabIndex(index);
-      setEditorLoadedFileName(selectedPattern.fileNames[index]);
-    })
+    handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.fileNames[index])
+      .then(fileContent => {
+        setTmpEditorContent(fileContent);
+        setSelectedTabIndex(index);
+        setEditorLoadedFileName(selectedPattern.fileNames[index]);
+      })
 
   }
 
 
   const handleFileRead = async (filename: string) => {
-
-    //console.log(fs.readFileSync("tmp.txt"))
 
     let content = "";
     try {
@@ -125,19 +146,36 @@ const Main = () => {
 
   }
 
+  const handleEditorChange = (value: string) => {
+
+    editorValueArray[selectedTabIndex] = value;
+
+  }
+
   return (
     <Box
       sx={{
         padding: "5px",
         backgroundColor: "#3FFF90",
+        height: "100%",
+        
       }}
     >
+      {isLoading ? (
+        <CustomBackdrop label={"Ładowanie..."} />
+      ) : (<></>)}
+
       <Grid
         container
         direction="row"
-
       >
-        <Grid item xs={2}>
+        <Grid
+          item
+          xs={2}
+          sx={{
+            minWidth: 150
+          }}
+          >
           {<List component="nav">
 
             {appConfig.patternFamillies.map((patternFamilly, index) => {
@@ -166,12 +204,12 @@ const Main = () => {
                         return (
                           <ListItemButton
                             key={index}
-                            sx={{ 
+                            sx={{
                               pl: 4,
                               '&.Mui-selected': {
                                 backgroundColor: '#82E0AA ',
                               },
-                             }}
+                            }}
                             selected={selectedPatternIndex === index}
                             onClick={() => handlePatternChange(pattern, index)}
                           >
@@ -189,6 +227,7 @@ const Main = () => {
             })}
 
           </List>}
+          <DownloadButton editorValueArray={editorValueArray} selectedPattern={selectedPattern} />
 
         </Grid>
         <Grid item xs={10}>
@@ -215,11 +254,12 @@ const Main = () => {
 
           </Box>
           <Editor
-            height="80vh"
+            height="90vh"
             theme="vs-dark"
             path={editorLoadedFileName}
             defaultLanguage={"java"}
             defaultValue={tmpEditorContent}
+            onChange={(value) => handleEditorChange(value ?? "")}
           />
 
 
@@ -227,10 +267,6 @@ const Main = () => {
 
         </Grid>
       </Grid>
-
-
-
-
     </Box>
   )
 }
