@@ -2,11 +2,10 @@ import { Editor } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Collapse, Grid, List, ListItemButton, ListItemText, Stack } from "@mui/material";
 import { useEffect, useState } from "react";
-
-import AppConfigData from "./../app_config.json";
 import CustomBackdrop from "./CustomBackdrop";
 import DownloadButton from "./DownloadButton";
 
+import AppConfigData from "./../app_config.json";
 
 interface Config {
   patternFamillies: PatternFamillyInfo[]
@@ -26,6 +25,7 @@ interface PatternInfo {
 
 
 const Main = () => {
+
 
   const [appConfig, setAppConfig] = useState<Config>({
     patternFamillies: []
