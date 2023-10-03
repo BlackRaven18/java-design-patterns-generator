@@ -7,7 +7,7 @@
                "patternName": "Singleton",
                "patternFilesDirectory" : "singleton",
                "fileNames": [
-                  "Singleton.java"
+                  "singleton.txt"
                ]
             },
             {

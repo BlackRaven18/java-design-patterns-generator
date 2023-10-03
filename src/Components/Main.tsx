@@ -1,11 +1,14 @@
 import { Editor } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { Box, Collapse, Grid, List, ListItemButton, ListItemText, Stack } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Box, Button, Collapse, Grid, List, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
 import CustomBackdrop from "./CustomBackdrop";
 import DownloadButton from "./DownloadButton";
 
 import AppConfigData from "./../app_config.json";
+
+import { editor } from 'monaco-editor';
+import { Monaco } from "@monaco-editor/react";
 
 interface Config {
   patternFamillies: PatternFamillyInfo[]
@@ -26,7 +29,8 @@ interface PatternInfo {
 
 const Main = () => {
 
-
+  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+  
   const [appConfig, setAppConfig] = useState<Config>({
     patternFamillies: []
   });
@@ -47,6 +51,8 @@ const Main = () => {
   const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
 
+
+
   useEffect(() => {
 
     setIsLoading(true)
@@ -57,12 +63,24 @@ const Main = () => {
     setEditorLoadedFileName(tmp.patternFamillies[0].patterns[0].fileNames[0]);
     getFileContent(handleFileRead(tmp.patternFamillies[0].patterns[0].patternFilesDirectory + "/" + tmp.patternFamillies[0].patterns[0].fileNames[0]));
 
+    //------------------------
+    handleFileRead(tmp.patternFamillies[0].patterns[0].patternFilesDirectory + "/" + tmp.patternFamillies[0].patterns[0].fileNames[0]).then(fileContent => {
+      parseFileContent(fileContent);
+    })
+    //------------------------
+
+
     setEditorValueArray(new Array<string>(tmp.patternFamillies[0].patterns[0].fileNames.length))
     setAppConfig(tmp);
 
     setIsLoading(false);
 
   }, [])
+
+  const parseFileContent = (fileContent: string) => {
+    let tmp: string = fileContent.replace("$CLASSNAME$", "Singletonnn");
+    console.log(tmp);
+  }
 
   useEffect(() => {
     loadEditorValueArray();
@@ -152,13 +170,30 @@ const Main = () => {
 
   }
 
+  function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
+    editorRef.current = editor;
+  }
+
+  const getEditorValue = () => {
+    alert(editorRef?.current?.getValue() ?? "nothing")
+  }
+
+  const handleParamsChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    //let tmpEditorContent = editorRef?.current?.getValue() ?? "";
+    let tmp:string = tmpEditorContent.replace("$CLASSNAME$", event.target.value);
+    editorRef?.current?.setValue(tmp);
+
+    
+
+  }
+
   return (
     <Box
       sx={{
         padding: "5px",
         backgroundColor: "#3FFF90",
         height: "100%",
-        
+
       }}
     >
       {isLoading ? (
@@ -175,7 +210,7 @@ const Main = () => {
           sx={{
             minWidth: 150
           }}
-          >
+        >
           {<List component="nav">
 
             {appConfig.patternFamillies.map((patternFamilly, index) => {
@@ -228,9 +263,27 @@ const Main = () => {
 
           </List>}
           <DownloadButton editorValueArray={editorValueArray} selectedPattern={selectedPattern} />
+          <Button onClick={() => getEditorValue()}>Zobacz zawartość edytora</Button>
 
         </Grid>
-        <Grid item xs={10}>
+        <Grid
+          item
+          xs={2}
+          sx={{
+            backgroundColor: "#F4D03F"
+          }}
+        >
+          <Stack>
+            <TextField
+              id="class-name"
+              label="Singleton class name"
+              variant="outlined"
+              onChange={(event) => handleParamsChange(event)}
+              // => {handleParamsChange(value)}}
+            />
+          </Stack>
+        </Grid>
+        <Grid item xs={8}>
           <Box sx={{
             // bgcolor: '#2e1534',
             bgcolor: "#ffffff"
@@ -260,6 +313,7 @@ const Main = () => {
             defaultLanguage={"java"}
             defaultValue={tmpEditorContent}
             onChange={(value) => handleEditorChange(value ?? "")}
+            onMount={handleEditorDidMount}
           />
 
 
