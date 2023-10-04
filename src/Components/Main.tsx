@@ -1,44 +1,43 @@
 import { Editor } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Button, Collapse, Grid, List, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
-import { useEffect, useReducer, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Config, PatternFamillyInfo, PatternInfo } from "../types";
 import CustomBackdrop from "./CustomBackdrop";
 import DownloadButton from "./DownloadButton";
 
-import AppConfigData from "../app_config.json";
 
 import { Monaco } from "@monaco-editor/react";
 import { editor } from 'monaco-editor';
 import { useDispatch, useSelector } from "react-redux";
+import {
+  setSelectedPattern,
+  setSelectedPatternFamillyIndex,
+  setSelectedPatternIndex,
+  setSelectedTabIndex
+} from "../redux/AppStateSlice";
 import { RootState } from "../redux/store";
-import { setSelectedPatternFamillyIndex } from "../redux/AppStateSlice";
 
 
 const Main = () => {
-
-  const selectedPatternFamillyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamillyIndex);
-
-  const [appConfig, setAppConfig] = useState<Config>({
-    patternFamillies: []
-  });
-
 
   const dispatch = useDispatch();
 
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
-  const [selectedPatternIndex, setSelectedPatternIndex] = useState(0);
-  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+  const appConfig = useSelector((state: RootState) => state.appState.appConfig);
+
+  const selectedPatternFamillyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamillyIndex);
+  const selectedPatternIndex = useSelector((state: RootState) => state.appState.selectedPatternIndex);
+  const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const [selectedPattern, setSelectedPattern] = useState<PatternInfo>({
-    patternName: "",
-    patternFilesDirectory: "",
-    fileNames: []
-  })
+  const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
+
+  //z reduxa nie dziala bo za wolno jest
   const [editorLoadedFileName, setEditorLoadedFileName] = useState('');
+
   const [tmpEditorContent, setTmpEditorContent] = useState('');
   const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
@@ -47,21 +46,15 @@ const Main = () => {
 
     setIsLoading(true)
 
-    let config: Config = JSON.parse(JSON.stringify(AppConfigData));
+    setEditorLoadedFileName(appConfig.patternFamillies[0].patterns[0].fileNames[0]);
+    setEditorValueArray(new Array<string>(selectedPattern.fileNames.length))
 
-    setSelectedPattern(config.patternFamillies[0].patterns[0]);
-    setEditorLoadedFileName(config.patternFamillies[0].patterns[0].fileNames[0]);
+    handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.fileNames[0])
+      .then(fileContent => {
+        setTmpEditorContent(fileContent);
 
-    handleFileRead(config.patternFamillies[0].patterns[0].patternFilesDirectory + "/" + config.patternFamillies[0].patterns[0].fileNames[0]).then(fileContent => {
-      setTmpEditorContent(fileContent);
-    })
-
-
-    setEditorValueArray(new Array<string>(config.patternFamillies[0].patterns[0].fileNames.length))
-    setAppConfig(config);
-
-    setIsLoading(false);
-
+        setIsLoading(false);
+      })
 
   }, [])
 
@@ -95,10 +88,12 @@ const Main = () => {
     setIsLoading(true);
 
     handleFileRead(pattern.patternFilesDirectory + "/" + pattern.fileNames[0]).then(fileContent => {
-      setSelectedPattern(pattern);
+      dispatch(setSelectedPattern(pattern));
       setTmpEditorContent(fileContent);
-      setSelectedPatternIndex(index);
-      setSelectedTabIndex(0);
+
+      dispatch(setSelectedPatternIndex(index));
+      dispatch(setSelectedTabIndex(0));
+
       setEditorLoadedFileName(pattern.fileNames[0]);
       setEditorValueArray(new Array<string>(pattern.fileNames.length))
 
@@ -111,7 +106,7 @@ const Main = () => {
 
     handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.fileNames[index])
       .then(fileContent => {
-        setSelectedTabIndex(index);
+        dispatch(setSelectedTabIndex(index));
         setEditorLoadedFileName(selectedPattern.fileNames[index]);
         setTmpEditorContent(fileContent);
       })
@@ -125,7 +120,7 @@ const Main = () => {
     try {
       const response = await fetch(filename);
       if (!response.ok) {
-        throw new Error('Nie udało się pobrać pliku.');
+        throw new Error('Can not fetch a file');
       }
 
       content = await response.text();
@@ -136,7 +131,7 @@ const Main = () => {
       }
 
     } catch (error) {
-      console.error('Błąd podczas pobierania pliku:', error);
+      console.error('Could not read a file:', error);
     } finally {
       return content;
     }
