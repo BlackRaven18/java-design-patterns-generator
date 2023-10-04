@@ -67,7 +67,7 @@ export const {
     setSelectedTabIndex,
     setSelectedPattern,
     setEditorLoadedFileName
-    
+
  } = appStateSlice.actions
 
 export default appStateSlice.reducer
