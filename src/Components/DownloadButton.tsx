@@ -1,12 +1,7 @@
 import { Box, Button } from '@mui/material';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
-
-interface PatternInfo {
-    patternName: string,
-    patternFilesDirectory: string,
-    fileNames: string[]
-}
+import { PatternInfo } from '../types';
 
 interface DownloadButtonProps {
     editorValueArray: string[];

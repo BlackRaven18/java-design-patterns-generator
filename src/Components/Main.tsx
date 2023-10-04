@@ -2,43 +2,28 @@ import { Editor } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Button, Collapse, Grid, List, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
+import { Config, PatternFamillyInfo, PatternInfo } from "../types";
 import CustomBackdrop from "./CustomBackdrop";
 import DownloadButton from "./DownloadButton";
 
-import AppConfigData from "./../app_config.json";
+import AppConfigData from "../app_config.json";
 
-import { editor } from 'monaco-editor';
 import { Monaco } from "@monaco-editor/react";
-
-interface Config {
-  patternFamillies: PatternFamillyInfo[]
-}
-
-interface PatternFamillyInfo {
-  patternFamillyName: string,
-  patterns: PatternInfo[]
-
-}
-
-interface PatternInfo {
-  patternName: string,
-  patternFilesDirectory: string,
-  fileNames: string[]
-}
+import { editor } from 'monaco-editor';
 
 
 const Main = () => {
 
-  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
-  
   const [appConfig, setAppConfig] = useState<Config>({
     patternFamillies: []
   });
 
+  const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+
   const [selectedPatternFamillyIndex, setSelectedPatternFamillyIndex] = useState(0);
   const [selectedPatternIndex, setSelectedPatternIndex] = useState(0);
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
-  const [open, setOpen] = useState(true);
+
   const [isLoading, setIsLoading] = useState(true);
 
   const [selectedPattern, setSelectedPattern] = useState<PatternInfo>({
@@ -57,30 +42,24 @@ const Main = () => {
 
     setIsLoading(true)
 
-    let tmp: Config = JSON.parse(JSON.stringify(AppConfigData));
+    let config: Config = JSON.parse(JSON.stringify(AppConfigData));
 
-    setSelectedPattern(tmp.patternFamillies[0].patterns[0]);
-    setEditorLoadedFileName(tmp.patternFamillies[0].patterns[0].fileNames[0]);
-    getFileContent(handleFileRead(tmp.patternFamillies[0].patterns[0].patternFilesDirectory + "/" + tmp.patternFamillies[0].patterns[0].fileNames[0]));
+    setSelectedPattern(config.patternFamillies[0].patterns[0]);
+    setEditorLoadedFileName(config.patternFamillies[0].patterns[0].fileNames[0]);
 
-    //------------------------
-    handleFileRead(tmp.patternFamillies[0].patterns[0].patternFilesDirectory + "/" + tmp.patternFamillies[0].patterns[0].fileNames[0]).then(fileContent => {
-      parseFileContent(fileContent);
+    handleFileRead(config.patternFamillies[0].patterns[0].patternFilesDirectory + "/" + config.patternFamillies[0].patterns[0].fileNames[0]).then(fileContent => {
+      setTmpEditorContent(fileContent);
     })
-    //------------------------
 
 
-    setEditorValueArray(new Array<string>(tmp.patternFamillies[0].patterns[0].fileNames.length))
-    setAppConfig(tmp);
+    setEditorValueArray(new Array<string>(config.patternFamillies[0].patterns[0].fileNames.length))
+    setAppConfig(config);
 
     setIsLoading(false);
 
   }, [])
 
-  const parseFileContent = (fileContent: string) => {
-    let tmp: string = fileContent.replace("$CLASSNAME$", "Singletonnn");
-    console.log(tmp);
-  }
+
 
   useEffect(() => {
     loadEditorValueArray();
@@ -102,19 +81,20 @@ const Main = () => {
   const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
     setSelectedPatternFamillyIndex(index);
     handlePatternChange(patternFamilly.patterns[0], 0);
-    setOpen(!open);
   }
 
   const handlePatternChange = (pattern: PatternInfo, index: number) => {
 
     setIsLoading(true);
+
     handleFileRead(pattern.patternFilesDirectory + "/" + pattern.fileNames[0]).then(fileContent => {
+      setSelectedPattern(pattern);
       setTmpEditorContent(fileContent);
       setSelectedPatternIndex(index);
       setSelectedTabIndex(0);
-      setSelectedPattern(pattern);
       setEditorLoadedFileName(pattern.fileNames[0]);
       setEditorValueArray(new Array<string>(pattern.fileNames.length))
+
       setIsLoading(false);
     })
 
@@ -124,9 +104,9 @@ const Main = () => {
 
     handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.fileNames[index])
       .then(fileContent => {
-        setTmpEditorContent(fileContent);
         setSelectedTabIndex(index);
         setEditorLoadedFileName(selectedPattern.fileNames[index]);
+        setTmpEditorContent(fileContent);
       })
 
   }
@@ -155,14 +135,6 @@ const Main = () => {
     }
   }
 
-  const getFileContent = (fileReadResponse: Promise<string>) => {
-
-    fileReadResponse.then(content => {
-      setTmpEditorContent(content);
-
-    })
-
-  }
 
   const handleEditorChange = (value: string) => {
 
@@ -179,11 +151,10 @@ const Main = () => {
   }
 
   const handleParamsChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    //let tmpEditorContent = editorRef?.current?.getValue() ?? "";
-    let tmp:string = tmpEditorContent.replace("$CLASSNAME$", event.target.value);
+    let tmp: string = tmpEditorContent.replace("$CLASSNAME$", event.target.value);
     editorRef?.current?.setValue(tmp);
 
-    
+
 
   }
 
@@ -197,7 +168,7 @@ const Main = () => {
       }}
     >
       {isLoading ? (
-        <CustomBackdrop label={"Ładowanie..."} />
+        <CustomBackdrop label={"Loading..."} />
       ) : (<></>)}
 
       <Grid
@@ -211,7 +182,7 @@ const Main = () => {
             minWidth: 150
           }}
         >
-          {<List component="nav">
+          <List component="nav">
 
             {appConfig.patternFamillies.map((patternFamilly, index) => {
               return (
@@ -261,9 +232,9 @@ const Main = () => {
               );
             })}
 
-          </List>}
+          </List>
           <DownloadButton editorValueArray={editorValueArray} selectedPattern={selectedPattern} />
-          <Button onClick={() => getEditorValue()}>Zobacz zawartość edytora</Button>
+          <Button onClick={() => getEditorValue()}>Show editor content</Button>
 
         </Grid>
         <Grid
@@ -279,7 +250,7 @@ const Main = () => {
               label="Singleton class name"
               variant="outlined"
               onChange={(event) => handleParamsChange(event)}
-              // => {handleParamsChange(value)}}
+            // => {handleParamsChange(value)}}
             />
           </Stack>
         </Grid>
