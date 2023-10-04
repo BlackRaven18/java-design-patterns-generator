@@ -1,7 +1,7 @@
 import { Editor } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Button, Collapse, Grid, List, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useReducer, useRef, useState } from "react";
 import { Config, PatternFamillyInfo, PatternInfo } from "../types";
 import CustomBackdrop from "./CustomBackdrop";
 import DownloadButton from "./DownloadButton";
@@ -10,17 +10,24 @@ import AppConfigData from "../app_config.json";
 
 import { Monaco } from "@monaco-editor/react";
 import { editor } from 'monaco-editor';
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { setSelectedPatternFamillyIndex } from "../redux/AppStateSlice";
 
 
 const Main = () => {
+
+  const selectedPatternFamillyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamillyIndex);
 
   const [appConfig, setAppConfig] = useState<Config>({
     patternFamillies: []
   });
 
+
+  const dispatch = useDispatch();
+
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
-  const [selectedPatternFamillyIndex, setSelectedPatternFamillyIndex] = useState(0);
   const [selectedPatternIndex, setSelectedPatternIndex] = useState(0);
   const [selectedTabIndex, setSelectedTabIndex] = useState(0);
 
@@ -34,8 +41,6 @@ const Main = () => {
   const [editorLoadedFileName, setEditorLoadedFileName] = useState('');
   const [tmpEditorContent, setTmpEditorContent] = useState('');
   const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
-
-
 
 
   useEffect(() => {
@@ -56,6 +61,7 @@ const Main = () => {
     setAppConfig(config);
 
     setIsLoading(false);
+
 
   }, [])
 
@@ -79,7 +85,8 @@ const Main = () => {
   }
 
   const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
-    setSelectedPatternFamillyIndex(index);
+
+    dispatch(setSelectedPatternFamillyIndex(index));
     handlePatternChange(patternFamilly.patterns[0], 0);
   }
 
