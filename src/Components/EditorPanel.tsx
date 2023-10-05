@@ -3,14 +3,14 @@ import { Box, List, ListItemButton, ListItemText, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import FileReader from "../utils/FileReader";
-import { setSelectedFile, setSelectedTabIndex } from "../redux/AppStateSlice";
+import { setEditorRef, setSelectedFile, setSelectedTabIndex } from "../redux/AppStateSlice";
 import { LoadedPatternFileInfo } from "../types";
 import { editor } from "monaco-editor";
 import { useEffect, useRef, useState } from "react";
 
 const EditorPanel = () => {
 
-    const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+    //const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -75,7 +75,8 @@ const EditorPanel = () => {
     }
 
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
-        editorRef.current = editor;
+        dispatch(setEditorRef(editor))
+        //editorRef.current = editor;
     }
     
     return (
