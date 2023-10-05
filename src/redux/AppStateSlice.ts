@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Config, PatternInfo } from "../types";
+import { Config, LoadedPatternFileInfo, PatternFileInfo, PatternInfo } from "../types";
 import AppConfigJSON from "../app_config.json"
 import App from "../App";
 
@@ -12,6 +12,7 @@ interface AppState {
     selectedTabIndex: number,
 
     selectedPattern: PatternInfo,
+    selectedFile: LoadedPatternFileInfo,
     editorLoadedFileName: string,
     editorValueArray: string[],
 
@@ -26,6 +27,11 @@ const initialState: AppState = {
     selectedTabIndex: 0,
 
     selectedPattern: AppConfigJSON.patternFamillies[0].patterns[0],
+    selectedFile: {
+        name: AppConfigJSON.patternFamillies[0].patterns[0].files[0].name,
+        loaded: AppConfigJSON.patternFamillies[0].patterns[0].files[0].loaded,
+        content: "",
+    },
     editorLoadedFileName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].name,
     editorValueArray: [],
 
@@ -52,6 +58,10 @@ export const appStateSlice = createSlice({
             state.selectedPattern = action.payload;
         },
 
+        setSelectedFile: (state, action: PayloadAction<LoadedPatternFileInfo>) => {
+            state.selectedFile = action.payload;
+        },
+
         setEditorLoadedFileName: (state, action: PayloadAction<string>) => {
             state.editorLoadedFileName = action.payload;
         },
@@ -66,6 +76,7 @@ export const {
     setSelectedPatternIndex,
     setSelectedTabIndex,
     setSelectedPattern,
+    setSelectedFile,
     setEditorLoadedFileName
 
  } = appStateSlice.actions
