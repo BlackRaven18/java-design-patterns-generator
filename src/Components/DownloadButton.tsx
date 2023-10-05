@@ -14,7 +14,7 @@ const DownloadButton = (props: DownloadButtonProps) => {
 
     const handleDownload = async () => {
         props.editorValueArray.map((value, index) => {
-            zip.file(props.selectedPattern.fileNames[index], value);
+            zip.file(props.selectedPattern.files[index].name, value);
         })
 
         const content = await zip.generateAsync({ type: 'blob' });

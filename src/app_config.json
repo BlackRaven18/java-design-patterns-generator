@@ -6,36 +6,54 @@
             {
                "patternName": "Singleton",
                "patternFilesDirectory" : "singleton",
-               "fileNames": [
-                  "singleton.txt"
+               "files": [
+                  {
+                     "name": "singleton.txt",
+                     "loaded": false
+                  }
                ]
             },
             {
                "patternName": "Builder",
                "patternFilesDirectory" : "builder",
-               "fileNames": [
-                  "Builder.java",
-                  "Director.java",
-                  "ConcreteBuilder.java",
-                  "Product.java"
+               "files": [
+                  {
+                     "name": "Builder.java",
+                     "loaded": false
+                  },
+                  {
+                     "name": "Director.java",
+                     "loaded": false
+                  },
+                  {
+                     "name": "ConcreteBuilder.java",
+                     "loaded": false
+                  },
+                  {
+                     "name": "Product.java",
+                     "loaded": false
+                  }
                ]
             },
             {
                "patternName": "Factory Method",
                "patternFilesDirectory" : "factorymethod",
-               "fileNames": [
-                  "Creator.java"
+               "files": [
+                  {
+                     "name": "Creator.java",
+                     "loaded": false
+                  }
                ]
             },
             {
                "patternName": "Abstract Factory",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Prototype",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             }
          ]
       },
@@ -45,37 +63,37 @@
             {
                "patternName": "Adapter",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Bridge",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Composite",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Decorator",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Facade",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Flyweight",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Proxy",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             }
          ]
       },
@@ -85,52 +103,52 @@
             {
                "patternName": "Chain of responsibility",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Command",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Iterator",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Mediator",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Memento",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Observer",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "State",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Strategy",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Template Method",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             },
             {
                "patternName": "Visitor",
                "patternFilesDirectory" : "",
-               "fileNames": []
+               "files": []
             }
          ]
       }
