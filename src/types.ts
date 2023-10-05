@@ -11,5 +11,10 @@ export interface PatternFamillyInfo {
 export interface PatternInfo {
     patternName: string,
     patternFilesDirectory: string,
-    fileNames: string[]
+    files: PatternFileInfo[]
+}
+
+export interface PatternFileInfo{
+    name: string,
+    loaded: boolean
 }

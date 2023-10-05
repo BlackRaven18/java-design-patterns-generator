@@ -26,8 +26,8 @@ const initialState: AppState = {
     selectedTabIndex: 0,
 
     selectedPattern: AppConfigJSON.patternFamillies[0].patterns[0],
-    editorLoadedFileName: AppConfigJSON.patternFamillies[0].patterns[0].fileNames[0],
-    editorValueArray: []
+    editorLoadedFileName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].name,
+    editorValueArray: [],
 
 
 }

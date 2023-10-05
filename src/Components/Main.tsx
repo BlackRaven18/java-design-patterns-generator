@@ -46,10 +46,10 @@ const Main = () => {
 
     setIsLoading(true)
 
-    setEditorLoadedFileName(appConfig.patternFamillies[0].patterns[0].fileNames[0]);
-    setEditorValueArray(new Array<string>(selectedPattern.fileNames.length))
+    setEditorLoadedFileName(appConfig.patternFamillies[0].patterns[0].files[0].name);
+    setEditorValueArray(new Array<string>(selectedPattern.files.length))
 
-    handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.fileNames[0])
+    handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.files[0].name)
       .then(fileContent => {
         setTmpEditorContent(fileContent);
 
@@ -66,9 +66,9 @@ const Main = () => {
   }, [selectedPattern])
 
   const loadEditorValueArray = () => {
-    let tmpArray = new Array<string>(selectedPattern.fileNames.length);
-    selectedPattern.fileNames.map((fileName, index) => {
-      handleFileRead(selectedPattern.patternFilesDirectory + "/" + fileName)
+    let tmpArray = new Array<string>(selectedPattern.files.length);
+    selectedPattern.files.map((file, index) => {
+      handleFileRead(selectedPattern.patternFilesDirectory + "/" + file.name)
         .then(fileContent => {
           tmpArray[index] = fileContent;
         })
@@ -87,15 +87,15 @@ const Main = () => {
 
     setIsLoading(true);
 
-    handleFileRead(pattern.patternFilesDirectory + "/" + pattern.fileNames[0]).then(fileContent => {
+    handleFileRead(pattern.patternFilesDirectory + "/" + pattern.files[0].name).then(fileContent => {
       dispatch(setSelectedPattern(pattern));
       setTmpEditorContent(fileContent);
 
       dispatch(setSelectedPatternIndex(index));
       dispatch(setSelectedTabIndex(0));
 
-      setEditorLoadedFileName(pattern.fileNames[0]);
-      setEditorValueArray(new Array<string>(pattern.fileNames.length))
+      setEditorLoadedFileName(pattern.files[0].name);
+      setEditorValueArray(new Array<string>(pattern.files.length))
 
       setIsLoading(false);
     })
@@ -104,10 +104,10 @@ const Main = () => {
 
   const handleTabChange = (index: number) => {
 
-    handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.fileNames[index])
+    handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.files[index].name)
       .then(fileContent => {
         dispatch(setSelectedTabIndex(index));
-        setEditorLoadedFileName(selectedPattern.fileNames[index]);
+        setEditorLoadedFileName(selectedPattern.files[index].name);
         setTmpEditorContent(fileContent);
       })
 
@@ -263,7 +263,7 @@ const Main = () => {
           }}>
 
             <List component={Stack} direction="row">
-              {selectedPattern.fileNames.map((fileName, index) => {
+              {selectedPattern.files.map((file, index) => {
                 return (
                   <ListItemButton
                     key={index}
@@ -271,7 +271,7 @@ const Main = () => {
                     onClick={() => handleTabChange(index)}
                   >
 
-                    <ListItemText primary={fileName} />
+                    <ListItemText primary={file.name} />
                   </ListItemButton>
                 );
               })}
