@@ -1,4 +1,4 @@
-import { Box, Stack, TextField, Typography } from "@mui/material";
+import { Box, Button, Stack, TextField, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { ParamsInfo, PatternInfo } from "../types";
@@ -8,6 +8,8 @@ const ParametersPanel = () => {
 
     const selectedPattern: PatternInfo = useSelector((state: RootState) => state.appState.selectedPattern);
     const parameters: ParamsInfo = useSelector((state: RootState) => state.appState.parameters);
+
+    const editorRef = useSelector((state: RootState) => state.appState.editorRef);
 
 
     return (
@@ -29,6 +31,11 @@ const ParametersPanel = () => {
                     return null; // Zwróć null, jeśli nie ma pasujących parametrów
                 }
             })}
+            <Button
+                onClick={() => {
+                    alert(editorRef?.getValue());
+                }}
+            >bebe</Button>
         </Stack>
     );
 }

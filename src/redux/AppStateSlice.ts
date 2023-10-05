@@ -1,13 +1,18 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Config, LoadedPatternFileInfo, ParamsInfo, PatternFileInfo, PatternInfo } from "../types";
+import { editor } from "monaco-editor";
+import {useRef} from "react"
 import AppConfigJSON from "../app_config.json"
 import ParametersJSON from '../parameters.json'
+
 import App from "../App";
 
 
 interface AppState {
     appConfig: Config,
     parameters: ParamsInfo,
+
+    editorRef:editor.IStandaloneCodeEditor | null, 
 
     selectedPatternFamillyIndex: number,
     selectedPatternIndex: number,
@@ -24,6 +29,8 @@ interface AppState {
 const initialState: AppState = {
     appConfig: AppConfigJSON,
     parameters: ParametersJSON,
+
+    editorRef: null,
 
     selectedPatternFamillyIndex: 0,
     selectedPatternIndex: 0,
@@ -68,6 +75,9 @@ export const appStateSlice = createSlice({
         setEditorLoadedFileName: (state, action: PayloadAction<string>) => {
             state.editorLoadedFileName = action.payload;
         },
+        setEditorRef: (state, action: PayloadAction<editor.IStandaloneCodeEditor>) => {
+            state.editorRef = action.payload;
+        }
 
         
 
@@ -80,7 +90,8 @@ export const {
     setSelectedTabIndex,
     setSelectedPattern,
     setSelectedFile,
-    setEditorLoadedFileName
+    setEditorLoadedFileName,
+    setEditorRef,
 
  } = appStateSlice.actions
 
