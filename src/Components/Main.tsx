@@ -2,7 +2,7 @@ import { Editor } from "@monaco-editor/react";
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Button, Collapse, Grid, List, ListItemButton, ListItemText, Stack, TextField } from "@mui/material";
 import { useEffect, useRef, useState } from "react";
-import { Config, PatternFamillyInfo, PatternInfo } from "../types";
+import { Config, LoadedPatternFileInfo, PatternFamillyInfo, PatternInfo } from "../types";
 import CustomBackdrop from "./CustomBackdrop";
 import DownloadButton from "./DownloadButton";
 
@@ -11,6 +11,7 @@ import { Monaco } from "@monaco-editor/react";
 import { editor } from 'monaco-editor';
 import { useDispatch, useSelector } from "react-redux";
 import {
+  setSelectedFile,
   setSelectedPattern,
   setSelectedPatternFamillyIndex,
   setSelectedPatternIndex,
@@ -31,30 +32,31 @@ const Main = () => {
   const selectedPatternIndex = useSelector((state: RootState) => state.appState.selectedPatternIndex);
   const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
+  const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
 
-  //z reduxa nie dziala bo za wolno jest
-  const [editorLoadedFileName, setEditorLoadedFileName] = useState('');
-
-  const [tmpEditorContent, setTmpEditorContent] = useState('');
   const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
 
   useEffect(() => {
 
-    setIsLoading(true)
+    //let loadedPatternFile: LoadedPatternFileInfo = JSON.parse(JSON.stringify(selectedFile));
 
-    setEditorLoadedFileName(appConfig.patternFamillies[0].patterns[0].files[0].name);
-    setEditorValueArray(new Array<string>(selectedPattern.files.length))
-
-    handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.files[0].name)
+    handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedFile.name)
       .then(fileContent => {
-        setTmpEditorContent(fileContent);
+        let loadedPatternFile: LoadedPatternFileInfo = {
+          name: selectedFile.name,
+          loaded: selectedFile.loaded,
+          content: fileContent
+        }
 
-        setIsLoading(false);
+        dispatch(setSelectedFile(loadedPatternFile));
       })
+
+
+    setEditorValueArray(new Array<string>(selectedPattern.files.length))
 
   }, [])
 
@@ -85,30 +87,45 @@ const Main = () => {
 
   const handlePatternChange = (pattern: PatternInfo, index: number) => {
 
-    setIsLoading(true);
+    //setIsLoading(true);
 
-    handleFileRead(pattern.patternFilesDirectory + "/" + pattern.files[0].name).then(fileContent => {
-      dispatch(setSelectedPattern(pattern));
-      setTmpEditorContent(fileContent);
+    dispatch(setSelectedPattern(pattern));
+    dispatch(setSelectedPatternIndex(index));
 
-      dispatch(setSelectedPatternIndex(index));
-      dispatch(setSelectedTabIndex(0));
+    handleFileRead(pattern.patternFilesDirectory + "/" + pattern.files[0].name)
+      .then(fileContent => {
+        let newLoadedFile: LoadedPatternFileInfo = {
+          name: pattern.files[0].name,
+          loaded: pattern.files[0].loaded,
+          content: fileContent,
+        }
 
-      setEditorLoadedFileName(pattern.files[0].name);
-      setEditorValueArray(new Array<string>(pattern.files.length))
+        dispatch(setSelectedFile(newLoadedFile));
+        dispatch(setSelectedTabIndex(0));
+      })
 
-      setIsLoading(false);
-    })
+
+    setEditorValueArray(new Array<string>(pattern.files.length))
+
+    //setIsLoading(false);
+
+
 
   }
 
   const handleTabChange = (index: number) => {
 
+
     handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.files[index].name)
       .then(fileContent => {
+        let newLoadedFile: LoadedPatternFileInfo = {
+          name: selectedPattern.files[index].name,
+          loaded: selectedPattern.files[index].loaded,
+          content: fileContent,
+        }
+
+        dispatch(setSelectedFile(newLoadedFile));
         dispatch(setSelectedTabIndex(index));
-        setEditorLoadedFileName(selectedPattern.files[index].name);
-        setTmpEditorContent(fileContent);
       })
 
   }
@@ -153,7 +170,7 @@ const Main = () => {
   }
 
   const handleParamsChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    let tmp: string = tmpEditorContent.replace("$CLASSNAME$", event.target.value);
+    let tmp: string = selectedFile.content.replace("$CLASSNAME$", event.target.value);
     editorRef?.current?.setValue(tmp);
 
 
@@ -282,9 +299,9 @@ const Main = () => {
           <Editor
             height="90vh"
             theme="vs-dark"
-            path={editorLoadedFileName}
+            path={selectedFile.name}
             defaultLanguage={"java"}
-            defaultValue={tmpEditorContent}
+            defaultValue={selectedFile.content}
             onChange={(value) => handleEditorChange(value ?? "")}
             onMount={handleEditorDidMount}
           />
