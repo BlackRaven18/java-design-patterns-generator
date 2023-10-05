@@ -1,11 +1,13 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Config, LoadedPatternFileInfo, PatternFileInfo, PatternInfo } from "../types";
+import { Config, LoadedPatternFileInfo, ParamsInfo, PatternFileInfo, PatternInfo } from "../types";
 import AppConfigJSON from "../app_config.json"
+import ParametersJSON from '../parameters.json'
 import App from "../App";
 
 
 interface AppState {
     appConfig: Config,
+    parameters: ParamsInfo,
 
     selectedPatternFamillyIndex: number,
     selectedPatternIndex: number,
@@ -21,6 +23,7 @@ interface AppState {
 
 const initialState: AppState = {
     appConfig: AppConfigJSON,
+    parameters: ParametersJSON,
 
     selectedPatternFamillyIndex: 0,
     selectedPatternIndex: 0,
