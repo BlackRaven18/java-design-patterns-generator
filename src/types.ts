@@ -22,3 +22,18 @@ export interface PatternFileInfo{
 export interface LoadedPatternFileInfo extends PatternFileInfo{
     content: string,
 }
+
+export interface ParamsInfo{
+    paramsConfig: ParamsConfigInfo[],
+}
+
+export interface ParamsConfigInfo{
+    pattern: string,
+    params: ParamsData[],
+}
+
+export interface ParamsData{
+    label: string,
+    defaultValue: string,
+    replace: string
+}

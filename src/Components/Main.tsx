@@ -5,6 +5,7 @@ import CustomBackdrop from "./CustomBackdrop";
 
 import EditorPanel from "./EditorPanel";
 import PatternsMenu from "./PatternsMenu";
+import ParametersPanel from "./ParametersPanel";
 
 
 const Main = () => {
@@ -52,6 +53,8 @@ const Main = () => {
           }}
         >
           <Stack>
+            
+            <ParametersPanel/>
             {/* <TextField
               id="class-name"
               label="Singleton class name"
