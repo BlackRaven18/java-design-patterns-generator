@@ -18,6 +18,8 @@ const EditorPanel = () => {
     const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
+    const parameters = useSelector((state: RootState) => state.appState.parameters);
+
     const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
     useEffect(() => {
@@ -25,6 +27,8 @@ const EditorPanel = () => {
         //let loadedPatternFile: LoadedPatternFileInfo = JSON.parse(JSON.stringify(selectedFile));
         FileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedFile.name)
             .then(fileContent => {
+                //podmiana początkowych wartośći
+
                 let loadedPatternFile: LoadedPatternFileInfo = {
                     name: selectedFile.name,
                     loaded: selectedFile.loaded,
@@ -36,6 +40,19 @@ const EditorPanel = () => {
 
 
     }, [])
+
+    // const setDefaultValueFromParams = (fileContent: string) => {
+
+    //     parameters.paramsConfig.map(paramData => {
+    //         if (paramData.pattern === selectedPattern.patternName) {
+    //             paramData.params.map(param => {
+
+    //             })
+
+    //             return;
+    //         }
+    //     })
+    // }
 
     useEffect(() => {
         loadEditorValueArray();
@@ -72,13 +89,14 @@ const EditorPanel = () => {
     const handleEditorChange = (value: string) => {
 
         editorValueArray[selectedTabIndex] = value;
+
     }
 
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
         dispatch(setEditorRef(editor))
         //editorRef.current = editor;
     }
-    
+
     return (
         <Box
             sx={{

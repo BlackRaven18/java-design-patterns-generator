@@ -1,4 +1,4 @@
-public interface Builder {
+public interface $CLASSNAME1$ {
     void buildStepA();
 
     void buildStepB();

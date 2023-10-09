@@ -24,6 +24,22 @@
                     "replace": "$METHODNAME$"
                 }
             ]
+        },
+        {
+            "pattern": "Builder",
+            "params": [
+                {
+                    "label": "Builder class name",
+                    "defaultValue": "Builder",
+                    "replace": "$CLASSNAME1$"
+                },
+                {
+                    "label": "Director class name",
+                    "defaultValue": "Director",
+                    "replace": "$CLASSNAME2$"
+                }
+            ] 
         }
+        
     ]
 }
