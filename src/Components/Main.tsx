@@ -49,7 +49,8 @@ const Main = () => {
           item
           xs={2}
           sx={{
-            backgroundColor: "#F4D03F"
+            backgroundColor: "#F9E79F",
+            paddingTop: "10px"
           }}
         >
           <Stack>

@@ -18,11 +18,11 @@
                "patternFilesDirectory" : "builder",
                "files": [
                   {
-                     "name": "Builder.java",
+                     "name": "Builder.txt",
                      "loaded": false
                   },
                   {
-                     "name": "Director.java",
+                     "name": "Director.txt",
                      "loaded": false
                   },
                   {

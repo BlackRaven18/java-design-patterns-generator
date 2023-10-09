@@ -1,3 +1,10 @@
-enum $CLASSNAME${
-	INSTANCE;
+class $CLASSNAME$ {
+	
+	private $CLASSNAME2$ $VARNAME$;
+	
+	public $CLASSNAME2$ $METHODNAME$() {
+		
+		return ...
+	}
+
 }

@@ -1,1 +1,18 @@
-//director code here ;)
+
+public class $CLASSNAME2$ {
+	private Builder builder;
+
+	public $CLASSNAME2$($CLASSNAME1$ builder) {
+		this.builder = builder;
+	}
+
+	public void changeBuilder($CLASSNAME1$ builder) {
+		this.builder = builder;
+	}
+
+	public void Construct() {
+		builder.buildStepA();
+		builder.buildStepB();
+		builder.buildStepZ();
+	}
+}
