@@ -5,17 +5,39 @@
          "patterns": [
             {
                "patternName": "Singleton",
-               "patternFilesDirectory" : "singleton",
+               "patternFilesDirectory": "singleton",
                "files": [
                   {
                      "name": "singleton.txt",
                      "loaded": false
                   }
+               ],
+               "params": [
+                  {
+                     "label": "Singleton class name",
+                     "defaultValue": "Singleton",
+                     "replace": "$CLASSNAME$"
+                  },
+                  {
+                     "label": "Product class name",
+                     "defaultValue": "Product",
+                     "replace": "$CLASSNAME2$"
+                  },
+                  {
+                     "label": "Product variable name",
+                     "defaultValue": "produt",
+                     "replace": "$VARNAME$"
+                  },
+                  {
+                     "label": "Method name",
+                     "defaultValue": "doSomething",
+                     "replace": "$METHODNAME$"
+                  }
                ]
             },
             {
                "patternName": "Builder",
-               "patternFilesDirectory" : "builder",
+               "patternFilesDirectory": "builder",
                "files": [
                   {
                      "name": "Builder.txt",
@@ -33,27 +55,42 @@
                      "name": "Product.java",
                      "loaded": false
                   }
+               ],
+               "params": [
+                  {
+                     "label": "Builder class name",
+                     "defaultValue": "Builder",
+                     "replace": "$CLASSNAME1$"
+                  },
+                  {
+                     "label": "Director class name",
+                     "defaultValue": "Director",
+                     "replace": "$CLASSNAME2$"
+                  }
                ]
             },
             {
                "patternName": "Factory Method",
-               "patternFilesDirectory" : "factorymethod",
+               "patternFilesDirectory": "factorymethod",
                "files": [
                   {
                      "name": "Creator.java",
                      "loaded": false
                   }
-               ]
+               ],
+               "params": []
             },
             {
                "patternName": "Abstract Factory",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Prototype",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             }
          ]
       },
@@ -62,38 +99,45 @@
          "patterns": [
             {
                "patternName": "Adapter",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Bridge",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Composite",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Decorator",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Facade",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Flyweight",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Proxy",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             }
          ]
       },
@@ -102,53 +146,63 @@
          "patterns": [
             {
                "patternName": "Chain of responsibility",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Command",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Iterator",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Mediator",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Memento",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Observer",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "State",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Strategy",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Template Method",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             },
             {
                "patternName": "Visitor",
-               "patternFilesDirectory" : "",
-               "files": []
+               "patternFilesDirectory": "",
+               "files": [],
+               "params": []
             }
          ]
       }

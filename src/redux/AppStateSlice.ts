@@ -10,7 +10,6 @@ import App from "../App";
 
 interface AppState {
     appConfig: Config,
-    parameters: ParamsInfo,
 
     selectedPatternFamillyIndex: number,
     selectedPatternIndex: number,
@@ -26,7 +25,6 @@ interface AppState {
 
 const initialState: AppState = {
     appConfig: AppConfigJSON,
-    parameters: ParametersJSON,
 
     selectedPatternFamillyIndex: 0,
     selectedPatternIndex: 0,
