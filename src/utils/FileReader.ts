@@ -1,11 +1,31 @@
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedFile, setSelectedTabIndex } from "../redux/AppStateSlice";
+import { LoadedPatternFileInfo } from "../types";
+import { AppDispatch, RootState } from "../redux/store";
 
 
 export default class FileReader {
 
-    static async handleFileRead(filename: string): Promise<string> {
+    private dispatch = useDispatch<AppDispatch>();
+    private selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
+
+    public loadFileToState(path: string, fileName: string) {
+        this.handleFileRead(path)
+            .then(fileContent => {
+                let newLoadedFile: LoadedPatternFileInfo = {
+                    name: fileName,
+                    loaded: true,//this.selectedPattern.files[index].loaded,
+                    content: fileContent,
+                }
+
+                this.dispatch(setSelectedFile(newLoadedFile));
+            })
+    }
+
+     async handleFileRead(path: string): Promise<string> {
         let content = "";
         try {
-            const response = await fetch(filename);
+            const response = await fetch(path);
             if (!response.ok) {
                 throw new Error('Can not fetch a file');
             }

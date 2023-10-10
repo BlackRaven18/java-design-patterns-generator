@@ -26,10 +26,12 @@ const EditorPanel:React.FC<EditorPanelProps> = ({setEditorParentRef}) => {
 
     const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
+    const fileReader = new FileReader();
+
     useEffect(() => {
 
         //let loadedPatternFile: LoadedPatternFileInfo = JSON.parse(JSON.stringify(selectedFile));
-        FileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedFile.name)
+        fileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedFile.name)
             .then(fileContent => {
                 //podmiana początkowych wartośći
 
@@ -53,7 +55,7 @@ const EditorPanel:React.FC<EditorPanelProps> = ({setEditorParentRef}) => {
     const loadEditorValueArray = () => {
         let tmpArray = new Array<string>(selectedPattern.files.length);
         selectedPattern.files.map((file, index) => {
-            FileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + file.name)
+            fileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + file.name)
                 .then(fileContent => {
                     tmpArray[index] = fileContent;
                 })
@@ -64,7 +66,7 @@ const EditorPanel:React.FC<EditorPanelProps> = ({setEditorParentRef}) => {
 
     const handleTabChange = (index: number) => {
 
-        FileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.files[index].name)
+        fileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + selectedPattern.files[index].name)
             .then(fileContent => {
                 let newLoadedFile: LoadedPatternFileInfo = {
                     name: selectedPattern.files[index].name,

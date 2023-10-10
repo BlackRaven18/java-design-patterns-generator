@@ -20,6 +20,8 @@ const PatternsMenu = () => {
    const selectedPatternFamillyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamillyIndex);
    const selectedPatternIndex = useSelector((state: RootState) => state.appState.selectedPatternIndex);
 
+   const fileReader = new FileReader();
+
    const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
 
       dispatch(setSelectedPatternFamillyIndex(index));
@@ -33,7 +35,7 @@ const PatternsMenu = () => {
       dispatch(setSelectedPattern(pattern));
       dispatch(setSelectedPatternIndex(index));
 
-      FileReader.handleFileRead(pattern.patternFilesDirectory + "/" + pattern.files[0].name)
+      fileReader.handleFileRead(pattern.patternFilesDirectory + "/" + pattern.files[0].name)
          .then(fileContent => {
             let newLoadedFile: LoadedPatternFileInfo = {
                name: pattern.files[0].name,
