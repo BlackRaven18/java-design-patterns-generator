@@ -1,16 +1,21 @@
 import { Box, Grid, Stack } from "@mui/material";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import CustomBackdrop from "./CustomBackdrop";
-
-
+import { editor } from "monaco-editor";
 import EditorPanel from "./EditorPanel";
-import PatternsMenu from "./PatternsMenu";
 import ParametersPanel from "./ParametersPanel";
+import PatternsMenu from "./PatternsMenu";
 
 
 const Main = () => {
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const parentEditorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+
+  const setEditorRef = (editorRef: editor.IStandaloneCodeEditor | null) => {
+    parentEditorRef.current = editorRef;
+  };
 
 
   // const handleParamsChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -54,8 +59,8 @@ const Main = () => {
           }}
         >
           <Stack>
-            
-            <ParametersPanel/>
+
+            <ParametersPanel editorRef={parentEditorRef}/>
             {/* <TextField
               id="class-name"
               label="Singleton class name"
@@ -67,7 +72,7 @@ const Main = () => {
         </Grid>
         <Grid item xs={8}>
 
-          <EditorPanel />
+          <EditorPanel setEditorParentRef={setEditorRef} />
 
         </Grid>
       </Grid>
