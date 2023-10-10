@@ -33,7 +33,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({editorRef}) => {
     ) => {
         paramsTextFieldsCurrentValue[index] = event.target.value;
         handleReplace();
-        //editorRef?.setValue())
     }
 
     const handleReplace = () => {
