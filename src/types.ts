@@ -11,7 +11,8 @@ export interface PatternFamillyInfo {
 export interface PatternInfo {
     patternName: string,
     patternFilesDirectory: string,
-    files: PatternFileInfo[]
+    files: PatternFileInfo[],
+    params: ParamsData[],
 }
 
 export interface PatternFileInfo{

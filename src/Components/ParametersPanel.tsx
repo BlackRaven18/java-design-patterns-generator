@@ -3,7 +3,7 @@ import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { ParamsInfo, PatternInfo } from "../types";
+import { ParamsData, ParamsInfo, PatternInfo } from "../types";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -13,44 +13,71 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const selectedPattern: PatternInfo = useSelector((state: RootState) => state.appState.selectedPattern);
     const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
-    const parameters: ParamsInfo = useSelector((state: RootState) => state.appState.parameters);
 
-    const [paramsTextFieldsCurrentValue, setParamsTextFieldsCurrentValue] = useState<string[]>([])
+    const [textFieldsContent, setTextFieldsContent] = useState<string[]>([])
 
     useEffect(() => {
-        let tmp = new Array<string>(parameters.paramsConfig[0].params.length)
-        parameters.paramsConfig[0].params.map((paramData, index) => {
-            tmp[index] = paramData.defaultValue;
+        let textFieldsContentArray = new Array<string>(selectedPattern.params.length)
+        selectedPattern.params.map((param, index) => {
+            textFieldsContentArray[index] = param.defaultValue;
         })
 
-        setParamsTextFieldsCurrentValue(tmp);
+        setTextFieldsContent(textFieldsContentArray);
+        console.log(textFieldsContentArray);
+    }, [selectedPattern])
+    
+    // useEffect(() => {
+    //     let tmp = new Array<string>(parameters.paramsConfig[0].params.length)
+    //     parameters.paramsConfig[0].params.map((paramData, index) => {
+    //         tmp[index] = paramData.defaultValue;
+    //     })
 
-    }, [])
+    //     setParamsTextFieldsCurrentValue(tmp);
+
+    // }, [])
 
     const handleParameterChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
         index: number
     ) => {
-        paramsTextFieldsCurrentValue[index] = event.target.value;
-        handleReplace();
+        //paramsTextFieldsCurrentValue[index] = event.target.value;
+        //handleReplace();
     }
+
+    useEffect(() => {
+       // console.log(selectedFile.content);
+
+        ////console.log(editorRef.current?.getValue());
+
+        ////console.log("ujauja")
+
+       // let tmp = new Array<string>(selectedPattern.files.length);
+        
+
+
+        //handleReplace();
+
+    }, [selectedFile.name])
+
+    // const updateEditorContent = (params: ParamsData[]) => {
+    //     let fileContent = selectedFile.content;
+
+    //     params.map(param => {
+    //         fileContent = fileContent.replaceAll(param.replace, param.defaultValue);
+    //     })
+
+    //     editorRef.current?.setValue(fileContent);
+    // }
 
     const handleReplace = () => {
         let currentEditorValue = selectedFile.content;
 
-        parameters.paramsConfig.map(paramsData => {
-            if (paramsData.pattern === selectedPattern.patternName) {
-                paramsData.params.map((paramData, index) => {
-                    currentEditorValue = currentEditorValue
-                        .replaceAll(paramData.replace, paramsTextFieldsCurrentValue[index]);
+        // selectedPattern.params.map((paramData, index) => {
+        //     currentEditorValue = currentEditorValue
+        //                 .replaceAll(paramData.replace, paramsTextFieldsCurrentValue[index]);
+        // })
 
-                })
-                editorRef.current?.setValue(currentEditorValue);
-                //editorRef.setValue(currentEditorValue);
-
-                return;
-            }
-        })
+        //editorRef.current?.setValue(currentEditorValue);
     }
 
 
@@ -61,27 +88,24 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                 padding: "10px"
             }}
         >
-            {parameters.paramsConfig.map((paramsData) => {
-                if (paramsData.pattern === selectedPattern.patternName) {
-                    return paramsData.params.map((paramData, index) => (
-                        <TextField
-                            key={index}
-                            label={paramData.label}
-                            variant="outlined"
-                            defaultValue={paramData.defaultValue}
-                            onChange={(event) => { handleParameterChange(event, index) }}
-                        />
-
-                    ));
-                } else {
-                    return null; // Zwróć null, jeśli nie ma pasujących parametrów
-                }
+            {selectedPattern.params.map((paramData, index) => {
+                return(
+                    <TextField
+                        key={index}
+                        label={paramData.label}
+                        variant="outlined"
+                        defaultValue={paramData.defaultValue}
+                        onChange={(event) => { handleParameterChange(event, index) }}
+                    />
+                );
             })}
+            
             <Button
-                onClick={() => {
-                    alert(editorRef.current?.getValue());
-                }}
-            >show editor value</Button>
+                    onClick={() => {
+                        alert(editorRef.current?.getValue());
+                    }}
+                >show editor value
+                </Button>
         </Stack>
     );
 }

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTabIndex } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import FileReader from "../utils/FileReader";
+import { ParamsData } from "../types";
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
@@ -21,8 +22,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
-    const parameters = useSelector((state: RootState) => state.appState.parameters);
-
     const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
     const fileReader = new FileReader();
@@ -37,6 +36,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
         loadEditorValueArray();
 
     }, [selectedPattern])
+
 
     const loadEditorValueArray = () => {
         let tmpArray = new Array<string>(selectedPattern.files.length);
