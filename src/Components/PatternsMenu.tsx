@@ -2,14 +2,13 @@ import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import { Box, Collapse, List, ListItemButton, ListItemText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
-   setSelectedFile,
    setSelectedPattern,
    setSelectedPatternFamillyIndex,
    setSelectedPatternIndex,
    setSelectedTabIndex
 } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
-import { LoadedPatternFileInfo, PatternFamillyInfo, PatternInfo } from "../types";
+import { PatternFamillyInfo, PatternInfo } from "../types";
 import FileReader from "../utils/FileReader";
 
 const PatternsMenu = () => {
@@ -34,23 +33,10 @@ const PatternsMenu = () => {
 
       dispatch(setSelectedPattern(pattern));
       dispatch(setSelectedPatternIndex(index));
+      dispatch(setSelectedTabIndex(0));
 
-      fileReader.handleFileRead(pattern.patternFilesDirectory + "/" + pattern.files[0].name)
-         .then(fileContent => {
-            let newLoadedFile: LoadedPatternFileInfo = {
-               name: pattern.files[0].name,
-               loaded: pattern.files[0].loaded,
-               content: fileContent,
-            }
+      fileReader.loadFileToState(pattern.patternFilesDirectory, pattern.files[0].name)
 
-            dispatch(setSelectedFile(newLoadedFile));
-            dispatch(setSelectedTabIndex(0));
-         })
-
-
-      //setEditorValueArray(new Array<string>(pattern.files.length))
-
-      //setIsLoading(false);
 
    }
 

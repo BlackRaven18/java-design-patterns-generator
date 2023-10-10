@@ -9,8 +9,8 @@ export default class FileReader {
     private dispatch = useDispatch<AppDispatch>();
     private selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
 
-    public loadFileToState(path: string, fileName: string) {
-        this.handleFileRead(path)
+    public loadFileToState(pathToDirectory: string, fileName: string) {
+        this.handleFileRead(pathToDirectory + "/" + fileName)
             .then(fileContent => {
                 let newLoadedFile: LoadedPatternFileInfo = {
                     name: fileName,

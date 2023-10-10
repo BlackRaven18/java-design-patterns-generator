@@ -3,16 +3,16 @@ import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
-import { LoadedPatternFileInfo, ParamsInfo, PatternInfo } from "../types";
+import { ParamsInfo, PatternInfo } from "../types";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
 }
 
-const ParametersPanel: React.FC<ParametersPanelProps> = ({editorRef}) => {
+const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const selectedPattern: PatternInfo = useSelector((state: RootState) => state.appState.selectedPattern);
-    const selectedFile: LoadedPatternFileInfo = useSelector((state: RootState) => state.appState.selectedFile);
+    const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
     const parameters: ParamsInfo = useSelector((state: RootState) => state.appState.parameters);
 
     const [paramsTextFieldsCurrentValue, setParamsTextFieldsCurrentValue] = useState<string[]>([])
