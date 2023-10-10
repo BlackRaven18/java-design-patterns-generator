@@ -12,8 +12,6 @@ interface AppState {
     appConfig: Config,
     parameters: ParamsInfo,
 
-    editorRef:editor.IStandaloneCodeEditor | null, 
-
     selectedPatternFamillyIndex: number,
     selectedPatternIndex: number,
     selectedTabIndex: number,
@@ -29,8 +27,6 @@ interface AppState {
 const initialState: AppState = {
     appConfig: AppConfigJSON,
     parameters: ParametersJSON,
-
-    editorRef: null,
 
     selectedPatternFamillyIndex: 0,
     selectedPatternIndex: 0,
@@ -75,11 +71,7 @@ export const appStateSlice = createSlice({
         setEditorLoadedFileName: (state, action: PayloadAction<string>) => {
             state.editorLoadedFileName = action.payload;
         },
-        setEditorRef: (state, action: PayloadAction<editor.IStandaloneCodeEditor>) => {
-            state.editorRef = action.payload;
-        }
-
-        
+       
 
     }
 })
@@ -91,7 +83,6 @@ export const {
     setSelectedPattern,
     setSelectedFile,
     setEditorLoadedFileName,
-    setEditorRef,
 
  } = appStateSlice.actions
 

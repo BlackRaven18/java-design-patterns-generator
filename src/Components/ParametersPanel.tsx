@@ -1,18 +1,19 @@
-import { Box, Button, Stack, TextField, Typography } from "@mui/material";
+import { Button, Stack, TextField } from "@mui/material";
+import { editor } from "monaco-editor";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { LoadedPatternFileInfo, ParamsInfo, PatternInfo } from "../types";
-import { TextFields } from "@mui/icons-material";
-import { useEffect, useState } from "react";
 
-const ParametersPanel = () => {
+interface ParametersPanelProps {
+    editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
+}
+
+const ParametersPanel: React.FC<ParametersPanelProps> = ({editorRef}) => {
 
     const selectedPattern: PatternInfo = useSelector((state: RootState) => state.appState.selectedPattern);
     const selectedFile: LoadedPatternFileInfo = useSelector((state: RootState) => state.appState.selectedFile);
     const parameters: ParamsInfo = useSelector((state: RootState) => state.appState.parameters);
-
-    const editorRef = useSelector((state: RootState) => state.appState.editorRef);
-
 
     const [paramsTextFieldsCurrentValue, setParamsTextFieldsCurrentValue] = useState<string[]>([])
 
@@ -22,7 +23,7 @@ const ParametersPanel = () => {
             tmp[index] = paramData.defaultValue;
         })
 
-        setParamsTextFieldsCurrentValue(tmp);    
+        setParamsTextFieldsCurrentValue(tmp);
 
     }, [])
 
@@ -45,8 +46,8 @@ const ParametersPanel = () => {
                         .replaceAll(paramData.replace, paramsTextFieldsCurrentValue[index]);
 
                 })
-
-                editorRef?.setValue(currentEditorValue);
+                editorRef.current?.setValue(currentEditorValue);
+                //editorRef.setValue(currentEditorValue);
 
                 return;
             }
@@ -69,7 +70,7 @@ const ParametersPanel = () => {
                             label={paramData.label}
                             variant="outlined"
                             defaultValue={paramData.defaultValue}
-                            onChange={(event) => {handleParameterChange(event, index)}}
+                            onChange={(event) => { handleParameterChange(event, index) }}
                         />
 
                     ));
@@ -79,7 +80,7 @@ const ParametersPanel = () => {
             })}
             <Button
                 onClick={() => {
-                    alert(editorRef?.getValue());
+                    alert(editorRef.current?.getValue());
                 }}
             >show editor value</Button>
         </Stack>

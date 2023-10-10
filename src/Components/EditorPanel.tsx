@@ -3,14 +3,18 @@ import { Box, List, ListItemButton, ListItemText, Stack } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
 import FileReader from "../utils/FileReader";
-import { setEditorRef, setSelectedFile, setSelectedTabIndex } from "../redux/AppStateSlice";
+import { setSelectedFile, setSelectedTabIndex } from "../redux/AppStateSlice";
 import { LoadedPatternFileInfo } from "../types";
 import { editor } from "monaco-editor";
 import { useEffect, useRef, useState } from "react";
 
-const EditorPanel = () => {
+interface EditorPanelProps {
+    setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
+  }
 
-    //const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
+const EditorPanel:React.FC<EditorPanelProps> = ({setEditorParentRef}) => {
+
+    const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -40,19 +44,6 @@ const EditorPanel = () => {
 
 
     }, [])
-
-    // const setDefaultValueFromParams = (fileContent: string) => {
-
-    //     parameters.paramsConfig.map(paramData => {
-    //         if (paramData.pattern === selectedPattern.patternName) {
-    //             paramData.params.map(param => {
-
-    //             })
-
-    //             return;
-    //         }
-    //     })
-    // }
 
     useEffect(() => {
         loadEditorValueArray();
@@ -93,14 +84,13 @@ const EditorPanel = () => {
     }
 
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
-        dispatch(setEditorRef(editor))
-        //editorRef.current = editor;
+        editorRef.current = editor;
+        setEditorParentRef(editor);
     }
 
     return (
         <Box
             sx={{
-                // bgcolor: '#2e1534',
                 bgcolor: "#ffffff"
             }}
         >
