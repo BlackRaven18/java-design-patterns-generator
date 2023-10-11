@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { ParamsData, ParamsInfo, PatternInfo } from "../types";
 import { current } from "@reduxjs/toolkit";
+import { text } from "stream/consumers";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -20,12 +21,24 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     );
 
     const [isSelectedFileChanged, setIsSelectedFileChanged] = useState(false);
+    const [isParamChanged, setIsParamChanged] = useState(false);
 
     useEffect(() => {
         setIsSelectedFileChanged(true);
     }, [selectedFile])
 
+    useEffect(() => {
 
+        if (isSelectedFileChanged || isParamChanged) {
+
+            console.log(textFieldsContentArray);
+            let parsedEditorValue = parseEditorValue(selectedFile.content);
+            editorRef.current?.setValue(parsedEditorValue);
+            setIsSelectedFileChanged(false);
+            setIsParamChanged(false)
+        }
+
+    }, [isSelectedFileChanged, isParamChanged])
 
 
     useEffect(() => {
@@ -38,15 +51,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     }, [selectedPattern])
 
-    useEffect(() => {
-
-        if (isSelectedFileChanged) {
-            console.log("ujauja")
-            console.log(editorRef.current?.getValue());
-            setIsSelectedFileChanged(false);
-        }
-
-    }, [isSelectedFileChanged])
 
 
 
@@ -56,6 +60,15 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         textFieldsContentArrayCopy[textFieldIndex] = newValue;
 
         setTextFieldsContentArray(textFieldsContentArrayCopy);
+        setIsParamChanged(true);
+    }
+
+    const parseEditorValue = (editorDefalutValue: string) => {
+        selectedPattern.params.map((param, index) => {
+            editorDefalutValue = editorDefalutValue.replaceAll(param.replace, textFieldsContentArray[index] ?? "*NO VALUE DELIVERED*")
+        })
+
+        return editorDefalutValue;
     }
 
 
