@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
 import { ParamsData, ParamsInfo, PatternInfo } from "../types";
+import { current } from "@reduxjs/toolkit";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -18,18 +19,34 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         selectedPattern.params.map(param => param.defaultValue || '')
     );
 
+    const [isSelectedFileChanged, setIsSelectedFileChanged] = useState(false);
+
+    useEffect(() => {
+        setIsSelectedFileChanged(true);
+    }, [selectedFile])
+
+
+
+
     useEffect(() => {
 
-        // if (selectedPattern.params) {
         let textFieldsContentArrayCopy = [
-            ...selectedPattern.params.map(param => param.defaultValue || '')];
+            ...selectedPattern.params.map(param => param.defaultValue || '')
+        ];
 
         setTextFieldsContentArray(textFieldsContentArrayCopy);
 
-        console.log(textFieldsContentArrayCopy);
-        // }
-
     }, [selectedPattern])
+
+    useEffect(() => {
+
+        if (isSelectedFileChanged) {
+            console.log("ujauja")
+            console.log(editorRef.current?.getValue());
+            setIsSelectedFileChanged(false);
+        }
+
+    }, [isSelectedFileChanged])
 
 
 
@@ -39,14 +56,9 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         textFieldsContentArrayCopy[textFieldIndex] = newValue;
 
         setTextFieldsContentArray(textFieldsContentArrayCopy);
-
-        console.log(textFieldsContentArrayCopy);
-
-
-
-        // paramsTextFieldsCurrentValue[index] = event.target.value;
-        // handleReplace();
     }
+
+
 
 
 
