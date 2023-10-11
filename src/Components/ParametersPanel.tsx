@@ -1,11 +1,12 @@
-import { Button, Stack, TextField } from "@mui/material";
+import { Button, FormControlLabel, Stack, Switch, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../redux/store";
 import { ParamsData, ParamsInfo, PatternInfo } from "../types";
 import { current } from "@reduxjs/toolkit";
 import { text } from "stream/consumers";
+import { setIsEditorReadOnly } from "../redux/AppStateSlice";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -13,8 +14,11 @@ interface ParametersPanelProps {
 
 const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
-    const selectedPattern: PatternInfo = useSelector((state: RootState) => state.appState.selectedPattern);
+    const dispatch = useDispatch<AppDispatch>();
+
+    const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
     const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
+    const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
 
     const [textFieldsContentArray, setTextFieldsContentArray] = useState<string[]>(
         selectedPattern.params.map(param => param.defaultValue || '')
@@ -22,6 +26,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const [isSelectedFileChanged, setIsSelectedFileChanged] = useState(false);
     const [isParamChanged, setIsParamChanged] = useState(false);
+    const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
 
     useEffect(() => {
         setIsSelectedFileChanged(true);
@@ -31,7 +36,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
         if (isSelectedFileChanged || isParamChanged) {
 
-            console.log(textFieldsContentArray);
             let parsedEditorValue = parseEditorValue(selectedFile.content);
             editorRef.current?.setValue(parsedEditorValue);
             setIsSelectedFileChanged(false);
@@ -71,6 +75,11 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         return editorDefalutValue;
     }
 
+    const handleEditorReadOnlyChange = () => {
+        dispatch(setIsEditorReadOnly(!isEditorReadOnly));
+        setIsParamsFieldsDisabled(!isParamsFieldsDisabled);
+    }
+
 
 
 
@@ -91,6 +100,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                         //defaultValue={param.defaultValue}
                         value={textFieldsContentArray[index] || ""}
                         onChange={e => handleParameterChange(e.target.value, index)}
+                        disabled={isParamsFieldsDisabled}
                     />
                 );
             })}
@@ -101,6 +111,20 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                 }}
             >show editor value
             </Button>
+
+            <FormControlLabel
+                control={
+                    <Switch
+                        checked={isEditorReadOnly}
+                        onChange={handleEditorReadOnlyChange}
+                    />
+                }
+                label="Read only mode" />
+
+            {/* <Switch
+                checked={isEditorReadOnly}
+                label="Change to manual code writting"
+            /> */}
         </Stack>
     );
 }

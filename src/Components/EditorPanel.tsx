@@ -21,6 +21,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
     const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
+    const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
 
     const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
@@ -97,6 +98,9 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 defaultValue={selectedFile.content}
                 onChange={(value) => handleEditorChange(value ?? "")}
                 onMount={handleEditorDidMount}
+                options={{
+                    readOnly: isEditorReadOnly,
+                }}
             />
         </Box>
     );
