@@ -17,8 +17,8 @@ interface AppState {
 
     selectedPattern: PatternInfo,
     selectedFile: LoadedPatternFileInfo,
-    editorLoadedFileName: string,
-    editorValueArray: string[],
+
+    isEditorReadOnly: boolean,
 
 }
 
@@ -36,9 +36,8 @@ const initialState: AppState = {
         loaded: AppConfigJSON.patternFamillies[0].patterns[0].files[0].loaded,
         content: "",
     },
-    editorLoadedFileName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].name,
-    editorValueArray: [],
 
+    isEditorReadOnly: true,
 
 }
 
@@ -66,9 +65,10 @@ export const appStateSlice = createSlice({
             state.selectedFile = action.payload;
         },
 
-        setEditorLoadedFileName: (state, action: PayloadAction<string>) => {
-            state.editorLoadedFileName = action.payload;
+        setIsEditorReadOnly: (state, action: PayloadAction<boolean>) => {
+            state.isEditorReadOnly = action.payload;
         },
+
        
 
     }
@@ -80,7 +80,7 @@ export const {
     setSelectedTabIndex,
     setSelectedPattern,
     setSelectedFile,
-    setEditorLoadedFileName,
+    setIsEditorReadOnly
 
  } = appStateSlice.actions
 
