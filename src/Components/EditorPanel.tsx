@@ -58,8 +58,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     const handleEditorChange = (value: string) => {
 
-        console.log("aaaaa");
-
         editorValueArray[selectedTabIndex] = value;
 
     }
