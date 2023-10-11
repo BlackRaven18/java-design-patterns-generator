@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTabIndex } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import FileReader from "../utils/FileReader";
-import { ParamsData } from "../types";
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
@@ -23,13 +22,14 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
 
+
     const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
 
     const fileReader = new FileReader();
 
     useEffect(() => {
 
-        fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedFile.name)
+        fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedFile.name);
 
     }, [])
 
@@ -65,6 +65,13 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
         editorRef.current = editor;
+
+        fileReader.loadFileToStateAndReplaceParams(
+            selectedPattern.patternFilesDirectory, selectedFile.name, selectedPattern.params
+        ).then(fileContentWithReplacedParams => {
+            editor.setValue(fileContentWithReplacedParams);
+        })
+
         setEditorParentRef(editor);
     }
 

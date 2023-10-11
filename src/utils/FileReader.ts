@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedFile, setSelectedTabIndex } from "../redux/AppStateSlice";
-import { LoadedPatternFileInfo } from "../types";
+import { LoadedPatternFileInfo, ParamsData } from "../types";
 import { AppDispatch, RootState } from "../redux/store";
 
 
 export default class FileReader {
 
     private dispatch = useDispatch<AppDispatch>();
-    private selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
 
     public loadFileToState(pathToDirectory: string, fileName: string) {
         this.handleFileRead(pathToDirectory + "/" + fileName)
@@ -22,7 +21,27 @@ export default class FileReader {
             })
     }
 
-     async handleFileRead(path: string): Promise<string> {
+    public async loadFileToStateAndReplaceParams(
+        pathToDirectory: string, fileName: string, params: ParamsData[]) {
+
+
+        let fileContentWithReplacedParams = this.handleFileRead(
+            pathToDirectory + "/" + fileName)
+            .then(fileContent => {
+
+                params.map(param => {
+                    fileContent = fileContent.replaceAll(
+                        param.replace, param.defaultValue);
+                })
+
+                return fileContent;
+
+            })
+
+        return fileContentWithReplacedParams;
+    }
+
+    async handleFileRead(path: string): Promise<string> {
         let content = "";
         try {
             const response = await fetch(path);
