@@ -2,11 +2,8 @@ import { Button, FormControlLabel, Stack, Switch, TextField } from "@mui/materia
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
-import { ParamsData, ParamsInfo, PatternInfo } from "../types";
-import { current } from "@reduxjs/toolkit";
-import { text } from "stream/consumers";
 import { setIsEditorReadOnly } from "../redux/AppStateSlice";
+import { AppDispatch, RootState } from "../redux/store";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -31,6 +28,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     useEffect(() => {
         setIsSelectedFileChanged(true);
     }, [selectedFile])
+
 
     useEffect(() => {
 
@@ -82,8 +80,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
 
 
-
-
     return (
         <Stack
             spacing="20px"
@@ -121,10 +117,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                 }
                 label="Read only mode" />
 
-            {/* <Switch
-                checked={isEditorReadOnly}
-                label="Change to manual code writting"
-            /> */}
         </Stack>
     );
 }

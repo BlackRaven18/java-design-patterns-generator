@@ -80,7 +80,8 @@ export const {
     setSelectedTabIndex,
     setSelectedPattern,
     setSelectedFile,
-    setIsEditorReadOnly
+    setIsEditorReadOnly,
+
 
  } = appStateSlice.actions
 
