@@ -8,7 +8,7 @@
                "patternFilesDirectory": "singleton",
                "files": [
                   {
-                     "name": "singleton.txt",
+                     "name": "singleton.java",
                      "loaded": false
                   }
                ],
@@ -30,11 +30,11 @@
                "patternFilesDirectory": "builder",
                "files": [
                   {
-                     "name": "Builder.txt",
+                     "name": "Builder.java",
                      "loaded": false
                   },
                   {
-                     "name": "Director.txt",
+                     "name": "Director.java",
                      "loaded": false
                   },
                   {
@@ -50,12 +50,12 @@
                   {
                      "label": "Builder class name",
                      "defaultValue": "Builder",
-                     "replace": "$CLASSNAME1$"
+                     "replace": "$BUILDER_CLASSNAME$"
                   },
                   {
                      "label": "Director class name",
                      "defaultValue": "Director",
-                     "replace": "$CLASSNAME2$"
+                     "replace": "$DIRECTOR_CLASSNAME$"
                   }
                ]
             },

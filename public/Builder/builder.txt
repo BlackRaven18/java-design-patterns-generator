@@ -1,8 +1,0 @@
-public interface $CLASSNAME1$ {
-    void buildStepA();
-
-    void buildStepB();
-
-    // ...
-    void buildStepZ();
-}

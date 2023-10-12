@@ -1,3 +1,4 @@
-enum Singleton{
-	INSTANCE;
+public enum $CLASSNAME$ {
+	
+	$INSTANCENAME$;
 }

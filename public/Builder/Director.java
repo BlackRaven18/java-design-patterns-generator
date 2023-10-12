@@ -1,12 +1,12 @@
 
-public class Director {
-	private Builder builder;
+public class $DIRECTOR_CLASSNAME$ {
+	private $BUILDER_CLASSNAME$ builder;
 
-	public Director(Builder builder) {
+	public $DIRECTOR_CLASSNAME$($BUILDER_CLASSNAME$ builder) {
 		this.builder = builder;
 	}
 
-	public void changeBuilder(Builder builder) {
+	public void changeBuilder($BUILDER_CLASSNAME$ builder) {
 		this.builder = builder;
 	}
 

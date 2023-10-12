@@ -33,19 +33,13 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
         if (isSelectedFileChanged) {
 
-            let parsedEditorValue = parseEditorValue(selectedFile.content, textFieldsContentArray);
-            editorRef.current?.setValue(parsedEditorValue);
+            replaceValues(textFieldsContentArray);
+           
             setIsSelectedFileChanged(false);
         }
 
     }, [isSelectedFileChanged, textFieldsContentArray])
 
-    //-----------------------------------------
-    const replaceValues = (params: string[]) => {
-        let parsedEditorValue = parseEditorValue(selectedFile.content, params);
-            editorRef.current?.setValue(parsedEditorValue);
-    }
-    //-----------------------------------------
 
 
     useEffect(() => {
@@ -79,6 +73,11 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         })
 
         return editorDefalutValue;
+    }
+
+    const replaceValues = (params: string[]) => {
+        let parsedEditorValue = parseEditorValue(selectedFile.content, params);
+            editorRef.current?.setValue(parsedEditorValue);
     }
 
     const handleEditorReadOnlyChange = () => {
