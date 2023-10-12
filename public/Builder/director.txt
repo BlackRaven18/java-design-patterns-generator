@@ -1,6 +1,6 @@
 
 public class $CLASSNAME2$ {
-	private Builder builder;
+	private $CLASSNAME1$ builder;
 
 	public $CLASSNAME2$($CLASSNAME1$ builder) {
 		this.builder = builder;

@@ -22,7 +22,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     );
 
     const [isSelectedFileChanged, setIsSelectedFileChanged] = useState(false);
-    const [isParamChanged, setIsParamChanged] = useState(false);
     const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
 
     useEffect(() => {
@@ -32,15 +31,21 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     useEffect(() => {
 
-        if (isSelectedFileChanged || isParamChanged) {
+        if (isSelectedFileChanged) {
 
-            let parsedEditorValue = parseEditorValue(selectedFile.content);
+            let parsedEditorValue = parseEditorValue(selectedFile.content, textFieldsContentArray);
             editorRef.current?.setValue(parsedEditorValue);
             setIsSelectedFileChanged(false);
-            setIsParamChanged(false)
         }
 
-    }, [isSelectedFileChanged, isParamChanged])
+    }, [isSelectedFileChanged, textFieldsContentArray])
+
+    //-----------------------------------------
+    const replaceValues = (params: string[]) => {
+        let parsedEditorValue = parseEditorValue(selectedFile.content, params);
+            editorRef.current?.setValue(parsedEditorValue);
+    }
+    //-----------------------------------------
 
 
     useEffect(() => {
@@ -58,16 +63,19 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const handleParameterChange = (newValue: string, textFieldIndex: number
     ) => {
+
         const textFieldsContentArrayCopy = [...textFieldsContentArray];
         textFieldsContentArrayCopy[textFieldIndex] = newValue;
 
         setTextFieldsContentArray(textFieldsContentArrayCopy);
-        setIsParamChanged(true);
+        replaceValues(textFieldsContentArrayCopy);
+
+        //setIsParamChanged(true);
     }
 
-    const parseEditorValue = (editorDefalutValue: string) => {
+    const parseEditorValue = (editorDefalutValue: string, params: string[]) => {
         selectedPattern.params.map((param, index) => {
-            editorDefalutValue = editorDefalutValue.replaceAll(param.replace, textFieldsContentArray[index] ?? "*NO VALUE DELIVERED*")
+            editorDefalutValue = editorDefalutValue.replaceAll(param.replace, params[index] ?? "*NO VALUE DELIVERED*")
         })
 
         return editorDefalutValue;

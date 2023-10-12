@@ -19,19 +19,9 @@
                      "replace": "$CLASSNAME$"
                   },
                   {
-                     "label": "Product class name",
-                     "defaultValue": "Product",
-                     "replace": "$CLASSNAME2$"
-                  },
-                  {
-                     "label": "Product variable name",
-                     "defaultValue": "produt",
-                     "replace": "$VARNAME$"
-                  },
-                  {
-                     "label": "Method name",
-                     "defaultValue": "doSomething",
-                     "replace": "$METHODNAME$"
+                     "label": "Name of an Singleton instance",
+                     "defaultValue": "INSTANCE",
+                     "replace": "$INSTANCENAME$"
                   }
                ]
             },
