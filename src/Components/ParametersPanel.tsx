@@ -2,7 +2,7 @@ import { Button, FormControlLabel, Stack, Switch, TextField } from "@mui/materia
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsEditorReadOnly } from "../redux/AppStateSlice";
+import { addNewFile, setIsEditorReadOnly } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 
 interface ParametersPanelProps {
@@ -113,6 +113,13 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                     alert(editorRef.current?.getValue());
                 }}
             >show editor value
+            </Button>
+            <Button
+
+                onClick={() => {
+                    dispatch(addNewFile("Builder.java"));
+                }}
+            >Add new file
             </Button>
 
             <FormControlLabel
