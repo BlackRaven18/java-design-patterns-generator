@@ -68,6 +68,12 @@ export const appStateSlice = createSlice({
         setIsEditorReadOnly: (state, action: PayloadAction<boolean>) => {
             state.isEditorReadOnly = action.payload;
         },
+        addNewFile: (state, action: PayloadAction<string>) => {
+            state.selectedPattern.files.push({
+                name: action.payload,
+                loaded: false,
+            })
+        }
 
        
 
@@ -81,6 +87,7 @@ export const {
     setSelectedPattern,
     setSelectedFile,
     setIsEditorReadOnly,
+    addNewFile,
 
 
  } = appStateSlice.actions
