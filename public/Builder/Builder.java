@@ -1,8 +1,7 @@
-public interface Builder {
-    void buildStepA();
 
-    void buildStepB();
-
-    // ...
-    void buildStepZ();
+public interface $BUILDER_CLASSNAME$ {
+    void buildPartA();
+    void buildPartB();
+    //...
+    void buildPartZ();
 }
