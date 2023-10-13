@@ -13,7 +13,6 @@ export default class FileReader {
             .then(fileContent => {
                 let newLoadedFile: LoadedPatternFileInfo = {
                     name: fileName,
-                    loaded: true,//this.selectedPattern.files[index].loaded,
                     content: fileContent,
                 }
 

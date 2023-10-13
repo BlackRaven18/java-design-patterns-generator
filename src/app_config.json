@@ -5,11 +5,10 @@
          "patterns": [
             {
                "patternName": "Singleton",
-               "patternFilesDirectory": "singleton",
+               "patternFilesDirectory": "creational_patterns/singleton",
                "files": [
                   {
-                     "name": "singleton.java",
-                     "loaded": false
+                     "name": "singleton.java"
                   }
                ],
                "params": [
@@ -27,23 +26,19 @@
             },
             {
                "patternName": "Builder",
-               "patternFilesDirectory": "builder",
+               "patternFilesDirectory": "creational_patterns/builder",
                "files": [
                   {
-                     "name": "Builder.java",
-                     "loaded": false
+                     "name": "Builder.java"
                   },
                   {
-                     "name": "Director.java",
-                     "loaded": false
+                     "name": "Director.java"
                   },
                   {
-                     "name": "ConcreteBuilder.java",
-                     "loaded": false
+                     "name": "ConcreteBuilder.java"
                   },
                   {
-                     "name": "Product.java",
-                     "loaded": false
+                     "name": "Product.java"
                   }
                ],
                "params": [
@@ -56,30 +51,83 @@
                      "label": "Director class name",
                      "defaultValue": "Director",
                      "replace": "$DIRECTOR_CLASSNAME$"
+                  },
+                  {
+                     "label": "Concrete Builder class name (1)",
+                     "defaultValue": "ConcreteBuilder",
+                     "replace": "$CONCRETE_BUILDER_CLASSNAME1$"
+                  },
+                  {
+                     "label": "Product class name",
+                     "defaultValue": "Product",
+                     "replace": "$PRODUCT_CLASSNAME$"
                   }
                ]
             },
             {
                "patternName": "Factory Method",
-               "patternFilesDirectory": "factorymethod",
+               "patternFilesDirectory": "creational_patterns/factorymethod",
                "files": [
                   {
-                     "name": "Creator.java",
-                     "loaded": false
+                     "name": "Creator.java"
+                  },
+                  {
+                     "name": "ConcreteCreator.java"
+                  },
+                  {
+                     "name": "Product.java"
+                  },
+                  {
+                     "name": "ConcreteProduct.java"
                   }
                ],
                "params": []
             },
             {
                "patternName": "Abstract Factory",
-               "patternFilesDirectory": "",
-               "files": [],
+               "patternFilesDirectory": "creational_patterns/abstractfactory",
+               "files": [
+                  {
+                     "name": "Client.java"
+                  },
+                  {
+                     "name": "AbstractFactory.java"
+                  },
+                  {
+                     "name": "ConcreteFactory1.java"
+                  },
+                  {
+                     "name": "ConcreteFactory2.java"
+                  },
+                  {
+                     "name": "AbstractProductA.java"
+                  },
+                  {
+                     "name": "AbstractProductB.java"
+                  },
+                  {
+                     "name": "ConcreteProductA.java"
+                  },
+                  {
+                     "name": "ConcreteProductB.java"
+                  }
+               ],
                "params": []
             },
             {
                "patternName": "Prototype",
-               "patternFilesDirectory": "",
-               "files": [],
+               "patternFilesDirectory": "creational_patterns/prototype",
+               "files": [
+                  {
+                     "name": "Client.java"
+                  },
+                  {
+                     "name": "Prototype.java"
+                  },
+                  {
+                     "name": "ConcretePrototype.java"
+                  }
+               ],
                "params": []
             }
          ]
