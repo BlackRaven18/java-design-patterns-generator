@@ -88,7 +88,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 onChange={handleTabChange}
                 variant="scrollable"
                 scrollButtons="auto"
-
                 sx={{
                     marginBottom: "2px",
                     backgroundColor: "#121302",
@@ -106,7 +105,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                         <Tab
                             key={index}
                             label={file.name}
-
 
                             sx={{
                                 textTransform: "none",
