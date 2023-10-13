@@ -17,7 +17,6 @@ export interface PatternInfo {
 
 export interface PatternFileInfo{
     name: string,
-    loaded: boolean
 }
 
 export interface LoadedPatternFileInfo extends PatternFileInfo{

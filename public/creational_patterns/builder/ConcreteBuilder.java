@@ -1,11 +1,11 @@
 
 
-public class ConcreteBuilder implements Builder {
+public class $CONCRETE_BUILDER_CLASSNAME1$ implements $BUILDER_CLASSNAME$ {
 
-    private Product product;
+    private $PRODUCT_CLASSNAME$ product;
 
-    public ConcreteBuilder() {
-        this.product = new Product();
+    public $CONCRETE_BUILDER_CLASSNAME1$() {
+        this.product = new $PRODUCT_CLASSNAME$();
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ConcreteBuilder implements Builder {
         // build step Z
     }
 
-    public Product getResult() {
+    public $PRODUCT_CLASSNAME$ getResult() {
         return this.product;
     }
 }

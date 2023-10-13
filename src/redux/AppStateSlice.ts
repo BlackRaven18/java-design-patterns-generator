@@ -33,7 +33,6 @@ const initialState: AppState = {
     selectedPattern: AppConfigJSON.patternFamillies[0].patterns[0],
     selectedFile: {
         name: AppConfigJSON.patternFamillies[0].patterns[0].files[0].name,
-        loaded: AppConfigJSON.patternFamillies[0].patterns[0].files[0].loaded,
         content: "",
     },
 
@@ -70,8 +69,7 @@ export const appStateSlice = createSlice({
         },
         addNewFile: (state, action: PayloadAction<string>) => {
             state.selectedPattern.files.push({
-                name: action.payload,
-                loaded: false,
+                name: action.payload
             })
         }
 
