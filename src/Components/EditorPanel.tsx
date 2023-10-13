@@ -1,5 +1,5 @@
 import { Editor, Monaco } from "@monaco-editor/react";
-import { Box, List, ListItemButton, ListItemText, Stack } from "@mui/material";
+import { Box, List, ListItemButton, ListItemText, Stack, Tab, Tabs } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,10 +51,11 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
         setEditorValueArray(tmpArray);
     }
 
-    const handleTabChange = (index: number) => {
+    const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
 
-        fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedPattern.files[index].name)
-        dispatch(setSelectedTabIndex(index));
+        fileReader.loadFileToState(selectedPattern.patternFilesDirectory,
+            selectedPattern.files[newValue].name)
+        dispatch(setSelectedTabIndex(newValue));
     }
 
     const handleEditorChange = (value: string) => {
@@ -78,10 +79,48 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     return (
         <Box
             sx={{
-                bgcolor: "#ffffff"
+                bgcolor: "#3F3F3C",
             }}
         >
-            <List component={Stack} direction="row">
+            <Tabs
+                value={selectedTabIndex}
+                onChange={handleTabChange}
+                variant="scrollable"
+                scrollButtons="auto"
+                
+                sx={{
+                    marginBottom: "2px",
+                    backgroundColor: "#121302",
+                    color: "#F7F1DB",
+                    '.MuiTabs-indicator': {
+                        backgroundColor: 'yellow', // Zmień kolor podkreślenia na żółty
+                      },
+                }}
+            >
+                {selectedPattern.files.map((file, index) => {
+                    return (
+                        <Tab
+                            key={index}
+                            label={file.name}
+                            
+
+                            sx={{
+                                textTransform: "none",
+                                color: "#F7F1DB",
+                                backgroundColor: "#37382A",
+                                border: '1px solid #5F5E58',
+                                '&.Mui-selected': {
+                                    backgroundColor:"#857F6A",
+                                    color: "#F7F1DB"
+                                    //fontWeight: theme.typography.fontWeightMedium,
+                                },
+                            }}
+                        />
+                    );
+                })}
+
+            </Tabs>
+            {/* <List component={Stack} direction="row">
                 {selectedPattern.files.map((file, index) => {
                     return (
                         <ListItemButton
@@ -95,7 +134,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                     );
                 })}
 
-            </List>
+            </List> */}
 
             <Editor
                 height="90vh"
