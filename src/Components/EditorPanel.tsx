@@ -1,5 +1,6 @@
 import { Editor, Monaco } from "@monaco-editor/react";
 import { Box, List, ListItemButton, ListItemText, Stack, Tab, Tabs } from "@mui/material";
+import { tabsClasses } from "@mui/material/Tabs"
 import { editor } from "monaco-editor";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -87,14 +88,16 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 onChange={handleTabChange}
                 variant="scrollable"
                 scrollButtons="auto"
-                
                 sx={{
                     marginBottom: "2px",
                     backgroundColor: "#121302",
                     color: "#F7F1DB",
                     '.MuiTabs-indicator': {
                         backgroundColor: 'yellow', // Zmień kolor podkreślenia na żółty
-                      },
+                    },
+                    [`& .${tabsClasses.scrollButtons}`]: {
+                        '&.Mui-disabled': { opacity: 0.3 },
+                    },
                 }}
             >
                 {selectedPattern.files.map((file, index) => {
@@ -102,7 +105,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                         <Tab
                             key={index}
                             label={file.name}
-                            
 
                             sx={{
                                 textTransform: "none",
@@ -110,7 +112,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                                 backgroundColor: "#37382A",
                                 border: '1px solid #5F5E58',
                                 '&.Mui-selected': {
-                                    backgroundColor:"#857F6A",
+                                    backgroundColor: "#857F6A",
                                     color: "#F7F1DB"
                                     //fontWeight: theme.typography.fontWeightMedium,
                                 },
