@@ -16,7 +16,8 @@ export interface PatternInfo {
 }
 
 export interface PatternFileInfo{
-    name: string,
+    defaultName: string,
+    currentName: string,
 }
 
 export interface LoadedPatternFileInfo extends PatternFileInfo{

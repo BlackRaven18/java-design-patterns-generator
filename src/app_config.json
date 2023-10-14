@@ -8,17 +8,19 @@
                "patternFilesDirectory": "creational_patterns/singleton",
                "files": [
                   {
-                     "name": "singleton.java"
+                     "defaultName": "Singleton.java",
+                     "currentName": "Singleton.java"
+                     
                   }
                ],
                "params": [
                   {
-                     "label": "Singleton class name",
+                     "label": "Singleton class defaultName",
                      "defaultValue": "Singleton",
                      "replace": "$CLASSNAME$"
                   },
                   {
-                     "label": "Name of an Singleton instance",
+                     "label": "defaultName of an Singleton instance",
                      "defaultValue": "INSTANCE",
                      "replace": "$INSTANCENAME$"
                   }
@@ -29,36 +31,40 @@
                "patternFilesDirectory": "creational_patterns/builder",
                "files": [
                   {
-                     "name": "Builder.java"
+                     "defaultName": "Builder.java",
+                     "currentName": "Builder.java"
                   },
                   {
-                     "name": "Director.java"
+                     "defaultName": "Director.java",
+                     "currentName": "Director.java"
                   },
                   {
-                     "name": "ConcreteBuilder.java"
+                     "defaultName": "ConcreteBuilder.java",
+                     "currentName": "ConcreteBuilder.java"
                   },
                   {
-                     "name": "Product.java"
+                     "defaultName": "Product.java",
+                     "currentName": "Product.java"
                   }
                ],
                "params": [
                   {
-                     "label": "Builder class name",
+                     "label": "Builder class defaultName",
                      "defaultValue": "Builder",
                      "replace": "$BUILDER_CLASSNAME$"
                   },
                   {
-                     "label": "Director class name",
+                     "label": "Director class defaultName",
                      "defaultValue": "Director",
                      "replace": "$DIRECTOR_CLASSNAME$"
                   },
                   {
-                     "label": "Concrete Builder class name (1)",
+                     "label": "Concrete Builder class defaultName (1)",
                      "defaultValue": "ConcreteBuilder",
                      "replace": "$CONCRETE_BUILDER_CLASSNAME1$"
                   },
                   {
-                     "label": "Product class name",
+                     "label": "Product class defaultName",
                      "defaultValue": "Product",
                      "replace": "$PRODUCT_CLASSNAME$"
                   }
@@ -69,16 +75,20 @@
                "patternFilesDirectory": "creational_patterns/factorymethod",
                "files": [
                   {
-                     "name": "Creator.java"
+                     "defaultName": "Creator.java",
+                     "currentName": "Creator.java"
                   },
                   {
-                     "name": "ConcreteCreator.java"
+                     "defaultName": "ConcreteCreator.java",
+                     "currentName": "ConcreteCreator.java"
                   },
                   {
-                     "name": "Product.java"
+                     "defaultName": "Product.java",
+                     "currentName": "Product.java"
                   },
                   {
-                     "name": "ConcreteProduct.java"
+                     "defaultName": "ConcreteProduct.java",
+                     "currentName": "ConcreteProduct.java"
                   }
                ],
                "params": []
@@ -88,28 +98,36 @@
                "patternFilesDirectory": "creational_patterns/abstractfactory",
                "files": [
                   {
-                     "name": "Client.java"
+                     "defaultName": "Client.java",
+                     "currentName": "Client.java"
                   },
                   {
-                     "name": "AbstractFactory.java"
+                     "defaultName": "AbstractFactory.java",
+                     "currentName": "AbstractFactory.java"
                   },
                   {
-                     "name": "ConcreteFactory1.java"
+                     "defaultName": "ConcreteFactory1.java",
+                     "currentName": "ConcreteFactory1.java"
                   },
                   {
-                     "name": "ConcreteFactory2.java"
+                     "defaultName": "ConcreteFactory2.java",
+                     "currentName": "ConcreteFactory2.java"
                   },
                   {
-                     "name": "AbstractProductA.java"
+                     "defaultName": "AbstractProductA.java",
+                     "currentName": "AbstractProductA.java"
                   },
                   {
-                     "name": "AbstractProductB.java"
+                     "defaultName": "AbstractProductB.java",
+                     "currentName": "AbstractProductB.java"
                   },
                   {
-                     "name": "ConcreteProductA.java"
+                     "defaultName": "ConcreteProductA.java",
+                     "currentName": "ConcreteProductA.java"
                   },
                   {
-                     "name": "ConcreteProductB.java"
+                     "defaultName": "ConcreteProductB.java",
+                     "currentName": "ConcreteProductB.java"
                   }
                ],
                "params": []
@@ -119,13 +137,16 @@
                "patternFilesDirectory": "creational_patterns/prototype",
                "files": [
                   {
-                     "name": "Client.java"
+                     "defaultName": "Client.java",
+                     "currentName": "Client.java"
                   },
                   {
-                     "name": "Prototype.java"
+                     "defaultName": "Prototype.java",
+                     "currentName": "Prototype.java"
                   },
                   {
-                     "name": "ConcretePrototype.java"
+                     "defaultName": "ConcretePrototype.java",
+                     "currentName": "ConcretePrototype.java"
                   }
                ],
                "params": []
