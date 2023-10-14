@@ -104,7 +104,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                     return (
                         <Tab
                             key={index}
-                            label={file.defaultName}
+                            label={file.currentName}
 
                             sx={{
                                 textTransform: "none",

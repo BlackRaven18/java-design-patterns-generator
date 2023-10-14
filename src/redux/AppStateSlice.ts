@@ -69,6 +69,14 @@ export const appStateSlice = createSlice({
                 defaultName: action.payload.defaultName,
                 currentName: action.payload.currentName,
             })
+        },
+        changeSelectedPatternCurrentFileName: (state, action: PayloadAction<
+            {
+                currentName: string,
+                fileIndex: number
+            }>
+        ) => {
+            state.selectedPattern.files[action.payload.fileIndex].currentName = action.payload.currentName;
         }
 
 
@@ -84,6 +92,7 @@ export const {
     setSelectedFile,
     setIsEditorReadOnly,
     addNewFile,
+    changeSelectedPatternCurrentFileName
 
 
 } = appStateSlice.actions
