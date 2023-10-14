@@ -15,12 +15,12 @@
                ],
                "params": [
                   {
-                     "label": "Singleton class defaultName",
+                     "label": "Singleton class name",
                      "defaultValue": "Singleton",
                      "replace": "$CLASSNAME$"
                   },
                   {
-                     "label": "defaultName of an Singleton instance",
+                     "label": "Name of an Singleton instance",
                      "defaultValue": "INSTANCE",
                      "replace": "$INSTANCENAME$"
                   }
@@ -49,22 +49,22 @@
                ],
                "params": [
                   {
-                     "label": "Builder class defaultName",
+                     "label": "Builder class name",
                      "defaultValue": "Builder",
                      "replace": "$BUILDER_CLASSNAME$"
                   },
                   {
-                     "label": "Director class defaultName",
+                     "label": "Director class name",
                      "defaultValue": "Director",
                      "replace": "$DIRECTOR_CLASSNAME$"
                   },
                   {
-                     "label": "Concrete Builder class defaultName (1)",
+                     "label": "Concrete Builder class name (1)",
                      "defaultValue": "ConcreteBuilder",
                      "replace": "$CONCRETE_BUILDER_CLASSNAME1$"
                   },
                   {
-                     "label": "Product class defaultName",
+                     "label": "Product class name",
                      "defaultValue": "Product",
                      "replace": "$PRODUCT_CLASSNAME$"
                   }

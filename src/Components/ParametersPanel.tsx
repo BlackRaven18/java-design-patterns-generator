@@ -1,8 +1,8 @@
-import { Button, FormControlLabel, Stack, Switch, TextField } from "@mui/material";
+import { Button, Divider, FormControlLabel, Stack, Switch, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewFile, setIsEditorReadOnly } from "../redux/AppStateSlice";
+import { addNewFile, changeSelectedPatternCurrentFileName, setIsEditorReadOnly } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 
 interface ParametersPanelProps {
@@ -16,6 +16,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
     const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
+    const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
     const [textFieldsContentArray, setTextFieldsContentArray] = useState<string[]>(
         selectedPattern.params.map(param => param.defaultValue || '')
@@ -34,7 +35,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         if (isSelectedFileChanged) {
 
             replaceValues(textFieldsContentArray);
-           
+
             setIsSelectedFileChanged(false);
         }
 
@@ -52,11 +53,15 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     }, [selectedPattern])
 
+    const handleFileNameChange = (newValue: string, fileIndex: number) => {
+        dispatch(changeSelectedPatternCurrentFileName({
+            currentName: newValue,
+            fileIndex: fileIndex,
+        }))
+    }
 
 
-
-    const handleParameterChange = (newValue: string, textFieldIndex: number
-    ) => {
+    const handleParameterChange = (newValue: string, textFieldIndex: number) => {
 
         const textFieldsContentArrayCopy = [...textFieldsContentArray];
         textFieldsContentArrayCopy[textFieldIndex] = newValue;
@@ -75,7 +80,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const replaceValues = (params: string[]) => {
         let parsedEditorValue = parseEditorValue(selectedFile.content, params);
-            editorRef.current?.setValue(parsedEditorValue);
+        editorRef.current?.setValue(parsedEditorValue);
     }
 
     const handleEditorReadOnlyChange = () => {
@@ -92,6 +97,15 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                 padding: "10px"
             }}
         >
+            <TextField
+                label={"File name"}
+                variant="outlined"
+                //defaultValue={param.defaultValue}
+                value={selectedPattern.files[selectedTabIndex].currentName || ""}
+                onChange={e => handleFileNameChange(e.target.value, selectedTabIndex)}
+            />
+            <Divider/>
+
             {selectedPattern.params.map((param, index) => {
                 return (
                     <TextField
