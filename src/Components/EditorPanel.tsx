@@ -1,6 +1,6 @@
 import { Editor, Monaco } from "@monaco-editor/react";
-import { Box, List, ListItemButton, ListItemText, Stack, Tab, Tabs } from "@mui/material";
-import { tabsClasses } from "@mui/material/Tabs"
+import { Box, Tab, Tabs } from "@mui/material";
+import { tabsClasses } from "@mui/material/Tabs";
 import { editor } from "monaco-editor";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -30,7 +30,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     useEffect(() => {
 
-        fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedFile.name);
+        fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedFile.defaultName);
 
     }, [])
 
@@ -43,7 +43,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const loadEditorValueArray = () => {
         let tmpArray = new Array<string>(selectedPattern.files.length);
         selectedPattern.files.map((file, index) => {
-            fileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + file.name)
+            fileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + file.defaultName)
                 .then(fileContent => {
                     tmpArray[index] = fileContent;
                 })
@@ -55,7 +55,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
 
         fileReader.loadFileToState(selectedPattern.patternFilesDirectory,
-            selectedPattern.files[newValue].name)
+            selectedPattern.files[newValue].defaultName)
         dispatch(setSelectedTabIndex(newValue));
     }
 
@@ -69,7 +69,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
         editorRef.current = editor;
 
         fileReader.loadFileToStateAndReplaceParams(
-            selectedPattern.patternFilesDirectory, selectedFile.name, selectedPattern.params
+            selectedPattern.patternFilesDirectory, selectedFile.defaultName, selectedPattern.params
         ).then(fileContentWithReplacedParams => {
             editor.setValue(fileContentWithReplacedParams);
         })
@@ -104,7 +104,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                     return (
                         <Tab
                             key={index}
-                            label={file.name}
+                            label={file.defaultName}
 
                             sx={{
                                 textTransform: "none",
@@ -122,26 +122,11 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 })}
 
             </Tabs>
-            {/* <List component={Stack} direction="row">
-                {selectedPattern.files.map((file, index) => {
-                    return (
-                        <ListItemButton
-                            key={index}
-                            selected={selectedTabIndex === index}
-                            onClick={() => handleTabChange(index)}
-                        >
-
-                            <ListItemText primary={file.name} />
-                        </ListItemButton>
-                    );
-                })}
-
-            </List> */}
 
             <Editor
                 height="90vh"
                 theme="vs-dark"
-                path={selectedFile.name}
+                path={selectedFile.defaultName}
                 defaultLanguage={"java"}
                 defaultValue={selectedFile.content}
                 onChange={(value) => handleEditorChange(value ?? "")}

@@ -63,8 +63,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
         setTextFieldsContentArray(textFieldsContentArrayCopy);
         replaceValues(textFieldsContentArrayCopy);
-
-        //setIsParamChanged(true);
     }
 
     const parseEditorValue = (editorDefalutValue: string, params: string[]) => {
@@ -117,7 +115,10 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
             <Button
 
                 onClick={() => {
-                    dispatch(addNewFile("Builder.java"));
+                    dispatch(addNewFile({
+                        defaultName: "Builder.java",
+                        currentName: "Builder.java",
+                    }));
                 }}
             >Add new file
             </Button>

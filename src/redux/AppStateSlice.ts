@@ -1,11 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Config, LoadedPatternFileInfo, ParamsInfo, PatternFileInfo, PatternInfo } from "../types";
-import { editor } from "monaco-editor";
-import {useRef} from "react"
-import AppConfigJSON from "../app_config.json"
-import ParametersJSON from '../parameters.json'
+import AppConfigJSON from "../app_config.json";
+import { Config, LoadedPatternFileInfo, PatternFileInfo, PatternInfo } from "../types";
 
-import App from "../App";
 
 
 interface AppState {
@@ -32,7 +28,8 @@ const initialState: AppState = {
 
     selectedPattern: AppConfigJSON.patternFamillies[0].patterns[0],
     selectedFile: {
-        name: AppConfigJSON.patternFamillies[0].patterns[0].files[0].name,
+        defaultName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
+        currentName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].currentName,
         content: "",
     },
 
@@ -67,13 +64,14 @@ export const appStateSlice = createSlice({
         setIsEditorReadOnly: (state, action: PayloadAction<boolean>) => {
             state.isEditorReadOnly = action.payload;
         },
-        addNewFile: (state, action: PayloadAction<string>) => {
+        addNewFile: (state, action: PayloadAction<PatternFileInfo>) => {
             state.selectedPattern.files.push({
-                name: action.payload
+                defaultName: action.payload.defaultName,
+                currentName: action.payload.currentName,
             })
         }
 
-       
+
 
     }
 })
@@ -88,6 +86,6 @@ export const {
     addNewFile,
 
 
- } = appStateSlice.actions
+} = appStateSlice.actions
 
 export default appStateSlice.reducer

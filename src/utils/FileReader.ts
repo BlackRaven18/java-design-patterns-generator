@@ -1,7 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { setSelectedFile, setSelectedTabIndex } from "../redux/AppStateSlice";
+import { useDispatch } from "react-redux";
+import { setSelectedFile } from "../redux/AppStateSlice";
+import { AppDispatch } from "../redux/store";
 import { LoadedPatternFileInfo, ParamsData } from "../types";
-import { AppDispatch, RootState } from "../redux/store";
 
 
 export default class FileReader {
@@ -12,7 +12,8 @@ export default class FileReader {
         this.handleFileRead(pathToDirectory + "/" + fileName)
             .then(fileContent => {
                 let newLoadedFile: LoadedPatternFileInfo = {
-                    name: fileName,
+                    defaultName: fileName,
+                    currentName: fileName,
                     content: fileContent,
                 }
 
@@ -62,26 +63,4 @@ export default class FileReader {
         }
     }
 
-    // static handleFileRead = async (filename: string) => {
-
-    //     let content = "";
-    //     try {
-    //         const response = await fetch(filename);
-    //         if (!response.ok) {
-    //             throw new Error('Can not fetch a file');
-    //         }
-
-    //         content = await response.text();
-
-    //         if (content.includes("<!DOCTYPE html>")) {
-    //             content = "//No files found...";
-    //             throw new Error("File is missing!");
-    //         }
-
-    //     } catch (error) {
-    //         console.error('Could not read a file:', error);
-    //     } finally {
-    //         return content;
-    //     }
-    // }
 }

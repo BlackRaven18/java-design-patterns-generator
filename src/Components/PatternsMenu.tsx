@@ -35,7 +35,7 @@ const PatternsMenu = () => {
       dispatch(setSelectedPatternIndex(index));
       dispatch(setSelectedTabIndex(0));
 
-      fileReader.loadFileToState(pattern.patternFilesDirectory, pattern.files[0].name)
+      fileReader.loadFileToState(pattern.patternFilesDirectory, pattern.files[0].defaultName)
 
 
    }
