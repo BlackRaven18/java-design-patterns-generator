@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addNewFile, changeSelectedPatternCurrentFileName, setIsEditorReadOnly } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
+import { ThirteenMp } from "@mui/icons-material";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -71,11 +72,49 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     }
 
     const parseEditorValue = (editorDefalutValue: string, params: string[]) => {
+
         selectedPattern.params.map((param, index) => {
-            editorDefalutValue = editorDefalutValue.replaceAll(param.replace, params[index] ?? "*NO VALUE DELIVERED*")
+            if(param.defaultValue.includes("$")){
+                selectedPattern.params.map((paramToCheck, paramToCheckIndex) => {
+                    if(paramToCheck.replace === param.defaultValue){
+                        //parse methods here
+                        let extendedMethods = parseMethodsFromParams(params[paramToCheckIndex]);
+                        editorDefalutValue = editorDefalutValue.replaceAll(param.replace, extendedMethods)
+                        console.log(extendedMethods);
+
+                    }
+                })
+            }else{
+                editorDefalutValue = editorDefalutValue.replaceAll(param.replace, params[index] ?? "*NO VALUE DELIVERED*");
+            }
         })
+        
+        // selectedPattern.params.map((param, index) => {
+        //     editorDefalutValue = editorDefalutValue.replaceAll(param.replace, params[index] ?? "*NO VALUE DELIVERED*")
+        // })
 
         return editorDefalutValue;
+    }
+
+    const parseMethodsFromParams = (methodParam: string) => {
+        //przygotowanie tablicy z metodami
+        let methodsArray = methodParam.split("\n")
+        let trimedMethodsArray = methodsArray.map(method => method.trim().replaceAll(";", ""));
+
+        let extendedMethods = "";
+
+        trimedMethodsArray.map(method => {
+            let extendedMethod = "";
+            if(method.includes("void")){
+                extendedMethod = "\t@Override\n\t" + method + "{\n\n\t}" + "\n\n";
+            }else{
+                extendedMethod = "\t@Override\n\t" + method + "{\n\t\treturn null;\n\t}" + "\n\n";
+            }
+            extendedMethods += extendedMethod; 
+        })
+
+        return extendedMethods;
+        //console.log(extendedMethods);
     }
 
     const replaceValues = (params: string[]) => {
@@ -107,11 +146,13 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
             <Divider/>
 
             {selectedPattern.params.map((param, index) => {
+                let multiline = param.defaultValue.includes("\n");
                 return (
                     <TextField
                         key={index}
                         label={param.label}
                         variant="outlined"
+                        multiline={multiline}
                         //defaultValue={param.defaultValue}
                         value={textFieldsContentArray[index] || ""}
                         onChange={e => handleParameterChange(e.target.value, index)}
