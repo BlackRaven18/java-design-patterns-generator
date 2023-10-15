@@ -54,6 +54,16 @@
                      "replace": "$BUILDER_CLASSNAME$"
                   },
                   {
+                     "label": "Builder methods",
+                     "defaultValue": "void buildPartA();\n\tvoid buildPartB();",
+                     "replace": "$BUILDER_METHODS$"
+                  },
+                  {
+                     "label": "Builder methods extended",
+                     "defaultValue": "$BUILDER_METHODS$",
+                     "replace": "$BUILDER_METHODS_EXTENDED$"
+                  },
+                  {
                      "label": "Director class name",
                      "defaultValue": "Director",
                      "replace": "$DIRECTOR_CLASSNAME$"
