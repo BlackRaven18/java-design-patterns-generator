@@ -47,8 +47,9 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     }, [selectedPattern])
 
+
     const replaceEditorContentWithParamsValues = () => {
-        replaceValues(paramFieldsValueArray);
+        setEditorValueToValueWithReplacedVariables(paramFieldsValueArray);
 
         setIsSelectedFileChanged(false);
     }
@@ -57,39 +58,24 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         let paramFieldsValueArrayCopy = [
             ...selectedPattern.params.map(param => param.defaultValue || '')
         ];
-
+        
         setParamFieldsValueArray(paramFieldsValueArrayCopy);
     }
-
-
-
-
-    const handleFileNameChange = (newValue: string, fileIndex: number) => {
-        dispatch(changeSelectedPatternCurrentFileName({
-            currentName: newValue,
-            fileIndex: fileIndex,
-        }))
+    
+    const setEditorValueToValueWithReplacedVariables = (params: string[]) => {
+        let editorValueWithReplacedVariables = replaceVariablesWithParamsValues(selectedFile.content, params);
+        editorRef.current?.setValue(editorValueWithReplacedVariables);
     }
-
-
-    const handleParameterChange = (newValue: string, textFieldIndex: number) => {
-
-        const paramFieldsValueArrayCopy = [...paramFieldsValueArray];
-        paramFieldsValueArrayCopy[textFieldIndex] = newValue;
-
-        setParamFieldsValueArray(paramFieldsValueArrayCopy);
-        replaceValues(paramFieldsValueArrayCopy);
-    }
-
-    const parseEditorValue = (editorDefalutValue: string, params: string[]) => {
-
-        selectedPattern.params.map((param, index) => {
+    
+    const replaceVariablesWithParamsValues = (editorDefalutValue: string, params: string[]) => {
+        
+        selectedPattern.params.forEach((param, index) => {
             if (param.defaultValue.includes("$")) {
-                selectedPattern.params.map((paramToCheck, paramToCheckIndex) => {
+                selectedPattern.params.forEach((paramToCheck, paramToCheckIndex) => {
                     if (paramToCheck.replace === param.defaultValue) {
                         let methodsWithBodyAsString = methodBodyGenerator.getMethodsWithBodyAsString(params[paramToCheckIndex])
                         editorDefalutValue = editorDefalutValue.replaceAll(param.replace, methodsWithBodyAsString)
-
+                        
                     }
                 })
             } else {
@@ -97,14 +83,26 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
             }
         })
 
-
+        
         return editorDefalutValue;
     }
+    
+    
+    
+    const handleFileNameChange = (newValue: string, fileIndex: number) => {
+        dispatch(changeSelectedPatternCurrentFileName({
+            currentName: newValue,
+            fileIndex: fileIndex,
+        }))
+    }
 
+    const handleParameterChange = (newValue: string, textFieldIndex: number) => {
 
-    const replaceValues = (params: string[]) => {
-        let parsedEditorValue = parseEditorValue(selectedFile.content, params);
-        editorRef.current?.setValue(parsedEditorValue);
+        const paramFieldsValueArrayCopy = [...paramFieldsValueArray];
+        paramFieldsValueArrayCopy[textFieldIndex] = newValue;
+
+        setParamFieldsValueArray(paramFieldsValueArrayCopy);
+        setEditorValueToValueWithReplacedVariables(paramFieldsValueArrayCopy);
     }
 
     const handleEditorReadOnlyChange = () => {

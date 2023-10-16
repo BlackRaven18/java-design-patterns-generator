@@ -15,9 +15,9 @@ export default class MethodBodyGenerator {
         let methodWithBody = "";
 
         if (methodSignature.includes("void")) {
-            methodWithBody = "\t@Override\n\t" + methodSignature + "{\n\n\t}" + "\n\n";
+            methodWithBody = "\t@Override\n\t" + methodSignature + "{\n\n\t}\n\n";
         } else {
-            methodWithBody = "\t@Override\n\t" + methodSignature + "{\n\t\treturn null;\n\t}" + "\n\n";
+            methodWithBody = "\t@Override\n\t" + methodSignature + "{\n\t\treturn null;\n\t}\n\n";
         }
 
         return methodWithBody;
