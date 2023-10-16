@@ -137,17 +137,21 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
             {selectedPattern.params.map((param, index) => {
                 let multiline = param.defaultValue.includes("\n");
-                return (
-                    <TextField
-                        key={index}
-                        label={param.label}
-                        variant="outlined"
-                        multiline={multiline}
-                        value={paramFieldsValueArray[index] || ""}
-                        onChange={e => handleParameterChange(e.target.value, index)}
-                        disabled={isParamsFieldsDisabled}
-                    />
-                );
+                if (param.shouldBeVisible) {
+                    return (
+                        <TextField
+                            key={index}
+                            label={param.label}
+                            variant="outlined"
+                            multiline={multiline}
+                            value={paramFieldsValueArray[index] || ""}
+                            onChange={e => handleParameterChange(e.target.value, index)}
+                            disabled={isParamsFieldsDisabled}
+                        />
+                    );
+                } else{
+                    return (<></>)
+                }
             })}
 
             <Button

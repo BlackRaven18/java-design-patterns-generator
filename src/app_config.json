@@ -15,11 +15,13 @@
                ],
                "params": [
                   {
+                     "shouldBeVisible": true,
                      "label": "Singleton class name",
                      "defaultValue": "Singleton",
                      "replace": "$CLASSNAME$"
                   },
                   {
+                     "shouldBeVisible": true,
                      "label": "Name of an Singleton instance",
                      "defaultValue": "INSTANCE",
                      "replace": "$INSTANCENAME$"
@@ -49,31 +51,37 @@
                ],
                "params": [
                   {
+                     "shouldBeVisible": true,
                      "label": "Builder class name",
                      "defaultValue": "Builder",
                      "replace": "$BUILDER_CLASSNAME$"
                   },
                   {
+                     "shouldBeVisible": true,
                      "label": "Builder methods",
                      "defaultValue": "void buildPartA();\nvoid buildPartB();",
                      "replace": "$BUILDER_METHODS$"
                   },
                   {
+                     "shouldBeVisible": false,
                      "label": "Builder methods extended",
                      "defaultValue": "$BUILDER_METHODS$",
                      "replace": "$BUILDER_METHODS_EXTENDED$"
                   },
                   {
+                     "shouldBeVisible": true,
                      "label": "Director class name",
                      "defaultValue": "Director",
                      "replace": "$DIRECTOR_CLASSNAME$"
                   },
                   {
+                     "shouldBeVisible": true,
                      "label": "Concrete Builder class name (1)",
                      "defaultValue": "ConcreteBuilder",
                      "replace": "$CONCRETE_BUILDER_CLASSNAME1$"
                   },
                   {
+                     "shouldBeVisible": true,
                      "label": "Product class name",
                      "defaultValue": "Product",
                      "replace": "$PRODUCT_CLASSNAME$"

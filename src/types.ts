@@ -34,6 +34,7 @@ export interface ParamsConfigInfo{
 }
 
 export interface ParamsData{
+    shouldBeVisible: boolean,
     label: string,
     defaultValue: string,
     replace: string
