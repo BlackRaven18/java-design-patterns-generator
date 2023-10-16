@@ -113,13 +113,15 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
                             sx={{
                                 textTransform: "none",
-                                color: "#F7F1DB",
+                                color: "#AEB6BF",
                                 backgroundColor: "#37382A",
                                 border: '1px solid #5F5E58',
                                 '&.Mui-selected': {
-                                    backgroundColor: "#857F6A",
                                     color: "#F7F1DB"
-                                    //fontWeight: theme.typography.fontWeightMedium,
+                                },
+                                '&:hover': {
+                                    color: "#F7F1DB",
+                                    backgroundColor: "rgba(60, 61, 47, 0.50)",
                                 },
                             }}
                         />
