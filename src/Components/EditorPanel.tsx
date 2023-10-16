@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTabIndex } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import FileReader from "../utils/FileReader";
+import * as monaco from 'monaco-editor';
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
@@ -24,7 +25,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
 
 
-    const [editorValueArray, setEditorValueArray] = useState<string[]>([]);
+    const [editorTabsValueArray, setEditorTabsValueArray] = useState<string[]>([]);
 
     const fileReader = new FileReader();
 
@@ -35,13 +36,14 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     }, [])
 
     useEffect(() => {
-        loadEditorValueArray();
+        loadEditorTabsValueArray();
 
     }, [selectedPattern])
 
 
-    const loadEditorValueArray = () => {
+    const loadEditorTabsValueArray = () => {
         let tmpArray = new Array<string>(selectedPattern.files.length);
+        
         selectedPattern.files.map((file, index) => {
             fileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + file.defaultName)
                 .then(fileContent => {
@@ -49,7 +51,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 })
         })
 
-        setEditorValueArray(tmpArray);
+        setEditorTabsValueArray(tmpArray);
     }
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -61,7 +63,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     const handleEditorChange = (value: string) => {
 
-        editorValueArray[selectedTabIndex] = value;
+        editorTabsValueArray[selectedTabIndex] = value;
 
     }
 
