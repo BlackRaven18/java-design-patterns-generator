@@ -55,7 +55,7 @@
                   },
                   {
                      "label": "Builder methods",
-                     "defaultValue": "void buildPartA();\n\tvoid buildPartB();",
+                     "defaultValue": "void buildPartA();\nvoid buildPartB();",
                      "replace": "$BUILDER_METHODS$"
                   },
                   {

@@ -58,37 +58,45 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         let paramFieldsValueArrayCopy = [
             ...selectedPattern.params.map(param => param.defaultValue || '')
         ];
-        
+
         setParamFieldsValueArray(paramFieldsValueArrayCopy);
     }
-    
+
     const setEditorValueToValueWithReplacedVariables = (params: string[]) => {
         let editorValueWithReplacedVariables = replaceVariablesWithParamsValues(selectedFile.content, params);
         editorRef.current?.setValue(editorValueWithReplacedVariables);
     }
-    
+
     const replaceVariablesWithParamsValues = (editorDefalutValue: string, params: string[]) => {
-        
+
         selectedPattern.params.forEach((param, index) => {
             if (param.defaultValue.includes("$")) {
                 selectedPattern.params.forEach((paramToCheck, paramToCheckIndex) => {
                     if (paramToCheck.replace === param.defaultValue) {
                         let methodsWithBodyAsString = methodBodyGenerator.getMethodsWithBodyAsString(params[paramToCheckIndex])
                         editorDefalutValue = editorDefalutValue.replaceAll(param.replace, methodsWithBodyAsString)
-                        
+
                     }
                 })
             } else {
-                editorDefalutValue = editorDefalutValue.replaceAll(param.replace, params[index] ?? "*NO VALUE DELIVERED*");
+                //TODO: improve this later
+                let paramValueToBeReplaced = params[index] ?? "*NO VALUE DELIVERED*";
+
+                if (paramValueToBeReplaced.includes("\n")) {
+                    paramValueToBeReplaced = paramValueToBeReplaced.replaceAll("\n", "\n\t");
+                    console.log(paramValueToBeReplaced);
+                }
+
+                editorDefalutValue = editorDefalutValue.replaceAll(param.replace, paramValueToBeReplaced);
             }
         })
 
-        
+
         return editorDefalutValue;
     }
-    
-    
-    
+
+
+
     const handleFileNameChange = (newValue: string, fileIndex: number) => {
         dispatch(changeSelectedPatternCurrentFileName({
             currentName: newValue,
