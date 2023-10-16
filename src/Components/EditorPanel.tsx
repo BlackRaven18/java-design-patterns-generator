@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTabIndex } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import FileReader from "../utils/FileReader";
-import * as monaco from 'monaco-editor';
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
@@ -31,7 +30,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     useEffect(() => {
 
-        fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedFile.defaultName);
+        loadFileToStateOnComponentMount();
 
     }, [])
 
@@ -40,11 +39,15 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     }, [selectedPattern])
 
+    const loadFileToStateOnComponentMount = () => {
+        fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedFile.defaultName);
+    }
+
 
     const loadEditorTabsValueArray = () => {
         let tmpArray = new Array<string>(selectedPattern.files.length);
-        
-        selectedPattern.files.map((file, index) => {
+
+        selectedPattern.files.forEach((file, index) => {
             fileReader.handleFileRead(selectedPattern.patternFilesDirectory + "/" + file.defaultName)
                 .then(fileContent => {
                     tmpArray[index] = fileContent;
