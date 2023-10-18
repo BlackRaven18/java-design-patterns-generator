@@ -1,10 +1,13 @@
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Grid, IconButton, Stack, Toolbar, Typography } from "@mui/material";
 import { useRef, useState } from "react";
 import CustomBackdrop from "./CustomBackdrop";
 import { editor } from "monaco-editor";
 import EditorPanel from "./EditorPanel";
 import ParametersPanel from "./ParametersPanel";
 import PatternsMenu from "./PatternsMenu";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import TopBar from "./TopBar";
 
 
 const Main = () => {
@@ -16,6 +19,7 @@ const Main = () => {
   const setEditorRef = (editorRef: editor.IStandaloneCodeEditor | null) => {
     parentEditorRef.current = editorRef;
   };
+
 
 
   // const handleParamsChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -35,6 +39,8 @@ const Main = () => {
       {isLoading ? (
         <CustomBackdrop label={"Loading..."} />
       ) : (<></>)}
+
+      <TopBar/>
 
       <Grid
         container
@@ -60,7 +66,7 @@ const Main = () => {
         >
           <Stack>
 
-            <ParametersPanel editorRef={parentEditorRef}/>
+            <ParametersPanel editorRef={parentEditorRef} />
             {/* <TextField
               id="class-name"
               label="Singleton class name"
