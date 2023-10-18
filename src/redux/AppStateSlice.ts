@@ -7,6 +7,8 @@ import { Config, LoadedPatternFileInfo, PatternFileInfo, PatternInfo } from "../
 interface AppState {
     appConfig: Config,
 
+    isDrawerOpen: boolean,
+
     selectedPatternFamillyIndex: number,
     selectedPatternIndex: number,
     selectedTabIndex: number,
@@ -21,6 +23,8 @@ interface AppState {
 
 const initialState: AppState = {
     appConfig: AppConfigJSON,
+
+    isDrawerOpen: false,
 
     selectedPatternFamillyIndex: 0,
     selectedPatternIndex: 0,
@@ -41,6 +45,10 @@ export const appStateSlice = createSlice({
     name: 'appState',
     initialState,
     reducers: {
+        toogleDrawer:(state) => {
+            state.isDrawerOpen = !state.isDrawerOpen;
+        },
+
         setSelectedPatternFamillyIndex: (state, action: PayloadAction<number>) => {
             state.selectedPatternFamillyIndex = action.payload;
         },
@@ -85,6 +93,7 @@ export const appStateSlice = createSlice({
 })
 
 export const {
+    toogleDrawer,
     setSelectedPatternFamillyIndex,
     setSelectedPatternIndex,
     setSelectedTabIndex,
