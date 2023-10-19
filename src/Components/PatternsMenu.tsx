@@ -1,11 +1,12 @@
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { Box, Collapse, List, ListItemButton, ListItemText } from "@mui/material";
+import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
+   setIsDrawerOpen,
    setSelectedPattern,
    setSelectedPatternFamillyIndex,
    setSelectedPatternIndex,
-   setSelectedTabIndex
+   setSelectedTabIndex,
 } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import { PatternFamillyInfo, PatternInfo } from "../types";
@@ -18,6 +19,8 @@ const PatternsMenu = () => {
    const appConfig = useSelector((state: RootState) => state.appState.appConfig);
    const selectedPatternFamillyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamillyIndex);
    const selectedPatternIndex = useSelector((state: RootState) => state.appState.selectedPatternIndex);
+
+   const isDrawerOpen = useSelector((state: RootState) => state.appState.isDrawerOpen);
 
    const fileReader = new FileReader();
 
@@ -41,61 +44,61 @@ const PatternsMenu = () => {
    }
 
    return (
-      <Box>
-         <List component="nav">
+         <Box>
+            <List component="nav">
 
-            {appConfig.patternFamillies.map((patternFamilly, index) => {
-               return (
-                  <Box key={index}>
-                     <ListItemButton
-                        sx={{
-                           backgroundColor: "#2ECC71",
-                           '&.Mui-selected': {
-                              backgroundColor: '#58D68D',
-                           },
-                        }}
-                        key={index}
-                        selected={selectedPatternFamillyIndex === index}
-                        onClick={() => handlePatterFamillyChange(patternFamilly, index)}
-                     >
-                        <ListItemText primary={patternFamilly.patternFamillyName} />
-                        {selectedPatternFamillyIndex === index ? <ExpandLess /> : <ExpandMore />}
+               {appConfig.patternFamillies.map((patternFamilly, index) => {
+                  return (
+                     <Box key={index}>
+                        <ListItemButton
+                           sx={{
+                              backgroundColor: "#2ECC71",
+                              '&.Mui-selected': {
+                                 backgroundColor: '#58D68D',
+                              },
+                           }}
+                           key={index}
+                           selected={selectedPatternFamillyIndex === index}
+                           onClick={() => handlePatterFamillyChange(patternFamilly, index)}
+                        >
+                           <ListItemText primary={patternFamilly.patternFamillyName} />
+                           {selectedPatternFamillyIndex === index ? <ExpandLess /> : <ExpandMore />}
 
-                     </ListItemButton>
+                        </ListItemButton>
 
 
-                     <Collapse in={selectedPatternFamillyIndex === index} timeout="auto" unmountOnExit>
-                        <List component="div" disablePadding>
-                           {patternFamilly.patterns.map((pattern, index) => {
-                              return (
-                                 <ListItemButton
-                                    key={index}
-                                    sx={{
-                                       pl: 4,
-                                       '&.Mui-selected': {
-                                          backgroundColor: '#82E0AA ',
-                                       },
-                                    }}
-                                    selected={selectedPatternIndex === index}
-                                    onClick={() => handlePatternChange(pattern, index)}
-                                 >
-                                    <ListItemText primary={pattern.patternName} />
-                                 </ListItemButton>
-                              );
-                           })}
+                        <Collapse in={selectedPatternFamillyIndex === index} timeout="auto" unmountOnExit>
+                           <List component="div" disablePadding>
+                              {patternFamilly.patterns.map((pattern, index) => {
+                                 return (
+                                    <ListItemButton
+                                       key={index}
+                                       sx={{
+                                          pl: 4,
+                                          '&.Mui-selected': {
+                                             backgroundColor: '#82E0AA ',
+                                          },
+                                       }}
+                                       selected={selectedPatternIndex === index}
+                                       onClick={() => handlePatternChange(pattern, index)}
+                                    >
+                                       <ListItemText primary={pattern.patternName} />
+                                    </ListItemButton>
+                                 );
+                              })}
 
-                        </List>
-                     </Collapse>
+                           </List>
+                        </Collapse>
 
-                  </Box>
+                     </Box>
 
-               );
-            })}
+                  );
+               })}
 
-         </List>
-         {/* <DownloadButton editorValueArray={editorValueArray} selectedPattern={selectedPattern} />
+            </List>
+            {/* <DownloadButton editorValueArray={editorValueArray} selectedPattern={selectedPattern} />
             <Button onClick={() => getEditorValue()}>Show editor content</Button> */}
-      </Box>
+         </Box>
    );
 }
 

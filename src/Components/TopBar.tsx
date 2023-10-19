@@ -1,15 +1,19 @@
 import { Box, IconButton, Toolbar, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
 import MenuIcon from '@mui/icons-material/Menu';
+import { useDispatch } from "react-redux";
+import { setIsDrawerOpen } from "../redux/AppStateSlice";
 
 export default function TopBar(){
+
+    const dispatch = useDispatch<AppDispatch>();
 
     const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
     const idDrawerOpened = useSelector((state: RootState) => state.appState.isDrawerOpen);
 
     const handleDrawerOpen = () => {
-
+        dispatch(setIsDrawerOpen(true))
     }
 
     return (
@@ -23,7 +27,7 @@ export default function TopBar(){
                     color="inherit"
                     aria-label="menu"
                     onClick={handleDrawerOpen}
-                    sx={{ ...(idDrawerOpened && { display: 'none' }) }}
+                    //sx={{ ...(idDrawerOpened && { display: 'none' }) }}
                 >
                     <MenuIcon />
                 </IconButton>

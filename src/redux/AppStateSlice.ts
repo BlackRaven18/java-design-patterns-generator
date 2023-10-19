@@ -45,8 +45,8 @@ export const appStateSlice = createSlice({
     name: 'appState',
     initialState,
     reducers: {
-        toogleDrawer:(state) => {
-            state.isDrawerOpen = !state.isDrawerOpen;
+        setIsDrawerOpen:(state, action: PayloadAction<boolean>) => {
+            state.isDrawerOpen = action.payload;
         },
 
         setSelectedPatternFamillyIndex: (state, action: PayloadAction<number>) => {
@@ -93,7 +93,7 @@ export const appStateSlice = createSlice({
 })
 
 export const {
-    toogleDrawer,
+    setIsDrawerOpen,
     setSelectedPatternFamillyIndex,
     setSelectedPatternIndex,
     setSelectedTabIndex,
