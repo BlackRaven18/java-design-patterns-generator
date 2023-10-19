@@ -7,17 +7,31 @@ import { RouterProvider } from 'react-router-dom';
 import router from './router';
 import { store } from './redux/store'
 import { Provider } from 'react-redux';
+import { ThemeProvider, createTheme } from '@mui/material';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#37382A',
+      //dark: '#000',
+      //contrastText: '#fff'
+    }
+  }
+})
+
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-      <App />
+    <ThemeProvider theme={theme}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+        <App />
 
-    </Provider>
+      </Provider>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

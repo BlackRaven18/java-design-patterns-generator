@@ -22,8 +22,7 @@ const Main = () => {
   return (
     <Box
       sx={{
-        padding: "5px",
-        backgroundColor: "#3FFF90",
+        backgroundColor: "primary.dark",
         height: "100%",
 
       }}

@@ -5,7 +5,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useDispatch } from "react-redux";
 import { setIsDrawerOpen } from "../redux/AppStateSlice";
 
-export default function TopBar(){
+export default function TopBar() {
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -20,14 +20,19 @@ export default function TopBar(){
         <Box
         >
 
-            <Toolbar>
+            <Toolbar
+                sx={{
+                    backgroundColor: "primary.main",
+                    color: 'primary.contrastText'
+                }}
+            >
                 <IconButton
                     size="large"
                     edge="start"
                     color="inherit"
                     aria-label="menu"
                     onClick={handleDrawerOpen}
-                    //sx={{ ...(idDrawerOpened && { display: 'none' }) }}
+                //sx={{ ...(idDrawerOpened && { display: 'none' }) }}
                 >
                     <MenuIcon />
                 </IconButton>
