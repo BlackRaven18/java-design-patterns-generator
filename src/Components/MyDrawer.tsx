@@ -19,15 +19,25 @@ export default function MyDrawer(props: MyDrawerProps){
 
     return(
         <Drawer
-            anchor="right"
+            anchor="left"
             open={isDrawerOpen}
             onClose={() => {dispatch(setIsDrawerOpen(false))}}
         >
-            <Box p={2} width={props.width} textAlign='center' role='presentation'>
+            <Box 
+            p={2} 
+            width={props.width}
+            height="100vh" 
+            textAlign='center' 
+            role='presentation'
+            sx={{
+                color: "primary.contrastText",
+                backgroundColor: "primary.light"
+            }}
+            >
                 <Typography variant="h6" component='div'>
                     {props.headerLabel}
                 </Typography>
-            <Divider/>
+            <Divider sx={{backgroundColor: "primary.contrastText"}}/>
 
             {props.children}
                 

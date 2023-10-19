@@ -45,10 +45,6 @@ const Main = () => {
         <Grid
           item
           xs={3}
-          sx={{
-            backgroundColor: "#F9E79F",
-            paddingTop: "10px"
-          }}
         >
           <Stack>
             <ParametersPanel editorRef={parentEditorRef} />

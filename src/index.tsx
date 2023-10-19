@@ -17,8 +17,23 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#37382A',
-      //dark: '#000',
-      //contrastText: '#fff'
+
+    },
+    secondary: {
+      main: '#F9E79F'
+    },
+    action:{
+      active: '#707B7C',
+      hover: 'rgba(60, 61, 47, 0.55)',
+    }
+  },
+  components:{
+    MuiListItemButton: {
+      styleOverrides: {
+        root:{
+
+        }
+      }
     }
   }
 })
