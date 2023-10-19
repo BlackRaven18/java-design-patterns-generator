@@ -1,13 +1,11 @@
-import { Box, Grid, IconButton, Stack, Toolbar, Typography } from "@mui/material";
+import { Box, Grid, Stack } from "@mui/material";
+import { editor } from "monaco-editor";
 import { useRef, useState } from "react";
 import CustomBackdrop from "./CustomBackdrop";
-import { editor } from "monaco-editor";
 import EditorPanel from "./EditorPanel";
 import ParametersPanel from "./ParametersPanel";
-import PatternsMenu from "./PatternsMenu";
-import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
 import TopBar from "./TopBar";
+import MyDrawer from "./MyDrawer";
 
 
 const Main = () => {
@@ -40,25 +38,28 @@ const Main = () => {
         <CustomBackdrop label={"Loading..."} />
       ) : (<></>)}
 
-      <TopBar/>
+      <TopBar />
+
+      <MyDrawer />
 
       <Grid
         container
         direction="row"
       >
-        <Grid
+        {/* <Grid
           item
           xs={2}
           sx={{
             minWidth: 150
           }}
         >
+          
           <PatternsMenu />
 
-        </Grid>
+        </Grid> */}
         <Grid
           item
-          xs={2}
+          xs={3}
           sx={{
             backgroundColor: "#F9E79F",
             paddingTop: "10px"
@@ -76,7 +77,7 @@ const Main = () => {
             /> */}
           </Stack>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={9}>
 
           <EditorPanel setEditorParentRef={setEditorRef} />
 
