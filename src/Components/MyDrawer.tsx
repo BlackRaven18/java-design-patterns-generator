@@ -1,12 +1,16 @@
-import {Box, Drawer, IconButton, Typography} from "@mui/material"
-import MenuIcon from "@mui/icons-material/Menu"
-import { useState } from "react";
+import { Box, Divider, Drawer, Typography } from "@mui/material";
+import { ReactNode } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setIsDrawerOpen } from "../redux/AppStateSlice";
-import { useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
-import { useSelector } from "react-redux";
 
-export default function MyDrawer(){
+interface MyDrawerProps{
+    headerLabel: string,
+    width: string,
+    children: ReactNode;
+}
+
+export default function MyDrawer(props: MyDrawerProps){
 
     const dispatch = useDispatch<AppDispatch>();
 
@@ -15,14 +19,17 @@ export default function MyDrawer(){
 
     return(
         <Drawer
-            anchor="left"
+            anchor="right"
             open={isDrawerOpen}
             onClose={() => {dispatch(setIsDrawerOpen(false))}}
         >
-            <Box p={2} width='250px' textAlign='center' role='presentation'>
+            <Box p={2} width={props.width} textAlign='center' role='presentation'>
                 <Typography variant="h6" component='div'>
-                    Drawer menu
+                    {props.headerLabel}
                 </Typography>
+            <Divider/>
+
+            {props.children}
                 
             </Box>
 

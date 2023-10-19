@@ -1,11 +1,12 @@
 import { Box, Grid, Stack } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useRef, useState } from "react";
-import CustomBackdrop from "./CustomBackdrop";
+import CustomBackdrop from "./common/CustomBackdrop";
 import EditorPanel from "./EditorPanel";
 import ParametersPanel from "./ParametersPanel";
 import TopBar from "./TopBar";
 import MyDrawer from "./MyDrawer";
+import PatternsMenu from "./PatternsMenu";
 
 
 const Main = () => {
@@ -17,13 +18,6 @@ const Main = () => {
   const setEditorRef = (editorRef: editor.IStandaloneCodeEditor | null) => {
     parentEditorRef.current = editorRef;
   };
-
-
-
-  // const handleParamsChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  //   let tmp: string = selectedFile.content.replace("$CLASSNAME$", event.target.value);
-  //   editorRef?.current?.setValue(tmp);
-  // }
 
   return (
     <Box
@@ -40,23 +34,15 @@ const Main = () => {
 
       <TopBar />
 
-      <MyDrawer />
+      <MyDrawer headerLabel="Design Patterns" width="250px">
+        <PatternsMenu />
+      </MyDrawer>
 
       <Grid
         container
         direction="row"
       >
-        {/* <Grid
-          item
-          xs={2}
-          sx={{
-            minWidth: 150
-          }}
-        >
-          
-          <PatternsMenu />
-
-        </Grid> */}
+    
         <Grid
           item
           xs={3}
@@ -66,15 +52,7 @@ const Main = () => {
           }}
         >
           <Stack>
-
             <ParametersPanel editorRef={parentEditorRef} />
-            {/* <TextField
-              id="class-name"
-              label="Singleton class name"
-              variant="outlined"
-              onChange={(event) => handleParamsChange(event)}
-            // => {handleParamsChange(value)}}
-            /> */}
           </Stack>
         </Grid>
         <Grid item xs={9}>
