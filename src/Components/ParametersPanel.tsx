@@ -1,4 +1,4 @@
-import { Button, Divider, FormControlLabel, Stack, Switch, TextField } from "@mui/material";
+import { Box, Button, Divider, FormControlLabel, Stack, Switch, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -121,66 +121,74 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
 
     return (
-        <Stack
-            spacing="20px"
+        <Box
+            height='100vh'
             sx={{
-                padding: "10px"
+                backgroundColor: "secondary.main",
+                padding: "10px",
             }}
         >
-            <TextField
-                label={"File name"}
-                variant="outlined"
-                value={selectedPattern.files[selectedTabIndex].currentName || ""}
-                onChange={e => handleFileNameChange(e.target.value, selectedTabIndex)}
-            />
-            <Divider />
 
-            {selectedPattern.params.map((param, index) => {
-                let multiline = param.defaultValue.includes("\n");
-                if (param.shouldBeVisible) {
-                    return (
-                        <TextField
-                            key={index}
-                            label={param.label}
-                            variant="outlined"
-                            multiline={multiline}
-                            value={paramFieldsValueArray[index] || ""}
-                            onChange={e => handleParameterChange(e.target.value, index)}
-                            disabled={isParamsFieldsDisabled}
+
+            <Stack
+                paddingTop='10px'
+                spacing="20px"
+            >
+                <TextField
+                    label={"File name"}
+                    variant="outlined"
+                    value={selectedPattern.files[selectedTabIndex].currentName || ""}
+                    onChange={e => handleFileNameChange(e.target.value, selectedTabIndex)}
+                />
+                <Divider />
+
+                {selectedPattern.params.map((param, index) => {
+                    let multiline = param.defaultValue.includes("\n");
+                    if (param.shouldBeVisible) {
+                        return (
+                            <TextField
+                                key={index}
+                                label={param.label}
+                                variant="outlined"
+                                multiline={multiline}
+                                value={paramFieldsValueArray[index] || ""}
+                                onChange={e => handleParameterChange(e.target.value, index)}
+                                disabled={isParamsFieldsDisabled}
+                            />
+                        );
+                    } else {
+                        return (<></>)
+                    }
+                })}
+
+                <Button
+                    onClick={() => {
+                        alert(editorRef.current?.getValue());
+                    }}
+                >show editor value
+                </Button>
+                <Button
+
+                    onClick={() => {
+                        dispatch(addNewFile({
+                            defaultName: "Builder.java",
+                            currentName: "Builder.java",
+                        }));
+                    }}
+                >Add new file
+                </Button>
+
+                <FormControlLabel
+                    control={
+                        <Switch
+                            checked={isEditorReadOnly}
+                            onChange={handleEditorReadOnlyChange}
                         />
-                    );
-                } else{
-                    return (<></>)
-                }
-            })}
+                    }
+                    label="Read only mode" />
 
-            <Button
-                onClick={() => {
-                    alert(editorRef.current?.getValue());
-                }}
-            >show editor value
-            </Button>
-            <Button
-
-                onClick={() => {
-                    dispatch(addNewFile({
-                        defaultName: "Builder.java",
-                        currentName: "Builder.java",
-                    }));
-                }}
-            >Add new file
-            </Button>
-
-            <FormControlLabel
-                control={
-                    <Switch
-                        checked={isEditorReadOnly}
-                        onChange={handleEditorReadOnlyChange}
-                    />
-                }
-                label="Read only mode" />
-
-        </Stack>
+            </Stack>
+        </Box>
     );
 }
 

@@ -52,9 +52,9 @@ const PatternsMenu = () => {
                      <Box key={index}>
                         <ListItemButton
                            sx={{
-                              backgroundColor: "#2ECC71",
+                              backgroundColor: "primary.dark",
                               '&.Mui-selected': {
-                                 backgroundColor: '#58D68D',
+                                 backgroundColor: 'primary.dark',
                               },
                            }}
                            key={index}
@@ -76,7 +76,7 @@ const PatternsMenu = () => {
                                        sx={{
                                           pl: 4,
                                           '&.Mui-selected': {
-                                             backgroundColor: '#82E0AA ',
+                                             backgroundColor: 'action.active',
                                           },
                                        }}
                                        selected={selectedPatternIndex === index}

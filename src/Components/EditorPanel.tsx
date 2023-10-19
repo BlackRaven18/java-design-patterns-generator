@@ -83,11 +83,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     }
 
     return (
-        <Box
-            sx={{
-                bgcolor: "#3F3F3C",
-            }}
-        >
+        <Box>
             <Tabs
                 value={selectedTabIndex}
                 onChange={handleTabChange}
@@ -95,10 +91,10 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 scrollButtons="auto"
                 sx={{
                     marginBottom: "2px",
-                    backgroundColor: "#121302",
+                    backgroundColor: "primary.dark",
                     color: "#F7F1DB",
                     '.MuiTabs-indicator': {
-                        backgroundColor: 'yellow', // Zmień kolor podkreślenia na żółty
+                        backgroundColor: 'yellow',
                     },
                     [`& .${tabsClasses.scrollButtons}`]: {
                         '&.Mui-disabled': { opacity: 0.3 },
@@ -113,15 +109,15 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
                             sx={{
                                 textTransform: "none",
-                                color: "#AEB6BF",
-                                backgroundColor: "#37382A",
+                                color: "primary.light",
+                                backgroundColor: "primary.main",
                                 border: '1px solid #5F5E58',
                                 '&.Mui-selected': {
-                                    color: "#F7F1DB"
+                                    color: "primary.contrastText"
                                 },
                                 '&:hover': {
-                                    color: "#F7F1DB",
-                                    backgroundColor: "rgba(60, 61, 47, 0.50)",
+                                    color: "primary.contrastText",
+                                    backgroundColor: "action.hover",
                                 },
                             }}
                         />
