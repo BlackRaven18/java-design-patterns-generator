@@ -46,9 +46,9 @@ const Main = () => {
           item
           xs={3}
         >
-          <Stack>
             <ParametersPanel editorRef={parentEditorRef} />
-          </Stack>
+          {/* <Stack>
+          </Stack> */}
         </Grid>
         <Grid item xs={9}>
 
