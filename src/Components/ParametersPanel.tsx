@@ -122,7 +122,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     return (
         <Box
-            height='100vh'
+            height='100%'
             sx={{
                 backgroundColor: "secondary.main",
                 padding: "10px",
