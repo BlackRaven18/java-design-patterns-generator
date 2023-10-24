@@ -39,3 +39,8 @@ export interface ParamsData{
     defaultValue: string,
     replace: string
 }
+
+export interface ReplaceData {
+    replace: string,
+    value: string
+}

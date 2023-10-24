@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addNewFile, changeSelectedPatternCurrentFileName, setIsEditorReadOnly } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import MethodBodyGenerator from "../utils/MethodBodyGenerator";
+import CodeParamsReplacer from "../utils/CodeParamsReplacer";
+import { ReplaceData } from "../types";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -26,6 +28,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const [isSelectedFileChanged, setIsSelectedFileChanged] = useState(false);
     const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
 
+    const codeParamsReplacer = new CodeParamsReplacer();
     const methodBodyGenerator = new MethodBodyGenerator();
 
     useEffect(() => {
@@ -63,36 +66,19 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     }
 
     const setEditorValueToValueWithReplacedVariables = (params: string[]) => {
-        let editorValueWithReplacedVariables = replaceVariablesWithParamsValues(selectedFile.content, params);
+
+        let replaceData: ReplaceData[] = [];
+
+        for(let i = 0; i < params.length; i++){
+            replaceData.push({
+                replace: selectedPattern.params[i].replace,
+                value: params[i]
+            })
+        }
+
+        let editorValueWithReplacedVariables
+            = codeParamsReplacer.getReplacedContent(selectedFile.content, replaceData)
         editorRef.current?.setValue(editorValueWithReplacedVariables);
-    }
-
-    const replaceVariablesWithParamsValues = (editorDefalutValue: string, params: string[]) => {
-
-        selectedPattern.params.forEach((param, index) => {
-            if (param.defaultValue.includes("$")) {
-                selectedPattern.params.forEach((paramToCheck, paramToCheckIndex) => {
-                    if (paramToCheck.replace === param.defaultValue) {
-                        let methodsWithBodyAsString = methodBodyGenerator.getMethodsWithBodyAsString(params[paramToCheckIndex])
-                        editorDefalutValue = editorDefalutValue.replaceAll(param.replace, methodsWithBodyAsString)
-
-                    }
-                })
-            } else {
-                //TODO: improve this later
-                let paramValueToBeReplaced = params[index] ?? "*NO VALUE DELIVERED*";
-
-                if (paramValueToBeReplaced.includes("\n")) {
-                    paramValueToBeReplaced = paramValueToBeReplaced.replaceAll("\n", "\n\t");
-                    console.log(paramValueToBeReplaced);
-                }
-
-                editorDefalutValue = editorDefalutValue.replaceAll(param.replace, paramValueToBeReplaced);
-            }
-        })
-
-
-        return editorDefalutValue;
     }
 
 
@@ -156,9 +142,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                                 disabled={isParamsFieldsDisabled}
                             />
                         );
-                    } else {
-                        return (<></>)
-                    }
+                    } 
                 })}
 
                 <Button
