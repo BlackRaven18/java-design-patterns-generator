@@ -10,25 +10,26 @@
                   {
                      "defaultName": "Singleton.java",
                      "currentName": "Singleton.java"
-                     
                   }
                ],
-               "params": [
-                  {
-                     "shouldBeVisible": true,
-                     "label": "Singleton class name",
-                     "defaultValue": "Singleton",
-                     "replace": "$CLASSNAME$",
-                     "filename": ""
-                  },
-                  {
-                     "shouldBeVisible": true,
-                     "label": "Name of an Singleton instance",
-                     "defaultValue": "INSTANCE",
-                     "replace": "$INSTANCENAME$",
-                     "filename": ""
-                  }
-               ]
+               "params": {
+                  "textFieldParams": [
+                     {
+                        "shouldBeVisible": true,
+                        "label": "Singleton class name",
+                        "defaultValue": "Singleton",
+                        "replace": "$CLASSNAME$",
+                        "filename": ""
+                     },
+                     {
+                        "shouldBeVisible": true,
+                        "label": "Name of an Singleton instance",
+                        "defaultValue": "INSTANCE",
+                        "replace": "$INSTANCENAME$",
+                        "filename": ""
+                     }
+                  ]
+               }
             },
             {
                "patternName": "Builder",
@@ -51,50 +52,52 @@
                      "currentName": "Product.java"
                   }
                ],
-               "params": [
-                  {
-                     "shouldBeVisible": true,
-                     "label": "Builder class name",
-                     "defaultValue": "Builder",
-                     "replace": "$BUILDER_CLASSNAME$",
-                     "filename": ""
-                  },
-                  {
-                     "shouldBeVisible": true,
-                     "label": "Builder methods",
-                     "defaultValue": "void buildPartA();\nvoid buildPartB();",
-                     "replace": "$BUILDER_METHODS$",
-                     "filename": ""
-                  },
-                  {
-                     "shouldBeVisible": false,
-                     "label": "Builder methods extended",
-                     "defaultValue": "$BUILDER_METHODS$",
-                     "replace": "$BUILDER_METHODS_EXTENDED$",
-                     "filename": ""
-                  },
-                  {
-                     "shouldBeVisible": true,
-                     "label": "Director class name",
-                     "defaultValue": "Director",
-                     "replace": "$DIRECTOR_CLASSNAME$",
-                     "filename": ""
-                  },
-                  {
-                     "shouldBeVisible": true,
-                     "label": "Product class name",
-                     "defaultValue": "Product",
-                     "replace": "$PRODUCT_CLASSNAME$",
-                     "filename": ""
-                  },
-                  {
-                     "shouldBeVisible": true,
-                     "label": "Concrete Builder class name (1)",
-                     "defaultValue": "ConcreteBuilder",
-                     "replace": "$CONCRETE_BUILDER_CLASSNAME1$",
-                     "filename": "ConcreteBuilder.java"
-                  }
-               ]
+               "params": {
+                  "textFieldParams": [
+                     {
+                        "shouldBeVisible": true,
+                        "label": "Builder class name",
+                        "defaultValue": "Builder",
+                        "replace": "$BUILDER_CLASSNAME$",
+                        "filename": ""
+                     },
+                     {
+                        "shouldBeVisible": true,
+                        "label": "Builder methods",
+                        "defaultValue": "void buildPartA();\nvoid buildPartB();",
+                        "replace": "$BUILDER_METHODS$",
+                        "filename": ""
+                     },
+                     {
+                        "shouldBeVisible": false,
+                        "label": "Builder methods extended",
+                        "defaultValue": "$BUILDER_METHODS$",
+                        "replace": "$BUILDER_METHODS_EXTENDED$",
+                        "filename": ""
+                     },
+                     {
+                        "shouldBeVisible": true,
+                        "label": "Director class name",
+                        "defaultValue": "Director",
+                        "replace": "$DIRECTOR_CLASSNAME$",
+                        "filename": ""
+                     },
+                     {
+                        "shouldBeVisible": true,
+                        "label": "Product class name",
+                        "defaultValue": "Product",
+                        "replace": "$PRODUCT_CLASSNAME$",
+                        "filename": ""
+                     },
+                     {
+                        "shouldBeVisible": true,
+                        "label": "Concrete Builder class name (1)",
+                        "defaultValue": "ConcreteBuilder",
+                        "replace": "$CONCRETE_BUILDER_CLASSNAME1$",
+                        "filename": "ConcreteBuilder.java"
+                     }
+                  ]
+               }
             },
             {
                "patternName": "Factory Method",
@@ -117,7 +120,10 @@
                      "currentName": "ConcreteProduct.java"
                   }
                ],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
+               
             },
             {
                "patternName": "Abstract Factory",
@@ -156,7 +162,9 @@
                      "currentName": "ConcreteProductB.java"
                   }
                ],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Prototype",
@@ -175,7 +183,9 @@
                      "currentName": "ConcretePrototype.java"
                   }
                ],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             }
          ]
       },
@@ -186,43 +196,57 @@
                "patternName": "Adapter",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Bridge",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Composite",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Decorator",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Facade",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Flyweight",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Proxy",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             }
          ]
       },
@@ -233,61 +257,81 @@
                "patternName": "Chain of responsibility",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Command",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Iterator",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Mediator",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Memento",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Observer",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "State",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Strategy",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Template Method",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             },
             {
                "patternName": "Visitor",
                "patternFilesDirectory": "",
                "files": [],
-               "params": []
+               "params": {
+                  "textFieldParams": []
+               }
             }
          ]
       }
