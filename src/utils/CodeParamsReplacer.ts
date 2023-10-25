@@ -1,4 +1,4 @@
-import { ParamsData, ReplaceData } from "../types";
+import { ReplaceData } from "../types";
 import MethodBodyGenerator from "./MethodBodyGenerator";
 
 

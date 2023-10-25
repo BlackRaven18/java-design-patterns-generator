@@ -25,15 +25,20 @@ export interface LoadedPatternFileInfo extends PatternFileInfo{
 }
 
 export interface ParamsTypes{
-    textFieldParams: ParamsData[],
+    textFieldParams: TextFieldParamData[],
+    selectParams: SelectParamData[],
 }
 
-export interface ParamsData{
+export interface TextFieldParamData{
     shouldBeVisible: boolean,
     label: string,
     defaultValue: string,
     replace: string,
     filename: string,
+}
+
+export interface SelectParamData{
+
 }
 
 export interface ReplaceData {
