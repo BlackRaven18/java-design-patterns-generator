@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setSelectedFile } from "../redux/AppStateSlice";
 import { AppDispatch } from "../redux/store";
-import { LoadedPatternFileInfo, ParamsData } from "../types";
+import { LoadedPatternFileInfo, TextFieldParamData } from "../types";
 
 
 export default class FileReader {
@@ -22,7 +22,7 @@ export default class FileReader {
     }
 
     public async loadFileToStateAndReplaceParams(
-        pathToDirectory: string, fileName: string, params: ParamsData[]) {
+        pathToDirectory: string, fileName: string, params: TextFieldParamData[]) {
 
 
         let fileContentWithReplacedParams = this.handleFileRead(
