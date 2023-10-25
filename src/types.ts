@@ -38,7 +38,10 @@ export interface TextFieldParamData{
 }
 
 export interface SelectParamData{
-
+    label: string,
+    fileNameToBeMultiplied: string,
+    minNumber: number,
+    maxNumber: number
 }
 
 export interface ReplaceData {
