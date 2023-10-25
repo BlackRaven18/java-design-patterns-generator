@@ -24,20 +24,13 @@ export interface LoadedPatternFileInfo extends PatternFileInfo{
     content: string,
 }
 
-export interface ParamsInfo{
-    paramsConfig: ParamsConfigInfo[],
-}
-
-export interface ParamsConfigInfo{
-    pattern: string,
-    params: ParamsData[],
-}
 
 export interface ParamsData{
     shouldBeVisible: boolean,
     label: string,
     defaultValue: string,
-    replace: string
+    replace: string,
+    filename: string,
 }
 
 export interface ReplaceData {

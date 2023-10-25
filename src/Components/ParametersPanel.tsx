@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "../redux/store";
 import MethodBodyGenerator from "../utils/MethodBodyGenerator";
 import CodeParamsReplacer from "../utils/CodeParamsReplacer";
 import { ReplaceData } from "../types";
+import { v4 as uuidv4 } from 'uuid';
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -69,7 +70,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
         let replaceData: ReplaceData[] = [];
 
-        for(let i = 0; i < params.length; i++){
+        for (let i = 0; i < params.length; i++) {
             replaceData.push({
                 replace: selectedPattern.params[i].replace,
                 value: params[i]
@@ -126,23 +127,27 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                     value={selectedPattern.files[selectedTabIndex].currentName || ""}
                     onChange={e => handleFileNameChange(e.target.value, selectedTabIndex)}
                 />
-                <Divider />
+                <Divider/>
 
+                {/* TODO: Try to make it more clear */}
                 {selectedPattern.params.map((param, index) => {
                     let multiline = param.defaultValue.includes("\n");
                     if (param.shouldBeVisible) {
-                        return (
-                            <TextField
-                                key={index}
-                                label={param.label}
-                                variant="outlined"
-                                multiline={multiline}
-                                value={paramFieldsValueArray[index] || ""}
-                                onChange={e => handleParameterChange(e.target.value, index)}
-                                disabled={isParamsFieldsDisabled}
-                            />
-                        );
-                    } 
+                        // global params
+                        if (param.filename.length === 0 || param.filename === selectedFile.defaultName) {
+                            return (
+                                <TextField
+                                    key={uuidv4()}
+                                    label={param.label}
+                                    variant="outlined"
+                                    multiline={multiline}
+                                    value={paramFieldsValueArray[index] || ""}
+                                    onChange={e => handleParameterChange(e.target.value, index)}
+                                    disabled={isParamsFieldsDisabled}
+                                />
+                            );
+                        }
+                    }
                 })}
 
                 <Button
