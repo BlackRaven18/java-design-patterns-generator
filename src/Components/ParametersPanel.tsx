@@ -1,4 +1,4 @@
-import { Box, Button, Divider, FormControlLabel, Stack, Switch, TextField } from "@mui/material";
+import { Box, Button, Divider, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Stack, Switch, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import MethodBodyGenerator from "../utils/MethodBodyGenerator";
 import CodeParamsReplacer from "../utils/CodeParamsReplacer";
 import { ReplaceData } from "../types";
 import uniqid from 'uniqid';
+import SelectParam from "./SelectParam";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -127,7 +128,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                     value={selectedPattern.files[selectedTabIndex].currentName || ""}
                     onChange={e => handleFileNameChange(e.target.value, selectedTabIndex)}
                 />
-                <Divider/>
+                <Divider />
 
                 {/* TODO: Try to make it more clear */}
                 {selectedPattern.params.textFieldParams.map((param, index) => {
@@ -148,6 +149,17 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                             );
                         }
                     }
+                })}
+
+                {selectedPattern.params.selectParams.map((selectParamData, index) => {
+                    return (
+                        <SelectParam
+                            key={index}
+                            label={selectParamData.label}
+                            minValue={selectParamData.minNumber}
+                            maxValue={selectParamData.maxNumber}
+                        />
+                    );
                 })}
 
                 <Button

@@ -98,7 +98,14 @@
                         "filename": "ConcreteBuilder.java"
                      }
                   ],
-                  "selectParams": []
+                  "selectParams": [
+                     {
+                        "label": "Number of ConcreteBuilder classes",
+                        "fileNameToBeMultiplied": "ConcreteBuilder.java",
+                        "minNumber": 1,
+                        "maxNumber": 5
+                     }
+                  ]
                }
             },
             {
