@@ -12,7 +12,7 @@ export interface PatternInfo {
     patternName: string,
     patternFilesDirectory: string,
     files: PatternFileInfo[],
-    params: ParamsData[],
+    params: ParamsTypes,
 }
 
 export interface PatternFileInfo{
@@ -24,6 +24,9 @@ export interface LoadedPatternFileInfo extends PatternFileInfo{
     content: string,
 }
 
+export interface ParamsTypes{
+    textFieldParams: ParamsData[],
+}
 
 export interface ParamsData{
     shouldBeVisible: boolean,

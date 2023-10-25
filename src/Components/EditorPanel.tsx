@@ -74,7 +74,9 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
         editorRef.current = editor;
 
         fileReader.loadFileToStateAndReplaceParams(
-            selectedPattern.patternFilesDirectory, selectedFile.defaultName, selectedPattern.params
+            selectedPattern.patternFilesDirectory,
+            selectedFile.defaultName,
+            selectedPattern.params.textFieldParams
         ).then(fileContentWithReplacedParams => {
             editor.setValue(fileContentWithReplacedParams);
         })

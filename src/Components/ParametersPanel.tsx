@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "../redux/store";
 import MethodBodyGenerator from "../utils/MethodBodyGenerator";
 import CodeParamsReplacer from "../utils/CodeParamsReplacer";
 import { ReplaceData } from "../types";
-import { v4 as uuidv4 } from 'uuid';
+import uniqid from 'uniqid';
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -23,7 +23,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
     const [paramFieldsValueArray, setParamFieldsValueArray] = useState<string[]>(
-        selectedPattern.params.map(param => param.defaultValue || '')
+        selectedPattern.params.textFieldParams.map(param => param.defaultValue || '')
     );
 
     const [isSelectedFileChanged, setIsSelectedFileChanged] = useState(false);
@@ -60,7 +60,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const updateParamFieldsValueArrayWhenPatternIsChanged = () => {
         let paramFieldsValueArrayCopy = [
-            ...selectedPattern.params.map(param => param.defaultValue || '')
+            ...selectedPattern.params.textFieldParams.map(param => param.defaultValue || '')
         ];
 
         setParamFieldsValueArray(paramFieldsValueArrayCopy);
@@ -72,7 +72,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
         for (let i = 0; i < params.length; i++) {
             replaceData.push({
-                replace: selectedPattern.params[i].replace,
+                replace: selectedPattern.params.textFieldParams[i].replace,
                 value: params[i]
             })
         }
@@ -130,14 +130,14 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                 <Divider/>
 
                 {/* TODO: Try to make it more clear */}
-                {selectedPattern.params.map((param, index) => {
+                {selectedPattern.params.textFieldParams.map((param, index) => {
                     let multiline = param.defaultValue.includes("\n");
                     if (param.shouldBeVisible) {
                         // global params
                         if (param.filename.length === 0 || param.filename === selectedFile.defaultName) {
                             return (
                                 <TextField
-                                    key={uuidv4()}
+                                    key={index}
                                     label={param.label}
                                     variant="outlined"
                                     multiline={multiline}
