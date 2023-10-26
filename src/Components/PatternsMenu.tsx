@@ -9,7 +9,7 @@ import {
    setSelectedTabIndex,
 } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
-import { PatternFamillyInfo, PatternInfo } from "../types";
+import { LoadedPatternFileInfo, PatternFamillyInfo, PatternInfo } from "../types";
 import FileReader from "../utils/FileReader";
 
 const PatternsMenu = () => {
@@ -19,8 +19,7 @@ const PatternsMenu = () => {
    const appConfig = useSelector((state: RootState) => state.appState.appConfig);
    const selectedPatternFamillyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamillyIndex);
    const selectedPatternIndex = useSelector((state: RootState) => state.appState.selectedPatternIndex);
-
-   const isDrawerOpen = useSelector((state: RootState) => state.appState.isDrawerOpen);
+;
 
    const fileReader = new FileReader();
 
@@ -34,9 +33,21 @@ const PatternsMenu = () => {
 
       //setIsLoading(true);
 
-      //dispatch(setSelectedPattern(pattern));
-      dispatch(setSelectedPatternIndex(index));
-      dispatch(setSelectedTabIndex(0));
+      let sourceFiles = pattern.files.map(file => {
+         return pattern.patternFilesDirectory + "/" + file.defaultName;
+     })
+
+     fileReader.readMultipleFiles(sourceFiles).then(filesContent => {
+      
+        let extendedPatternInfo = fileReader.getExtendedPatternInfo(pattern, filesContent)
+   
+   
+        dispatch(setSelectedPattern(extendedPatternInfo));
+        dispatch(setSelectedPatternIndex(index));
+        dispatch(setSelectedTabIndex(0));
+     })
+
+
 
       //fileReader.loadFileToState(pattern.patternFilesDirectory, pattern.files[0].defaultName)
 
