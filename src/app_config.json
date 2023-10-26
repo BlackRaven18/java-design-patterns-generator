@@ -3,35 +3,7 @@
       {
          "patternFamillyName": "Creational",
          "patterns": [
-            {
-               "patternName": "Singleton",
-               "patternFilesDirectory": "creational_patterns/singleton",
-               "files": [
-                  {
-                     "defaultName": "Singleton.java",
-                     "currentName": "Singleton.java"
-                  }
-               ],
-               "params": {
-                  "textFieldParams": [
-                     {
-                        "shouldBeVisible": true,
-                        "label": "Singleton class name",
-                        "defaultValue": "Singleton",
-                        "replace": "$CLASSNAME$",
-                        "filename": ""
-                     },
-                     {
-                        "shouldBeVisible": true,
-                        "label": "Name of an Singleton instance",
-                        "defaultValue": "INSTANCE",
-                        "replace": "$INSTANCENAME$",
-                        "filename": ""
-                     }
-                  ],
-                  "selectParams": []
-               }
-            },
+            
             {
                "patternName": "Builder",
                "patternFilesDirectory": "creational_patterns/builder",

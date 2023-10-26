@@ -14,7 +14,7 @@ interface AppState {
     selectedTabIndex: number,
 
     selectedPattern: ExtendedPatternInfo,
-    selectedFile: LoadedPatternFileInfo,
+    // selectedFile: LoadedPatternFileInfo,
 
     isEditorReadOnly: boolean,
 
@@ -48,13 +48,13 @@ const initialState: AppState = {
         params: AppConfigJSON.patternFamillies[0].patterns[0].params
     },
     
-    selectedFile: {
-        sourceFile: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
-        defaultName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
-        currentName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
-        defaultContent: "",
-        currentContent: ""
-    },
+    // selectedFile: {
+    //     sourceFile: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
+    //     defaultName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
+    //     currentName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
+    //     defaultContent: "",
+    //     currentContent: ""
+    // },
 
     isEditorReadOnly: true,
 
@@ -128,9 +128,12 @@ export const appStateSlice = createSlice({
             state.selectedPattern = action.payload;
         },
 
-        setSelectedFile: (state, action: PayloadAction<LoadedPatternFileInfo>) => {
-            state.selectedFile = action.payload;
+        setSelectedPatternFiles: (state, action: PayloadAction<LoadedPatternFileInfo[]>) => {
+            state.selectedPattern.files = action.payload;
         },
+        // setSelectedFile: (state, action: PayloadAction<LoadedPatternFileInfo>) => {
+        //     state.selectedFile = action.payload;
+        // },
 
         setIsEditorReadOnly: (state, action: PayloadAction<boolean>) => {
             state.isEditorReadOnly = action.payload;
@@ -165,7 +168,8 @@ export const {
     setSelectedPatternIndex,
     setSelectedTabIndex,
     setSelectedPattern,
-    setSelectedFile,
+    setSelectedPatternFiles,
+    // setSelectedFile,
     setIsEditorReadOnly,
     //addNewFile,
     changeSelectedPatternCurrentFileName

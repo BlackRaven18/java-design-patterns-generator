@@ -4,9 +4,10 @@ import { tabsClasses } from "@mui/material/Tabs";
 import { editor } from "monaco-editor";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedTabIndex } from "../redux/AppStateSlice";
+import { setSelectedPatternFiles, setSelectedTabIndex } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import FileReader from "../utils/FileReader";
+import { LoadedPatternFileInfo } from "../types";
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
@@ -19,7 +20,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
-    const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
+    //const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
 
@@ -30,7 +31,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     useEffect(() => {
 
-        loadFileToStateOnComponentMount();
+        //loadFileToStateOnComponentMount();
 
         loadPatternFiles();
 
@@ -41,12 +42,35 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     }, [selectedPattern])
 
+
     const loadPatternFiles = () => {
-            
+
+        let sourceFiles = selectedPattern.files.map(file => {
+            return selectedPattern.patternFilesDirectory + "/" + file.sourceFile;
+        })
+
+        fileReader.readMultipleFiles(sourceFiles).then(filesContent => {
+            let patternFilesWithContent = selectedPattern.files.map((file, index) => {
+                let fileWithContent: LoadedPatternFileInfo = {
+                    sourceFile: file.sourceFile,
+                    defaultName: file.defaultName,
+                    currentName: file.currentName,
+                    defaultContent: filesContent[index],
+                    currentContent: filesContent[index]
+                }
+
+                return fileWithContent;
+            })
+
+            dispatch(setSelectedPatternFiles(patternFilesWithContent));
+        })
+
+
+
     }
 
     const loadFileToStateOnComponentMount = () => {
-        fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedFile.defaultName);
+        //fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedFile.defaultName);
     }
 
 
@@ -65,8 +89,8 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
 
-        fileReader.loadFileToState(selectedPattern.patternFilesDirectory,
-            selectedPattern.files[newValue].defaultName)
+        // fileReader.loadFileToState(selectedPattern.patternFilesDirectory,
+        //     selectedPattern.files[newValue].defaultName)
         dispatch(setSelectedTabIndex(newValue));
     }
 
@@ -79,13 +103,13 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
         editorRef.current = editor;
 
-        fileReader.loadFileToStateAndReplaceParams(
-            selectedPattern.patternFilesDirectory,
-            selectedFile.defaultName,
-            selectedPattern.params.textFieldParams
-        ).then(fileContentWithReplacedParams => {
-            editor.setValue(fileContentWithReplacedParams);
-        })
+        // fileReader.loadFileToStateAndReplaceParams(
+        //     selectedPattern.patternFilesDirectory,
+        //     selectedFile.defaultName,
+        //     selectedPattern.params.textFieldParams
+        // ).then(fileContentWithReplacedParams => {
+        //     editor.setValue(fileContentWithReplacedParams);
+        // })
 
         setEditorParentRef(editor);
     }
@@ -137,9 +161,9 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
             <Editor
                 height="90vh"
                 theme="vs-dark"
-                path={selectedFile.defaultName}
+                path={selectedPattern.files[selectedTabIndex].defaultName}
                 defaultLanguage={"java"}
-                value={selectedFile.currentContent}
+                value={selectedPattern.files[selectedTabIndex].currentContent}
                 //defaultValue={selectedFile.content}
                 onChange={(value) => handleEditorChange(value ?? "")}
                 onMount={handleEditorDidMount}

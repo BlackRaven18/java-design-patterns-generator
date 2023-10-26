@@ -19,7 +19,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
-    const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
+   //const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
@@ -33,18 +33,18 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const codeParamsReplacer = new CodeParamsReplacer();
     const methodBodyGenerator = new MethodBodyGenerator();
 
-    useEffect(() => {
-        setIsSelectedFileChanged(true);
-    }, [selectedFile])
+    // useEffect(() => {
+    //     setIsSelectedFileChanged(true);
+    // }, [selectedFile])
 
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        if (isSelectedFileChanged) {
-            replaceEditorContentWithParamsValues();
-        }
+    //     if (isSelectedFileChanged) {
+    //         replaceEditorContentWithParamsValues();
+    //     }
 
-    }, [isSelectedFileChanged, paramFieldsValueArray])
+    // }, [isSelectedFileChanged, paramFieldsValueArray])
 
     useEffect(() => {
 
@@ -53,11 +53,11 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     }, [selectedPattern])
 
 
-    const replaceEditorContentWithParamsValues = () => {
-        setEditorValueToValueWithReplacedVariables(paramFieldsValueArray);
+    // const replaceEditorContentWithParamsValues = () => {
+    //     setEditorValueToValueWithReplacedVariables(paramFieldsValueArray);
 
-        setIsSelectedFileChanged(false);
-    }
+    //     setIsSelectedFileChanged(false);
+    // }
 
     const updateParamFieldsValueArrayWhenPatternIsChanged = () => {
         let paramFieldsValueArrayCopy = [
@@ -67,21 +67,21 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         setParamFieldsValueArray(paramFieldsValueArrayCopy);
     }
 
-    const setEditorValueToValueWithReplacedVariables = (params: string[]) => {
+    // const setEditorValueToValueWithReplacedVariables = (params: string[]) => {
 
-        let replaceData: ReplaceData[] = [];
+    //     let replaceData: ReplaceData[] = [];
 
-        for (let i = 0; i < params.length; i++) {
-            replaceData.push({
-                replace: selectedPattern.params.textFieldParams[i].replace,
-                value: params[i]
-            })
-        }
+    //     for (let i = 0; i < params.length; i++) {
+    //         replaceData.push({
+    //             replace: selectedPattern.params.textFieldParams[i].replace,
+    //             value: params[i]
+    //         })
+    //     }
 
-        let editorValueWithReplacedVariables
-            = codeParamsReplacer.getReplacedContent(selectedFile.defaultContent, replaceData)
-        editorRef.current?.setValue(editorValueWithReplacedVariables);
-    }
+    //     let editorValueWithReplacedVariables
+    //         = codeParamsReplacer.getReplacedContent(selectedFile.defaultContent, replaceData)
+    //     editorRef.current?.setValue(editorValueWithReplacedVariables);
+    // }
 
 
 
@@ -92,14 +92,14 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         }))
     }
 
-    const handleParameterChange = (newValue: string, textFieldIndex: number) => {
+     const handleParameterChange = (newValue: string, textFieldIndex: number) => {
 
-        const paramFieldsValueArrayCopy = [...paramFieldsValueArray];
-        paramFieldsValueArrayCopy[textFieldIndex] = newValue;
+    //     const paramFieldsValueArrayCopy = [...paramFieldsValueArray];
+    //     paramFieldsValueArrayCopy[textFieldIndex] = newValue;
 
-        setParamFieldsValueArray(paramFieldsValueArrayCopy);
-        setEditorValueToValueWithReplacedVariables(paramFieldsValueArrayCopy);
-    }
+    //     setParamFieldsValueArray(paramFieldsValueArrayCopy);
+    //     setEditorValueToValueWithReplacedVariables(paramFieldsValueArrayCopy);
+     }
 
     const handleEditorReadOnlyChange = () => {
         dispatch(setIsEditorReadOnly(!isEditorReadOnly));
@@ -134,7 +134,8 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                     let multiline = param.defaultValue.includes("\n");
                     if (param.shouldBeVisible) {
                         // global params
-                        if (param.filename.length === 0 || param.filename === selectedFile.defaultName) {
+                        if (param.filename.length === 0 
+                            || param.filename === selectedPattern.files[selectedTabIndex].defaultName) {
                             return (
                                 <TextField
                                     key={index}
