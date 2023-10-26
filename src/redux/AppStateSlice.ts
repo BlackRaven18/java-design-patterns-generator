@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import AppConfigJSON from "../app_config.json";
-import { Config, LoadedPatternFileInfo, PatternFileInfo, PatternInfo, TextFieldParamData } from "../types";
+import { Config, ExtendedPatternInfo, LoadedPatternFileInfo, PatternFileInfo, PatternInfo, TextFieldParamData } from "../types";
 
 
 
@@ -13,7 +13,7 @@ interface AppState {
     selectedPatternIndex: number,
     selectedTabIndex: number,
 
-    selectedPattern: PatternInfo,
+    selectedPattern: ExtendedPatternInfo,
     selectedFile: LoadedPatternFileInfo,
 
     isEditorReadOnly: boolean,
@@ -30,11 +30,30 @@ const initialState: AppState = {
     selectedPatternIndex: 0,
     selectedTabIndex: 0,
 
-    selectedPattern: AppConfigJSON.patternFamillies[0].patterns[0],
+    selectedPattern: {
+        patternName: AppConfigJSON.patternFamillies[0].patterns[0].patternName,
+        patternFilesDirectory: AppConfigJSON.patternFamillies[0].patterns[0].patternFilesDirectory,
+        files: [...AppConfigJSON.patternFamillies[0].patterns[0].files.map(file => {
+            
+            let loadedPatternFileInfo: LoadedPatternFileInfo = {
+                sourceFile: file.defaultName,
+                defaultName: file.defaultName,
+                currentName: file.defaultName,
+                defaultContent: "",
+                currentContent: "",
+            }
+
+            return loadedPatternFileInfo;
+        })],
+        params: AppConfigJSON.patternFamillies[0].patterns[0].params
+    },
+    
     selectedFile: {
+        sourceFile: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
         defaultName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
-        currentName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].currentName,
-        content: "",
+        currentName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
+        defaultContent: "",
+        currentContent: ""
     },
 
     isEditorReadOnly: true,
@@ -79,8 +98,11 @@ export const appStateSlice = createSlice({
 
 
                 state.selectedPattern.files.push({
-                    defaultName: action.payload.filename,
+                    sourceFile: action.payload.filename,
+                    defaultName: fileNameWithNoExtension + "(" + (i + 1) + ")." + extension,
                     currentName: fileNameWithNoExtension + "(" + (i + 1) + ")." + extension,
+                    defaultContent: "",
+                    currentContent: ""
                 })
             }
 
@@ -102,7 +124,7 @@ export const appStateSlice = createSlice({
             state.selectedTabIndex = action.payload;
         },
 
-        setSelectedPattern: (state, action: PayloadAction<PatternInfo>) => {
+        setSelectedPattern: (state, action: PayloadAction<ExtendedPatternInfo>) => {
             state.selectedPattern = action.payload;
         },
 
@@ -113,12 +135,12 @@ export const appStateSlice = createSlice({
         setIsEditorReadOnly: (state, action: PayloadAction<boolean>) => {
             state.isEditorReadOnly = action.payload;
         },
-        addNewFile: (state, action: PayloadAction<PatternFileInfo>) => {
-            state.selectedPattern.files.push({
-                defaultName: action.payload.defaultName,
-                currentName: action.payload.currentName,
-            })
-        },
+        // addNewFile: (state, action: PayloadAction<PatternFileInfo>) => {
+        //     state.selectedPattern.files.push({
+        //         defaultName: action.payload.defaultName,
+        //         currentName: action.payload.currentName,
+        //     })
+        // },
         changeSelectedPatternCurrentFileName: (state, action: PayloadAction<
             {
                 currentName: string,
@@ -145,7 +167,7 @@ export const {
     setSelectedPattern,
     setSelectedFile,
     setIsEditorReadOnly,
-    addNewFile,
+    //addNewFile,
     changeSelectedPatternCurrentFileName
 
 

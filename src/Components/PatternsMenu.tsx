@@ -34,11 +34,11 @@ const PatternsMenu = () => {
 
       //setIsLoading(true);
 
-      dispatch(setSelectedPattern(pattern));
+      //dispatch(setSelectedPattern(pattern));
       dispatch(setSelectedPatternIndex(index));
       dispatch(setSelectedTabIndex(0));
 
-      fileReader.loadFileToState(pattern.patternFilesDirectory, pattern.files[0].defaultName)
+      //fileReader.loadFileToState(pattern.patternFilesDirectory, pattern.files[0].defaultName)
 
 
    }
