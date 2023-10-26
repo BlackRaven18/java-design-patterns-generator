@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { } from "../redux/AppStateSlice";
 import { AppDispatch } from "../redux/store";
 import { ExtendedPatternInfo, LoadedPatternFileInfo, PatternInfo, TextFieldParamData } from "../types";
+import CodeParamsReplacer from "./CodeParamsReplacer";
 
 
 export default class FileReader {
@@ -12,6 +13,19 @@ export default class FileReader {
         patternInfo: PatternInfo,
         patternFilesContent: string[]): ExtendedPatternInfo {
 
+            let codeParamsReplacer = new CodeParamsReplacer();
+
+            let patternFilesContentWithReplacedParams = [...patternFilesContent.map(content => {
+                let replaceData = patternInfo.params.textFieldParams.map(param => {
+                    return {
+                        replace: param.replace,
+                        value: param.defaultValue
+                    }
+                })
+                content = codeParamsReplacer.getReplacedContent(content, replaceData)
+                return content;
+            })]
+
     
 
         let extendedPatternInfo: ExtendedPatternInfo = {
@@ -21,7 +35,7 @@ export default class FileReader {
                     defaultName: file.defaultName,
                     currentName: file.defaultName,
                     defaultContent: patternFilesContent[index],
-                    currentContent: patternFilesContent[index],
+                    currentContent: patternFilesContentWithReplacedParams[index],
                 }
 
                 return loadedPatternFileInfo;
