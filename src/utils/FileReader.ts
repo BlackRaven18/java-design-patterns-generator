@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setSelectedFile } from "../redux/AppStateSlice";
+import {  } from "../redux/AppStateSlice";
 import { AppDispatch } from "../redux/store";
 import { LoadedPatternFileInfo, TextFieldParamData } from "../types";
 
@@ -8,20 +8,21 @@ export default class FileReader {
 
     private dispatch = useDispatch<AppDispatch>();
 
-    public loadFileToState(pathToDirectory: string, fileName: string) {
-        this.handleFileRead(pathToDirectory + "/" + fileName)
-            .then(fileContent => {
-                let newLoadedFile: LoadedPatternFileInfo = {
-                    sourceFile: fileName,
-                    defaultName: fileName,
-                    currentName: fileName,
-                    defaultContent: fileContent,
-                    currentContent: fileContent
-                }
 
-                this.dispatch(setSelectedFile(newLoadedFile));
-            })
-    }
+    // public loadFileToState(pathToDirectory: string, fileName: string) {
+    //     this.handleFileRead(pathToDirectory + "/" + fileName)
+    //         .then(fileContent => {
+    //             let newLoadedFile: LoadedPatternFileInfo = {
+    //                 sourceFile: fileName,
+    //                 defaultName: fileName,
+    //                 currentName: fileName,
+    //                 defaultContent: fileContent,
+    //                 currentContent: fileContent
+    //             }
+
+    //             this.dispatch(setSelectedFile(newLoadedFile));
+    //         })
+    // }
 
     public async loadFileToStateAndReplaceParams(
         pathToDirectory: string, fileName: string, params: TextFieldParamData[]) {
@@ -42,6 +43,23 @@ export default class FileReader {
 
         return fileContentWithReplacedParams;
     }
+
+    async  readMultipleFiles(filePaths: string[]): Promise<string[]> {
+        const fileContents: string[] = [];
+      
+        for (const filePath of filePaths) {
+          try {
+            const content = await this.handleFileRead(filePath);
+            fileContents.push(content);
+          } catch (error) {
+            console.error(`Błąd podczas odczytywania pliku ${filePath}: ${error}`);
+            // Możesz obsłużyć błędy odczytu pliku tutaj, np. dodać do tablicy pusty string
+            fileContents.push("");
+          }
+        }
+      
+        return fileContents;
+      }
 
     async handleFileRead(path: string): Promise<string> {
         let content = "";
