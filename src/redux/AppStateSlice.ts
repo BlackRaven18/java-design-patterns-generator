@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import AppConfigJSON from "../app_config.json";
-import { Config, LoadedPatternFileInfo, PatternFileInfo, PatternInfo } from "../types";
+import { Config, LoadedPatternFileInfo, PatternFileInfo, PatternInfo, TextFieldParamData } from "../types";
 
 
 
@@ -45,7 +45,48 @@ export const appStateSlice = createSlice({
     name: 'appState',
     initialState,
     reducers: {
-        setIsDrawerOpen:(state, action: PayloadAction<boolean>) => {
+        removeFilesFromPattern: (state, action: PayloadAction<{ filename: string }>) => {
+            state.selectedPattern.files
+                = state.selectedPattern.files.filter(file => file.defaultName !== action.payload.filename)
+        },
+
+        removeTextFieldParamsConnectedToFile: (state, action: PayloadAction<{ filename: string }>) => {
+            state.selectedPattern.params.textFieldParams
+                = state.selectedPattern.params.textFieldParams
+                    .filter(param => param.filename !== action.payload.filename)
+        },
+
+        addFilesAndParamsToSelectedPattern: (
+            state,
+            action: PayloadAction<{ filename: string, patterns: TextFieldParamData[], howMany: number }>
+        ) => {
+
+            let parts = action.payload.filename.split(".");
+
+            let fileNameWithNoExtension = parts[0];
+            let extension = parts[1];
+
+
+            for (let i = 0; i < action.payload.howMany; i++) {
+                let patternsConnectedWithFile = [...action.payload.patterns];
+
+                patternsConnectedWithFile.forEach(pattern => {
+                    //pattern.filename = action.payload.filename;
+
+                    state.selectedPattern.params.textFieldParams.push(pattern);
+                })
+
+
+
+                state.selectedPattern.files.push({
+                    defaultName: action.payload.filename,
+                    currentName: fileNameWithNoExtension + "(" + (i + 1) + ")." + extension,
+                })
+            }
+
+        },
+
+        setIsDrawerOpen: (state, action: PayloadAction<boolean>) => {
             state.isDrawerOpen = action.payload;
         },
 
@@ -93,6 +134,10 @@ export const appStateSlice = createSlice({
 })
 
 export const {
+    removeFilesFromPattern,
+    removeTextFieldParamsConnectedToFile,
+    addFilesAndParamsToSelectedPattern,
+
     setIsDrawerOpen,
     setSelectedPatternFamillyIndex,
     setSelectedPatternIndex,
