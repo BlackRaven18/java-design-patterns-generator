@@ -1,4 +1,4 @@
-import { Box, Button, Divider, FormControl, FormControlLabel, InputLabel, MenuItem, Select, Stack, Switch, TextField } from "@mui/material";
+import { Box, Button, Divider, FormControl, FormControlLabel, InputLabel, List, MenuItem, Select, Stack, Switch, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -117,7 +117,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
             }}
         >
 
-
             <Stack
                 paddingTop='10px'
                 spacing="20px"
@@ -156,8 +155,10 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                         <SelectParam
                             key={index}
                             label={selectParamData.label}
+                            fileNameToBeMultiplied={selectParamData.fileNameToBeMultiplied}
                             minValue={selectParamData.minNumber}
                             maxValue={selectParamData.maxNumber}
+                            disabled={isParamsFieldsDisabled}
                         />
                     );
                 })}
