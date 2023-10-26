@@ -9,24 +9,24 @@ export default class FileReader {
 
     private dispatch = useDispatch<AppDispatch>();
 
-    public getExtendedPatternInfo(
+    private createExtendedPatternInfo(
         patternInfo: PatternInfo,
         patternFilesContent: string[]): ExtendedPatternInfo {
 
-            let codeParamsReplacer = new CodeParamsReplacer();
+        let codeParamsReplacer = new CodeParamsReplacer();
 
-            let patternFilesContentWithReplacedParams = [...patternFilesContent.map(content => {
-                let replaceData = patternInfo.params.textFieldParams.map(param => {
-                    return {
-                        replace: param.replace,
-                        value: param.defaultValue
-                    }
-                })
-                content = codeParamsReplacer.getReplacedContent(content, replaceData)
-                return content;
-            })]
+        let patternFilesContentWithReplacedParams = [...patternFilesContent.map(content => {
+            let replaceData = patternInfo.params.textFieldParams.map(param => {
+                return {
+                    replace: param.replace,
+                    value: param.defaultValue
+                }
+            })
+            content = codeParamsReplacer.getReplacedContent(content, replaceData)
+            return content;
+        })]
 
-    
+
 
         let extendedPatternInfo: ExtendedPatternInfo = {
             ...patternInfo, files: [...patternInfo.files.map((file, index) => {
@@ -44,6 +44,19 @@ export default class FileReader {
 
         return extendedPatternInfo;
 
+    }
+
+    public getExtendedPatternInfo(patternInfo: PatternInfo): Promise<ExtendedPatternInfo> {
+
+        let sourceFiles = patternInfo.files.map(file => {
+            return patternInfo.patternFilesDirectory + "/" + file.defaultName;
+        })
+
+        return this.readMultipleFiles(sourceFiles).then(filesContent => {
+            
+            let extendedPatternInfo = this.createExtendedPatternInfo(patternInfo, filesContent);
+            return extendedPatternInfo;
+        })
 
     }
 

@@ -31,26 +31,12 @@ const PatternsMenu = () => {
 
    const handlePatternChange = (pattern: PatternInfo, index: number) => {
 
-      //setIsLoading(true);
+     fileReader.getExtendedPatternInfo(pattern).then(extendedPatternInfo => {
 
-      let sourceFiles = pattern.files.map(file => {
-         return pattern.patternFilesDirectory + "/" + file.defaultName;
-     })
-
-     fileReader.readMultipleFiles(sourceFiles).then(filesContent => {
-      
-        let extendedPatternInfo = fileReader.getExtendedPatternInfo(pattern, filesContent)
-   
-   
         dispatch(setSelectedPattern(extendedPatternInfo));
         dispatch(setSelectedPatternIndex(index));
         dispatch(setSelectedTabIndex(0));
      })
-
-
-
-      //fileReader.loadFileToState(pattern.patternFilesDirectory, pattern.files[0].defaultName)
-
 
    }
 
