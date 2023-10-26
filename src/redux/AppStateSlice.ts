@@ -47,14 +47,6 @@ const initialState: AppState = {
         })],
         params: AppConfigJSON.patternFamillies[0].patterns[0].params
     },
-    
-    // selectedFile: {
-    //     sourceFile: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
-    //     defaultName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
-    //     currentName: AppConfigJSON.patternFamillies[0].patterns[0].files[0].defaultName,
-    //     defaultContent: "",
-    //     currentContent: ""
-    // },
 
     isEditorReadOnly: true,
 
@@ -106,6 +98,10 @@ export const appStateSlice = createSlice({
                 })
             }
 
+        },
+
+        updatePatternFile: (state, action: PayloadAction<{newContent: string, fileIndex: number}>) => {
+            state.selectedPattern.files[action.payload.fileIndex].currentContent = action.payload.newContent;
         },
 
         setIsDrawerOpen: (state, action: PayloadAction<boolean>) => {
@@ -163,6 +159,7 @@ export const {
     removeTextFieldParamsConnectedToFile,
     addFilesAndParamsToSelectedPattern,
 
+    updatePatternFile,
     setIsDrawerOpen,
     setSelectedPatternFamillyIndex,
     setSelectedPatternIndex,
