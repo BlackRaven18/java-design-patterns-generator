@@ -32,12 +32,18 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
         loadFileToStateOnComponentMount();
 
+        loadPatternFiles();
+
     }, [])
 
     useEffect(() => {
         loadEditorTabsValueArray();
 
     }, [selectedPattern])
+
+    const loadPatternFiles = () => {
+            
+    }
 
     const loadFileToStateOnComponentMount = () => {
         fileReader.loadFileToState(selectedPattern.patternFilesDirectory, selectedFile.defaultName);
@@ -133,7 +139,8 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 theme="vs-dark"
                 path={selectedFile.defaultName}
                 defaultLanguage={"java"}
-                defaultValue={selectedFile.content}
+                value={selectedFile.currentContent}
+                //defaultValue={selectedFile.content}
                 onChange={(value) => handleEditorChange(value ?? "")}
                 onMount={handleEditorDidMount}
                 options={{

@@ -12,9 +12,11 @@ export default class FileReader {
         this.handleFileRead(pathToDirectory + "/" + fileName)
             .then(fileContent => {
                 let newLoadedFile: LoadedPatternFileInfo = {
+                    sourceFile: fileName,
                     defaultName: fileName,
                     currentName: fileName,
-                    content: fileContent,
+                    defaultContent: fileContent,
+                    currentContent: fileContent
                 }
 
                 this.dispatch(setSelectedFile(newLoadedFile));

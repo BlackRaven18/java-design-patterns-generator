@@ -15,13 +15,24 @@ export interface PatternInfo {
     params: ParamsTypes,
 }
 
+export interface ExtendedPatternInfo{
+    patternName: string,
+    patternFilesDirectory: string,
+    files: LoadedPatternFileInfo[],
+    params: ParamsTypes,
+}
+
 export interface PatternFileInfo{
     defaultName: string,
     currentName: string,
 }
 
 export interface LoadedPatternFileInfo extends PatternFileInfo{
-    content: string,
+    sourceFile: string,
+    defaultName: string,
+    currentName: string,
+    defaultContent: string,
+    currentContent: string,
 }
 
 export interface ParamsTypes{

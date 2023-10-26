@@ -2,7 +2,7 @@ import { Box, Button, Divider, FormControl, FormControlLabel, InputLabel, List, 
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewFile, changeSelectedPatternCurrentFileName, setIsEditorReadOnly } from "../redux/AppStateSlice";
+import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import MethodBodyGenerator from "../utils/MethodBodyGenerator";
 import CodeParamsReplacer from "../utils/CodeParamsReplacer";
@@ -79,7 +79,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         }
 
         let editorValueWithReplacedVariables
-            = codeParamsReplacer.getReplacedContent(selectedFile.content, replaceData)
+            = codeParamsReplacer.getReplacedContent(selectedFile.defaultContent, replaceData)
         editorRef.current?.setValue(editorValueWithReplacedVariables);
     }
 
@@ -169,7 +169,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                     }}
                 >show editor value
                 </Button>
-                <Button
+                {/* <Button
 
                     onClick={() => {
                         dispatch(addNewFile({
@@ -178,7 +178,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                         }));
                     }}
                 >Add new file
-                </Button>
+                </Button> */}
 
                 <FormControlLabel
                     control={
