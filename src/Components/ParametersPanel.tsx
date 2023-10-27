@@ -1,13 +1,13 @@
-import { Box, Button, Divider, FormControl, FormControlLabel, InputLabel, List, MenuItem, Select, Stack, Switch, TextField } from "@mui/material";
+import { Box, Button, Divider, FormControlLabel, Stack, Switch, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly } from "../redux/AppStateSlice";
+import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly, setSelectedPattern, updatePatternFile, updatePatternFilesContent } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
-import MethodBodyGenerator from "../utils/MethodBodyGenerator";
-import CodeParamsReplacer from "../utils/CodeParamsReplacer";
 import { ReplaceData } from "../types";
-import uniqid from 'uniqid';
+import CodeParamsReplacer from "../utils/CodeParamsReplacer";
+import FileReader from "../utils/FileReader";
+import MethodBodyGenerator from "../utils/MethodBodyGenerator";
 import SelectParam from "./SelectParam";
 
 interface ParametersPanelProps {
@@ -19,7 +19,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const dispatch = useDispatch<AppDispatch>();
 
     const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
-   //const selectedFile = useSelector((state: RootState) => state.appState.selectedFile);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
@@ -27,24 +26,10 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         selectedPattern.params.textFieldParams.map(param => param.defaultValue || '')
     );
 
-    const [isSelectedFileChanged, setIsSelectedFileChanged] = useState(false);
     const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
 
-    const codeParamsReplacer = new CodeParamsReplacer();
-    const methodBodyGenerator = new MethodBodyGenerator();
+    const fileReader = new FileReader();;
 
-    // useEffect(() => {
-    //     setIsSelectedFileChanged(true);
-    // }, [selectedFile])
-
-
-    // useEffect(() => {
-
-    //     if (isSelectedFileChanged) {
-    //         replaceEditorContentWithParamsValues();
-    //     }
-
-    // }, [isSelectedFileChanged, paramFieldsValueArray])
 
     useEffect(() => {
 
@@ -53,11 +38,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     }, [selectedPattern])
 
 
-    // const replaceEditorContentWithParamsValues = () => {
-    //     setEditorValueToValueWithReplacedVariables(paramFieldsValueArray);
 
-    //     setIsSelectedFileChanged(false);
-    // }
 
     const updateParamFieldsValueArrayWhenPatternIsChanged = () => {
         let paramFieldsValueArrayCopy = [
@@ -67,21 +48,27 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         setParamFieldsValueArray(paramFieldsValueArrayCopy);
     }
 
-    // const setEditorValueToValueWithReplacedVariables = (params: string[]) => {
 
-    //     let replaceData: ReplaceData[] = [];
+    const updateSelectedPatternFiles = (params: string[]) => {
+        let replaceData: ReplaceData[] = [];
 
-    //     for (let i = 0; i < params.length; i++) {
-    //         replaceData.push({
-    //             replace: selectedPattern.params.textFieldParams[i].replace,
-    //             value: params[i]
-    //         })
-    //     }
+        for (let i = 0; i < params.length; i++) {
+            replaceData.push({
+                replace: selectedPattern.params.textFieldParams[i].replace,
+                value: params[i]
+            })
+        }
 
-    //     let editorValueWithReplacedVariables
-    //         = codeParamsReplacer.getReplacedContent(selectedFile.defaultContent, replaceData)
-    //     editorRef.current?.setValue(editorValueWithReplacedVariables);
-    // }
+        let files: string[] = [...selectedPattern.files.map(file => {
+            return file.defaultContent;
+        })]
+
+        let filesWithReplacedParams = fileReader.getFilesContentWithReplacedParams(files, replaceData);
+
+        dispatch(updatePatternFilesContent({newContent: filesWithReplacedParams}));
+
+
+    }
 
 
 
@@ -92,14 +79,14 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         }))
     }
 
-     const handleParameterChange = (newValue: string, textFieldIndex: number) => {
+    const handleParameterChange = (newValue: string, textFieldIndex: number) => {
 
-    //     const paramFieldsValueArrayCopy = [...paramFieldsValueArray];
-    //     paramFieldsValueArrayCopy[textFieldIndex] = newValue;
+        const paramFieldsValueArrayCopy = [...paramFieldsValueArray];
+        paramFieldsValueArrayCopy[textFieldIndex] = newValue;
+        setParamFieldsValueArray(paramFieldsValueArrayCopy);
 
-    //     setParamFieldsValueArray(paramFieldsValueArrayCopy);
-    //     setEditorValueToValueWithReplacedVariables(paramFieldsValueArrayCopy);
-     }
+        updateSelectedPatternFiles(paramFieldsValueArrayCopy);
+    }
 
     const handleEditorReadOnlyChange = () => {
         dispatch(setIsEditorReadOnly(!isEditorReadOnly));
@@ -134,7 +121,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                     let multiline = param.defaultValue.includes("\n");
                     if (param.shouldBeVisible) {
                         // global params
-                        if (param.filename.length === 0 
+                        if (param.filename.length === 0
                             || param.filename === selectedPattern.files[selectedTabIndex].defaultName) {
                             return (
                                 <TextField

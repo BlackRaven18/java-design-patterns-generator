@@ -104,6 +104,12 @@ export const appStateSlice = createSlice({
             state.selectedPattern.files[action.payload.fileIndex].currentContent = action.payload.newContent;
         },
 
+        updatePatternFilesContent: (state, action: PayloadAction<{newContent: string[]}>) => {
+            state.selectedPattern.files.map((file, index) => {
+                file.currentContent = action.payload.newContent[index];
+            })
+        },
+
         setIsDrawerOpen: (state, action: PayloadAction<boolean>) => {
             state.isDrawerOpen = action.payload;
         },
@@ -160,6 +166,7 @@ export const {
     addFilesAndParamsToSelectedPattern,
 
     updatePatternFile,
+    updatePatternFilesContent,
     setIsDrawerOpen,
     setSelectedPatternFamillyIndex,
     setSelectedPatternIndex,
