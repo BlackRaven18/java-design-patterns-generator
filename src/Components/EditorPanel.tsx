@@ -43,7 +43,10 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     }
 
     const handleEditorChange = (value: string) => {
-        dispatch(updatePatternFile({ newContent: value, fileIndex: selectedTabIndex }));
+
+        if (!isEditorReadOnly) {
+            dispatch(updatePatternFile({ newContent: value, fileIndex: selectedTabIndex }));
+        }
     }
 
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {

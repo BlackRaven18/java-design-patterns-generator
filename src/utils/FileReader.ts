@@ -1,31 +1,50 @@
-import { useDispatch } from "react-redux";
+import { files } from "jszip";
 import { } from "../redux/AppStateSlice";
-import { AppDispatch } from "../redux/store";
-import { ExtendedPatternInfo, LoadedPatternFileInfo, PatternInfo, TextFieldParamData } from "../types";
+import { ExtendedPatternInfo, LoadedPatternFileInfo, PatternInfo, ReplaceData, TextFieldParamData } from "../types";
 import CodeParamsReplacer from "./CodeParamsReplacer";
 
 
 export default class FileReader {
 
-    private dispatch = useDispatch<AppDispatch>();
+
+    public getFilesContentWithReplacedParams(filesContent: string[], replaceData: ReplaceData[]) {
+        let codeParamsReplacer = new CodeParamsReplacer();
+
+        let filesContentWithReplacedParams: string[] = [...filesContent.map(fileContent => {
+            return codeParamsReplacer.getReplacedContent(fileContent, replaceData);
+        })]
+
+        return filesContentWithReplacedParams;
+
+    }
+
+
 
     private createExtendedPatternInfo(
         patternInfo: PatternInfo,
-        patternFilesContent: string[]): ExtendedPatternInfo {
+        patternFilesContent: string[],
+        paramsToReplace?: string[]): ExtendedPatternInfo {
 
-        let codeParamsReplacer = new CodeParamsReplacer();
+        let replaceData: ReplaceData[] = [];
 
-        let patternFilesContentWithReplacedParams = [...patternFilesContent.map(content => {
-            let replaceData = patternInfo.params.textFieldParams.map(param => {
+        if (paramsToReplace) {
+            replaceData = patternInfo.params.textFieldParams.map((param, index) => {
+                return {
+                    replace: param.replace,
+                    value: paramsToReplace[index]
+                }
+            })
+        } else {
+            replaceData = patternInfo.params.textFieldParams.map(param => {
                 return {
                     replace: param.replace,
                     value: param.defaultValue
                 }
             })
-            content = codeParamsReplacer.getReplacedContent(content, replaceData)
-            return content;
-        })]
+        }
 
+        let patternFilesContentWithReplacedParams: string[]
+            = this.getFilesContentWithReplacedParams(patternFilesContent, replaceData);
 
 
         let extendedPatternInfo: ExtendedPatternInfo = {
@@ -46,15 +65,17 @@ export default class FileReader {
 
     }
 
-    public getExtendedPatternInfo(patternInfo: PatternInfo): Promise<ExtendedPatternInfo> {
+    public getExtendedPatternInfo(
+        patternInfo: PatternInfo | ExtendedPatternInfo,
+        paramsToReplace?: string[]): Promise<ExtendedPatternInfo> {
 
         let sourceFiles = patternInfo.files.map(file => {
             return patternInfo.patternFilesDirectory + "/" + file.defaultName;
         })
 
         return this.readMultipleFiles(sourceFiles).then(filesContent => {
-            
-            let extendedPatternInfo = this.createExtendedPatternInfo(patternInfo, filesContent);
+
+            let extendedPatternInfo = this.createExtendedPatternInfo(patternInfo, filesContent, paramsToReplace);
             return extendedPatternInfo;
         })
 
