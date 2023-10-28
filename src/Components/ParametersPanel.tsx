@@ -2,12 +2,10 @@ import { Box, Button, Divider, FormControlLabel, Stack, Switch, TextField } from
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly, setSelectedPattern, updatePatternFile, updatePatternFilesContent } from "../redux/AppStateSlice";
+import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly, updatePatternFilesContent } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import { ReplaceData } from "../types";
-import CodeParamsReplacer from "../utils/CodeParamsReplacer";
 import FileReader from "../utils/FileReader";
-import MethodBodyGenerator from "../utils/MethodBodyGenerator";
 import SelectParam from "./SelectParam";
 
 interface ParametersPanelProps {
@@ -22,9 +20,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
-    const [paramFieldsValueArray, setParamFieldsValueArray] = useState<string[]>(
-        selectedPattern.params.textFieldParams.map(param => param.defaultValue || '')
-    );
 
     const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
 
@@ -45,7 +40,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
             ...selectedPattern.params.textFieldParams.map(param => param.defaultValue || '')
         ];
 
-        setParamFieldsValueArray(paramFieldsValueArrayCopy);
+        //setParamFieldsValueArray(paramFieldsValueArrayCopy);
     }
 
 
@@ -81,11 +76,11 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const handleParameterChange = (newValue: string, textFieldIndex: number) => {
 
-        const paramFieldsValueArrayCopy = [...paramFieldsValueArray];
-        paramFieldsValueArrayCopy[textFieldIndex] = newValue;
-        setParamFieldsValueArray(paramFieldsValueArrayCopy);
+       //const paramFieldsValueArrayCopy = [...paramFieldsValueArray];
+        //paramFieldsValueArrayCopy[textFieldIndex] = newValue;
+        //setParamFieldsValueArray(paramFieldsValueArrayCopy);
 
-        updateSelectedPatternFiles(paramFieldsValueArrayCopy);
+        //updateSelectedPatternFiles(paramFieldsValueArrayCopy);
     }
 
     const handleEditorReadOnlyChange = () => {
@@ -129,7 +124,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                                     label={param.label}
                                     variant="outlined"
                                     multiline={multiline}
-                                    value={paramFieldsValueArray[index] || ""}
+                                    value={param.currentValue}
                                     onChange={e => handleParameterChange(e.target.value, index)}
                                     disabled={isParamsFieldsDisabled}
                                 />

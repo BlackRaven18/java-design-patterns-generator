@@ -44,8 +44,13 @@ export interface TextFieldParamData{
     shouldBeVisible: boolean,
     label: string,
     defaultValue: string,
+    currentValue?: string,
     replace: string,
     filename: string,
+}
+
+export interface LoadedTextFieldParamData extends TextFieldParamData{
+    currentValue: string,
 }
 
 export interface SelectParamData{
@@ -54,6 +59,7 @@ export interface SelectParamData{
     minNumber: number,
     maxNumber: number
 }
+
 
 export interface ReplaceData {
     replace: string,
