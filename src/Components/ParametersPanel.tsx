@@ -2,7 +2,7 @@ import { Box, Button, Divider, FormControlLabel, Stack, Switch, TextField } from
 import { editor } from "monaco-editor";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly, updatePatternFilesContent } from "../redux/AppStateSlice";
+import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly, updatePatternFilesContent, updatePatternTextFieldParamValue } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import { ReplaceData } from "../types";
 import FileReader from "../utils/FileReader";
@@ -23,25 +23,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
 
-    const fileReader = new FileReader();;
-
-
-    useEffect(() => {
-
-        updateParamFieldsValueArrayWhenPatternIsChanged();
-
-    }, [selectedPattern])
-
-
-
-
-    const updateParamFieldsValueArrayWhenPatternIsChanged = () => {
-        let paramFieldsValueArrayCopy = [
-            ...selectedPattern.params.textFieldParams.map(param => param.defaultValue || '')
-        ];
-
-        //setParamFieldsValueArray(paramFieldsValueArrayCopy);
-    }
+    const fileReader = new FileReader();
 
 
     const updateSelectedPatternFiles = (params: string[]) => {
@@ -60,7 +42,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
         let filesWithReplacedParams = fileReader.getFilesContentWithReplacedParams(files, replaceData);
 
-        dispatch(updatePatternFilesContent({newContent: filesWithReplacedParams}));
+        dispatch(updatePatternFilesContent({ newContent: filesWithReplacedParams }));
 
 
     }
@@ -76,11 +58,18 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const handleParameterChange = (newValue: string, textFieldIndex: number) => {
 
-       //const paramFieldsValueArrayCopy = [...paramFieldsValueArray];
-        //paramFieldsValueArrayCopy[textFieldIndex] = newValue;
-        //setParamFieldsValueArray(paramFieldsValueArrayCopy);
+        dispatch(updatePatternTextFieldParamValue({ value: newValue, index: textFieldIndex }))
 
-        //updateSelectedPatternFiles(paramFieldsValueArrayCopy);
+        let params: string[] = selectedPattern.params.textFieldParams.map((param, index) => {
+
+            if (index !== textFieldIndex) {
+                return param.currentValue ?? "";
+            } else {
+                return newValue;
+            }
+        })
+
+        updateSelectedPatternFiles(params);
     }
 
     const handleEditorReadOnlyChange = () => {
