@@ -45,7 +45,15 @@ const initialState: AppState = {
 
             return loadedPatternFileInfo;
         })],
-        params: AppConfigJSON.patternFamillies[0].patterns[0].params
+        params: {
+            textFieldParams: [...AppConfigJSON.patternFamillies[0].patterns[0].params.textFieldParams.map(param => {
+                let extendedParam: TextFieldParamData = {
+                    ...param,
+                    currentValue: param.defaultValue,
+                }
+                return extendedParam;
+            })],
+            selectParams: AppConfigJSON.patternFamillies[0].patterns[0].params.selectParams}
     },
 
     isEditorReadOnly: true,

@@ -48,7 +48,18 @@ export default class FileReader {
 
 
         let extendedPatternInfo: ExtendedPatternInfo = {
-            ...patternInfo, files: [...patternInfo.files.map((file, index) => {
+            ...patternInfo,
+            params: {
+                ...patternInfo.params,
+                textFieldParams: [...patternInfo.params.textFieldParams.map(param => {
+                    let extendedParam: TextFieldParamData = {
+                        ...param,
+                        currentValue: param.defaultValue
+                    }
+                    return extendedParam;
+                })]
+            },
+            files: [...patternInfo.files.map((file, index) => {
                 let loadedPatternFileInfo: LoadedPatternFileInfo = {
                     sourceFile: file.defaultName,
                     defaultName: file.defaultName,
