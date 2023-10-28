@@ -108,6 +108,10 @@ export const appStateSlice = createSlice({
 
         },
 
+        updatePatternTextFieldParamValue: (state, action: PayloadAction<{value: string, index: number}>) => {
+            state.selectedPattern.params.textFieldParams[action.payload.index].currentValue = action.payload.value;
+        },
+
         updatePatternFile: (state, action: PayloadAction<{newContent: string, fileIndex: number}>) => {
             state.selectedPattern.files[action.payload.fileIndex].currentContent = action.payload.newContent;
         },
@@ -173,6 +177,7 @@ export const {
     removeTextFieldParamsConnectedToFile,
     addFilesAndParamsToSelectedPattern,
 
+    updatePatternTextFieldParamValue,
     updatePatternFile,
     updatePatternFilesContent,
     setIsDrawerOpen,
