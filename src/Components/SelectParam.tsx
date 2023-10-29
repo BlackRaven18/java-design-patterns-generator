@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addFilesAndParamsToSelectedPattern, removeFilesFromPattern, removeTextFieldParamsConnectedToFile } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
-import { TextFieldParamData } from "../types";
+import { LoadedPatternFileInfo, TextFieldParamData } from "../types";
 
 interface SelectParamProps {
     label: string,
@@ -37,40 +37,38 @@ export default function SelectParam(props: SelectParamProps) {
     const handleChange = (event: SelectChangeEvent) => {
         setValue(event.target.value);
 
-        setClasses(props.fileNameToBeMultiplied, parseInt(event.target.value));
+        let file = selectedPattern.files.filter(file => file.sourceFile === props.fileNameToBeMultiplied)[0];
+
+        setClasses(file, parseInt(event.target.value));
     };
 
-    const setClasses = (filename: string, numberOfInstances: number) => {
+    const setClasses = (file: LoadedPatternFileInfo, numberOfInstances: number) => {
 
         let patternsConnectedToFile: TextFieldParamData[] = [];
 
 
         //get the params connected to filename
         selectedPattern.params.textFieldParams.forEach(param => {
-            if (param.filename === filename) {
+            if (param.filename === file.defaultName) {
                 patternsConnectedToFile.push(param);
             }
         })
 
         //clear all class like filename and params connected to it
 
-        dispatch(removeFilesFromPattern({ filename }));
-        dispatch(removeTextFieldParamsConnectedToFile({ filename }));
+        dispatch(removeFilesFromPattern({ filename: file.defaultName }));
+        dispatch(removeTextFieldParamsConnectedToFile({ filename: file.defaultName }));
 
 
         //add new filenames
         //add new params connected to filename (we need to know what params were connected)
 
         dispatch(addFilesAndParamsToSelectedPattern({
-            filename: filename,
+            file: file,
             patterns: patternsConnectedToFile,
             howMany: numberOfInstances
         }
         ))
-
-
-
-
 
     }
 

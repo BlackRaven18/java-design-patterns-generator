@@ -14,7 +14,6 @@ interface AppState {
     selectedTabIndex: number,
 
     selectedPattern: ExtendedPatternInfo,
-    // selectedFile: LoadedPatternFileInfo,
 
     isEditorReadOnly: boolean,
 
@@ -34,7 +33,7 @@ const initialState: AppState = {
         patternName: AppConfigJSON.patternFamillies[0].patterns[0].patternName,
         patternFilesDirectory: AppConfigJSON.patternFamillies[0].patterns[0].patternFilesDirectory,
         files: [...AppConfigJSON.patternFamillies[0].patterns[0].files.map(file => {
-            
+
             let loadedPatternFileInfo: LoadedPatternFileInfo = {
                 sourceFile: file.defaultName,
                 defaultName: file.defaultName,
@@ -53,7 +52,8 @@ const initialState: AppState = {
                 }
                 return extendedParam;
             })],
-            selectParams: AppConfigJSON.patternFamillies[0].patterns[0].params.selectParams}
+            selectParams: AppConfigJSON.patternFamillies[0].patterns[0].params.selectParams
+        }
     },
 
     isEditorReadOnly: true,
@@ -66,7 +66,7 @@ export const appStateSlice = createSlice({
     reducers: {
         removeFilesFromPattern: (state, action: PayloadAction<{ filename: string }>) => {
             state.selectedPattern.files
-                = state.selectedPattern.files.filter(file => file.defaultName !== action.payload.filename)
+                = state.selectedPattern.files.filter(file => file.sourceFile !== action.payload.filename)
         },
 
         removeTextFieldParamsConnectedToFile: (state, action: PayloadAction<{ filename: string }>) => {
@@ -77,46 +77,58 @@ export const appStateSlice = createSlice({
 
         addFilesAndParamsToSelectedPattern: (
             state,
-            action: PayloadAction<{ filename: string, patterns: TextFieldParamData[], howMany: number }>
+            action: PayloadAction<{ file: LoadedPatternFileInfo, patterns: TextFieldParamData[], howMany: number }>
         ) => {
 
-            let parts = action.payload.filename.split(".");
+            let parts = action.payload.file.defaultName.split(".");
+
+            console.log(parts);
 
             let fileNameWithNoExtension = parts[0];
             let extension = parts[1];
 
 
             for (let i = 0; i < action.payload.howMany; i++) {
-                let patternsConnectedWithFile = [...action.payload.patterns];
+
+                let newFileName: string = i === 0 ?
+                    fileNameWithNoExtension + "." + extension :
+                    fileNameWithNoExtension + "(" + i + ")." + extension;
+
+                let patterns = [...action.payload.patterns];
+
+                let patternsConnectedWithFile = [...patterns.map(pattern => {
+                    let newPattern: TextFieldParamData = {
+                        ...pattern,
+                        filename: newFileName
+                    }
+                    return newPattern;
+                })];
 
                 patternsConnectedWithFile.forEach(pattern => {
-                    //pattern.filename = action.payload.filename;
-
                     state.selectedPattern.params.textFieldParams.push(pattern);
                 })
 
 
-
                 state.selectedPattern.files.push({
-                    sourceFile: action.payload.filename,
-                    defaultName: fileNameWithNoExtension + "(" + (i + 1) + ")." + extension,
-                    currentName: fileNameWithNoExtension + "(" + (i + 1) + ")." + extension,
-                    defaultContent: "",
-                    currentContent: ""
+                    sourceFile: action.payload.file.sourceFile,
+                    defaultName: newFileName,
+                    currentName: newFileName,
+                    defaultContent: action.payload.file.defaultContent,
+                    currentContent: action.payload.file.currentContent,
                 })
             }
 
         },
 
-        updatePatternTextFieldParamValue: (state, action: PayloadAction<{value: string, index: number}>) => {
+        updatePatternTextFieldParamValue: (state, action: PayloadAction<{ value: string, index: number }>) => {
             state.selectedPattern.params.textFieldParams[action.payload.index].currentValue = action.payload.value;
         },
 
-        updatePatternFile: (state, action: PayloadAction<{newContent: string, fileIndex: number}>) => {
+        updatePatternFile: (state, action: PayloadAction<{ newContent: string, fileIndex: number }>) => {
             state.selectedPattern.files[action.payload.fileIndex].currentContent = action.payload.newContent;
         },
 
-        updatePatternFilesContent: (state, action: PayloadAction<{newContent: string[]}>) => {
+        updatePatternFilesContent: (state, action: PayloadAction<{ newContent: string[] }>) => {
             state.selectedPattern.files.map((file, index) => {
                 file.currentContent = action.payload.newContent[index];
             })
@@ -145,19 +157,12 @@ export const appStateSlice = createSlice({
         setSelectedPatternFiles: (state, action: PayloadAction<LoadedPatternFileInfo[]>) => {
             state.selectedPattern.files = action.payload;
         },
-        // setSelectedFile: (state, action: PayloadAction<LoadedPatternFileInfo>) => {
-        //     state.selectedFile = action.payload;
-        // },
+
 
         setIsEditorReadOnly: (state, action: PayloadAction<boolean>) => {
             state.isEditorReadOnly = action.payload;
         },
-        // addNewFile: (state, action: PayloadAction<PatternFileInfo>) => {
-        //     state.selectedPattern.files.push({
-        //         defaultName: action.payload.defaultName,
-        //         currentName: action.payload.currentName,
-        //     })
-        // },
+
         changeSelectedPatternCurrentFileName: (state, action: PayloadAction<
             {
                 currentName: string,
@@ -165,7 +170,7 @@ export const appStateSlice = createSlice({
             }>
         ) => {
             state.selectedPattern.files[action.payload.fileIndex].currentName = action.payload.currentName;
-        }
+        },
 
 
 

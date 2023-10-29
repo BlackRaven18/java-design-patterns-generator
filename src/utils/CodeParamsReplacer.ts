@@ -20,7 +20,7 @@ export default class CodeParamsReplacer {
                                 .getMethodsWithBodyAsString(paramToCheck.value);
 
                         codeWithParamsReplaced = codeWithParamsReplaced
-                            .replaceAll(paramToReplace.replace, methodsWithBodyAsString)
+                            .replaceAll(paramToReplace.replace, methodsWithBodyAsString);
                     }
                 })
 

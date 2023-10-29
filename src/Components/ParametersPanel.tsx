@@ -26,29 +26,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const fileReader = new FileReader();
 
 
-    const updateSelectedPatternFiles = (params: string[]) => {
-        let replaceData: ReplaceData[] = [];
-
-        for (let i = 0; i < params.length; i++) {
-            replaceData.push({
-                replace: selectedPattern.params.textFieldParams[i].replace,
-                value: params[i]
-            })
-        }
-
-        let files: string[] = [...selectedPattern.files.map(file => {
-            return file.defaultContent;
-        })]
-
-        let filesWithReplacedParams = fileReader.getFilesContentWithReplacedParams(files, replaceData);
-
-        dispatch(updatePatternFilesContent({ newContent: filesWithReplacedParams }));
-
-
-    }
-
-
-
     const handleFileNameChange = (newValue: string, fileIndex: number) => {
         dispatch(changeSelectedPatternCurrentFileName({
             currentName: newValue,
@@ -70,6 +47,27 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         })
 
         updateSelectedPatternFiles(params);
+    }
+
+    const updateSelectedPatternFiles = (params: string[]) => {
+        let replaceData: ReplaceData[] = [];
+
+        for (let i = 0; i < params.length; i++) {
+            replaceData.push({
+                replace: selectedPattern.params.textFieldParams[i].replace,
+                value: params[i]
+            })
+        }
+
+        let files: string[] = [...selectedPattern.files.map(file => {
+            return file.defaultContent;
+        })]
+
+        let filesWithReplacedParams = fileReader.getFilesContentWithReplacedParams(files, replaceData);
+
+        dispatch(updatePatternFilesContent({ newContent: filesWithReplacedParams }));
+
+
     }
 
     const handleEditorReadOnlyChange = () => {
