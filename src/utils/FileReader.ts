@@ -6,16 +6,16 @@ import CodeParamsReplacer from "./CodeParamsReplacer";
 export default class FileReader {
 
 
-    public getFilesContentWithReplacedParams(filesContent: string[], replaceData: ReplaceData[]) {
-        let codeParamsReplacer = new CodeParamsReplacer();
+    // public getFilesContentWithReplacedParams(filesContent: string[], replaceData: ReplaceData[]) {
+    //     let codeParamsReplacer = new CodeParamsReplacer();
 
-        let filesContentWithReplacedParams: string[] = [...filesContent.map(fileContent => {
-            return codeParamsReplacer.getReplacedContent(fileContent, replaceData);
-        })]
+    //     let filesContentWithReplacedParams: string[] = [...filesContent.map(fileContent => {
+    //         return codeParamsReplacer.getReplacedContent(fileContent, replaceData);
+    //     })]
 
-        return filesContentWithReplacedParams;
+    //     return filesContentWithReplacedParams;
 
-    }
+    // }
 
     public getFileContentWithReplacedParams(fileContent: string, replaceData: ReplaceData[]) {
         let codeParamsReplacer = new CodeParamsReplacer();
@@ -57,15 +57,8 @@ export default class FileReader {
         patternInfo.files.forEach((file, index) => {
             let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName == file.defaultName);
 
-            console.log(filteredReplaceData);
-
             patternFilesContentWithReplacedParams.push(this.getFileContentWithReplacedParams(patternFilesContent[index], filteredReplaceData));
         })
-
-        // let patternFilesContentWithReplacedParams: string[]
-        //     = this.getFilesContentWithReplacedParams(patternFilesContent, replaceData);
-
-        //--------------------------------------------
 
 
         let extendedPatternInfo: ExtendedPatternInfo = {
@@ -82,7 +75,7 @@ export default class FileReader {
             },
             files: [...patternInfo.files.map((file, index) => {
                 let loadedPatternFileInfo: LoadedPatternFileInfo = {
-                    sourceFile: file.defaultName,
+                    sourceFile: file.sourceFile,
                     defaultName: file.defaultName,
                     currentName: file.defaultName,
                     defaultContent: patternFilesContent[index],
