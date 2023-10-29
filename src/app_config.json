@@ -9,7 +9,8 @@
                "files": [
                   {
                      "defaultName": "Singleton.java",
-                     "currentName": "Singleton.java"
+                     "sourceFile": "Singleton.java"
+                     
                   }
                ],
                "params": {
@@ -38,19 +39,19 @@
                "files": [
                   {
                      "defaultName": "Builder.java",
-                     "currentName": "Builder.java"
+                     "sourceFile": "Builder.java"
                   },
                   {
                      "defaultName": "Director.java",
-                     "currentName": "Director.java"
+                     "sourceFile": "Director.java"
                   },
                   {
                      "defaultName": "ConcreteBuilder.java",
-                     "currentName": "ConcreteBuilder.java"
+                     "sourceFile": "ConcreteBuilder.java"
                   },
                   {
                      "defaultName": "Product.java",
-                     "currentName": "Product.java"
+                     "sourceFile": "Product.java"
                   }
                ],
                "params": {
@@ -98,6 +99,7 @@
                         "filename": "ConcreteBuilder.java"
                      }
                   ],
+
                   "selectParams": [
                      {
                         "label": "Number of ConcreteBuilder classes",
@@ -114,26 +116,25 @@
                "files": [
                   {
                      "defaultName": "Creator.java",
-                     "currentName": "Creator.java"
+                     "sourceFile": "Creator.java"
                   },
                   {
                      "defaultName": "ConcreteCreator.java",
-                     "currentName": "ConcreteCreator.java"
+                     "sourceFile": "ConcreteCreator.java"
                   },
                   {
                      "defaultName": "Product.java",
-                     "currentName": "Product.java"
+                     "sourceFile": "Product.java"
                   },
                   {
                      "defaultName": "ConcreteProduct.java",
-                     "currentName": "ConcreteProduct.java"
+                     "sourceFile": "ConcreteProduct.java"
                   }
                ],
                "params": {
                   "textFieldParams": [],
                   "selectParams": []
                }
-               
             },
             {
                "patternName": "Abstract Factory",
@@ -141,35 +142,35 @@
                "files": [
                   {
                      "defaultName": "Client.java",
-                     "currentName": "Client.java"
+                     "sourceFile": "Client.java"
                   },
                   {
                      "defaultName": "AbstractFactory.java",
-                     "currentName": "AbstractFactory.java"
+                     "sourceFile": "AbstractFactory.java"
                   },
                   {
                      "defaultName": "ConcreteFactory1.java",
-                     "currentName": "ConcreteFactory1.java"
+                     "sourceFile": "ConcreteFactory1.java"
                   },
                   {
                      "defaultName": "ConcreteFactory2.java",
-                     "currentName": "ConcreteFactory2.java"
+                     "sourceFile": "ConcreteFactory2.java"
                   },
                   {
                      "defaultName": "AbstractProductA.java",
-                     "currentName": "AbstractProductA.java"
+                     "sourceFile": "AbstractProductA.java"
                   },
                   {
                      "defaultName": "AbstractProductB.java",
-                     "currentName": "AbstractProductB.java"
+                     "sourceFile": "AbstractProductB.java"
                   },
                   {
                      "defaultName": "ConcreteProductA.java",
-                     "currentName": "ConcreteProductA.java"
+                     "sourceFile": "ConcreteProductA.java"
                   },
                   {
                      "defaultName": "ConcreteProductB.java",
-                     "currentName": "ConcreteProductB.java"
+                     "sourceFile": "ConcreteProductB.java"
                   }
                ],
                "params": {
@@ -183,15 +184,15 @@
                "files": [
                   {
                      "defaultName": "Client.java",
-                     "currentName": "Client.java"
+                     "sourceFile": "Client.java"
                   },
                   {
                      "defaultName": "Prototype.java",
-                     "currentName": "Prototype.java"
+                     "sourceFile": "Prototype.java"
                   },
                   {
                      "defaultName": "ConcretePrototype.java",
-                     "currentName": "ConcretePrototype.java"
+                     "sourceFile": "ConcretePrototype.java"
                   }
                ],
                "params": {

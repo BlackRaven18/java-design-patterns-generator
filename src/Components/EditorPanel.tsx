@@ -50,8 +50,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
         if (!isEditorReadOnly) {
             dispatch(updatePatternFile({ newContent: value, fileIndex: selectedTabIndex }));
         }
-
-        console.log("Changed");
     }
 
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
@@ -59,7 +57,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
         setEditorParentRef(editor);
 
-        console.log("mounted");
     }
 
     return (
