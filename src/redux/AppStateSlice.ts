@@ -84,8 +84,6 @@ export const appStateSlice = createSlice({
 
             let parts = action.payload.file.defaultName.split(".");
 
-            console.log(parts);
-
             let fileNameWithNoExtension = parts[0];
             let extension = parts[1];
 

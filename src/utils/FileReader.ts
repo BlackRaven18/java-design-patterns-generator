@@ -17,6 +17,14 @@ export default class FileReader {
 
     }
 
+    public getFileContentWithReplacedParams(fileContent: string, replaceData: ReplaceData[]) {
+        let codeParamsReplacer = new CodeParamsReplacer();
+
+            return codeParamsReplacer.getReplacedContent(fileContent, replaceData);
+
+    }
+
+
 
 
     private createExtendedPatternInfo(
@@ -42,8 +50,22 @@ export default class FileReader {
             })
         }
 
-        let patternFilesContentWithReplacedParams: string[]
-            = this.getFilesContentWithReplacedParams(patternFilesContent, replaceData);
+        //--------------------------------------------
+
+        let patternFilesContentWithReplacedParams: string[] = [];
+
+        patternInfo.files.forEach((file, index) => {
+            let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName == file.defaultName);
+
+            console.log(filteredReplaceData);
+
+            patternFilesContentWithReplacedParams.push(this.getFileContentWithReplacedParams(patternFilesContent[index], filteredReplaceData));
+        })
+
+        // let patternFilesContentWithReplacedParams: string[]
+        //     = this.getFilesContentWithReplacedParams(patternFilesContent, replaceData);
+
+        //--------------------------------------------
 
 
         let extendedPatternInfo: ExtendedPatternInfo = {
