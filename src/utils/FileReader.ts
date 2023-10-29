@@ -81,7 +81,7 @@ export default class FileReader {
         paramsToReplace?: string[]): Promise<ExtendedPatternInfo> {
 
         let sourceFiles = patternInfo.files.map(file => {
-            return patternInfo.patternFilesDirectory + "/" + file.defaultName;
+            return patternInfo.patternFilesDirectory + "/" + file.sourceFile;
         })
 
         return this.readMultipleFiles(sourceFiles).then(filesContent => {

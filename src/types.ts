@@ -24,12 +24,10 @@ export interface ExtendedPatternInfo{
 
 export interface PatternFileInfo{
     defaultName: string,
-    currentName: string,
+    sourceFile: string,
 }
 
 export interface LoadedPatternFileInfo extends PatternFileInfo{
-    sourceFile: string,
-    defaultName: string,
     currentName: string,
     defaultContent: string,
     currentContent: string,

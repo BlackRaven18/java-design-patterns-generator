@@ -80,6 +80,8 @@ export const appStateSlice = createSlice({
             action: PayloadAction<{ file: LoadedPatternFileInfo, patterns: TextFieldParamData[], howMany: number }>
         ) => {
 
+            state.selectedTabIndex = 0;
+
             let parts = action.payload.file.defaultName.split(".");
 
             console.log(parts);
