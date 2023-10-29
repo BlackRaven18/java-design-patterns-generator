@@ -1,6 +1,6 @@
 import { Box, Button, Divider, FormControlLabel, Stack, Switch, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly, updatePatternFilesContent, updatePatternTextFieldParamValue } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
@@ -53,10 +53,19 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         let replaceData: ReplaceData[] = [];
 
         for (let i = 0; i < params.length; i++) {
-            replaceData.push({
-                replace: selectedPattern.params.textFieldParams[i].replace,
-                value: params[i]
-            })
+
+            if (selectedPattern.params.textFieldParams[i].filename.length === 0) {
+                replaceData.push({
+                    replace: selectedPattern.params.textFieldParams[i].replace,
+                    value: params[i]
+                })
+            } else {
+                replaceData.push({
+                    replace: selectedPattern.params.textFieldParams[i].replace,
+                    value: params[i],
+                    fileName: selectedPattern.params.textFieldParams[i].filename
+                })
+            }
         }
 
         let files: string[] = [...selectedPattern.files.map(file => {
