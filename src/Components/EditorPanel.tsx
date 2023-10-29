@@ -4,11 +4,9 @@ import { tabsClasses } from "@mui/material/Tabs";
 import { editor } from "monaco-editor";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedPattern, setSelectedTabIndex, updatePatternFile, updatePatternFilesContent } from "../redux/AppStateSlice";
+import { setSelectedPattern, setSelectedTabIndex, updatePatternFile } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import FileReader from "../utils/FileReader";
-import { ReplaceData } from "../types";
-import CodeParamsReplacer from "../utils/CodeParamsReplacer";
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;

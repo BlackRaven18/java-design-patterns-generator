@@ -61,5 +61,6 @@ export interface SelectParamData{
 
 export interface ReplaceData {
     replace: string,
-    value: string
+    value: string,
+    fileName?: string
 }

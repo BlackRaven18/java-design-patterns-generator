@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import AppConfigJSON from "../app_config.json";
-import { Config, ExtendedPatternInfo, LoadedPatternFileInfo, PatternFileInfo, PatternInfo, TextFieldParamData } from "../types";
+import { Config, ExtendedPatternInfo, LoadedPatternFileInfo, TextFieldParamData } from "../types";
 
 
 

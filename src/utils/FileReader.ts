@@ -1,4 +1,3 @@
-import { files } from "jszip";
 import { } from "../redux/AppStateSlice";
 import { ExtendedPatternInfo, LoadedPatternFileInfo, PatternInfo, ReplaceData, TextFieldParamData } from "../types";
 import CodeParamsReplacer from "./CodeParamsReplacer";
@@ -93,16 +92,15 @@ export default class FileReader {
     }
 
     public async loadFileToStateAndReplaceParams(
-        pathToDirectory: string, fileName: string, params: TextFieldParamData[]) {
+        pathToDirectory: string,
+        fileName: string,
+        params: TextFieldParamData[]) {
 
-
-        let fileContentWithReplacedParams = this.handleFileRead(
-            pathToDirectory + "/" + fileName)
+        let fileContentWithReplacedParams = this.handleFileRead(pathToDirectory + "/" + fileName)
             .then(fileContent => {
 
                 params.map(param => {
-                    fileContent = fileContent.replaceAll(
-                        param.replace, param.defaultValue);
+                    fileContent = fileContent.replaceAll(param.replace, param.defaultValue);
                 })
 
                 return fileContent;
