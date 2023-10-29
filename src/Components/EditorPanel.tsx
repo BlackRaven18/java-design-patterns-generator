@@ -4,9 +4,11 @@ import { tabsClasses } from "@mui/material/Tabs";
 import { editor } from "monaco-editor";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedPattern, setSelectedTabIndex, updatePatternFile } from "../redux/AppStateSlice";
+import { setSelectedPattern, setSelectedTabIndex, updatePatternFile, updatePatternFilesContent } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import FileReader from "../utils/FileReader";
+import { ReplaceData } from "../types";
+import CodeParamsReplacer from "../utils/CodeParamsReplacer";
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
@@ -40,6 +42,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         dispatch(setSelectedTabIndex(newValue));
+
     }
 
     const handleEditorChange = (value: string) => {
@@ -47,12 +50,16 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
         if (!isEditorReadOnly) {
             dispatch(updatePatternFile({ newContent: value, fileIndex: selectedTabIndex }));
         }
+
+        console.log("Changed");
     }
 
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
         editorRef.current = editor;
 
         setEditorParentRef(editor);
+
+        console.log("mounted");
     }
 
     return (
@@ -102,7 +109,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
             <Editor
                 height="90vh"
                 theme="vs-dark"
-                path={selectedPattern.files[selectedTabIndex].defaultName}
+                defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
                 defaultLanguage={"java"}
                 value={selectedPattern.files[selectedTabIndex].currentContent}
                 onChange={(value) => handleEditorChange(value ?? "")}
