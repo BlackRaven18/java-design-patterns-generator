@@ -68,11 +68,18 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
             }
         }
 
-        let files: string[] = [...selectedPattern.files.map(file => {
-            return file.defaultContent;
-        })]
+        //--------------------------------------------
 
-        let filesWithReplacedParams = fileReader.getFilesContentWithReplacedParams(files, replaceData);
+        let filesWithReplacedParams: string[] = [];
+
+        selectedPattern.files.forEach((file, index) => {
+            let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName == file.defaultName);
+
+
+            filesWithReplacedParams.push(
+                fileReader.getFileContentWithReplacedParams(selectedPattern.files[index].defaultContent, filteredReplaceData)
+            );
+        })
 
         dispatch(updatePatternFilesContent({ newContent: filesWithReplacedParams }));
 
