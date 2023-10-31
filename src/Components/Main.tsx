@@ -1,4 +1,4 @@
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Grid} from "@mui/material";
 import { editor } from "monaco-editor";
 import { useRef, useState } from "react";
 import CustomBackdrop from "./common/CustomBackdrop";
@@ -23,7 +23,7 @@ const Main = () => {
     <Box
       sx={{
         backgroundColor: "primary.dark",
-        height: "100%",
+        height: "100vh",
 
       }}
     >
@@ -40,6 +40,7 @@ const Main = () => {
       <Grid
         container
         direction="row"
+        height="90%"
       >
     
         <Grid

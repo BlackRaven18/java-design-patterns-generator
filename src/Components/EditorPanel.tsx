@@ -101,18 +101,21 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
             </Tabs>
 
-            <Editor
-                height="90vh"
-                theme="vs-dark"
-                defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
-                defaultLanguage={"java"}
-                value={selectedPattern.files[selectedTabIndex].currentContent}
-                onChange={(value) => handleEditorChange(value ?? "")}
-                onMount={handleEditorDidMount}
-                options={{
-                    readOnly: isEditorReadOnly,
-                }}
-            />
+
+                <Editor
+                    
+                    height="80vh"
+                    theme="vs-dark"
+                    defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
+                    defaultLanguage={"java"}
+                    value={selectedPattern.files[selectedTabIndex].currentContent}
+                    onChange={(value) => handleEditorChange(value ?? "")}
+                    onMount={handleEditorDidMount}
+                    options={{
+                        readOnly: isEditorReadOnly,
+                        
+                    }}
+                />
         </Box>
     );
 
