@@ -1,4 +1,4 @@
-import { Box, Button, Divider, FormControlLabel, Stack, Switch, TextField } from "@mui/material";
+import { Box, Button, Divider, FormControlLabel, List, Stack, Switch, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -101,7 +101,11 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                 padding: "10px",
             }}
         >
+            <List>
 
+                
+                
+            </List>
             <Stack
                 paddingTop='10px'
                 spacing="20px"

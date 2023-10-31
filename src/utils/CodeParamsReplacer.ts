@@ -4,7 +4,7 @@ import MethodBodyGenerator from "./MethodBodyGenerator";
 
 export default class CodeParamsReplacer {
 
-    private methodBodyGenerator = new MethodBodyGenerator
+    private methodBodyGenerator = new MethodBodyGenerator();
 
     public getReplacedContent(codeWithParams: string, paramsToReplace: ReplaceData[]) {
 

@@ -22,11 +22,17 @@ export default function MyDrawer(props: MyDrawerProps){
             anchor="left"
             open={isDrawerOpen}
             onClose={() => {dispatch(setIsDrawerOpen(false))}}
+            PaperProps={{
+                sx: {
+                    backgroundColor: "primary.light"
+                }
+            }}
+           
         >
             <Box 
             p={2} 
             width={props.width}
-            height="100vh" 
+            //height="100%" 
             textAlign='center' 
             role='presentation'
             sx={{

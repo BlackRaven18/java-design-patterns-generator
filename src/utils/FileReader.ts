@@ -6,16 +6,6 @@ import CodeParamsReplacer from "./CodeParamsReplacer";
 export default class FileReader {
 
 
-    // public getFilesContentWithReplacedParams(filesContent: string[], replaceData: ReplaceData[]) {
-    //     let codeParamsReplacer = new CodeParamsReplacer();
-
-    //     let filesContentWithReplacedParams: string[] = [...filesContent.map(fileContent => {
-    //         return codeParamsReplacer.getReplacedContent(fileContent, replaceData);
-    //     })]
-
-    //     return filesContentWithReplacedParams;
-
-    // }
 
     public getFileContentWithReplacedParams(fileContent: string, replaceData: ReplaceData[]) {
         let codeParamsReplacer = new CodeParamsReplacer();
@@ -55,7 +45,7 @@ export default class FileReader {
         let patternFilesContentWithReplacedParams: string[] = [];
 
         patternInfo.files.forEach((file, index) => {
-            let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName == file.defaultName);
+            let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName === file.defaultName);
 
             patternFilesContentWithReplacedParams.push(this.getFileContentWithReplacedParams(patternFilesContent[index], filteredReplaceData));
         })
