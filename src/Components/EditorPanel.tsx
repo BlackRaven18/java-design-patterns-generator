@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedPattern, setSelectedTabIndex, updatePatternFile } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
-import FileReader from "../utils/FileReader";
+import ExtendedPatternInfoCreator from "../utils/ExtendedPatternInfoCreator";
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
@@ -22,7 +22,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
 
-    const fileReader = new FileReader();
+    const extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
 
     useEffect(() => {
 
@@ -32,7 +32,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     const loadPatternFiles = () => {
 
-        fileReader.getExtendedPatternInfo(selectedPattern).then(extendedPatternInfo => {
+        extendedPatternInfoCreator.getExtendedPatternInfo(selectedPattern).then(extendedPatternInfo => {
             dispatch(setSelectedPattern(extendedPatternInfo));
         })
 
@@ -102,20 +102,19 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
             </Tabs>
 
 
-                <Editor
-                    
-                    height="80vh"
-                    theme="vs-dark"
-                    defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
-                    defaultLanguage={"java"}
-                    value={selectedPattern.files[selectedTabIndex].currentContent}
-                    onChange={(value) => handleEditorChange(value ?? "")}
-                    onMount={handleEditorDidMount}
-                    options={{
-                        readOnly: isEditorReadOnly,
-                        
-                    }}
-                />
+            <Editor
+                height="85vh"
+                theme="vs-dark"
+                defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
+                language={selectedPattern.files[selectedTabIndex].sourceFile.split('.')[1]} //java
+                value={selectedPattern.files[selectedTabIndex].currentContent}
+                onChange={(value) => handleEditorChange(value ?? "")}
+                onMount={handleEditorDidMount}
+                options={{
+                    readOnly: isEditorReadOnly,
+
+                }}
+            />
         </Box>
     );
 

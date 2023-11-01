@@ -1,11 +1,12 @@
-import { Box, Button, Divider, FormControlLabel, List, Stack, Switch, TextField } from "@mui/material";
+import { Box, Button, Chip, Divider, FormControlLabel, List, ListItem, Stack, Switch, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly, updatePatternFilesContent, updatePatternTextFieldParamValue } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import { ReplaceData } from "../types";
-import FileReader from "../utils/FileReader";
+import CodeParamsReplacer from "../utils/CodeParamsReplacer";
+import ParamTextField from "./ParamTextField";
 import SelectParam from "./SelectParam";
 
 interface ParametersPanelProps {
@@ -22,8 +23,8 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
 
     const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
-
-    const fileReader = new FileReader();
+    
+    const codeParamsReplacer = new CodeParamsReplacer();
 
 
     const handleFileNameChange = (newValue: string, fileIndex: number) => {
@@ -77,7 +78,8 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
 
             filesWithReplacedParams.push(
-                fileReader.getFileContentWithReplacedParams(selectedPattern.files[index].defaultContent, filteredReplaceData)
+                codeParamsReplacer.getReplacedContent(selectedPattern.files[index].defaultContent, filteredReplaceData)
+                //fileReader.getFileContentWithReplacedParams(selectedPattern.files[index].defaultContent, filteredReplaceData)
             );
         })
 
@@ -95,91 +97,102 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     return (
         <Box
-            height='100%'
+            height='90vh'
             sx={{
                 backgroundColor: "secondary.main",
                 padding: "10px",
             }}
         >
-            <List>
-
-                
-                
-            </List>
-            <Stack
-                paddingTop='10px'
-                spacing="20px"
+            <List
+                style={{ maxHeight: '90vh', overflow: 'auto' }}
             >
-                <TextField
-                    label={"File name"}
-                    variant="outlined"
-                    value={selectedPattern.files[selectedTabIndex].currentName || ""}
-                    onChange={e => handleFileNameChange(e.target.value, selectedTabIndex)}
-                />
-                <Divider />
+                <ListItem>
 
-                {/* TODO: Try to make it more clear */}
-                {selectedPattern.params.textFieldParams.map((param, index) => {
-                    let multiline = param.defaultValue.includes("\n");
-                    if (param.shouldBeVisible) {
-                        // global params
-                        if (param.filename.length === 0
-                            || param.filename === selectedPattern.files[selectedTabIndex].defaultName) {
+                    <Stack
+                        width={"100%"}
+                        paddingTop='10px'
+                        spacing="20px"
+                    >
+                        <TextField
+                            label={"File name"}
+                            variant="outlined"
+                            value={selectedPattern.files[selectedTabIndex].currentName || ""}
+                            onChange={e => handleFileNameChange(e.target.value, selectedTabIndex)}
+                        />
+                        <Divider>
+                            <Chip label="Global pattern parameters" />
+                        </Divider>
+
+                        {/* TODO: Try to make it more clear */}
+                        {selectedPattern.params.textFieldParams.map((param, index) => {
+                            // global params
+                            if (param.shouldBeVisible && param.filename.length === 0) {
+
+                                return (
+                                    <ParamTextField
+                                        key={index}
+                                        index={index}
+                                        label={param.label}
+                                        value={param.currentValue}
+                                        handleOnChange={handleParameterChange}
+                                        disabled={isParamsFieldsDisabled}
+                                    />
+                                );
+
+                            }
+                        })}
+
+                        {selectedPattern.params.selectParams.map((selectParamData, index) => {
                             return (
-                                <TextField
+                                <SelectParam
                                     key={index}
-                                    label={param.label}
-                                    variant="outlined"
-                                    multiline={multiline}
-                                    value={param.currentValue}
-                                    onChange={e => handleParameterChange(e.target.value, index)}
+                                    label={selectParamData.label}
+                                    fileNameToBeMultiplied={selectParamData.fileNameToBeMultiplied}
+                                    minValue={selectParamData.minNumber}
+                                    maxValue={selectParamData.maxNumber}
                                     disabled={isParamsFieldsDisabled}
                                 />
                             );
-                        }
-                    }
-                })}
+                        })}
 
-                {selectedPattern.params.selectParams.map((selectParamData, index) => {
-                    return (
-                        <SelectParam
-                            key={index}
-                            label={selectParamData.label}
-                            fileNameToBeMultiplied={selectParamData.fileNameToBeMultiplied}
-                            minValue={selectParamData.minNumber}
-                            maxValue={selectParamData.maxNumber}
-                            disabled={isParamsFieldsDisabled}
-                        />
-                    );
-                })}
+                        <Divider>
+                            <Chip label="Local pattern parameters" />
+                        </Divider>
 
-                <Button
-                    onClick={() => {
-                        alert(editorRef.current?.getValue());
-                    }}
-                >show editor value
-                </Button>
-                {/* <Button
+                        {selectedPattern.params.textFieldParams.map((param, index) => {
+                            if (param.shouldBeVisible && param.filename === selectedPattern.files[selectedTabIndex].defaultName) {
+                                return (
+                                    <ParamTextField
+                                        key={index}
+                                        index={index}
+                                        label={param.label}
+                                        value={param.currentValue}
+                                        handleOnChange={handleParameterChange}
+                                        disabled={isParamsFieldsDisabled}
+                                    />
+                                );
+                            }
+                        })}
 
-                    onClick={() => {
-                        dispatch(addNewFile({
-                            defaultName: "Builder.java",
-                            currentName: "Builder.java",
-                        }));
-                    }}
-                >Add new file
-                </Button> */}
+                        <Button
+                            onClick={() => {
+                                alert(editorRef.current?.getValue());
+                            }}
+                        >show editor value
+                        </Button>
 
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={isEditorReadOnly}
-                            onChange={handleEditorReadOnlyChange}
-                        />
-                    }
-                    label="Read only mode" />
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={isEditorReadOnly}
+                                    onChange={handleEditorReadOnlyChange}
+                                />
+                            }
+                            label="Read only mode" />
 
-            </Stack>
+                    </Stack>
+                </ListItem>
+            </List>
         </Box>
     );
 }
