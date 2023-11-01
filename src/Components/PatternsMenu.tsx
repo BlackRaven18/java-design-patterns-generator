@@ -11,6 +11,7 @@ import {
 import { AppDispatch, RootState } from "../redux/store";
 import { LoadedPatternFileInfo, PatternFamillyInfo, PatternInfo } from "../types";
 import FileReader from "../utils/FileReader";
+import ExtendedPatternInfoCreator from "../utils/ExtendedPatternInfoCreator";
 
 const PatternsMenu = () => {
 
@@ -21,7 +22,7 @@ const PatternsMenu = () => {
    const selectedPatternIndex = useSelector((state: RootState) => state.appState.selectedPatternIndex);
 ;
 
-   const fileReader = new FileReader();
+   const extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
 
    const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
 
@@ -31,7 +32,7 @@ const PatternsMenu = () => {
 
    const handlePatternChange = (pattern: PatternInfo, index: number) => {
 
-     fileReader.getExtendedPatternInfo(pattern).then(extendedPatternInfo => {
+      extendedPatternInfoCreator.getExtendedPatternInfo(pattern).then(extendedPatternInfo => {
 
         dispatch(setSelectedPattern(extendedPatternInfo));
         dispatch(setSelectedPatternIndex(index));
