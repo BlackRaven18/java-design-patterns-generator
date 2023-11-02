@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Design Pattern Generator",
+  "name": "Choose and customise your design pattern",
   "icons": [
     {
       "src": "favicon.ico",

@@ -10,7 +10,6 @@ export default function TopBar() {
     const dispatch = useDispatch<AppDispatch>();
 
     const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
-    const idDrawerOpened = useSelector((state: RootState) => state.appState.isDrawerOpen);
 
     const handleDrawerOpen = () => {
         dispatch(setIsDrawerOpen(true))
@@ -32,7 +31,6 @@ export default function TopBar() {
                     color="inherit"
                     aria-label="menu"
                     onClick={handleDrawerOpen}
-                //sx={{ ...(idDrawerOpened && { display: 'none' }) }}
                 >
                     <MenuIcon />
                 </IconButton>
