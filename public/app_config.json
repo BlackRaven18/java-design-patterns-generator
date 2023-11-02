@@ -1,0 +1,21 @@
+{
+    "patternFamillies": [
+        {
+            "patternFamillyName": "Creational",
+            "patternsDir": "creationa_patterns"
+        },
+        {
+            "patternFamillyName": "Structural",
+            "patternsDir": "creationa_patterns"
+        },
+        {
+            "patternFamillyName": "Behavioral",
+            "patternsDir": "creationa_patterns"
+        },
+        {
+            "patternFamillyName": "Others",
+            "patternsDir": "creationa_patterns"
+        }
+        
+    ]
+}

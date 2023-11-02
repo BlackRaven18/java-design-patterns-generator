@@ -1,0 +1,31 @@
+{
+    "files": [
+        {
+            "defaultName": "PatternFile1.java",
+            "sourceFile": "PatternFile1.java"
+        },
+        {
+            "defaultName": "PatternFile2.java",
+            "sourceFile": "PatternFile2.java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "PatternFile1",
+                "defaultValue": "PatternFile1",
+                "replace": "",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "PatternFile2",
+                "defaultValue": "PatternFile1",
+                "replace": "",
+                "filename": ""
+            }
+        ],
+        "selectParams": []
+    }
+}
