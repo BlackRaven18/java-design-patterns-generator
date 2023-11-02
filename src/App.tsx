@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import './App.css';
 import EditorPanel from './components/EditorPanel';
 import MyDrawer from './components/MyDrawer';
-import ParametersPanel from './components/ParametersPanel';
+import ParametersPanel from './components/ParametersPanel/ParametersPanel';
 import PatternsMenu from './components/PatternsMenu';
 import TopBar from './components/TopBar';
 import CustomBackdrop from './components/common/CustomBackdrop';
