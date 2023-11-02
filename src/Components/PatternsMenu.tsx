@@ -3,6 +3,7 @@ import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from "@mui/
 import { useDispatch, useSelector } from "react-redux";
 import {
    setIsDrawerOpen,
+   setIsEditorReadOnly,
    setSelectedPattern,
    setSelectedPatternFamillyIndex,
    setSelectedPatternIndex,
@@ -37,6 +38,7 @@ const PatternsMenu = () => {
         dispatch(setSelectedPattern(extendedPatternInfo));
         dispatch(setSelectedPatternIndex(index));
         dispatch(setSelectedTabIndex(0));
+        dispatch(setIsEditorReadOnly(true));
      })
 
    }
