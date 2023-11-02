@@ -1,8 +1,10 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, Box, FormControlLabel, Switch } from "@mui/material";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
 
 interface EditorReadOnlyDialogProps {
     open: boolean,
     handleClose: () => void,
+    handleYes: () => void,
+    handleNo: () => void,
 
 }
 
@@ -15,19 +17,18 @@ export default function EditorReadOnlyDialog(props: EditorReadOnlyDialogProps) {
             onClose={props.handleClose}
         >
             <DialogTitle id="alert-dialog-title">
-                {"Use Google's location service?"}
+                {"Turn off editor read-only mode?"}
             </DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    Let Google help apps determine location. This means sending anonymous
-                    location data to Google, even when no apps are running.
+                    Do you want to turn off editor read-only mode? 
+                    You won't be able to use parameters to make changes in code anymore.
+                    You will be able to make changes by yourself directly in the editor window.
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={props.handleClose}>Disagree</Button>
-                <Button onClick={props.handleClose} autoFocus>
-                    Agree
-                </Button>
+                <Button onClick={props.handleYes}>Yes</Button>
+                <Button onClick={props.handleNo} autoFocus>No</Button>
             </DialogActions>
         </Dialog>
 

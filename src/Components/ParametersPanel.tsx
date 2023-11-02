@@ -8,6 +8,7 @@ import { ReplaceData } from "../types";
 import CodeParamsReplacer from "../utils/CodeParamsReplacer";
 import ParamTextField from "./ParamTextField";
 import SelectParam from "./SelectParam";
+import EditorReadOnlyContainer from "./ReadOnlySwitch/EditorReadOnlyContainer";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -22,7 +23,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
 
-    const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
+   // const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
     
     const codeParamsReplacer = new CodeParamsReplacer();
 
@@ -88,10 +89,10 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     }
 
-    const handleEditorReadOnlyChange = () => {
-        dispatch(setIsEditorReadOnly(!isEditorReadOnly));
-        setIsParamsFieldsDisabled(!isParamsFieldsDisabled);
-    }
+    // const handleEditorReadOnlyChange = () => {
+    //     dispatch(setIsEditorReadOnly(!isEditorReadOnly));
+    //     setIsParamsFieldsDisabled(!isParamsFieldsDisabled);
+    // }
 
 
 
@@ -135,7 +136,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                                         label={param.label}
                                         value={param.currentValue}
                                         handleOnChange={handleParameterChange}
-                                        disabled={isParamsFieldsDisabled}
+                                        disabled={!isEditorReadOnly}
                                     />
                                 );
 
@@ -150,7 +151,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                                     fileNameToBeMultiplied={selectParamData.fileNameToBeMultiplied}
                                     minValue={selectParamData.minNumber}
                                     maxValue={selectParamData.maxNumber}
-                                    disabled={isParamsFieldsDisabled}
+                                    disabled={!isEditorReadOnly}
                                 />
                             );
                         })}
@@ -168,7 +169,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                                         label={param.label}
                                         value={param.currentValue}
                                         handleOnChange={handleParameterChange}
-                                        disabled={isParamsFieldsDisabled}
+                                        disabled={!isEditorReadOnly}
                                     />
                                 );
                             }
@@ -181,14 +182,18 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                         >show editor value
                         </Button>
 
-                        <FormControlLabel
+
+
+                        <EditorReadOnlyContainer/>
+
+                        {/* <FormControlLabel
                             control={
                                 <Switch
                                     checked={isEditorReadOnly}
                                     onChange={handleEditorReadOnlyChange}
                                 />
                             }
-                            label="Read only mode" />
+                            label="Read only mode" /> */}
 
                     </Stack>
                 </ListItem>
