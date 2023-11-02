@@ -1,12 +1,12 @@
 import { Box, Button, Chip, Divider, List, ListItem, Stack, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSelectedPatternCurrentFileName, updatePatternFilesContent, updatePatternTextFieldParamValue } from "../redux/AppStateSlice";
-import { AppDispatch, RootState } from "../redux/store";
-import { ReplaceData } from "../types";
-import CodeParamsReplacer from "../utils/CodeParamsReplacer";
+import { changeSelectedPatternCurrentFileName, updatePatternFilesContent, updatePatternTextFieldParamValue } from "../../redux/AppStateSlice";
+import { AppDispatch, RootState } from "../../redux/store";
+import { ReplaceData } from "../../types";
+import CodeParamsReplacer from "../../utils/CodeParamsReplacer";
 import ParamTextField from "./ParamTextField";
-import EditorReadOnlyContainer from "./ReadOnlySwitch/EditorReadOnlyContainer";
+import EditorReadOnlyContainer from "../ReadOnlySwitch/EditorReadOnlyContainer";
 import SelectParam from "./SelectParam";
 
 interface ParametersPanelProps {

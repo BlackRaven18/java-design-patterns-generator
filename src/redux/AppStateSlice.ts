@@ -69,10 +69,18 @@ export const appStateSlice = createSlice({
                 = state.selectedPattern.files.filter(file => file.sourceFile !== action.payload.filename)
         },
 
+        //--------------
         removeTextFieldParamsConnectedToFile: (state, action: PayloadAction<{ filename: string }>) => {
             state.selectedPattern.params.textFieldParams
                 = state.selectedPattern.params.textFieldParams
                     .filter(param => param.filename !== action.payload.filename)
+        },
+
+        //-------------------------------
+        removeTextFieldParams: (state, action: PayloadAction<{replace: string}>) => {
+            state.selectedPattern.params.textFieldParams
+                = state.selectedPattern.params.textFieldParams
+                    .filter(param => param.replace !== action.payload.replace)
         },
 
         addFilesAndParamsToSelectedPattern: (
@@ -180,6 +188,7 @@ export const appStateSlice = createSlice({
 export const {
     removeFilesFromPattern,
     removeTextFieldParamsConnectedToFile,
+    removeTextFieldParams,
     addFilesAndParamsToSelectedPattern,
 
     updatePatternTextFieldParamValue,

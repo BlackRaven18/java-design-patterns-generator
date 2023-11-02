@@ -1,9 +1,9 @@
 import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addFilesAndParamsToSelectedPattern, removeFilesFromPattern, removeTextFieldParamsConnectedToFile } from "../redux/AppStateSlice";
-import { AppDispatch, RootState } from "../redux/store";
-import { LoadedPatternFileInfo, TextFieldParamData } from "../types";
+import { addFilesAndParamsToSelectedPattern, removeFilesFromPattern, removeTextFieldParams, removeTextFieldParamsConnectedToFile } from "../../redux/AppStateSlice";
+import { AppDispatch, RootState } from "../../redux/store";
+import { LoadedPatternFileInfo, TextFieldParamData } from "../../types";
 
 interface SelectParamProps {
     label: string,
@@ -44,20 +44,24 @@ export default function SelectParam(props: SelectParamProps) {
 
     const setClasses = (file: LoadedPatternFileInfo, numberOfInstances: number) => {
 
-        let patternsConnectedToFile: TextFieldParamData[] = [];
+        let paramsConnectedToFile: TextFieldParamData[] = [];
 
 
         //get the params connected to filename
         selectedPattern.params.textFieldParams.forEach(param => {
             if (param.filename === file.defaultName) {
-                patternsConnectedToFile.push(param);
+                paramsConnectedToFile.push(param);
             }
         })
 
         //clear all class like filename and params connected to it
 
         dispatch(removeFilesFromPattern({ filename: file.defaultName }));
-        dispatch(removeTextFieldParamsConnectedToFile({ filename: file.defaultName }));
+
+        paramsConnectedToFile.forEach(param => {
+            dispatch(removeTextFieldParams({replace: param.replace}))
+        })
+        //dispatch(removeTextFieldParamsConnectedToFile({ filename: file.defaultName }));
 
 
         //add new filenames
@@ -65,7 +69,7 @@ export default function SelectParam(props: SelectParamProps) {
 
         dispatch(addFilesAndParamsToSelectedPattern({
             file: file,
-            patterns: patternsConnectedToFile,
+            patterns: paramsConnectedToFile,
             howMany: numberOfInstances
         }
         ))
