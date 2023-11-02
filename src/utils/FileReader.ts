@@ -1,6 +1,4 @@
 import { } from "../redux/AppStateSlice";
-import { ExtendedPatternInfo, LoadedPatternFileInfo, PatternInfo, ReplaceData, TextFieldParamData } from "../types";
-import CodeParamsReplacer from "./CodeParamsReplacer";
 
 
 export default class FileReader {
