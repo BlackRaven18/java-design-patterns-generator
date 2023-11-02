@@ -1,14 +1,13 @@
-import { Box, Button, Chip, Divider, FormControlLabel, List, ListItem, Stack, Switch, TextField } from "@mui/material";
+import { Box, Button, Chip, Divider, List, ListItem, Stack, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSelectedPatternCurrentFileName, setIsEditorReadOnly, updatePatternFilesContent, updatePatternTextFieldParamValue } from "../redux/AppStateSlice";
+import { changeSelectedPatternCurrentFileName, updatePatternFilesContent, updatePatternTextFieldParamValue } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import { ReplaceData } from "../types";
 import CodeParamsReplacer from "../utils/CodeParamsReplacer";
 import ParamTextField from "./ParamTextField";
-import SelectParam from "./SelectParam";
 import EditorReadOnlyContainer from "./ReadOnlySwitch/EditorReadOnlyContainer";
+import SelectParam from "./SelectParam";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -22,9 +21,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
 
-
-   // const [isParamsFieldsDisabled, setIsParamsFieldsDisabled] = useState(false);
-    
     const codeParamsReplacer = new CodeParamsReplacer();
 
 
@@ -75,7 +71,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         let filesWithReplacedParams: string[] = [];
 
         selectedPattern.files.forEach((file, index) => {
-            let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName == file.defaultName);
+            let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName === file.defaultName);
 
 
             filesWithReplacedParams.push(
@@ -88,13 +84,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
 
     }
-
-    // const handleEditorReadOnlyChange = () => {
-    //     dispatch(setIsEditorReadOnly(!isEditorReadOnly));
-    //     setIsParamsFieldsDisabled(!isParamsFieldsDisabled);
-    // }
-
-
 
     return (
         <Box
@@ -184,16 +173,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
 
 
-                        <EditorReadOnlyContainer/>
-
-                        {/* <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={isEditorReadOnly}
-                                    onChange={handleEditorReadOnlyChange}
-                                />
-                            }
-                            label="Read only mode" /> */}
+                        <EditorReadOnlyContainer />
 
                     </Stack>
                 </ListItem>

@@ -1,13 +1,11 @@
+import { ThemeProvider, createTheme } from '@mui/material';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from './App';
 import './index.css';
+import { store } from './redux/store';
 import reportWebVitals from './reportWebVitals';
-import { RouterProvider } from 'react-router-dom';
-import router from './router';
-import { store } from './redux/store'
-import { Provider } from 'react-redux';
-import { ThemeProvider, createTheme } from '@mui/material';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -22,15 +20,15 @@ const theme = createTheme({
     secondary: {
       main: '#F9E79F'
     },
-    action:{
+    action: {
       active: '#707B7C',
       hover: 'rgba(60, 61, 47, 0.55)',
     }
   },
-  components:{
+  components: {
     MuiListItemButton: {
       styleOverrides: {
-        root:{
+        root: {
 
         }
       }
@@ -42,7 +40,7 @@ root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <RouterProvider router={router} />
+        {/* <RouterProvider router={router} /> */}
         <App />
 
       </Provider>
