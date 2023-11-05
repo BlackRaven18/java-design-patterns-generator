@@ -1,17 +1,15 @@
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
-import { Box, Collapse, Drawer, List, ListItemButton, ListItemText } from "@mui/material";
+import { Box, Collapse, List, ListItemButton, ListItemText } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
-   setIsDrawerOpen,
    setIsEditorReadOnly,
    setSelectedPattern,
    setSelectedPatternFamillyIndex,
    setSelectedPatternIndex,
-   setSelectedTabIndex,
+   setSelectedTabIndex
 } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
-import { LoadedPatternFileInfo, PatternFamillyInfo, PatternInfo } from "../types";
-import FileReader from "../utils/FileReader";
+import { PatternFamillyInfo } from "../types";
 import ExtendedPatternInfoCreator from "../utils/ExtendedPatternInfoCreator";
 
 const PatternsMenu = () => {

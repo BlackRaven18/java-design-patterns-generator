@@ -1,11 +1,10 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import AppConfigJSON from "../app_config.json";
-import { AppState, Config, ExtendedPatternInfo, LoadedPatternFileInfo, TextFieldParamData } from "../types";
+import { AppState, LoadedPatternFileInfo, PatternConfigInfo, TextFieldParamData } from "../types";
 
 
 const initialState: AppState = {
     appConfig: {
-        patternFamillies:[]
+        patternFamillies: []
     },
 
     selectedPatternFamillyIndex: 0,
@@ -32,44 +31,6 @@ const initialState: AppState = {
         }
     }
 
-
-    // appConfig: AppConfigJSON,
-
-    // isDrawerOpen: false,
-
-    // selectedPatternFamillyIndex: 0,
-    // selectedPatternIndex: 0,
-    // selectedTabIndex: 0,
-
-    // selectedPattern: {
-    //     patternName: AppConfigJSON.patternFamillies[0].patterns[0].patternName,
-    //     patternFilesDirectory: AppConfigJSON.patternFamillies[0].patterns[0].patternFilesDirectory,
-    //     files: [...AppConfigJSON.patternFamillies[0].patterns[0].files.map(file => {
-
-    //         let loadedPatternFileInfo: LoadedPatternFileInfo = {
-    //             sourceFile: file.defaultName,
-    //             defaultName: file.defaultName,
-    //             currentName: file.defaultName,
-    //             defaultContent: "",
-    //             currentContent: "",
-    //         }
-
-    //         return loadedPatternFileInfo;
-    //     })],
-    //     params: {
-    //         textFieldParams: [...AppConfigJSON.patternFamillies[0].patterns[0].params.textFieldParams.map(param => {
-    //             let extendedParam: TextFieldParamData = {
-    //                 ...param,
-    //                 currentValue: param.defaultValue,
-    //             }
-    //             return extendedParam;
-    //         })],
-    //         selectParams: AppConfigJSON.patternFamillies[0].patterns[0].params.selectParams
-    //     }
-    // },
-
-    // isEditorReadOnly: true,
-
 }
 
 export const appStateSlice = createSlice({
@@ -77,7 +38,7 @@ export const appStateSlice = createSlice({
     initialState,
     reducers: {
         setState: (state, action: PayloadAction<AppState>) => {
-            
+
             state.appConfig = action.payload.appConfig;
             state.isDrawerOpen = action.payload.isDrawerOpen;
             state.isEditorReadOnly = action.payload.isEditorReadOnly;
@@ -100,7 +61,7 @@ export const appStateSlice = createSlice({
         },
 
         //-------------------------------
-        removeTextFieldParams: (state, action: PayloadAction<{replace: string}>) => {
+        removeTextFieldParams: (state, action: PayloadAction<{ replace: string }>) => {
             state.selectedPattern.params.textFieldParams
                 = state.selectedPattern.params.textFieldParams
                     .filter(param => param.replace !== action.payload.replace)
@@ -181,7 +142,7 @@ export const appStateSlice = createSlice({
             state.selectedTabIndex = action.payload;
         },
 
-        setSelectedPattern: (state, action: PayloadAction<ExtendedPatternInfo>) => {
+        setSelectedPattern: (state, action: PayloadAction<PatternConfigInfo>) => {
             state.selectedPattern = action.payload;
         },
 
