@@ -11,6 +11,7 @@ import TopBar from './components/TopBar';
 import CustomBackdrop from './components/common/CustomBackdrop';
 import { AppDispatch } from './redux/store';
 import InitialStateLoader from './utils/InitialStateLoader';
+import { setState } from './redux/AppStateSlice';
 
 function App() {
 
@@ -30,7 +31,9 @@ function App() {
   }, [])
 
   const loadInitialState = () => {
-    initialStateLoader.loadInitialState();
+    initialStateLoader.loadInitialState().then(appState => {
+      dispatch(setState(appState));
+    })
   }
 
   return (

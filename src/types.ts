@@ -1,42 +1,42 @@
-export interface AppState {
-    appConfig: Config,
+// export interface AppState {
+//     appConfig: Config,
 
-    isDrawerOpen: boolean,
+//     isDrawerOpen: boolean,
 
-    selectedPatternFamillyIndex: number,
-    selectedPatternIndex: number,
-    selectedTabIndex: number,
+//     selectedPatternFamillyIndex: number,
+//     selectedPatternIndex: number,
+//     selectedTabIndex: number,
 
-    selectedPattern: ExtendedPatternInfo,
+//     selectedPattern: ExtendedPatternInfo,
 
-    isEditorReadOnly: boolean,
+//     isEditorReadOnly: boolean,
 
-}
+// }
 
 
-export interface Config {
-    patternFamillies: PatternFamillyInfo[]
-}
+// export interface Config {
+//     patternFamillies: PatternFamillyInfo[]
+// }
 
-export interface PatternFamillyInfo {
-    patternFamillyName: string,
-    patterns: PatternInfo[]
+// export interface PatternFamillyInfo {
+//     patternFamillyName: string,
+//     patterns: PatternInfo[]
 
-}
+// }
 
-export interface PatternInfo {
-    patternName: string,
-    patternFilesDirectory: string,
-    files: PatternFileInfo[],
-    params: ParamsTypes,
-}
+// export interface PatternInfo {
+//     patternName: string,
+//     patternFilesDirectory: string,
+//     files: PatternFileInfo[],
+//     params: ParamsTypes,
+// }
 
-export interface ExtendedPatternInfo {
-    patternName: string,
-    patternFilesDirectory: string,
-    files: LoadedPatternFileInfo[],
-    params: ParamsTypes,
-}
+// export interface ExtendedPatternInfo {
+//     patternName: string,
+//     patternFilesDirectory: string,
+//     files: LoadedPatternFileInfo[],
+//     params: ParamsTypes,
+// }
 
 export interface PatternFileInfo {
     defaultName: string,
@@ -84,41 +84,39 @@ export interface ReplaceData {
 
 //------------------------------
 
-export interface NewAppState{
-    appConfig: NewConfig,
+export interface AppState{
+    appConfig: Config,
 
     selectedPatternFamillyIndex: number,
     selectedPatternIndex: number,
     selectedTabIndex: number,
     
-    selectedPattern: NewExtendedPatternInfo,
+    selectedPattern: ExtendedPatternInfo,
     
     isDrawerOpen: boolean,
     isEditorReadOnly: boolean,
 }
 
-export interface NewPatternFamillyInfo {
+export interface PatternFamillyInfo {
     patternFamillyName: string,
     patternsDir: string,
-    patterns: NewPatternInfo[],
+    patterns: PatternInfo[],
 }
 
-export interface NewPatternInfo{
+export interface PatternInfo{
     patternName: string,
     patternDir: string,
     configFile: string
 }
 
-export interface NewExtendedPatternInfo {
+export interface ExtendedPatternInfo {
     name: string,
     files: LoadedPatternFileInfo[],
-    params: ParamsTypes[],
+    params: ParamsTypes,
 }
 
-export interface NewConfig{
-    patternFamillies: NewPatternFamillyInfo[];
+export interface Config{
+    patternFamillies: PatternFamillyInfo[];
 }
 
-// export interface NewSelectedPatternInfo {
 
-// }

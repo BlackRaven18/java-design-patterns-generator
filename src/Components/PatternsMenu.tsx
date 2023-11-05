@@ -33,13 +33,13 @@ const PatternsMenu = () => {
 
    const handlePatternChange = (pattern: PatternInfo, index: number) => {
 
-      extendedPatternInfoCreator.getExtendedPatternInfo(pattern).then(extendedPatternInfo => {
+   //    extendedPatternInfoCreator.getExtendedPatternInfo(pattern).then(extendedPatternInfo => {
 
-        dispatch(setSelectedPattern(extendedPatternInfo));
-        dispatch(setSelectedPatternIndex(index));
-        dispatch(setSelectedTabIndex(0));
-        dispatch(setIsEditorReadOnly(true));
-     })
+   //      dispatch(setSelectedPattern(extendedPatternInfo));
+   //      dispatch(setSelectedPatternIndex(index));
+   //      dispatch(setSelectedTabIndex(0));
+   //      dispatch(setIsEditorReadOnly(true));
+   //   })
 
    }
 

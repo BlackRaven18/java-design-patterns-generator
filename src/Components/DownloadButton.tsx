@@ -13,17 +13,17 @@ const DownloadButton = (props: DownloadButtonProps) => {
     const zip = new JSZip();
 
     const handleDownload = async () => {
-        props.editorValueArray.map((value, index) => {
-            zip.file(props.selectedPattern.files[index].defaultName, value);
-        })
+        // props.editorValueArray.map((value, index) => {
+        //     zip.file(props.selectedPattern.files[index].defaultName, value);
+        // })
 
-        const content = await zip.generateAsync({ type: 'blob' });
+        // const content = await zip.generateAsync({ type: 'blob' });
 
-        const zipFile = new File([content],
-            props.selectedPattern.patternName + ".zip", { type: 'application/zip' });
+        // const zipFile = new File([content],
+        //     props.selectedPattern.patternName + ".zip", { type: 'application/zip' });
 
 
-        saveAs(zipFile);
+        // saveAs(zipFile);
 
     }
 
