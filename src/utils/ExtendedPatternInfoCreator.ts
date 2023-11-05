@@ -1,4 +1,4 @@
-import { ExtendedPatternInfo, LoadedPatternFileInfo, PatternFamillyInfo, PatternInfo, TextFieldParamData } from "../types";
+import { PatternConfigInfo, LoadedPatternFileInfo, PatternFamillyInfo, PatternInfo, TextFieldParamData } from "../types";
 import AppStateUtils from "./AppStateUtils";
 
 export default class ExtendedPatternInfoCreator {
@@ -7,7 +7,7 @@ export default class ExtendedPatternInfoCreator {
 
     public async getExtendedPatternInfo(patternFamillyInfo: PatternFamillyInfo, patternInfo: PatternInfo) {
 
-        const patternConfigFile: ExtendedPatternInfo = await this.appStateUtils.getPatternConfigFile(
+        const patternConfigFile: PatternConfigInfo = await this.appStateUtils.getPatternConfigFile(
             patternFamillyInfo,
             patternInfo
         );
@@ -23,7 +23,7 @@ export default class ExtendedPatternInfoCreator {
         );
 
 
-        let extendedPatternInfo: ExtendedPatternInfo = {
+        let extendedPatternInfo: PatternConfigInfo = {
             name: patternConfigFile.name,
             files: [...patternConfigFile.files.map((file, index) => {
                 let loadedPatternFileInfo: LoadedPatternFileInfo = {

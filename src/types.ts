@@ -5,7 +5,7 @@ export interface AppState{
     selectedPatternIndex: number,
     selectedTabIndex: number,
     
-    selectedPattern: ExtendedPatternInfo,
+    selectedPattern: PatternConfigInfo,
     
     isDrawerOpen: boolean,
     isEditorReadOnly: boolean,
@@ -23,7 +23,7 @@ export interface PatternInfo{
     configFile: string
 }
 
-export interface ExtendedPatternInfo {
+export interface PatternConfigInfo {
     name: string,
     files: LoadedPatternFileInfo[],
     params: ParamsTypes,
