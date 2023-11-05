@@ -5,30 +5,30 @@
             "patternsDir": "creational_patterns",
             "patterns": [
                 {
-                    "patternName": "Test_Pattern",
-                    "patternDir": "test_pattern",
-                    "configFile": "test_config.json"
-                },
-                {
                     "patternName": "Singleton",
                     "patternDir": "singleton",
                     "configFile": "singleton_config.json"
+                },
+                {
+                    "patternName": "Builder",
+                    "patternDir": "builder",
+                    "configFile": "builder_config.json"
                 }
             ]
         },
         {
             "patternFamillyName": "Structural",
-            "patternsDir": "creationa_patterns",
+            "patternsDir": "creational_patterns",
             "patterns": []
         },
         {
             "patternFamillyName": "Behavioral",
-            "patternsDir": "creationa_patterns",
+            "patternsDir": "creational_patterns",
             "patterns": []
         },
         {
             "patternFamillyName": "Others",
-            "patternsDir": "creationa_patterns",
+            "patternsDir": "creational_patterns",
             "patterns": []
         }
         

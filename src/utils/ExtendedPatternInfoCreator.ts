@@ -18,12 +18,30 @@ export default class ExtendedPatternInfoCreator {
                 + patternInfo.patternDir + "/"
                 + file.defaultName;
 
-            console.log(path);
-
             return path;
         })]
 
         const patternFilesContent = await this.fileReader.readMultipleFiles(patternFilePaths);
+
+        let replaceData = patternConfigFile.params.textFieldParams.map(param => {
+            return {
+                replace: param.replace,
+                value: param.defaultValue
+            }
+        })
+
+        let patternFilesContentWithReplacedParams: string[] = [];
+
+        patternConfigFile.files.forEach((file, index) => {
+            //let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName === file.defaultName);
+
+            patternFilesContentWithReplacedParams.push(
+                this.codeParamsReplacer.getReplacedContent(patternFilesContent[index], replaceData)
+            );
+        })
+
+
+
 
         let extendedPatternInfo: ExtendedPatternInfo = {
             name: patternConfigFile.name,
@@ -33,7 +51,7 @@ export default class ExtendedPatternInfoCreator {
                     defaultName: file.defaultName,
                     currentName: file.defaultName,
                     defaultContent: patternFilesContent[index],
-                    currentContent: patternFilesContent[index]  //patternFilesContentWithReplacedParams[index],
+                    currentContent: patternFilesContentWithReplacedParams[index],
                 }
 
                 return loadedPatternFileInfo;

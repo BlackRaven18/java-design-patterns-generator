@@ -1,5 +1,6 @@
 
-import { AppState, Config, ExtendedPatternInfo, LoadedPatternFileInfo } from "../types";
+import { AppState, Config, ExtendedPatternInfo, LoadedPatternFileInfo, TextFieldParamData } from "../types";
+import CodeParamsReplacer from "./CodeParamsReplacer";
 import FileReader from "./FileReader";
 
 export default class InitialStateLoader {
@@ -40,6 +41,29 @@ export default class InitialStateLoader {
         return patternFilesContent;
     }
 
+    private getPatternFilesContentWithReplacedParams(patternInfo: ExtendedPatternInfo, patternFilesContent: string[]) {
+        let codeParamsReplacer = new CodeParamsReplacer();
+
+        let replaceData = patternInfo.params.textFieldParams.map(param => {
+            return {
+                replace: param.replace,
+                value: param.defaultValue
+            }
+        })
+
+        let patternFilesContentWithReplacedParams: string[] = [];
+
+        patternInfo.files.forEach((file, index) => {
+            //let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName === file.defaultName);
+
+            patternFilesContentWithReplacedParams.push(
+                codeParamsReplacer.getReplacedContent(patternFilesContent[index], replaceData)
+            );
+        })
+
+        return patternFilesContentWithReplacedParams;
+    }
+
 
 
     public async loadInitialState(): Promise<AppState> {
@@ -47,6 +71,7 @@ export default class InitialStateLoader {
         const appConfig = await this.getConfig();
         const patternInfo = await this.getPatternInfo(appConfig);
         const patternFilesContent = await this.getPatternFilesContent(appConfig, patternInfo);
+        const patternFilesContentWithReplacedParams = this.getPatternFilesContentWithReplacedParams(patternInfo, patternFilesContent);
 
         let appState: AppState = {
             appConfig: appConfig,
@@ -65,13 +90,22 @@ export default class InitialStateLoader {
                         defaultName: file.defaultName,
                         currentName: file.defaultName,
                         defaultContent: patternFilesContent[index],
-                        currentContent: patternFilesContent[index],
+                        currentContent: patternFilesContentWithReplacedParams[index],
                     }
 
                     return loadedPatternFileInfo;
                 })],
 
-                params: patternInfo.params
+                params: {
+                    ...patternInfo.params,
+                    textFieldParams: [...patternInfo.params.textFieldParams.map(param => {
+                        let extendedParam: TextFieldParamData = {
+                            ...param,
+                            currentValue: param.defaultValue
+                        }
+                        return extendedParam;
+                    })]
+                },
 
             },
         }

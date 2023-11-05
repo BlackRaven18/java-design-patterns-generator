@@ -1,42 +1,37 @@
-// export interface AppState {
-//     appConfig: Config,
+export interface AppState{
+    appConfig: Config,
 
-//     isDrawerOpen: boolean,
+    selectedPatternFamillyIndex: number,
+    selectedPatternIndex: number,
+    selectedTabIndex: number,
+    
+    selectedPattern: ExtendedPatternInfo,
+    
+    isDrawerOpen: boolean,
+    isEditorReadOnly: boolean,
+}
 
-//     selectedPatternFamillyIndex: number,
-//     selectedPatternIndex: number,
-//     selectedTabIndex: number,
+export interface PatternFamillyInfo {
+    patternFamillyName: string,
+    patternsDir: string,
+    patterns: PatternInfo[],
+}
 
-//     selectedPattern: ExtendedPatternInfo,
+export interface PatternInfo{
+    patternName: string,
+    patternDir: string,
+    configFile: string
+}
 
-//     isEditorReadOnly: boolean,
+export interface ExtendedPatternInfo {
+    name: string,
+    files: LoadedPatternFileInfo[],
+    params: ParamsTypes,
+}
 
-// }
-
-
-// export interface Config {
-//     patternFamillies: PatternFamillyInfo[]
-// }
-
-// export interface PatternFamillyInfo {
-//     patternFamillyName: string,
-//     patterns: PatternInfo[]
-
-// }
-
-// export interface PatternInfo {
-//     patternName: string,
-//     patternFilesDirectory: string,
-//     files: PatternFileInfo[],
-//     params: ParamsTypes,
-// }
-
-// export interface ExtendedPatternInfo {
-//     patternName: string,
-//     patternFilesDirectory: string,
-//     files: LoadedPatternFileInfo[],
-//     params: ParamsTypes,
-// }
+export interface Config{
+    patternFamillies: PatternFamillyInfo[];
+}
 
 export interface PatternFileInfo {
     defaultName: string,
@@ -82,41 +77,5 @@ export interface ReplaceData {
 }
 
 
-//------------------------------
-
-export interface AppState{
-    appConfig: Config,
-
-    selectedPatternFamillyIndex: number,
-    selectedPatternIndex: number,
-    selectedTabIndex: number,
-    
-    selectedPattern: ExtendedPatternInfo,
-    
-    isDrawerOpen: boolean,
-    isEditorReadOnly: boolean,
-}
-
-export interface PatternFamillyInfo {
-    patternFamillyName: string,
-    patternsDir: string,
-    patterns: PatternInfo[],
-}
-
-export interface PatternInfo{
-    patternName: string,
-    patternDir: string,
-    configFile: string
-}
-
-export interface ExtendedPatternInfo {
-    name: string,
-    files: LoadedPatternFileInfo[],
-    params: ParamsTypes,
-}
-
-export interface Config{
-    patternFamillies: PatternFamillyInfo[];
-}
 
 
