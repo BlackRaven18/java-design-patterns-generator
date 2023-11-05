@@ -1,6 +1,99 @@
 
 export default class MethodBodyGenerator {
 
+    private getMiddleWord(text: string, beginWord: string, endWord: string): string {
+        const beginWordIndes = text.indexOf(beginWord);
+        const endWordIndex = text.indexOf(endWord);
+    
+        if (beginWordIndes !== -1 && endWordIndex !== -1 && endWordIndex > beginWordIndes) {
+            const fragment = text.substring(beginWordIndes + beginWord.length, endWordIndex);
+            return fragment.trim();
+        } else {
+            return "";
+        }
+    }
+
+    public generateMethod(language: string) {
+
+        const generateMethodConfig = {
+            generateMethods: [
+                {
+                    language: "java",
+                    accessTypes: [
+                        "public",
+                        "private",
+                        "protected"
+                    ],
+                    returnTypes: [
+                        "void",
+                        "int",
+                        "long"
+                    ],
+                    bodyTemplate: "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n}",
+                },
+                {
+                    language: "c#",
+                    accessTypes: [
+                        "public",
+                        "private",
+                        "protected"
+                    ],
+                    returnTypes: [
+                        "void",
+                        "int",
+                        "long"
+                    ],
+                    bodyTemplate: "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n\t}",
+                },
+            ]
+        }
+    
+        let methodHeader = "public void main();";
+    
+        let accessType = "";
+        let returnType = "";
+        let methodName = "";
+    
+        generateMethodConfig.generateMethods[0].accessTypes.forEach(supportedAccessType => {
+            if (methodHeader.indexOf(supportedAccessType) !== -1) {
+                accessType = supportedAccessType;
+            }
+        })
+    
+        generateMethodConfig.generateMethods[0].returnTypes.forEach(supportedReturnType => {
+            if (methodHeader.indexOf(supportedReturnType) !== -1) {
+                returnType = supportedReturnType;
+            }
+        })
+    
+        if (accessType.length > 0 && returnType.length > 0) {
+    
+            methodName = this.getMiddleWord(methodHeader, returnType, "(")
+            let replaceData = [
+                {
+                    replace: "$ACCESS_TYPE$",
+                    value: accessType
+                },
+                {
+                    replace: "$RETURN_TYPE$",
+                    value: returnType
+                },
+                {
+                    replace: "$NAME$",
+                    value: methodName
+                }
+            ]
+    
+            let methodWithBody = generateMethodConfig.generateMethods[0].bodyTemplate;
+    
+            replaceData.forEach(data => {
+                methodWithBody = methodWithBody.replaceAll(data.replace, data.value);
+            })
+    
+            console.log(methodWithBody);
+        }
+    }
+
     public getMethodsHeaders = (methodsSignaturesSeparatedWithNewLineSign: string) => {
 
         let methodHeaders = methodsSignaturesSeparatedWithNewLineSign.split("\n");
