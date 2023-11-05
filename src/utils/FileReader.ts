@@ -1,7 +1,24 @@
 import { } from "../redux/AppStateSlice";
+// import fs from 'fs'
+// import path from 'path'
 
 
 export default class FileReader {
+
+    // async getDirectoryContent(pathToDirectory: string){
+    //     fs.readdir(pathToDirectory, (err, files) => {
+    //         files.forEach(file => {
+    //           // get the details of the file 
+    //           let fileDetails = fs.lstatSync(path.resolve(pathToDirectory, file));
+    //           // check if the file is directory 
+    //           if (fileDetails.isDirectory()) {
+    //             console.log('Directory: ' + file);
+    //           } else {
+    //             console.log('File: ' + file);
+    //           }
+    //         });
+    //       });
+    // }
 
     async readMultipleFiles(filePaths: string[]): Promise<string[]> {
         const fileContents: string[] = [];

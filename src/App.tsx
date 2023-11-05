@@ -1,6 +1,7 @@
 import { Box, Grid } from '@mui/material';
 import { editor } from 'monaco-editor';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
 import EditorPanel from './components/EditorPanel';
 import MyDrawer from './components/MyDrawer';
@@ -8,16 +9,29 @@ import ParametersPanel from './components/ParametersPanel/ParametersPanel';
 import PatternsMenu from './components/PatternsMenu';
 import TopBar from './components/TopBar';
 import CustomBackdrop from './components/common/CustomBackdrop';
+import { AppDispatch } from './redux/store';
+import InitialStateLoader from './utils/InitialStateLoader';
 
 function App() {
 
+  const dispatch = useDispatch<AppDispatch>();
   const [isLoading, setIsLoading] = useState(false);
 
   const parentEditorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
+  const initialStateLoader = new InitialStateLoader();
+
   const setEditorRef = (editorRef: editor.IStandaloneCodeEditor | null) => {
     parentEditorRef.current = editorRef;
   };
+
+  useEffect(() => {
+    loadInitialState();
+  }, [])
+
+  const loadInitialState = () => {
+    initialStateLoader.loadInitialState();
+  }
 
   return (
     <div className="App">

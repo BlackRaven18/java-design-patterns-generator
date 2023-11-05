@@ -1,4 +1,5 @@
 {
+    "name": "Test_Pattern",
     "files": [
         {
             "defaultName": "PatternFile1.java",

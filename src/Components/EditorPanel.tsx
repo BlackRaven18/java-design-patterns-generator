@@ -25,7 +25,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
 
     useEffect(() => {
-
         loadPatternFiles();
 
     }, [])
