@@ -1,77 +1,28 @@
 
-import { AppState, Config, ExtendedPatternInfo, LoadedPatternFileInfo, TextFieldParamData } from "../types";
-import CodeParamsReplacer from "./CodeParamsReplacer";
-import FileReader from "./FileReader";
+import { AppState, LoadedPatternFileInfo, TextFieldParamData } from "../types";
+import AppStateUtils from "./AppStateUtils";
 
 export default class InitialStateLoader {
 
-    private fileReader = new FileReader();
-
-    private async getConfig(): Promise<Config> {
-        let configPath = "app_config.json";
-
-        const fileConfigAsString = await this.fileReader.handleFileRead(configPath);
-
-        return JSON.parse(fileConfigAsString);
-
-    }
-
-    private async getPatternInfo(config: Config): Promise<ExtendedPatternInfo> {
-        let patternConfigPath = config.patternFamillies[0].patternsDir + "/"
-            + config.patternFamillies[0].patterns[0].patternDir + "/"
-            + config.patternFamillies[0].patterns[0].configFile;
-
-        const patternInfoAsString = await this.fileReader.handleFileRead(patternConfigPath);
-
-        return JSON.parse(patternInfoAsString);
-    }
-
-    private async getPatternFilesContent(config: Config, patternInfo: ExtendedPatternInfo): Promise<string[]> {
-
-        let patternFilePaths: string[] = [...patternInfo.files.map(file => {
-            let path = config.patternFamillies[0].patternsDir + "/"
-                + config.patternFamillies[0].patterns[0].patternDir + "/"
-                + file.defaultName;
-
-            return path;
-        })]
-
-        const patternFilesContent: string[] = await this.fileReader.readMultipleFiles(patternFilePaths);
-
-        return patternFilesContent;
-    }
-
-    private getPatternFilesContentWithReplacedParams(patternInfo: ExtendedPatternInfo, patternFilesContent: string[]) {
-        let codeParamsReplacer = new CodeParamsReplacer();
-
-        let replaceData = patternInfo.params.textFieldParams.map(param => {
-            return {
-                replace: param.replace,
-                value: param.defaultValue
-            }
-        })
-
-        let patternFilesContentWithReplacedParams: string[] = [];
-
-        patternInfo.files.forEach((file, index) => {
-            //let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName === file.defaultName);
-
-            patternFilesContentWithReplacedParams.push(
-                codeParamsReplacer.getReplacedContent(patternFilesContent[index], replaceData)
-            );
-        })
-
-        return patternFilesContentWithReplacedParams;
-    }
-
-
+    private appStateUtils = new AppStateUtils();
 
     public async loadInitialState(): Promise<AppState> {
 
-        const appConfig = await this.getConfig();
-        const patternInfo = await this.getPatternInfo(appConfig);
-        const patternFilesContent = await this.getPatternFilesContent(appConfig, patternInfo);
-        const patternFilesContentWithReplacedParams = this.getPatternFilesContentWithReplacedParams(patternInfo, patternFilesContent);
+        const appConfig = await this.appStateUtils.getConfig("app_config.json");
+        const patternInfo = await this.appStateUtils.getPatternConfigFile(
+            appConfig.patternFamillies[0],
+            appConfig.patternFamillies[0].patterns[0]
+        )
+
+        const patternFilesContent = await this.appStateUtils.getPatternFilesContent(
+            patternInfo,
+            appConfig.patternFamillies[0],
+            appConfig.patternFamillies[0].patterns[0]
+        )
+        const patternFilesContentWithReplacedParams = this.appStateUtils.getPatternFilesContentWithReplacedParams(
+            patternFilesContent,
+            patternInfo.params.textFieldParams
+        )
 
         let appState: AppState = {
             appConfig: appConfig,
@@ -111,72 +62,6 @@ export default class InitialStateLoader {
         }
 
         return appState;
-
-
-
-        // fileReader.handleFileRead(configPath).then(appConfig => {
-
-        //     let appConfigJSON: Config = JSON.parse(appConfig);
-
-        //     let patternConfigPath = appConfigJSON.patternFamillies[0].patternsDir + "/"
-        //         + appConfigJSON.patternFamillies[0].patterns[0].patternDir + "/"
-        //         + appConfigJSON.patternFamillies[0].patterns[0].configFile;
-
-
-        //     fileReader.handleFileRead(patternConfigPath).then(patternInfo => {
-
-        //         let patternInfoJSON: ExtendedPatternInfo = JSON.parse(patternInfo);
-
-        //         let patternFilePaths: string[] = [...patternInfoJSON.files.map(file => {
-        //             let path = appConfigJSON.patternFamillies[0].patternsDir + "/"
-        //                 + appConfigJSON.patternFamillies[0].patterns[0].patternDir + "/"
-        //                 + file.defaultName;
-
-        //             return path;
-        //         })]
-
-        //         fileReader.readMultipleFiles(patternFilePaths).then(patternFilesContent => {
-
-        //             let appState: AppState = {
-        //                 appConfig: appConfigJSON,
-
-        //                 selectedPatternFamillyIndex: 0,
-        //                 selectedPatternIndex: 0,
-        //                 selectedTabIndex: 0,
-        //                 isDrawerOpen: false,
-        //                 isEditorReadOnly: true,
-
-        //                 selectedPattern: {
-        //                     name: patternInfoJSON.name,
-        //                     files: [...patternInfoJSON.files.map((file, index) => {
-        //                         let loadedPatternFileInfo: LoadedPatternFileInfo = {
-        //                             sourceFile: file.defaultName,
-        //                             defaultName: file.defaultName,
-        //                             currentName: file.defaultName,
-        //                             defaultContent: patternFilesContent[index],
-        //                             currentContent: patternFilesContent[index],
-        //                         }
-
-        //                         return loadedPatternFileInfo;
-        //                     })],
-
-        //                     params: patternInfoJSON.params
-
-        //                 },
-
-
-        //             }
-
-        //             return appState;
-        //             //console.log(appState);
-        //             //dispatch(setState(appState));
-        //         })
-
-        //     })
-
-        // })
-
-
 
     }
 }
