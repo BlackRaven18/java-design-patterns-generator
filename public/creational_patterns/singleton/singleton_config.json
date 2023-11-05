@@ -1,0 +1,28 @@
+{
+    "name": "Builder",
+    "files": [
+        {
+            "defaultName": "Singleton.java",
+            "sourceFile": "Singleton.java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Singleton class name",
+                "defaultValue": "Singleton",
+                "replace": "$CLASSNAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Name of an Singleton instance",
+                "defaultValue": "INSTANCE",
+                "replace": "$INSTANCENAME$",
+                "filename": ""
+            }
+        ],
+        "selectParams": []
+    }
+}
