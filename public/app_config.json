@@ -8,6 +8,11 @@
                     "patternName": "Test_Pattern",
                     "patternDir": "test_pattern",
                     "configFile": "test_config.json"
+                },
+                {
+                    "patternName": "Singleton",
+                    "patternDir": "singleton",
+                    "configFile": "singleton_config.json"
                 }
             ]
         },

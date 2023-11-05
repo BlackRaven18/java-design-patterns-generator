@@ -28,18 +28,19 @@ const PatternsMenu = () => {
    const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
 
       dispatch(setSelectedPatternFamillyIndex(index));
-      handlePatternChange(patternFamilly.patterns[0], 0);
+      handlePatternChange(patternFamilly, index);
    }
 
-   const handlePatternChange = (pattern: PatternInfo, index: number) => {
+   const handlePatternChange = (patternFamilly: PatternFamillyInfo, index: number) => {
 
-   //    extendedPatternInfoCreator.getExtendedPatternInfo(pattern).then(extendedPatternInfo => {
+      extendedPatternInfoCreator.getExtendedPatternInfo(patternFamilly, patternFamilly.patterns[index]).then(extendedPatternInfo => {
 
-   //      dispatch(setSelectedPattern(extendedPatternInfo));
-   //      dispatch(setSelectedPatternIndex(index));
-   //      dispatch(setSelectedTabIndex(0));
-   //      dispatch(setIsEditorReadOnly(true));
-   //   })
+
+        dispatch(setSelectedPattern(extendedPatternInfo));
+        dispatch(setSelectedPatternIndex(index));
+        dispatch(setSelectedTabIndex(0));
+        dispatch(setIsEditorReadOnly(true));
+     })
 
    }
 
@@ -80,7 +81,7 @@ const PatternsMenu = () => {
                                           },
                                        }}
                                        selected={selectedPatternIndex === index}
-                                       onClick={() => handlePatternChange(pattern, index)}
+                                       onClick={() => handlePatternChange(appConfig.patternFamillies[selectedPatternFamillyIndex], index)}
                                     >
                                        <ListItemText primary={pattern.patternName} />
                                     </ListItemButton>

@@ -18,7 +18,7 @@ export default function ParamTextField(props: ParamTextFieldProps) {
             label={props.label}
             variant={"outlined"}
             multiline={isMultiline}
-            value={props.value}
+            value={props.value?? ""}
             onChange={e =>props.handleOnChange(e.target.value, props.index)}
             disabled={props.disabled}
         />
