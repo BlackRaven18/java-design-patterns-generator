@@ -2,19 +2,29 @@
     "patternFamillies": [
         {
             "patternFamillyName": "Creational",
-            "patternsDir": "creationa_patterns"
+            "patternsDir": "creational_patterns",
+            "patterns": [
+                {
+                    "patternName": "Test_Pattern",
+                    "patternDir": "test_pattern",
+                    "configFile": "test_config.json"
+                }
+            ]
         },
         {
             "patternFamillyName": "Structural",
-            "patternsDir": "creationa_patterns"
+            "patternsDir": "creationa_patterns",
+            "patterns": []
         },
         {
             "patternFamillyName": "Behavioral",
-            "patternsDir": "creationa_patterns"
+            "patternsDir": "creationa_patterns",
+            "patterns": []
         },
         {
             "patternFamillyName": "Others",
-            "patternsDir": "creationa_patterns"
+            "patternsDir": "creationa_patterns",
+            "patterns": []
         }
         
     ]

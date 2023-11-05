@@ -1,23 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import AppConfigJSON from "../app_config.json";
-import { Config, ExtendedPatternInfo, LoadedPatternFileInfo, TextFieldParamData } from "../types";
-
-
-
-interface AppState {
-    appConfig: Config,
-
-    isDrawerOpen: boolean,
-
-    selectedPatternFamillyIndex: number,
-    selectedPatternIndex: number,
-    selectedTabIndex: number,
-
-    selectedPattern: ExtendedPatternInfo,
-
-    isEditorReadOnly: boolean,
-
-}
+import { AppState, Config, ExtendedPatternInfo, LoadedPatternFileInfo, TextFieldParamData } from "../types";
 
 
 const initialState: AppState = {
