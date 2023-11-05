@@ -1,0 +1,18 @@
+{
+    "generateMethods": [
+        {
+            "language": "java",
+            "accessTypes": [
+                "public",
+                "private",
+                "protected"
+            ],
+            "returnTypes": [
+                "void",
+                "int",
+                "long"
+            ],
+            "bodyTemplate": "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n\t}"
+        }
+    ]
+}
