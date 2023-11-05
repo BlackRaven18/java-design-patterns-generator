@@ -77,7 +77,14 @@ export const appStateSlice = createSlice({
     initialState,
     reducers: {
         setState: (state, action: PayloadAction<AppState>) => {
-            state = action.payload;
+            
+            state.appConfig = action.payload.appConfig;
+            state.isDrawerOpen = action.payload.isDrawerOpen;
+            state.isEditorReadOnly = action.payload.isEditorReadOnly;
+            state.selectedPatternFamillyIndex = action.payload.selectedPatternFamillyIndex;
+            state.selectedPatternIndex = action.payload.selectedPatternIndex;
+            state.selectedTabIndex = action.payload.selectedTabIndex;
+            state.selectedPattern = action.payload.selectedPattern;
 
         },
         removeFilesFromPattern: (state, action: PayloadAction<{ filename: string }>) => {
