@@ -24,18 +24,18 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     const extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
 
-    useEffect(() => {
-        loadPatternFiles();
+    // useEffect(() => {
+    //     loadPatternFiles();
 
-    }, [])
+    // }, [])
 
-    const loadPatternFiles = () => {
+    // const loadPatternFiles = () => {
 
-        extendedPatternInfoCreator.getExtendedPatternInfo(selectedPattern).then(extendedPatternInfo => {
-            dispatch(setSelectedPattern(extendedPatternInfo));
-        })
+    //     extendedPatternInfoCreator.getExtendedPatternInfo(selectedPattern).then(extendedPatternInfo => {
+    //         dispatch(setSelectedPattern(extendedPatternInfo));
+    //     })
 
-    }
+    // }
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         dispatch(setSelectedTabIndex(newValue));

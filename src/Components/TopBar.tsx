@@ -37,7 +37,7 @@ export default function TopBar() {
                 <Typography
                     variant="h6" component="div" sx={{ flexGrow: 1 }}
                 >
-                    {selectedPattern.patternName}</Typography>
+                    {selectedPattern.name}</Typography>
             </Toolbar>
 
         </Box>

@@ -4,42 +4,71 @@ import { AppState, Config, ExtendedPatternInfo, LoadedPatternFileInfo, TextField
 
 
 const initialState: AppState = {
-    appConfig: AppConfigJSON,
-
-    isDrawerOpen: false,
+    appConfig: {
+        patternFamillies:[]
+    },
 
     selectedPatternFamillyIndex: 0,
     selectedPatternIndex: 0,
     selectedTabIndex: 0,
+    isDrawerOpen: false,
+    isEditorReadOnly: true,
 
     selectedPattern: {
-        patternName: AppConfigJSON.patternFamillies[0].patterns[0].patternName,
-        patternFilesDirectory: AppConfigJSON.patternFamillies[0].patterns[0].patternFilesDirectory,
-        files: [...AppConfigJSON.patternFamillies[0].patterns[0].files.map(file => {
-
-            let loadedPatternFileInfo: LoadedPatternFileInfo = {
-                sourceFile: file.defaultName,
-                defaultName: file.defaultName,
-                currentName: file.defaultName,
+        name: "",
+        files: [
+            {
+                sourceFile: "",
+                defaultName: "",
+                currentName: "",
                 defaultContent: "",
-                currentContent: "",
+                currentContent: ""
+
             }
-
-            return loadedPatternFileInfo;
-        })],
+        ],
         params: {
-            textFieldParams: [...AppConfigJSON.patternFamillies[0].patterns[0].params.textFieldParams.map(param => {
-                let extendedParam: TextFieldParamData = {
-                    ...param,
-                    currentValue: param.defaultValue,
-                }
-                return extendedParam;
-            })],
-            selectParams: AppConfigJSON.patternFamillies[0].patterns[0].params.selectParams
+            textFieldParams: [],
+            selectParams: []
         }
-    },
+    }
 
-    isEditorReadOnly: true,
+
+    // appConfig: AppConfigJSON,
+
+    // isDrawerOpen: false,
+
+    // selectedPatternFamillyIndex: 0,
+    // selectedPatternIndex: 0,
+    // selectedTabIndex: 0,
+
+    // selectedPattern: {
+    //     patternName: AppConfigJSON.patternFamillies[0].patterns[0].patternName,
+    //     patternFilesDirectory: AppConfigJSON.patternFamillies[0].patterns[0].patternFilesDirectory,
+    //     files: [...AppConfigJSON.patternFamillies[0].patterns[0].files.map(file => {
+
+    //         let loadedPatternFileInfo: LoadedPatternFileInfo = {
+    //             sourceFile: file.defaultName,
+    //             defaultName: file.defaultName,
+    //             currentName: file.defaultName,
+    //             defaultContent: "",
+    //             currentContent: "",
+    //         }
+
+    //         return loadedPatternFileInfo;
+    //     })],
+    //     params: {
+    //         textFieldParams: [...AppConfigJSON.patternFamillies[0].patterns[0].params.textFieldParams.map(param => {
+    //             let extendedParam: TextFieldParamData = {
+    //                 ...param,
+    //                 currentValue: param.defaultValue,
+    //             }
+    //             return extendedParam;
+    //         })],
+    //         selectParams: AppConfigJSON.patternFamillies[0].patterns[0].params.selectParams
+    //     }
+    // },
+
+    // isEditorReadOnly: true,
 
 }
 
@@ -47,6 +76,10 @@ export const appStateSlice = createSlice({
     name: 'appState',
     initialState,
     reducers: {
+        setState: (state, action: PayloadAction<AppState>) => {
+            state = action.payload;
+
+        },
         removeFilesFromPattern: (state, action: PayloadAction<{ filename: string }>) => {
             state.selectedPattern.files
                 = state.selectedPattern.files.filter(file => file.sourceFile !== action.payload.filename)
@@ -169,6 +202,7 @@ export const appStateSlice = createSlice({
 })
 
 export const {
+    setState,
     removeFilesFromPattern,
     removeTextFieldParamsConnectedToFile,
     removeTextFieldParams,
