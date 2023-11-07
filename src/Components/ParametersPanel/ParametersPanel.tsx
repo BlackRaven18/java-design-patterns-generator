@@ -1,12 +1,12 @@
-import { Box, Button, Chip, Divider, List, ListItem, Stack, TextField } from "@mui/material";
+import { Box, Divider, List, ListItem, Stack, TextField } from "@mui/material";
 import { editor } from "monaco-editor";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSelectedPatternCurrentFileName, updatePatternFilesContent, updatePatternTextFieldParamValue } from "../../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../../redux/store";
 import { ReplaceData } from "../../types";
 import CodeParamsReplacer from "../../utils/CodeParamsReplacer";
-import EditorReadOnlyContainer from "../ReadOnlySwitch/EditorReadOnlyContainer";
 import ParamTextField from "./ParamTextField";
+import ParametersAccordion from "./ParametersAccordion";
 import SelectParam from "./SelectParam";
 
 interface ParametersPanelProps {
@@ -87,7 +87,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     return (
         <Box
-            height='90vh'
+            height='90svh'
             sx={{
                 backgroundColor: "secondary.main",
                 padding: "10px",
@@ -109,7 +109,42 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                             value={selectedPattern.files[selectedTabIndex].currentName || ""}
                             onChange={e => handleFileNameChange(e.target.value, selectedTabIndex)}
                         />
-                        
+                        <Divider />
+
+                        <ParametersAccordion
+                            header="Global Pattern Parameters"
+                        >
+                            {selectedPattern.params.textFieldParams.map((param, index) => {
+                                if (param.shouldBeVisible && param.filename.length === 0) {
+
+                                    return (
+                                        <ParamTextField
+                                            key={index}
+                                            index={index}
+                                            label={param.label}
+                                            value={param.currentValue}
+                                            handleOnChange={handleParameterChange}
+                                            disabled={!isEditorReadOnly}
+                                        />
+                                    );
+
+                                }
+                            })}
+
+                            {selectedPattern.params.selectParams.map((selectParamData, index) => {
+                                return (
+                                    <SelectParam
+                                        key={index}
+                                        label={selectParamData.label}
+                                        fileNameToBeMultiplied={selectParamData.fileNameToBeMultiplied}
+                                        minValue={selectParamData.minNumber}
+                                        maxValue={selectParamData.maxNumber}
+                                        disabled={!isEditorReadOnly}
+                                    />
+                                );
+                            })}
+                        </ParametersAccordion>
+
                         {/* <Divider>
                             <Chip label="Options" />
                         </Divider>
@@ -122,59 +157,28 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                         >show editor value
                         </Button> */}
 
-                        <Divider>
+                        {/* <Divider>
                             <Chip label="Global pattern parameters" />
-                        </Divider>
+                        </Divider> */}
 
-                        {selectedPattern.params.textFieldParams.map((param, index) => {
-                            if (param.shouldBeVisible && param.filename.length === 0) {
-
-                                return (
-                                    <ParamTextField
-                                        key={index}
-                                        index={index}
-                                        label={param.label}
-                                        value={param.currentValue}
-                                        handleOnChange={handleParameterChange}
-                                        disabled={!isEditorReadOnly}
-                                    />
-                                );
-
-                            }
-                        })}
-
-                        {selectedPattern.params.selectParams.map((selectParamData, index) => {
-                            return (
-                                <SelectParam
-                                    key={index}
-                                    label={selectParamData.label}
-                                    fileNameToBeMultiplied={selectParamData.fileNameToBeMultiplied}
-                                    minValue={selectParamData.minNumber}
-                                    maxValue={selectParamData.maxNumber}
-                                    disabled={!isEditorReadOnly}
-                                />
-                            );
-                        })}
-
-                        <Divider>
-                            <Chip label="Local pattern parameters" />
-                        </Divider>
-
-                        {selectedPattern.params.textFieldParams.map((param, index) => {
-                            if (param.shouldBeVisible && param.filename === selectedPattern.files[selectedTabIndex].defaultName) {
-                                return (
-                                    <ParamTextField
-                                        key={index}
-                                        index={index}
-                                        label={param.label}
-                                        value={param.currentValue}
-                                        handleOnChange={handleParameterChange}
-                                        disabled={!isEditorReadOnly}
-                                    />
-                                );
-                            }
-                        })}
-
+                        <ParametersAccordion
+                            header="Local Pattern Parameters"
+                        >
+                            {selectedPattern.params.textFieldParams.map((param, index) => {
+                                if (param.shouldBeVisible && param.filename === selectedPattern.files[selectedTabIndex].defaultName) {
+                                    return (
+                                        <ParamTextField
+                                            key={index}
+                                            index={index}
+                                            label={param.label}
+                                            value={param.currentValue}
+                                            handleOnChange={handleParameterChange}
+                                            disabled={!isEditorReadOnly}
+                                        />
+                                    );
+                                }
+                            })}
+                        </ParametersAccordion>
 
                     </Stack>
                 </ListItem>

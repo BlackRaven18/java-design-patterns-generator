@@ -41,7 +41,7 @@ function App() {
       <Box
         sx={{
           backgroundColor: "primary.dark",
-          height: "100vh",
+          height: "100%",
 
         }}
       >
@@ -63,12 +63,16 @@ function App() {
 
           <Grid
             item
-            xs={3}
+            xs={4}
           >
             <ParametersPanel editorRef={parentEditorRef} />
 
           </Grid>
-          <Grid item xs={9}>
+          <Grid
+            item
+            xs={8}
+
+          >
 
             <EditorPanel setEditorParentRef={setEditorRef} />
 
