@@ -7,6 +7,9 @@ export default class ExtendedPatternInfoCreator {
 
     public async getExtendedPatternInfo(patternFamillyInfo: PatternFamillyInfo, patternInfo: PatternInfo) {
 
+        const methodGeneratorConfig
+            = await this.appStateUtils.getMethodGeneratorConfig("method_generator_config.json");
+
         const patternConfigFile: PatternConfigInfo = await this.appStateUtils.getPatternConfigFile(
             patternFamillyInfo,
             patternInfo
@@ -18,6 +21,7 @@ export default class ExtendedPatternInfoCreator {
         );
 
         let patternFilesContentWithReplacedParams: string[] = this.appStateUtils.getPatternFilesContentWithReplacedParams(
+            methodGeneratorConfig, 
             patternFilesContent,
             patternConfigFile.params.textFieldParams
         );

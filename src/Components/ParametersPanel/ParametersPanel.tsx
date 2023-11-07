@@ -17,6 +17,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const dispatch = useDispatch<AppDispatch>();
 
+    const methodGeneratorConfig = useSelector((state: RootState) => state.appState.methodGeneratorConfig);
     const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
@@ -75,7 +76,11 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
 
             filesWithReplacedParams.push(
-                codeParamsReplacer.getReplacedContent(selectedPattern.files[index].defaultContent, filteredReplaceData)
+                codeParamsReplacer.getReplacedContent(
+                    methodGeneratorConfig,
+                    selectedPattern.files[index].defaultContent,
+                    filteredReplaceData
+                )
             );
         })
 

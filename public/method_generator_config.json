@@ -12,7 +12,7 @@
                 "int",
                 "long"
             ],
-            "bodyTemplate": "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n\t}"
+            "bodyTemplate": "\t$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\t\treturn $RETURN_TYPE$;\n\t}"
         }
     ]
 }
