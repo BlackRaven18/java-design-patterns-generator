@@ -30,7 +30,7 @@
             {
                 "shouldBeVisible": true,
                 "label": "Builder methods",
-                "defaultValue": "public void buildPartA();\npublic void buildPartB();",
+                "defaultValue": "void buildPartA();\nvoid buildPartB();",
                 "replace": "$BUILDER_METHODS$",
                 "filename": ""
             },

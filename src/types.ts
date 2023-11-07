@@ -83,9 +83,15 @@ export interface MethodGeneratorConfig{
 
 export interface MethodGeneratePatternInfo{
     language: string,
+    defaultAccessType: string,
     accessTypes: string[],
-    returnTypes: string[],
+    returnTypes: ReturnTypeInfo[],
     bodyTemplate: string,
+}
+
+export interface ReturnTypeInfo{
+    returnType: string,
+    shouldReturn: string,
 }
 
 

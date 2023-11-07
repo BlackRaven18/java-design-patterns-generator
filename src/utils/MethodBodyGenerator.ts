@@ -1,4 +1,4 @@
-import { MethodGeneratorConfig } from "../types";
+import { MethodGeneratorConfig, ReturnTypeInfo } from "../types";
 
 export default class MethodBodyGenerator {
 
@@ -16,45 +16,15 @@ export default class MethodBodyGenerator {
 
     public generateMethod(methodGeneratorConfig: MethodGeneratorConfig, methodHeader: string) {
 
-        // const generateMethodConfig = {
-        //     generateMethods: [
-        //         {
-        //             language: "java",
-        //             accessTypes: [
-        //                 "public",
-        //                 "private",
-        //                 "protected"
-        //             ],
-        //             returnTypes: [
-        //                 "void",
-        //                 "int",
-        //                 "long"
-        //             ],
-        //             bodyTemplate: "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n}",
-        //         },
-        //         {
-        //             language: "c#",
-        //             accessTypes: [
-        //                 "public",
-        //                 "private",
-        //                 "protected"
-        //             ],
-        //             returnTypes: [
-        //                 "void",
-        //                 "int",
-        //                 "long"
-        //             ],
-        //             bodyTemplate: "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n\t}",
-        //         },
-        //     ]
-        // }
-    
-        //let methodHeader = "public void main();";
         let methodWithBody = "";
     
-        let accessType = "";
-        let returnType = "";
         let methodName = "";
+        let accessType = methodGeneratorConfig.generatePatterns[0].defaultAccessType;
+        let returnTypeInfo: ReturnTypeInfo = {
+            returnType: "",
+            shouldReturn: ""
+        }
+        
 
     
         methodGeneratorConfig.generatePatterns[0].accessTypes.forEach(supportedAccessType => {
@@ -64,19 +34,19 @@ export default class MethodBodyGenerator {
         })
     
         methodGeneratorConfig.generatePatterns[0].returnTypes.forEach(supportedReturnType => {
-            if (methodHeader.indexOf(supportedReturnType) !== -1) {
-                returnType = supportedReturnType;
+            if (methodHeader.indexOf(supportedReturnType.returnType) !== -1) {
+                returnTypeInfo = supportedReturnType;
             }
         })
 
-        console.log(returnType)
+        console.log(returnTypeInfo)
 
         
     
-        if (accessType.length > 0 && returnType.length > 0) {
+        if (returnTypeInfo.returnType.length > 0) {
             
     
-            methodName = this.getMiddleWord(methodHeader, returnType, "(")
+            methodName = this.getMiddleWord(methodHeader, returnTypeInfo.returnType, "(")
             let replaceData = [
                 {
                     replace: "$ACCESS_TYPE$",
@@ -84,7 +54,11 @@ export default class MethodBodyGenerator {
                 },
                 {
                     replace: "$RETURN_TYPE$",
-                    value: returnType
+                    value: returnTypeInfo.returnType
+                },
+                {
+                    replace: "$RETURN_TYPE_VALUE$",
+                    value: returnTypeInfo.shouldReturn
                 },
                 {
                     replace: "$NAME$",
@@ -115,29 +89,29 @@ export default class MethodBodyGenerator {
         return trimedMethodHeadersWithNoSemicolons;
     }
 
-    public getMethodWithBody = (methodSignature: string) => {
-        let methodWithBody = "";
+    // public getMethodWithBody = (methodSignature: string) => {
+    //     let methodWithBody = "";
 
-        if (methodSignature.includes("void")) {
-            methodWithBody = "\t@Override\n\t" + methodSignature + "{\n\n\t}\n\n";
-        } else {
-            methodWithBody = "\t@Override\n\t" + methodSignature + "{\n\t\treturn null;\n\t}\n\n";
-        }
+    //     if (methodSignature.includes("void")) {
+    //         methodWithBody = "\t@Override\n\t" + methodSignature + "{\n\n\t}\n\n";
+    //     } else {
+    //         methodWithBody = "\t@Override\n\t" + methodSignature + "{\n\t\treturn null;\n\t}\n\n";
+    //     }
 
-        return methodWithBody;
-    }
+    //     return methodWithBody;
+    // }
 
-    public getMethodsWithBodyAsString = (methodsSignaturesSeparatedWithNewLineSign: string) => {
-        let methodsHeaders = this.getMethodsHeaders(methodsSignaturesSeparatedWithNewLineSign);
+    // public getMethodsWithBodyAsString = (methodsSignaturesSeparatedWithNewLineSign: string) => {
+    //     let methodsHeaders = this.getMethodsHeaders(methodsSignaturesSeparatedWithNewLineSign);
 
-        let methodsWithBodyAsString = "";
+    //     let methodsWithBodyAsString = "";
 
-        methodsHeaders.forEach(methodSignature => {
-            methodsWithBodyAsString += this.getMethodWithBody(methodSignature);
-        })
+    //     methodsHeaders.forEach(methodSignature => {
+    //         methodsWithBodyAsString += this.getMethodWithBody(methodSignature);
+    //     })
 
-        return methodsWithBodyAsString;
+    //     return methodsWithBodyAsString;
     
-    }
+    // }
 
 }
