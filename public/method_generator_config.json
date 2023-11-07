@@ -1,5 +1,5 @@
 {
-    "generateMethods": [
+    "generatePatterns": [
         {
             "language": "java",
             "accessTypes": [
