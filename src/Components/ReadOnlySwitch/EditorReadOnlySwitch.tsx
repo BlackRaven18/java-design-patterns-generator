@@ -7,6 +7,8 @@ interface EditorReadOnlySwitchProps {
 }
 
 export default function EditorReadOnlySwitch(props: EditorReadOnlySwitchProps) {
+
+
     return (
         <FormControlLabel
             control={
