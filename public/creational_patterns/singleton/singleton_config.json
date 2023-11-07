@@ -1,5 +1,6 @@
 {
     "name": "Singleton",
+    "language": "java",
     "files": [
         {
             "defaultName": "Singleton.java",

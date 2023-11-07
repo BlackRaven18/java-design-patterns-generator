@@ -1,5 +1,6 @@
 {
     "name": "Builder",
+    "language": "cpp",
     "files": [
         {
             "defaultName": "Builder.cpp",

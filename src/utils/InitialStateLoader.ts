@@ -24,6 +24,7 @@ export default class InitialStateLoader {
         )
         const patternFilesContentWithReplacedParams = this.appStateUtils.getPatternFilesContentWithReplacedParams(
             methodGeneratorConfig,
+            patternInfo.language,
             patternFilesContent,
             patternInfo.params.textFieldParams
         )
@@ -40,6 +41,7 @@ export default class InitialStateLoader {
 
             selectedPattern: {
                 name: patternInfo.name,
+                language: patternInfo.language,
                 files: [...patternInfo.files.map((file, index) => {
                     let loadedPatternFileInfo: LoadedPatternFileInfo = {
                         sourceFile: file.defaultName,

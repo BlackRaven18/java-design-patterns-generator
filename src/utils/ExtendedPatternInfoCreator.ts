@@ -22,6 +22,7 @@ export default class ExtendedPatternInfoCreator {
 
         let patternFilesContentWithReplacedParams: string[] = this.appStateUtils.getPatternFilesContentWithReplacedParams(
             methodGeneratorConfig, 
+            patternConfigFile.language,
             patternFilesContent,
             patternConfigFile.params.textFieldParams
         );
@@ -29,6 +30,7 @@ export default class ExtendedPatternInfoCreator {
 
         let extendedPatternInfo: PatternConfigInfo = {
             name: patternConfigFile.name,
+            language: patternConfigFile.language,
             files: [...patternConfigFile.files.map((file, index) => {
                 let loadedPatternFileInfo: LoadedPatternFileInfo = {
                     sourceFile: file.sourceFile,

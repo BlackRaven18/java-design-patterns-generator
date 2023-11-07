@@ -19,6 +19,7 @@ const initialState: AppState = {
 
     selectedPattern: {
         name: "",
+        language: "",
         files: [
             {
                 sourceFile: "",

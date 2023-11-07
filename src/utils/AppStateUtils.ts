@@ -51,6 +51,7 @@ export default class AppStateUtils {
 
     public getPatternFilesContentWithReplacedParams(
         methodGeneratorConfig: MethodGeneratorConfig,
+        language: string,
         patternFilesContent: string[],
         params: TextFieldParamData[]
     ) {
@@ -67,7 +68,11 @@ export default class AppStateUtils {
             //let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName === file.defaultName);
 
             patternFilesContentWithReplacedParams.push(
-                this.codeParamsReplacer.getReplacedContent(methodGeneratorConfig, fileContent, replaceData)
+                this.codeParamsReplacer.getReplacedContent(
+                    methodGeneratorConfig,
+                    language,
+                    fileContent,
+                    replaceData)
             );
         })
 
