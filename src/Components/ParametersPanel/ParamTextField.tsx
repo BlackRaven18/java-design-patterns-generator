@@ -1,6 +1,6 @@
 import { TextField } from "@mui/material";
 
-interface ParamTextFieldProps{
+interface ParamTextFieldProps {
     index: number,
     label: string,
     value?: string,
@@ -10,16 +10,14 @@ interface ParamTextFieldProps{
 
 export default function ParamTextField(props: ParamTextFieldProps) {
 
-    let isMultiline = props.value?.includes("\n");
-
     return (
         <TextField
             key={props.index}
             label={props.label}
             variant={"outlined"}
-            multiline={isMultiline}
-            value={props.value?? ""}
-            onChange={e =>props.handleOnChange(e.target.value, props.index)}
+            multiline={true}
+            value={props.value ?? ""}
+            onChange={e => props.handleOnChange(e.target.value, props.index)}
             disabled={props.disabled}
         />
     );
