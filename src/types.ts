@@ -26,6 +26,7 @@ export interface PatternInfo{
 
 export interface PatternConfigInfo {
     name: string,
+    language: string,
     files: LoadedPatternFileInfo[],
     params: ParamsTypes,
 }

@@ -5,7 +5,7 @@ export default class MethodBodyGenerator {
     private getMiddleWord(text: string, beginWord: string, endWord: string): string {
         const beginWordIndes = text.indexOf(beginWord);
         const endWordIndex = text.indexOf(endWord);
-    
+
         if (beginWordIndes !== -1 && endWordIndex !== -1 && endWordIndex > beginWordIndes) {
             const fragment = text.substring(beginWordIndes + beginWord.length, endWordIndex);
             return fragment.trim();
@@ -14,25 +14,31 @@ export default class MethodBodyGenerator {
         }
     }
 
-    public generateMethod(methodGeneratorConfig: MethodGeneratorConfig, methodHeader: string) {
+    public generateMethod(
+        methodGeneratorConfig: MethodGeneratorConfig,
+        methodHeader: string,
+        language: string
+    ) {
+
+        console.log(language);
 
         let methodWithBody = "";
-    
+
         let methodName = "";
         let accessType = methodGeneratorConfig.generatePatterns[0].defaultAccessType;
         let returnTypeInfo: ReturnTypeInfo = {
             returnType: "",
             shouldReturn: ""
         }
-        
 
-    
+
+
         methodGeneratorConfig.generatePatterns[0].accessTypes.forEach(supportedAccessType => {
             if (methodHeader.indexOf(supportedAccessType) !== -1) {
                 accessType = supportedAccessType;
             }
         })
-    
+
         methodGeneratorConfig.generatePatterns[0].returnTypes.forEach(supportedReturnType => {
             if (methodHeader.indexOf(supportedReturnType.returnType) !== -1) {
                 returnTypeInfo = supportedReturnType;
@@ -40,8 +46,8 @@ export default class MethodBodyGenerator {
         })
 
         if (returnTypeInfo.returnType.length > 0) {
-            
-    
+
+
             methodName = this.getMiddleWord(methodHeader, returnTypeInfo.returnType, "(")
             let replaceData = [
                 {
@@ -61,15 +67,15 @@ export default class MethodBodyGenerator {
                     value: methodName
                 }
             ]
-    
+
             methodWithBody = methodGeneratorConfig.generatePatterns[0].bodyTemplate;
-    
+
             replaceData.forEach(data => {
                 methodWithBody = methodWithBody.replaceAll(data.replace, data.value);
             })
 
 
-    
+
         }
         //console.log(methodWithBody);
         return methodWithBody;
@@ -107,7 +113,7 @@ export default class MethodBodyGenerator {
     //     })
 
     //     return methodsWithBodyAsString;
-    
+
     // }
 
 }

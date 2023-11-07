@@ -78,6 +78,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
             filesWithReplacedParams.push(
                 codeParamsReplacer.getReplacedContent(
                     methodGeneratorConfig,
+                    selectedPattern.language,
                     selectedPattern.files[index].defaultContent,
                     filteredReplaceData
                 )

@@ -8,6 +8,7 @@ export default class CodeParamsReplacer {
 
     public getReplacedContent(
         methodGeneratorConfig: MethodGeneratorConfig,
+        language: string,
         codeWithParams: string,
         paramsToReplace: ReplaceData[]
     ) {
@@ -28,7 +29,7 @@ export default class CodeParamsReplacer {
 
                         trimedMethodHeaders.forEach(methodHeader => {
                             methodsWithBodyAsString += this.methodBodyGenerator.generateMethod(
-                                methodGeneratorConfig, methodHeader) + "\n\n";
+                                methodGeneratorConfig, methodHeader, language) + "\n\n";
                         })
 
                         //console.log(methodsWithBodyAsString);
