@@ -19,6 +19,7 @@ export default function ParamTextField(props: ParamTextFieldProps) {
             value={props.value ?? ""}
             onChange={e => props.handleOnChange(e.target.value, props.index)}
             disabled={props.disabled}
+            spellCheck={false}
         />
     );
 }
