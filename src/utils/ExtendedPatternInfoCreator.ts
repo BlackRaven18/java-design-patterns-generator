@@ -32,6 +32,7 @@ export default class ExtendedPatternInfoCreator {
             files: [...patternConfigFile.files.map((file, index) => {
                 let loadedPatternFileInfo: LoadedPatternFileInfo = {
                     sourceFile: file.sourceFile,
+                    extension: file.extension,
                     defaultName: file.defaultName,
                     currentName: file.defaultName,
                     defaultContent: patternFilesContent[index],

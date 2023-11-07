@@ -24,6 +24,7 @@ const initialState: AppState = {
                 sourceFile: "",
                 defaultName: "",
                 currentName: "",
+                extension: "",
                 defaultContent: "",
                 currentContent: ""
 
@@ -109,6 +110,7 @@ export const appStateSlice = createSlice({
                 state.selectedPattern.files.push({
                     sourceFile: action.payload.file.sourceFile,
                     defaultName: newFileName,
+                    extension: action.payload.file.extension,
                     currentName: newFileName,
                     defaultContent: action.payload.file.defaultContent,
                     currentContent: action.payload.file.currentContent,

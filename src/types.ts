@@ -37,6 +37,7 @@ export interface Config{
 export interface PatternFileInfo {
     defaultName: string,
     sourceFile: string,
+    extension: string,
 }
 
 export interface LoadedPatternFileInfo extends PatternFileInfo {

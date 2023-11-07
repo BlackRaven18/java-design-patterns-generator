@@ -43,6 +43,7 @@ export default class InitialStateLoader {
                 files: [...patternInfo.files.map((file, index) => {
                     let loadedPatternFileInfo: LoadedPatternFileInfo = {
                         sourceFile: file.defaultName,
+                        extension: file.extension,
                         defaultName: file.defaultName,
                         currentName: file.defaultName,
                         defaultContent: patternFilesContent[index],

@@ -18,18 +18,36 @@
         },
         {
             "patternFamillyName": "Structural",
-            "patternsDir": "creational_patterns",
-            "patterns": []
+            "patternsDir": "others",
+            "patterns": [
+                {
+                    "patternName": "Builder(C++)",
+                    "patternDir": "builder_cpp",
+                    "configFile": "builder_config.json"
+                }
+            ]
         },
         {
             "patternFamillyName": "Behavioral",
-            "patternsDir": "creational_patterns",
-            "patterns": []
+            "patternsDir": "others",
+            "patterns": [
+                {
+                    "patternName": "Builder(C++)",
+                    "patternDir": "builder_cpp",
+                    "configFile": "builder_config.json"
+                }
+            ]
         },
         {
             "patternFamillyName": "Others",
-            "patternsDir": "creational_patterns",
-            "patterns": []
+            "patternsDir": "others",
+            "patterns": [
+                {
+                    "patternName": "Builder(C++)",
+                    "patternDir": "builder_cpp",
+                    "configFile": "builder_config.json"
+                }
+            ]
         }
         
     ]

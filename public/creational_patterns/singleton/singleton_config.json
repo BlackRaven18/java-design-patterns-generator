@@ -3,7 +3,8 @@
     "files": [
         {
             "defaultName": "Singleton.java",
-            "sourceFile": "Singleton.java"
+            "sourceFile": "Singleton.java",
+            "extension": "java"
         }
     ],
     "params": {

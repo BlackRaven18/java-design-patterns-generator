@@ -39,10 +39,6 @@ export default class MethodBodyGenerator {
             }
         })
 
-        console.log(returnTypeInfo)
-
-        
-    
         if (returnTypeInfo.returnType.length > 0) {
             
     
