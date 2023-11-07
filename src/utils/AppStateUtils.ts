@@ -2,7 +2,7 @@ import { PatternFamillyInfo, PatternInfo, PatternConfigInfo, TextFieldParamData,
 import CodeParamsReplacer from "./CodeParamsReplacer";
 import FileReader from "./FileReader";
 
-export default class AppStateUtils{
+export default class AppStateUtils {
 
     private fileReader = new FileReader();
     private codeParamsReplacer = new CodeParamsReplacer();
@@ -49,7 +49,11 @@ export default class AppStateUtils{
         return patternFilesContent;
     }
 
-    public getPatternFilesContentWithReplacedParams(patternFilesContent: string[], params: TextFieldParamData[]) {
+    public getPatternFilesContentWithReplacedParams(
+        methodGeneratorConfig: MethodGeneratorConfig,
+        patternFilesContent: string[],
+        params: TextFieldParamData[]
+    ) {
         let replaceData = params.map(param => {
             return {
                 replace: param.replace,
@@ -63,7 +67,7 @@ export default class AppStateUtils{
             //let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName === file.defaultName);
 
             patternFilesContentWithReplacedParams.push(
-                this.codeParamsReplacer.getReplacedContent(fileContent, replaceData)
+                this.codeParamsReplacer.getReplacedContent(methodGeneratorConfig, fileContent, replaceData)
             );
         })
 

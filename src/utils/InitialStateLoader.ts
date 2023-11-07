@@ -23,6 +23,7 @@ export default class InitialStateLoader {
             appConfig.patternFamillies[0].patterns[0]
         )
         const patternFilesContentWithReplacedParams = this.appStateUtils.getPatternFilesContentWithReplacedParams(
+            methodGeneratorConfig,
             patternFilesContent,
             patternInfo.params.textFieldParams
         )

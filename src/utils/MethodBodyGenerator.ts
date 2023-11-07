@@ -1,3 +1,4 @@
+import { MethodGeneratorConfig } from "../types";
 
 export default class MethodBodyGenerator {
 
@@ -13,60 +14,67 @@ export default class MethodBodyGenerator {
         }
     }
 
-    public generateMethod(language: string) {
+    public generateMethod(methodGeneratorConfig: MethodGeneratorConfig, methodHeader: string) {
 
-        const generateMethodConfig = {
-            generateMethods: [
-                {
-                    language: "java",
-                    accessTypes: [
-                        "public",
-                        "private",
-                        "protected"
-                    ],
-                    returnTypes: [
-                        "void",
-                        "int",
-                        "long"
-                    ],
-                    bodyTemplate: "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n}",
-                },
-                {
-                    language: "c#",
-                    accessTypes: [
-                        "public",
-                        "private",
-                        "protected"
-                    ],
-                    returnTypes: [
-                        "void",
-                        "int",
-                        "long"
-                    ],
-                    bodyTemplate: "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n\t}",
-                },
-            ]
-        }
+        // const generateMethodConfig = {
+        //     generateMethods: [
+        //         {
+        //             language: "java",
+        //             accessTypes: [
+        //                 "public",
+        //                 "private",
+        //                 "protected"
+        //             ],
+        //             returnTypes: [
+        //                 "void",
+        //                 "int",
+        //                 "long"
+        //             ],
+        //             bodyTemplate: "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n}",
+        //         },
+        //         {
+        //             language: "c#",
+        //             accessTypes: [
+        //                 "public",
+        //                 "private",
+        //                 "protected"
+        //             ],
+        //             returnTypes: [
+        //                 "void",
+        //                 "int",
+        //                 "long"
+        //             ],
+        //             bodyTemplate: "$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\treturn $ACCESS_TYPE$;\n\t}",
+        //         },
+        //     ]
+        // }
     
-        let methodHeader = "public void main();";
+        //let methodHeader = "public void main();";
+        let methodWithBody = "";
     
         let accessType = "";
         let returnType = "";
         let methodName = "";
+
     
-        generateMethodConfig.generateMethods[0].accessTypes.forEach(supportedAccessType => {
+        methodGeneratorConfig.generatePatterns[0].accessTypes.forEach(supportedAccessType => {
             if (methodHeader.indexOf(supportedAccessType) !== -1) {
                 accessType = supportedAccessType;
             }
         })
     
-        generateMethodConfig.generateMethods[0].returnTypes.forEach(supportedReturnType => {
+        methodGeneratorConfig.generatePatterns[0].returnTypes.forEach(supportedReturnType => {
             if (methodHeader.indexOf(supportedReturnType) !== -1) {
                 returnType = supportedReturnType;
             }
         })
+
+        console.log(returnType)
+
+        
     
         if (accessType.length > 0 && returnType.length > 0) {
+            
     
             methodName = this.getMiddleWord(methodHeader, returnType, "(")
             let replaceData = [
@@ -84,14 +92,17 @@ export default class MethodBodyGenerator {
                 }
             ]
     
-            let methodWithBody = generateMethodConfig.generateMethods[0].bodyTemplate;
+            methodWithBody = methodGeneratorConfig.generatePatterns[0].bodyTemplate;
     
             replaceData.forEach(data => {
                 methodWithBody = methodWithBody.replaceAll(data.replace, data.value);
             })
+
+
     
-            console.log(methodWithBody);
         }
+        //console.log(methodWithBody);
+        return methodWithBody;
     }
 
     public getMethodsHeaders = (methodsSignaturesSeparatedWithNewLineSign: string) => {
