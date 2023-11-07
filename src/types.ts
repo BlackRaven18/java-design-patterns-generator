@@ -1,5 +1,6 @@
 export interface AppState{
     appConfig: Config,
+    methodGeneratorConfig: MethodGeneratorConfig,
 
     selectedPatternFamillyIndex: number,
     selectedPatternIndex: number,

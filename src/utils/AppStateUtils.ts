@@ -1,4 +1,4 @@
-import { PatternFamillyInfo, PatternInfo, PatternConfigInfo, TextFieldParamData, Config } from "../types";
+import { PatternFamillyInfo, PatternInfo, PatternConfigInfo, TextFieldParamData, Config, MethodGeneratorConfig } from "../types";
 import CodeParamsReplacer from "./CodeParamsReplacer";
 import FileReader from "./FileReader";
 
@@ -12,6 +12,14 @@ export default class AppStateUtils{
         const fileConfigAsString = await this.fileReader.handleFileRead(path);
 
         return JSON.parse(fileConfigAsString);
+
+    }
+
+    public async getMethodGeneratorConfig(path: string): Promise<MethodGeneratorConfig> {
+
+        const configAsString = await this.fileReader.handleFileRead(path);
+
+        return JSON.parse(configAsString);
 
     }
 
