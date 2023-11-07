@@ -76,6 +76,17 @@ export interface ReplaceData {
     fileName?: string
 }
 
+export interface MethodGeneratorConfig{
+    generatePatterns: MethodGeneratePatternInfo[],
+}
+
+export interface MethodGeneratePatternInfo{
+    language: string,
+    accessTypes: string[],
+    returnTypes: string[],
+    bodyTemplate: string,
+}
+
 
 
 
