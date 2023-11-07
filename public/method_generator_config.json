@@ -2,17 +2,27 @@
     "generatePatterns": [
         {
             "language": "java",
+            "defaultAccessType": "public",
             "accessTypes": [
                 "public",
                 "private",
                 "protected"
             ],
             "returnTypes": [
-                "void",
-                "int",
-                "long"
+                {
+                    "returnType": "void",
+                    "shouldReturn": ""
+                },
+                {
+                    "returnType": "int",
+                    "shouldReturn": "return 0;"
+                },
+                {
+                    "returnType": "long",
+                    "shouldReturn": "return 0;"
+                }
             ],
-            "bodyTemplate": "\t$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\t\treturn $RETURN_TYPE$;\n\t}"
+            "bodyTemplate": "\t@Override\n\t$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\t\t$RETURN_TYPE_VALUE$\n\t}"
         }
     ]
 }
