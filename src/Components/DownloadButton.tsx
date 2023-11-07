@@ -1,11 +1,10 @@
 import { Box, Button } from '@mui/material';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
-import { PatternInfo } from '../types';
+import { PatternConfigInfo, PatternInfo } from '../types';
 
 interface DownloadButtonProps {
-    editorValueArray: string[];
-    selectedPattern: PatternInfo;
+    selectedPattern: PatternConfigInfo;
 }
 
 
@@ -13,32 +12,36 @@ const DownloadButton = (props: DownloadButtonProps) => {
     const zip = new JSZip();
 
     const handleDownload = async () => {
-        // props.editorValueArray.map((value, index) => {
-        //     zip.file(props.selectedPattern.files[index].defaultName, value);
-        // })
+        props.selectedPattern.files.forEach(file => {
+            zip.file(file.currentName, file.currentContent);
+        })
 
-        // const content = await zip.generateAsync({ type: 'blob' });
+        const content = await zip.generateAsync({ type: 'blob' });
 
-        // const zipFile = new File([content],
-        //     props.selectedPattern.patternName + ".zip", { type: 'application/zip' });
+        const zipFile = new File([content],
+            props.selectedPattern.name + ".zip", { type: 'application/zip' });
 
 
-        // saveAs(zipFile);
+        saveAs(zipFile);
 
     }
 
     return (
         <Box
             sx={{
-               margin: 'auto',
-               alignItems: "center",
-               justifyContent: "center",
-            
+                margin: 'auto',
+                alignItems: "center",
+                justifyContent: "center",
+
             }}
         >
             <Button
                 onClick={handleDownload}
                 variant='contained'
+                sx={{
+                    color: "secondary.contrastText",
+                    backgroundColor: "secondary.main"
+                }}
             >
                 Download pattern files
             </Button>
