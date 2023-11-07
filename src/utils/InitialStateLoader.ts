@@ -9,6 +9,9 @@ export default class InitialStateLoader {
     public async loadInitialState(): Promise<AppState> {
 
         const appConfig = await this.appStateUtils.getConfig("app_config.json");
+        const methodGeneratorConfig
+            = await this.appStateUtils.getMethodGeneratorConfig("method_generator_config.json");
+
         const patternInfo = await this.appStateUtils.getPatternConfigFile(
             appConfig.patternFamillies[0],
             appConfig.patternFamillies[0].patterns[0]
@@ -26,6 +29,7 @@ export default class InitialStateLoader {
 
         let appState: AppState = {
             appConfig: appConfig,
+            methodGeneratorConfig: methodGeneratorConfig,
 
             selectedPatternFamillyIndex: 0,
             selectedPatternIndex: 0,

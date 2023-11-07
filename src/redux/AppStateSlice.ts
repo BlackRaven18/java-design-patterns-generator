@@ -7,6 +7,10 @@ const initialState: AppState = {
         patternFamillies: []
     },
 
+    methodGeneratorConfig: {
+        generatePatterns: [],
+    },
+
     selectedPatternFamillyIndex: 0,
     selectedPatternIndex: 0,
     selectedTabIndex: 0,
@@ -40,6 +44,7 @@ export const appStateSlice = createSlice({
         setState: (state, action: PayloadAction<AppState>) => {
 
             state.appConfig = action.payload.appConfig;
+            state.methodGeneratorConfig = action.payload.methodGeneratorConfig;
             state.isDrawerOpen = action.payload.isDrawerOpen;
             state.isEditorReadOnly = action.payload.isEditorReadOnly;
             state.selectedPatternFamillyIndex = action.payload.selectedPatternFamillyIndex;
