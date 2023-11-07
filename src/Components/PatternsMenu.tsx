@@ -24,8 +24,6 @@ const PatternsMenu = () => {
    const extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
 
    const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
-      console.log(patternFamilly)
-      console.log(index);
 
       dispatch(setSelectedPatternFamillyIndex(index));
       //handlePatternChange(patternFamilly, 0);
@@ -76,6 +74,7 @@ const PatternsMenu = () => {
                                        key={index}
                                        sx={{
                                           pl: 4,
+                                          backgroundColor: "primary.main",
                                           '&.Mui-selected': {
                                              backgroundColor: 'action.active',
                                           },
