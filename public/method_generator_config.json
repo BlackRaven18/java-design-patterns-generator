@@ -23,6 +23,30 @@
                 }
             ],
             "bodyTemplate": "\t@Override\n\t$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\t\t$RETURN_TYPE_VALUE$\n\t}"
+        },
+        {
+            "language": "cpp",
+            "defaultAccessType": "",
+            "accessTypes": [
+                "public",
+                "private",
+                "protected"
+            ],
+            "returnTypes": [
+                {
+                    "returnType": "void",
+                    "shouldReturn": ""
+                },
+                {
+                    "returnType": "int",
+                    "shouldReturn": "return 0;"
+                },
+                {
+                    "returnType": "long",
+                    "shouldReturn": "return 0;"
+                }
+            ],
+            "bodyTemplate": "\t$RETURN_TYPE$ $NAME$() const override\n\t{\n\t\t$RETURN_TYPE_VALUE$\n\t}"
         }
     ]
 }

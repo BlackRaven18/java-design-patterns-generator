@@ -9,7 +9,7 @@ public:
         this->product = new $PRODUCT_CLASSNAME$();
     }
 
-    $BUILDER_METHODS_EXTENDED$
+$BUILDER_METHODS_EXTENDED$
 
     // void ProducePartA() const override
     // {

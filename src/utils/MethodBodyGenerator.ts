@@ -1,4 +1,4 @@
-import { MethodGeneratorConfig, ReturnTypeInfo } from "../types";
+import { MethodGeneratePatternInfo, MethodGeneratorConfig, ReturnTypeInfo } from "../types";
 
 export default class MethodBodyGenerator {
 
@@ -20,12 +20,25 @@ export default class MethodBodyGenerator {
         language: string
     ) {
 
-        console.log(language);
+        let methodGeneratorPattern: MethodGeneratePatternInfo = {
+            language: "",
+            defaultAccessType: "",
+            accessTypes: [],
+            returnTypes:[],
+            bodyTemplate: "",
+
+        }
+
+        methodGeneratorConfig.generatePatterns.forEach(generatePattern => {
+            if(generatePattern.language === language){
+                methodGeneratorPattern = generatePattern;
+            }
+        })
 
         let methodWithBody = "";
 
         let methodName = "";
-        let accessType = methodGeneratorConfig.generatePatterns[0].defaultAccessType;
+        let accessType = methodGeneratorPattern.defaultAccessType;
         let returnTypeInfo: ReturnTypeInfo = {
             returnType: "",
             shouldReturn: ""
@@ -33,17 +46,21 @@ export default class MethodBodyGenerator {
 
 
 
-        methodGeneratorConfig.generatePatterns[0].accessTypes.forEach(supportedAccessType => {
+        methodGeneratorPattern.accessTypes.forEach(supportedAccessType => {
             if (methodHeader.indexOf(supportedAccessType) !== -1) {
                 accessType = supportedAccessType;
             }
         })
 
-        methodGeneratorConfig.generatePatterns[0].returnTypes.forEach(supportedReturnType => {
+        methodGeneratorPattern.returnTypes.forEach(supportedReturnType => {
             if (methodHeader.indexOf(supportedReturnType.returnType) !== -1) {
                 returnTypeInfo = supportedReturnType;
             }
         })
+
+        if(returnTypeInfo.returnType.length  <= 0){
+            return "\t// unsupported parameters in method header: " + methodHeader;
+        }
 
         if (returnTypeInfo.returnType.length > 0) {
 
@@ -68,7 +85,7 @@ export default class MethodBodyGenerator {
                 }
             ]
 
-            methodWithBody = methodGeneratorConfig.generatePatterns[0].bodyTemplate;
+            methodWithBody = methodGeneratorPattern.bodyTemplate;
 
             replaceData.forEach(data => {
                 methodWithBody = methodWithBody.replaceAll(data.replace, data.value);

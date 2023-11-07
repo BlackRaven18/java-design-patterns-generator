@@ -22,21 +22,6 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
 
-    const extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
-
-    // useEffect(() => {
-    //     loadPatternFiles();
-
-    // }, [])
-
-    // const loadPatternFiles = () => {
-
-    //     extendedPatternInfoCreator.getExtendedPatternInfo(selectedPattern).then(extendedPatternInfo => {
-    //         dispatch(setSelectedPattern(extendedPatternInfo));
-    //     })
-
-    // }
-
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         dispatch(setSelectedTabIndex(newValue));
 
@@ -105,7 +90,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 height="85vh"
                 theme="vs-dark"
                 defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
-                language={selectedPattern.files[selectedTabIndex].sourceFile.split('.')[1]} //java
+                language={selectedPattern.language}
                 value={selectedPattern.files[selectedTabIndex].currentContent}
                 onChange={(value) => handleEditorChange(value ?? "")}
                 onMount={handleEditorDidMount}
