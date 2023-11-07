@@ -4,6 +4,7 @@ import { AppDispatch, RootState } from "../redux/store";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDispatch } from "react-redux";
 import { setIsDrawerOpen } from "../redux/AppStateSlice";
+import EditorReadOnlyContainer from "./ReadOnlySwitch/EditorReadOnlyContainer";
 
 export default function TopBar() {
 
@@ -37,7 +38,10 @@ export default function TopBar() {
                 <Typography
                     variant="h6" component="div" sx={{ flexGrow: 1 }}
                 >
-                    {selectedPattern.name}</Typography>
+                    {selectedPattern.name}
+                </Typography>
+
+                <EditorReadOnlyContainer />
             </Toolbar>
 
         </Box>
