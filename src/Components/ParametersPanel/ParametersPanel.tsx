@@ -5,8 +5,8 @@ import { changeSelectedPatternCurrentFileName, updatePatternFilesContent, update
 import { AppDispatch, RootState } from "../../redux/store";
 import { ReplaceData } from "../../types";
 import CodeParamsReplacer from "../../utils/CodeParamsReplacer";
-import ParamTextField from "./ParamTextField";
 import EditorReadOnlyContainer from "../ReadOnlySwitch/EditorReadOnlyContainer";
+import ParamTextField from "./ParamTextField";
 import SelectParam from "./SelectParam";
 
 interface ParametersPanelProps {
@@ -50,6 +50,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     const updateSelectedPatternFiles = (params: string[]) => {
         let replaceData: ReplaceData[] = [];
+        let filesWithReplacedParams: string[] = [];
 
         for (let i = 0; i < params.length; i++) {
 
@@ -67,10 +68,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
             }
         }
 
-        //--------------------------------------------
-
-        let filesWithReplacedParams: string[] = [];
-
         selectedPattern.files.forEach((file, index) => {
             let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName === file.defaultName);
 
@@ -86,8 +83,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         })
 
         dispatch(updatePatternFilesContent({ newContent: filesWithReplacedParams }));
-
-
     }
 
     return (
@@ -114,13 +109,24 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                             value={selectedPattern.files[selectedTabIndex].currentName || ""}
                             onChange={e => handleFileNameChange(e.target.value, selectedTabIndex)}
                         />
+                        
+                        {/* <Divider>
+                            <Chip label="Options" />
+                        </Divider>
+
+
+                        <Button
+                            onClick={() => {
+                                alert(editorRef.current?.getValue());
+                            }}
+                        >show editor value
+                        </Button> */}
+
                         <Divider>
                             <Chip label="Global pattern parameters" />
                         </Divider>
 
-                        {/* TODO: Try to make it more clear */}
                         {selectedPattern.params.textFieldParams.map((param, index) => {
-                            // global params
                             if (param.shouldBeVisible && param.filename.length === 0) {
 
                                 return (
@@ -169,16 +175,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                             }
                         })}
 
-                        <Button
-                            onClick={() => {
-                                alert(editorRef.current?.getValue());
-                            }}
-                        >show editor value
-                        </Button>
-
-
-
-                        <EditorReadOnlyContainer />
 
                     </Stack>
                 </ListItem>
