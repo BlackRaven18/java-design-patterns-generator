@@ -2,24 +2,24 @@
     "name": "Builder",
     "files": [
         {
-            "defaultName": "Builder.java",
-            "sourceFile": "Builder.java",
-            "extension": "java"
+            "defaultName": "Builder.cpp",
+            "sourceFile": "Builder.cpp",
+            "extension": "cpp"
         },
         {
-            "defaultName": "Director.java",
-            "sourceFile": "Director.java",
-            "extension": "java"
+            "defaultName": "Director.cpp",
+            "sourceFile": "Director.cpp",
+            "extension": "cpp"
         },
         {
-            "defaultName": "ConcreteBuilder.java",
-            "sourceFile": "ConcreteBuilder.java",
-            "extension": "java"
+            "defaultName": "ConcreteBuilder.cpp",
+            "sourceFile": "ConcreteBuilder.cpp",
+            "extension": "cpp"
         },
         {
-            "defaultName": "Product.java",
-            "sourceFile": "Product.java",
-            "extension": "java"
+            "defaultName": "Product.cpp",
+            "sourceFile": "Product.cpp",
+            "extension": "cpp"
         }
     ],
     "params": {
@@ -34,7 +34,7 @@
             {
                 "shouldBeVisible": true,
                 "label": "Builder methods",
-                "defaultValue": "void buildPartA();\nvoid buildPartB();",
+                "defaultValue": "virtual void ProducePartA() const = 0;\nvirtual void ProducePartB() const = 0;\nvirtual void ProducePartC() const = 0;",
                 "replace": "$BUILDER_METHODS$",
                 "filename": ""
             },
@@ -63,14 +63,14 @@
                 "shouldBeVisible": true,
                 "label": "Concrete Builder class name",
                 "defaultValue": "ConcreteBuilder",
-                "replace": "$CONCRETE_BUILDER_CLASSNAME1$",
-                "filename": "ConcreteBuilder.java"
+                "replace": "$CONCRETE_BUILDER_CLASSNAME$",
+                "filename": "ConcreteBuilder.cpp"
             }
         ],
         "selectParams": [
             {
                 "label": "Number of ConcreteBuilder classes",
-                "fileNameToBeMultiplied": "ConcreteBuilder.java",
+                "fileNameToBeMultiplied": "ConcreteBuilder.cpp",
                 "minNumber": 1,
                 "maxNumber": 5
             }

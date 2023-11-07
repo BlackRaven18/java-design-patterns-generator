@@ -1,0 +1,3 @@
+class $PRODUCT_CLASSNAME${
+    // Product code here...
+}

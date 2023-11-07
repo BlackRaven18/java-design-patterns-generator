@@ -24,9 +24,11 @@ const PatternsMenu = () => {
    const extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
 
    const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
+      console.log(patternFamilly)
+      console.log(index);
 
       dispatch(setSelectedPatternFamillyIndex(index));
-      handlePatternChange(patternFamilly, index);
+      //handlePatternChange(patternFamilly, 0);
    }
 
    const handlePatternChange = (patternFamilly: PatternFamillyInfo, index: number) => {
