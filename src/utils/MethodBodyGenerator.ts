@@ -32,29 +32,34 @@ export default class MethodBodyGenerator {
         methodGeneratorConfig.generatePatterns.forEach(generatePattern => {
             if(generatePattern.language === language){
                 methodGeneratorPattern = generatePattern;
+                return;
             }
         })
 
         let methodWithBody = "";
 
         let methodName = "";
+        let methodParams = "";
         let accessType = methodGeneratorPattern.defaultAccessType;
         let returnTypeInfo: ReturnTypeInfo = {
             returnType: "",
             shouldReturn: ""
         }
+        let methodHeaderWithNoParams = methodHeader.substring(0, methodHeader.indexOf("("));
 
 
 
         methodGeneratorPattern.accessTypes.forEach(supportedAccessType => {
             if (methodHeader.indexOf(supportedAccessType) !== -1) {
                 accessType = supportedAccessType;
+                return;
             }
         })
 
         methodGeneratorPattern.returnTypes.forEach(supportedReturnType => {
-            if (methodHeader.indexOf(supportedReturnType.returnType) !== -1) {
+            if (methodHeaderWithNoParams.indexOf(supportedReturnType.returnType) !== -1) {
                 returnTypeInfo = supportedReturnType;
+                return;
             }
         })
 
@@ -66,6 +71,7 @@ export default class MethodBodyGenerator {
 
 
             methodName = this.getMiddleWord(methodHeader, returnTypeInfo.returnType, "(")
+            methodParams = this.getMiddleWord(methodHeader, "(", ")");
             let replaceData = [
                 {
                     replace: "$ACCESS_TYPE$",
@@ -82,6 +88,10 @@ export default class MethodBodyGenerator {
                 {
                     replace: "$NAME$",
                     value: methodName
+                },
+                {
+                    replace: "$PARAMS$",
+                    value: methodParams
                 }
             ]
 

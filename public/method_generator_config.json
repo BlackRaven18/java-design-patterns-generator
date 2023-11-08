@@ -22,7 +22,7 @@
                     "shouldReturn": "return 0;"
                 }
             ],
-            "bodyTemplate": "\t@Override\n\t$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$(){\n\t\t$RETURN_TYPE_VALUE$\n\t}"
+            "bodyTemplate": "\t@Override\n\t$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$($PARAMS$){\n\t\t$RETURN_TYPE_VALUE$\n\t}"
         },
         {
             "language": "cpp",
@@ -46,7 +46,7 @@
                     "shouldReturn": "return 0;"
                 }
             ],
-            "bodyTemplate": "\t$RETURN_TYPE$ $NAME$() const override\n\t{\n\t\t$RETURN_TYPE_VALUE$\n\t}"
+            "bodyTemplate": "\t$RETURN_TYPE$ $NAME$($PARAMS$) const override\n\t{\n\t\t$RETURN_TYPE_VALUE$\n\t}"
         }
     ]
 }
