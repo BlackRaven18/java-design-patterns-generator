@@ -11,6 +11,7 @@ import {
 import { AppDispatch, RootState } from "../redux/store";
 import { PatternFamillyInfo } from "../types";
 import ExtendedPatternInfoCreator from "../utils/ExtendedPatternInfoCreator";
+import { useState } from "react";
 
 const PatternsMenu = () => {
 
@@ -19,7 +20,8 @@ const PatternsMenu = () => {
    const appConfig = useSelector((state: RootState) => state.appState.appConfig);
    const selectedPatternFamillyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamillyIndex);
    const selectedPatternIndex = useSelector((state: RootState) => state.appState.selectedPatternIndex);
-;
+
+   const [isUnsavedProgressDialogOpen, setIsUnsavedProgressDialogOpen] = useState(false);
 
    const extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
 
