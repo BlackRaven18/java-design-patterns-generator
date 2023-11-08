@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import appStateReducer from './AppStateSlice'
-//import counterReducer from '../features/counter/counterSlice'
+import unsavedProgressState from "./UnsavedProgressSlice"
 
 export const store = configureStore({
   reducer: {
     appState: appStateReducer,
-    //counter: counterReducer,
+    unsavedProgressState: unsavedProgressState,
   },
 })
 
