@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedPattern, setSelectedTabIndex, updatePatternFile } from "../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../redux/store";
 import ExtendedPatternInfoCreator from "../utils/ExtendedPatternInfoCreator";
+import { setIsChangesMade } from "../redux/UnsavedProgressSlice";
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
@@ -30,6 +31,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const handleEditorChange = (value: string) => {
 
         if (!isEditorReadOnly) {
+            dispatch(setIsChangesMade(true));
             dispatch(updatePatternFile({ newContent: value, fileIndex: selectedTabIndex }));
         }
     }
