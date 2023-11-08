@@ -51,6 +51,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 variant="scrollable"
                 scrollButtons="auto"
                 sx={{
+                    height: "5svh",
                     marginBottom: "2px",
                     backgroundColor: "primary.dark",
                     color: "#F7F1DB",

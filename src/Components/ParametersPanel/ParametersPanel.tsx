@@ -90,14 +90,14 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
     return (
         <Box
-            height='90svh'
+            height='89svh'
             sx={{
                 backgroundColor: "secondary.main",
                 padding: "10px",
             }}
         >
             <List
-                style={{ maxHeight: '90vh', overflow: 'auto' }}
+                style={{ maxHeight: '85vh', overflow: 'auto' }}
             >
                 <ListItem>
 
@@ -147,22 +147,6 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                                 );
                             })}
                         </ParametersAccordion>
-
-                        {/* <Divider>
-                            <Chip label="Options" />
-                        </Divider>
-
-
-                        <Button
-                            onClick={() => {
-                                alert(editorRef.current?.getValue());
-                            }}
-                        >show editor value
-                        </Button> */}
-
-                        {/* <Divider>
-                            <Chip label="Global pattern parameters" />
-                        </Divider> */}
 
                         <ParametersAccordion
                             header="Local Pattern Parameters"

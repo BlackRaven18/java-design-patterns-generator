@@ -41,7 +41,7 @@ function App() {
       <Box
         sx={{
           backgroundColor: "primary.dark",
-          height: "100%",
+          //height: "100%",
 
         }}
       >
@@ -58,7 +58,7 @@ function App() {
         <Grid
           container
           direction="row"
-          height="90%"
+          //height="90%"
         >
 
           <Grid

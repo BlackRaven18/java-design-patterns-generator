@@ -1,9 +1,7 @@
-import { Accordion, AccordionSummary, Stack, Typography, AccordionDetails } from "@mui/material";
-import ParamTextField from "./ParamTextField";
-import SelectParam from "./SelectParam";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import SettingsIcon from '@mui/icons-material/Settings';
-import React, { useEffect, useState } from "react";
+import { Accordion, AccordionDetails, AccordionSummary, Stack, Typography } from "@mui/material";
+import React from "react";
 
 interface ParametersAccordionProps {
     children: React.ReactNode[],
@@ -16,7 +14,7 @@ export default function ParametersAccordion(props: ParametersAccordionProps) {
 
         let childrenNumber = 0;
 
-        if(props.children.length > 0){
+        if (props.children.length > 0) {
             let children = props.children.flat().filter(child => child !== undefined);
             childrenNumber = children.length;
         }
@@ -26,6 +24,7 @@ export default function ParametersAccordion(props: ParametersAccordionProps) {
 
     return (
         <Accordion
+
             sx={{
                 backgroundColor: "secondary.light",
             }}
