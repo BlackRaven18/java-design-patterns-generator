@@ -1,12 +1,12 @@
-public class Client {
+public class $CLIENT_CLASSNAME$ {
 
-    private Prototype prototype;
+    private $PROTOTYPE_CLASSNAME$ $PROTOTYPE_INSTANCE_NAME$;
 
-    public Client(Prototype prototype){
-        this.prototype = prototype;
+    public $CLIENT_CLASSNAME$($PROTOTYPE_CLASSNAME$ $PROTOTYPE_INSTANCE_NAME$){
+        this.$PROTOTYPE_INSTANCE_NAME$ = $PROTOTYPE_INSTANCE_NAME$;
     }
-    public void Operation(){
+    public void $OPERATION_METHOD_NAME$(){
         //some logic
-        Prototype p = prototype.clone();
+        $PROTOTYPE_CLASSNAME$ p = $PROTOTYPE_INSTANCE_NAME$.$CLONE_METHOD_NAME$();
     }
 }

@@ -16,7 +16,57 @@
         }
     ],
     "params": {
-        "textFieldParams": [],
-        "selectParams": []
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Prototype class name",
+                "defaultValue": "Prototype",
+                "replace": "$PROTOTYPE_CLASSNAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Clone method name",
+                "defaultValue": "clone",
+                "replace": "$CLONE_METHOD_NAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcretePrototype class name",
+                "defaultValue": "ConcretePrototype",
+                "replace": "$CONCRETE_PROTOTYPE_CLASSNAME$",
+                "filename": "ConcretePrototype.java"
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Client class name",
+                "defaultValue": "Client",
+                "replace": "$CLIENT_CLASSNAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Prototype instance name",
+                "defaultValue": "prototype",
+                "replace": "$PROTOTYPE_INSTANCE_NAME$",
+                "filename": "Client.java"
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Operation method name",
+                "defaultValue": "Operation",
+                "replace": "$OPERATION_METHOD_NAME$",
+                "filename": "Client.java"
+            }
+        ],
+        "selectParams": [
+            {
+                "label": "Number of ConcretePrototype classes",
+                "fileNameToBeMultiplied": "ConcretePrototype.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
     }
 }
