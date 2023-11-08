@@ -23,6 +23,7 @@ export default function TopBar() {
 
             <Toolbar
                 sx={{
+                    height: "8svh",
                     backgroundColor: "primary.main",
                     color: 'primary.contrastText'
                 }}
