@@ -29,28 +29,102 @@
                     "patternDir": "prototype",
                     "configFile": "prototype_config.json"
                 }
-
             ]
         },
         {
             "patternFamillyName": "Structural",
-            "patternsDir": "others",
+            "patternsDir": "structural_patterns",
             "patterns": [
                 {
-                    "patternName": "Builder(C++)",
-                    "patternDir": "builder_cpp",
-                    "configFile": "builder_config.json"
+                    "patternName": "Adapter",
+                    "patternDir": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Bridge",
+                    "patternDir": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Composite",
+                    "patternDir": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Decorator",
+                    "patternDir": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Facade",
+                    "patternDir": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Flyweight",
+                    "patternDir": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Proxy",
+                    "patternDir": "",
+                    "configFile": ""
                 }
             ]
         },
         {
             "patternFamillyName": "Behavioral",
-            "patternsDir": "others",
+            "patternsDir": "behavioral_patterns",
             "patterns": [
                 {
-                    "patternName": "Builder(C++)",
-                    "patternDir": "builder_cpp",
-                    "configFile": "builder_config.json"
+                    "patternName": "Chain of responsibility",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Command",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Iterator",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Mediator",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Memento",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Observer",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "State",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Strategy",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Template Method",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
+                },
+                {
+                    "patternName": "Visitor",
+                    "patternFilesDirectory": "",
+                    "configFile": ""
                 }
             ]
         },
@@ -65,6 +139,5 @@
                 }
             ]
         }
-        
     ]
 }
