@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFilesAndParamsToSelectedPattern, removeFilesFromPattern, removeTextFieldParams, removeTextFieldParamsConnectedToFile } from "../../redux/AppStateSlice";
 import { AppDispatch, RootState } from "../../redux/store";
 import { LoadedPatternFileInfo, TextFieldParamData } from "../../types";
+import { setIsChangesMade } from "../../redux/UnsavedProgressSlice";
 
 interface SelectParamProps {
     label: string,
@@ -35,6 +36,7 @@ export default function SelectParam(props: SelectParamProps) {
 
 
     const handleChange = (event: SelectChangeEvent) => {
+        dispatch(setIsChangesMade(true));
         setValue(event.target.value);
 
         let file = selectedPattern.files.filter(file => file.sourceFile === props.fileNameToBeMultiplied)[0];

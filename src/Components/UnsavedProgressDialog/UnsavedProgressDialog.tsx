@@ -1,4 +1,5 @@
 import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import { PatternFamillyInfo } from "../../types";
 
 interface UnsavedProgressDialogProps {
     open: boolean,

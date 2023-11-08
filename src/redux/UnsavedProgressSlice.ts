@@ -20,7 +20,7 @@ export const unsavedProgressSlice = createSlice({
 })
 
 export const {
-
+    setIsChangesMade,
 } = unsavedProgressSlice.actions
 
 export default unsavedProgressSlice.reducer;

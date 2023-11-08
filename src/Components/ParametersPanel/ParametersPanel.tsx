@@ -8,6 +8,7 @@ import CodeParamsReplacer from "../../utils/CodeParamsReplacer";
 import ParamTextField from "./ParamTextField";
 import ParametersAccordion from "./ParametersAccordion";
 import SelectParam from "./SelectParam";
+import { setIsChangesMade } from "../../redux/UnsavedProgressSlice";
 
 interface ParametersPanelProps {
     editorRef: React.MutableRefObject<editor.IStandaloneCodeEditor | null>;
@@ -26,6 +27,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
 
 
     const handleFileNameChange = (newValue: string, fileIndex: number) => {
+        dispatch(setIsChangesMade(true));
         dispatch(changeSelectedPatternCurrentFileName({
             currentName: newValue,
             fileIndex: fileIndex,
@@ -35,6 +37,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
     const handleParameterChange = (newValue: string, textFieldIndex: number) => {
 
         dispatch(updatePatternTextFieldParamValue({ value: newValue, index: textFieldIndex }))
+        dispatch(setIsChangesMade(true));
 
         let params: string[] = selectedPattern.params.textFieldParams.map((param, index) => {
 
