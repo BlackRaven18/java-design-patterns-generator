@@ -1,0 +1,22 @@
+{
+    "name": "Prototype",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Client.java",
+            "sourceFile": "Client.java"
+        },
+        {
+            "defaultName": "Prototype.java",
+            "sourceFile": "Prototype.java"
+        },
+        {
+            "defaultName": "ConcretePrototype.java",
+            "sourceFile": "ConcretePrototype.java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [],
+        "selectParams": []
+    }
+}

@@ -1,0 +1,50 @@
+{
+    "name": "Abstract Factory",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Client.java",
+            "sourceFile": "Client.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "AbstractFactory.java",
+            "sourceFile": "AbstractFactory.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteFactory1.java",
+            "sourceFile": "ConcreteFactory1.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteFactory2.java",
+            "sourceFile": "ConcreteFactory2.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "AbstractProductA.java",
+            "sourceFile": "AbstractProductA.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "AbstractProductB.java",
+            "sourceFile": "AbstractProductB.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteProductA.java",
+            "sourceFile": "ConcreteProductA.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteProductB.java",
+            "sourceFile": "ConcreteProductB.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [],
+        "selectParams": []
+    }
+}

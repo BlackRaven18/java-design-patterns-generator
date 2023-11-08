@@ -1,0 +1,26 @@
+{
+    "name": "Builder",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Creator.java",
+            "sourceFile": "Creator.java"
+        },
+        {
+            "defaultName": "ConcreteCreator.java",
+            "sourceFile": "ConcreteCreator.java"
+        },
+        {
+            "defaultName": "Product.java",
+            "sourceFile": "Product.java"
+        },
+        {
+            "defaultName": "ConcreteProduct.java",
+            "sourceFile": "ConcreteProduct.java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [],
+        "selectParams": []
+    }
+}

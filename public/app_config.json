@@ -13,7 +13,23 @@
                     "patternName": "Builder",
                     "patternDir": "builder",
                     "configFile": "builder_config.json"
+                },
+                {
+                    "patternName": "Abstract Factory",
+                    "patternDir": "abstract_factory",
+                    "configFile": "abstract_factory_config.json"
+                },
+                {
+                    "patternName": "Facotry Method",
+                    "patternDir": "factory_method",
+                    "configFile": "factory_method_config.json"
+                },
+                {
+                    "patternName": "Prototype",
+                    "patternDir": "prototype",
+                    "configFile": "prototype_config.json"
                 }
+
             ]
         },
         {
