@@ -1,9 +1,9 @@
-public class ConcretePrototype implements Prototype{
+public class $CONCRETE_PROTOTYPE_CLASSNAME$ implements $PROTOTYPE_CLASSNAME${
 
     //fields, methods
 
     @Override
-    public Prototype clone() {
+    public $PROTOTYPE_CLASSNAME$ $CLONE_METHOD_NAME$() {
         
         //clone logic
 

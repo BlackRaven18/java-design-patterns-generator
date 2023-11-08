@@ -1,4 +1,4 @@
-public interface Prototype {
+public interface $PROTOTYPE_CLASSNAME$ {
 
-    Prototype clone();
+    $PROTOTYPE_CLASSNAME$ $CLONE_METHOD_NAME$();
 }
