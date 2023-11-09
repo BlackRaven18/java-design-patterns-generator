@@ -1,4 +1,4 @@
-public class ConcreteFactory2 implements AbstractFactory{
+public class ConcreteFactory2 implements $ABSTRACT_FACTORY_CLASSNAME${
 
     @Override
     public AbstractProductA CreateProductA() {

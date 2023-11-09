@@ -88,7 +88,7 @@ export default class MethodBodyGenerator {
 
             let stringWithAccessType = methodHeader.substring(accessTypeIndex);
             returnTypeInfo.returnType = stringWithAccessType.substring(0, stringWithAccessType.indexOf(" "));
-            returnTypeInfo.shouldReturn = " return null";
+            returnTypeInfo.shouldReturn = "return null;";
 
             console.log(returnTypeInfo.returnType);
 
@@ -137,7 +137,6 @@ export default class MethodBodyGenerator {
 
 
         }
-        //console.log(methodWithBody);
         return methodWithBody;
     }
 

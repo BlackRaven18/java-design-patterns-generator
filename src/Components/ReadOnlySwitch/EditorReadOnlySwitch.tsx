@@ -29,7 +29,7 @@ export default function EditorReadOnlySwitch(props: EditorReadOnlySwitchProps) {
                     }}
                 />
             }
-            label="Read only mode"
+            label="Read-only mode"
             sx={{
                 color: (theme) =>
                     props.isEditorReadOnly ? theme.palette.primary.contrastText : theme.palette.primary.contrastText,

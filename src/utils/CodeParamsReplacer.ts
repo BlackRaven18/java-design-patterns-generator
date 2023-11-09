@@ -31,14 +31,7 @@ export default class CodeParamsReplacer {
                             methodsWithBodyAsString += this.methodBodyGenerator.generateMethod(
                                 methodGeneratorConfig, methodHeader, language) + "\n\n";
                         })
-
-                        //console.log(methodsWithBodyAsString);
-
-
-                        // let methodsWithBodyAsString
-                        //     = this.methodBodyGenerator
-                        //         .getMethodsWithBodyAsString(paramToCheck.value);
-
+                        
                         codeWithParamsReplaced = codeWithParamsReplaced
                             .replaceAll(paramToReplace.replace, methodsWithBodyAsString);
                     }
@@ -48,6 +41,8 @@ export default class CodeParamsReplacer {
             } else {
 
                 if (paramToReplace.value.includes("\n")) {
+                    console.log(paramToReplace.value);
+                    paramToReplace.value = paramToReplace.value.replaceAll("\t", "");
                     paramToReplace.value = paramToReplace.value.replaceAll("\n", "\n\t");
                 }
             }
