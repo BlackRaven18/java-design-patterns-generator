@@ -1,0 +1,63 @@
+{
+    "name": "Adapter",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Target.java",
+            "sourceFile": "Target.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Adapter.java",
+            "sourceFile": "Adapter.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Adaptee.java",
+            "sourceFile": "Adaptee.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Target class name",
+                "defaultValue": "Target",
+                "replace": "$TARGET_CLASS_NAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Request method name",
+                "defaultValue": "request",
+                "replace": "$REQUEST_METHOD_NAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Adapter class name",
+                "defaultValue": "Adapter",
+                "replace": "$ADAPTER_CLASS_NAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Adaptee class name",
+                "defaultValue": "Adaptee",
+                "replace": "$ADAPTEE_CLASS_NAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "adaptee field name",
+                "defaultValue": "adaptee",
+                "replace": "$ADAPTEE_FIELD_NAME$",
+                "filename": "Adapter.java"
+            }
+
+           
+        ],
+        "selectParams": []
+    }
+}

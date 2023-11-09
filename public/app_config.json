@@ -37,38 +37,38 @@
             "patterns": [
                 {
                     "patternName": "Adapter",
-                    "patternDir": "",
-                    "configFile": ""
+                    "patternDir": "Adapter",
+                    "configFile": "adapter_config.json"
                 },
                 {
                     "patternName": "Bridge",
-                    "patternDir": "",
-                    "configFile": ""
+                    "patternDir": "Bridge",
+                    "configFile": "bridge_config.json"
                 },
                 {
                     "patternName": "Composite",
-                    "patternDir": "",
-                    "configFile": ""
+                    "patternDir": "Composite",
+                    "configFile": "composite_config.json"
                 },
                 {
                     "patternName": "Decorator",
-                    "patternDir": "",
-                    "configFile": ""
+                    "patternDir": "Decorator",
+                    "configFile": "decorator_config.json"
                 },
                 {
                     "patternName": "Facade",
-                    "patternDir": "",
-                    "configFile": ""
+                    "patternDir": "Facade",
+                    "configFile": "facade_config.json"
                 },
                 {
                     "patternName": "Flyweight",
-                    "patternDir": "",
-                    "configFile": ""
+                    "patternDir": "Flyweight",
+                    "configFile": "flyweight_config.json"
                 },
                 {
                     "patternName": "Proxy",
-                    "patternDir": "",
-                    "configFile": ""
+                    "patternDir": "Proxy",
+                    "configFile": "proxy_config.json"
                 }
             ]
         },
