@@ -1,2 +1,2 @@
-public class ConcreteProduct implements Product{
+public class $CONCRETE_PRODUCT_CLASSNAME$ implements $PRODUCT_CLASSNAME${
 }

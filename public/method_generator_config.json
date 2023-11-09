@@ -30,7 +30,8 @@
             "accessTypes": [
                 "public",
                 "private",
-                "protected"
+                "protected",
+                "virtual"
             ],
             "returnTypes": [
                 {

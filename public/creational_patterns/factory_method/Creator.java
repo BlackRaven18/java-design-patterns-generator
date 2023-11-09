@@ -1,5 +1,5 @@
-public interface Creator {
+public interface $CREATOR_CLASSNAME$ {
 
-    void someOperation();
+    $CREATOR_METHODS$
     Product createProduct();
 }

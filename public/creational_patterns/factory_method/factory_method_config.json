@@ -20,7 +20,70 @@
         }
     ],
     "params": {
-        "textFieldParams": [],
-        "selectParams": []
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Creator class name",
+                "defaultValue": "Creator",
+                "replace": "$CREATOR_CLASSNAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Product class name",
+                "defaultValue": "Product",
+                "replace": "$PRODUCT_CLASSNAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteProduct class name",
+                "defaultValue": "ConcreteProduct",
+                "replace": "$CONCRETE_PRODUCT_CLASSNAME$",
+                "filename": "ConcreteProduct.java"
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteCreator class name",
+                "defaultValue": "ConcreteCreator",
+                "replace": "$CONCRETE_CREATOR_CLASSNAME$",
+                "filename": "ConcreteCreator.java"
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Creator methods",
+                "defaultValue": "void someOperation();",
+                "replace": "$CREATOR_METHODS$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": false,
+                "label": "Creator extended methods",
+                "defaultValue": "$CREATOR_METHODS$",
+                "replace": "$CREATOR_EXTENDED_METHODS$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "createProduct method name",
+                "defaultValue": "createProduct",
+                "replace": "$CREATE_PRODUCT_METHOD_NAME$",
+                "filename": "ConcreteCreator.java"
+            }
+        ],
+        "selectParams": [
+            {
+                "label": "Number of ConcreteProduct classes",
+                "fileNameToBeMultiplied": "ConcreteProduct.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            },
+            {
+                "label": "Number of ConcreteCreator classes",
+                "fileNameToBeMultiplied": "ConcreteCreator.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
     }
 }
