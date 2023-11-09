@@ -13,14 +13,14 @@ export default class InitialStateLoader {
             = await this.appStateUtils.getMethodGeneratorConfig("method_generator_config.json");
 
         const patternInfo = await this.appStateUtils.getPatternConfigFile(
-            appConfig.patternFamillies[0],
-            appConfig.patternFamillies[0].patterns[0]
+            appConfig.patternFamillies[appConfig.defaultSelectedPatternFamillyIndex],
+            appConfig.patternFamillies[appConfig.defaultSelectedPatternFamillyIndex].patterns[appConfig.defaultSelectedPatternIndex]
         )
 
         const patternFilesContent = await this.appStateUtils.getPatternFilesContent(
             patternInfo,
-            appConfig.patternFamillies[0],
-            appConfig.patternFamillies[0].patterns[0]
+            appConfig.patternFamillies[appConfig.defaultSelectedPatternFamillyIndex],
+            appConfig.patternFamillies[appConfig.defaultSelectedPatternFamillyIndex].patterns[appConfig.defaultSelectedPatternIndex]
         )
         const patternFilesContentWithReplacedParams = this.appStateUtils.getPatternFilesContentWithReplacedParams(
             methodGeneratorConfig,
@@ -33,9 +33,9 @@ export default class InitialStateLoader {
             appConfig: appConfig,
             methodGeneratorConfig: methodGeneratorConfig,
 
-            selectedPatternFamillyIndex: 0,
-            selectedPatternIndex: 0,
-            selectedTabIndex: 0,
+            selectedPatternFamillyIndex: appConfig.defaultSelectedPatternFamillyIndex,
+            selectedPatternIndex: appConfig.defaultSelectedPatternIndex,
+            selectedTabIndex: appConfig.defaultSelectedTabIndex,
             isDrawerOpen: false,
             isEditorReadOnly: true,
 

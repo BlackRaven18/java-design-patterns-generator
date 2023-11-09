@@ -4,6 +4,9 @@ import { AppState, LoadedPatternFileInfo, PatternConfigInfo, TextFieldParamData 
 
 const initialState: AppState = {
     appConfig: {
+        defaultSelectedPatternFamillyIndex: 0,
+        defaultSelectedPatternIndex: 0,
+        defaultSelectedTabIndex: 0,
         patternFamillies: []
     },
 

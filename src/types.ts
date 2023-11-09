@@ -32,6 +32,9 @@ export interface PatternConfigInfo {
 }
 
 export interface Config{
+    defaultSelectedPatternFamillyIndex: number,
+    defaultSelectedPatternIndex: number,
+    defaultSelectedTabIndex: number,
     patternFamillies: PatternFamillyInfo[];
 }
 
