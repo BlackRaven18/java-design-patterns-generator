@@ -81,53 +81,53 @@
             "patterns": [
                 {
                     "patternName": "Chain of responsibility",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "Chain_of_responsibility",
+                    "configFile": "chain_of_responsibility_config.json"
                 },
                 {
                     "patternName": "Command",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "Command",
+                    "configFile": "command_config.json"
                 },
                 {
                     "patternName": "Iterator",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "Iterator",
+                    "configFile": "iterator_config.json"
                 },
                 {
                     "patternName": "Mediator",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "Mediator",
+                    "configFile": "mediator_config.json"
                 },
                 {
                     "patternName": "Memento",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "Memento",
+                    "configFile": "memento_config.json"
                 },
                 {
                     "patternName": "Observer",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "Observer",
+                    "configFile": "observer_config.json"
                 },
                 {
                     "patternName": "State",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "State",
+                    "configFile": "state_config.json"
                 },
                 {
                     "patternName": "Strategy",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "Strategy",
+                    "configFile": "strategy_config.json"
                 },
                 {
                     "patternName": "Template Method",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "Template Method",
+                    "configFile": "template_method_config.json"
                 },
                 {
                     "patternName": "Visitor",
-                    "patternFilesDirectory": "",
-                    "configFile": ""
+                    "patternFilesDirectory": "Visitor",
+                    "configFile": "visitor_config.json"
                 }
             ]
         },
