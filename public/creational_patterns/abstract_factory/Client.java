@@ -1,8 +1,8 @@
 public class Client {
 
-    private AbstractFactory factory;
+    private $ABSTRACT_FACTORY_CLASSNAME$ factory;
 
-    public Client(AbstractFactory factory){
+    public Client($ABSTRACT_FACTORY_CLASSNAME$ factory){
         this.factory = factory;
     }
 

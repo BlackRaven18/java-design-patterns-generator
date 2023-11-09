@@ -44,7 +44,29 @@
         }
     ],
     "params": {
-        "textFieldParams": [],
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "AbstractFactory class name",
+                "defaultValue": "AbstractFactory",
+                "replace": "$ABSTRACT_FACTORY_CLASSNAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "AbstractFactory methods ",
+                "defaultValue": "AbstractProductA CreateProductA();\nAbstractProductB CreateProductB();",
+                "replace": "$ABSTRACT_FACTORY_METHODS$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": false,
+                "label": "AbstractFactory extended methods ",
+                "defaultValue": "$ABSTRACT_FACTORY_METHODS$",
+                "replace": "$ABSTRACT_FACTORY_EXTENDED_METHODS$",
+                "filename": ""
+            }
+        ],
         "selectParams": []
     }
 }

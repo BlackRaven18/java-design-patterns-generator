@@ -1,5 +1,4 @@
-public interface AbstractFactory {
 
-    AbstractProductA CreateProductA();
-    AbstractProductB CreateProductB();
+public interface $ABSTRACT_FACTORY_CLASSNAME$ {
+    $ABSTRACT_FACTORY_METHODS$
 }
