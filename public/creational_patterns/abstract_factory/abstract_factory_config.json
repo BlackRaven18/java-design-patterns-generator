@@ -47,6 +47,13 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
+                "label": "Client class name",
+                "defaultValue": "Client",
+                "replace": "$CLIENT_CLASSNAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
                 "label": "AbstractFactory class name",
                 "defaultValue": "AbstractFactory",
                 "replace": "$ABSTRACT_FACTORY_CLASSNAME$",
@@ -65,6 +72,41 @@
                 "defaultValue": "$ABSTRACT_FACTORY_METHODS$",
                 "replace": "$ABSTRACT_FACTORY_EXTENDED_METHODS$",
                 "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "AbstractProductA class name",
+                "defaultValue": "AbstractProductA",
+                "replace": "$ABSTRACT_PRODUCT_A_CLASSNAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "AbstractProductB class name",
+                "defaultValue": "AbstractProductB",
+                "replace": "$ABSTRACT_PRODUCT_B_CLASSNAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Factory field name",
+                "defaultValue": "factory",
+                "replace": "$FACTORY_FIELD_NAME$",
+                "filename": "Client.java"
+            },
+            {
+                "shouldBeVisible": true,
+                "label": " Concrete Factory class name",
+                "defaultValue": "ConcreteFactory1",
+                "replace": "$CONCRETE_FACTORY_1_CLASS_NAME$",
+                "filename": "ConcreteFactory1.java"
+            },
+            {
+                "shouldBeVisible": true,
+                "label": " Concrete Factory class name",
+                "defaultValue": "ConcreteFactory2",
+                "replace": "$CONCRETE_FACTORY_2_CLASS_NAME$",
+                "filename": "ConcreteFactory2.java"
             }
         ],
         "selectParams": []

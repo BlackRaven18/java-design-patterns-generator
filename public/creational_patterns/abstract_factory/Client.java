@@ -1,13 +1,13 @@
-public class Client {
+public class $CLIENT_CLASSNAME$ {
 
-    private $ABSTRACT_FACTORY_CLASSNAME$ factory;
+    private $ABSTRACT_FACTORY_CLASSNAME$ $FACTORY_FIELD_NAME$;
 
-    public Client($ABSTRACT_FACTORY_CLASSNAME$ factory){
-        this.factory = factory;
+    public $CLIENT_CLASSNAME$($ABSTRACT_FACTORY_CLASSNAME$ factory){
+        this.$FACTORY_FIELD_NAME$ = $FACTORY_FIELD_NAME$;
     }
 
     public void someOperation(){
         //some logic
-        AbstractProductA productA= factory.CreateProductA();
+        //$ABSTRACT_PRODUCT_A_CLASSNAME$ productA= $FACTORY_FIELD_NAME$.CreateProductA();
     }
 }

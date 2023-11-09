@@ -1,2 +1,2 @@
-public abstract class AbstractProductB {
+public abstract class $ABSTRACT_PRODUCT_B_CLASSNAME$ {
 }

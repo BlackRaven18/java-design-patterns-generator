@@ -41,7 +41,6 @@ export default class CodeParamsReplacer {
             } else {
 
                 if (paramToReplace.value.includes("\n")) {
-                    console.log(paramToReplace.value);
                     paramToReplace.value = paramToReplace.value.replaceAll("\t", "");
                     paramToReplace.value = paramToReplace.value.replaceAll("\n", "\n\t");
                 }
