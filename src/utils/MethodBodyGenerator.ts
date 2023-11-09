@@ -90,8 +90,6 @@ export default class MethodBodyGenerator {
             returnTypeInfo.returnType = stringWithAccessType.substring(0, stringWithAccessType.indexOf(" "));
             returnTypeInfo.shouldReturn = "return null;";
 
-            console.log(returnTypeInfo.returnType);
-
         }
         //----------------------------------------
 

@@ -1,12 +1,6 @@
-public class ConcreteFactory2 implements $ABSTRACT_FACTORY_CLASSNAME${
 
-    @Override
-    public AbstractProductA CreateProductA() {
-        return null;
-    }
+public class $CONCRETE_FACTORY_2_CLASS_NAME$ implements $ABSTRACT_FACTORY_CLASSNAME${
 
-    @Override
-    public AbstractProductB CreateProductB() {
-        return null;
-    }
+$ABSTRACT_FACTORY_EXTENDED_METHODS$
+
 }
