@@ -20,7 +20,7 @@
                     "configFile": "abstract_factory_config.json"
                 },
                 {
-                    "patternName": "Facotry Method",
+                    "patternName": "Factory Method",
                     "patternDir": "factory_method",
                     "configFile": "factory_method_config.json"
                 },

@@ -1,5 +1,11 @@
 import { MethodGeneratePatternInfo, MethodGeneratorConfig, ReturnTypeInfo } from "../types";
 
+enum MethodParameters{
+    AccessType = 0,
+    ReturnType,
+    Name
+}
+
 export default class MethodBodyGenerator {
 
     private getMiddleWord(text: string, beginWord: string, endWord: string): string {
@@ -24,17 +30,18 @@ export default class MethodBodyGenerator {
             language: "",
             defaultAccessType: "",
             accessTypes: [],
-            returnTypes:[],
+            returnTypes: [],
             bodyTemplate: "",
 
         }
 
         methodGeneratorConfig.generatePatterns.forEach(generatePattern => {
-            if(generatePattern.language === language){
+            if (generatePattern.language === language) {
                 methodGeneratorPattern = generatePattern;
                 return;
             }
         })
+
 
         let methodWithBody = "";
 
@@ -45,6 +52,7 @@ export default class MethodBodyGenerator {
             returnType: "",
             shouldReturn: ""
         }
+
         let methodHeaderWithNoParams = methodHeader.substring(0, methodHeader.indexOf("("));
 
 
@@ -56,6 +64,9 @@ export default class MethodBodyGenerator {
             }
         })
 
+
+        //----------------------------
+
         methodGeneratorPattern.returnTypes.forEach(supportedReturnType => {
             if (methodHeaderWithNoParams.indexOf(supportedReturnType.returnType) !== -1) {
                 returnTypeInfo = supportedReturnType;
@@ -63,7 +74,29 @@ export default class MethodBodyGenerator {
             }
         })
 
-        if(returnTypeInfo.returnType.length  <= 0){
+        if (returnTypeInfo.returnType.length <= 0) {
+
+
+            let accessTypeIndex = methodHeader.indexOf(accessType);
+
+            if (accessTypeIndex === -1) {
+                accessTypeIndex = 0;
+            }
+            else {
+                accessTypeIndex += accessType.length + 1;
+            }
+
+            let stringWithAccessType = methodHeader.substring(accessTypeIndex);
+            returnTypeInfo.returnType = stringWithAccessType.substring(0, stringWithAccessType.indexOf(" "));
+            returnTypeInfo.shouldReturn = " return null";
+
+            console.log(returnTypeInfo.returnType);
+
+        }
+        //----------------------------------------
+
+
+        if (returnTypeInfo.returnType.length <= 0) {
             return "\t// unsupported parameters in method header: " + methodHeader;
         }
 

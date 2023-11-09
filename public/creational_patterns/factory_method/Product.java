@@ -1,2 +1,2 @@
-public interface Product {
+public interface $PRODUCT_CLASSNAME$ {
 }
