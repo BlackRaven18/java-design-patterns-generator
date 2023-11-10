@@ -66,13 +66,6 @@
                 "defaultValue": "ConcreteBuilder",
                 "replace": "$CONCRETE_BUILDER_CLASSNAME1$",
                 "filename": ["ConcreteBuilder.java"]
-            },
-            {
-                "shouldBeVisible": true,
-                "label": "TEST",
-                "defaultValue": "TEST",
-                "replace": "$TEST$",
-                "filename": ["ConcreteBuilder.java", "Builder.java"]
             }
         ],
         "selectParams": [
