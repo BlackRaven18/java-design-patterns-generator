@@ -1,0 +1,46 @@
+{
+    "name": "Decorator",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Client.java",
+            "sourceFile": "Client.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Subject.java",
+            "sourceFile": "Subject.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "RealSubject.java",
+            "sourceFile": "RealSubject.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Proxy.java",
+            "sourceFile": "Proxy.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}
