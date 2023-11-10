@@ -51,10 +51,11 @@ export default function SelectParam(props: SelectParamProps) {
 
         //get the params connected to filename
         selectedPattern.params.textFieldParams.forEach(param => {
-            if (param.filename === file.defaultName) {
+            if (param.filename.includes(file.defaultName)) {
                 paramsConnectedToFile.push(param);
             }
         })
+
 
         //clear all class like filename and params connected to it
 
@@ -63,7 +64,6 @@ export default function SelectParam(props: SelectParamProps) {
         paramsConnectedToFile.forEach(param => {
             dispatch(removeTextFieldParams({replace: param.replace}))
         })
-        //dispatch(removeTextFieldParamsConnectedToFile({ filename: file.defaultName }));
 
 
         //add new filenames
@@ -71,7 +71,7 @@ export default function SelectParam(props: SelectParamProps) {
 
         dispatch(addFilesAndParamsToSelectedPattern({
             file: file,
-            patterns: paramsConnectedToFile,
+            params: paramsConnectedToFile,
             howMany: numberOfInstances
         }
         ))

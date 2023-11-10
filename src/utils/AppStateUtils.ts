@@ -1,4 +1,4 @@
-import { PatternFamillyInfo, PatternInfo, PatternConfigInfo, TextFieldParamData, Config, MethodGeneratorConfig } from "../types";
+import { PatternFamillyInfo, PatternInfo, PatternConfigInfo, TextFieldParamData, Config, MethodGeneratorConfig, LoadedPatternFileInfo } from "../types";
 import CodeParamsReplacer from "./CodeParamsReplacer";
 import FileReader from "./FileReader";
 
@@ -77,5 +77,17 @@ export default class AppStateUtils {
         })
 
         return patternFilesContentWithReplacedParams;
+    }
+
+    public removeDeletedFilesReferenceFromConnectedParam(files: LoadedPatternFileInfo[], param: TextFieldParamData){
+
+        let fileNames = [...files.map(file => {
+            return file.defaultName;
+        })]
+
+        param.filename = param.filename.filter(filename => fileNames.includes(filename))
+
+        console.log(param)
+        return param;
     }
 }

@@ -72,7 +72,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
         }
 
         selectedPattern.files.forEach((file, index) => {
-            let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName === file.defaultName);
+            let filteredReplaceData = replaceData.filter(data => data.fileName === undefined || data.fileName.includes(file.defaultName));
 
 
             filesWithReplacedParams.push(
@@ -152,7 +152,7 @@ const ParametersPanel: React.FC<ParametersPanelProps> = ({ editorRef }) => {
                             header="Local Pattern Parameters"
                         >
                             {selectedPattern.params.textFieldParams.map((param, index) => {
-                                if (param.shouldBeVisible && param.filename === selectedPattern.files[selectedTabIndex].defaultName) {
+                                if (param.shouldBeVisible && param.filename.includes(selectedPattern.files[selectedTabIndex].defaultName)) {
                                     return (
                                         <ParamTextField
                                             key={index}

@@ -61,7 +61,7 @@ export interface TextFieldParamData {
     defaultValue: string,
     currentValue?: string,
     replace: string,
-    filename: string,
+    filename: string[],
 }
 
 export interface LoadedTextFieldParamData extends TextFieldParamData {
@@ -79,7 +79,7 @@ export interface SelectParamData {
 export interface ReplaceData {
     replace: string,
     value: string,
-    fileName?: string
+    fileName?: string[]
 }
 
 export interface MethodGeneratorConfig{
