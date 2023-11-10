@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { AppState, LoadedPatternFileInfo, PatternConfigInfo, TextFieldParamData } from "../types";
+import AppStateUtils from "../utils/AppStateUtils";
 
 
 const initialState: AppState = {
@@ -65,9 +66,20 @@ export const appStateSlice = createSlice({
 
         //--------------
         removeTextFieldParamsConnectedToFile: (state, action: PayloadAction<{ filename: string }>) => {
+
             state.selectedPattern.params.textFieldParams
                 = state.selectedPattern.params.textFieldParams
-                    .filter(param => param.filename !== action.payload.filename)
+                    .filter(param => {
+                        let isParamConnectedWithFile = false;
+                        param.filename.forEach(fileName => {
+                            if (fileName === action.payload.filename) {
+                                isParamConnectedWithFile = true;
+                                return;
+                            }
+                        })
+                        return isParamConnectedWithFile;
+                        //param.filename !== action.payload.filename
+                    })
         },
 
         //-------------------------------
@@ -79,15 +91,21 @@ export const appStateSlice = createSlice({
 
         addFilesAndParamsToSelectedPattern: (
             state,
-            action: PayloadAction<{ file: LoadedPatternFileInfo, patterns: TextFieldParamData[], howMany: number }>
+            action: PayloadAction<{ file: LoadedPatternFileInfo, params: TextFieldParamData[], howMany: number }>
         ) => {
 
             state.selectedTabIndex = 0;
+
+            let appStateUtils = new AppStateUtils();
 
             let parts = action.payload.file.defaultName.split(".");
 
             let fileNameWithNoExtension = parts[0];
             let extension = parts[1];
+
+            let paramsConnectedWithMultipleFiles: TextFieldParamData[] =
+                [...action.payload.params.filter(param => param.filename.length > 1)]
+
 
 
             for (let i = 0; i < action.payload.howMany; i++) {
@@ -96,18 +114,28 @@ export const appStateSlice = createSlice({
                     fileNameWithNoExtension + "." + extension :
                     fileNameWithNoExtension + "(" + i + ")." + extension;
 
-                let patterns = [...action.payload.patterns];
+                let modifableParams = [...action.payload.params.filter(param => param.filename.length <= 1)];
 
-                let patternsConnectedWithFile = [...patterns.map(pattern => {
+                paramsConnectedWithMultipleFiles = paramsConnectedWithMultipleFiles.map(connectedParam => {
+                    let tmpParam = { ...connectedParam };
+
+                    if (!tmpParam.filename.includes(newFileName)) {
+                        tmpParam.filename = [...tmpParam.filename, newFileName]
+                    }
+                    console.log(tmpParam)
+                    return tmpParam;
+                })
+
+                let paramsConnectedWithFile = [...modifableParams.map(param => {
                     let newPattern: TextFieldParamData = {
-                        ...pattern,
-                        filename: newFileName
+                        ...param,
+                        filename: [newFileName]
                     }
                     return newPattern;
                 })];
 
-                patternsConnectedWithFile.forEach(pattern => {
-                    state.selectedPattern.params.textFieldParams.push(pattern);
+                paramsConnectedWithFile.forEach(param => {
+                    state.selectedPattern.params.textFieldParams.push(param);
                 })
 
 
@@ -120,6 +148,17 @@ export const appStateSlice = createSlice({
                     currentContent: action.payload.file.currentContent,
                 })
             }
+            paramsConnectedWithMultipleFiles = [...paramsConnectedWithMultipleFiles.map(connectedParam => {
+                return appStateUtils.removeDeletedFilesReferenceFromConnectedParam(
+                    state.selectedPattern.files,
+                    connectedParam
+                );
+            })]
+
+            paramsConnectedWithMultipleFiles.forEach(connectedParam => {
+
+                state.selectedPattern.params.textFieldParams.push(connectedParam);
+            })
 
         },
 
