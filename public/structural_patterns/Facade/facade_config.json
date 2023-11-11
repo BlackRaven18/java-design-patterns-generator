@@ -3,11 +3,6 @@
     "language": "java",
     "files": [
         {
-            "defaultName": "Client.java",
-            "sourceFile": "Client.java",
-            "extension": "java"
-        },
-        {
             "defaultName": "Facade.java",
             "sourceFile": "Facade.java",
             "extension": "java"
@@ -21,26 +16,46 @@
             "defaultName": "SubsystemClassB.java",
             "sourceFile": "SubsystemClassB.java",
             "extension": "java"
+        },
+        {
+            "defaultName": "Client.java",
+            "sourceFile": "Client.java",
+            "extension": "java"
         }
     ],
     "params": {
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Facade class name",
+                "defaultValue": "Facade",
+                "replace": "$FACADE_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "SubsystemClassA class name",
+                "defaultValue": "SubsystemClassA",
+                "replace": "$SUBSYSTEM_CLASS_A_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "SubsystemClassB class name",
+                "defaultValue": "SubsystemClassB",
+                "replace": "$SUBSYSTEM_CLASS_B_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Client class name",
+                "defaultValue": "Client",
+                "replace": "$CLIENT_CLASS_NAME$",
                 "filename": []
             }
+            
            
         ],
-        "selectParams": [
-            {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
-                "minNumber": 1,
-                "maxNumber": 5
-            }
-        ]
+        "selectParams": []
     }
 }
