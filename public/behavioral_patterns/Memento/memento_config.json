@@ -22,20 +22,34 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Memento class name",
+                "defaultValue": "Memento",
+                "replace": "$MEMENTO_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Caretaker class name",
+                "defaultValue": "Caretaker",
+                "replace": "$CARETAKER_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Originator class name",
+                "defaultValue": "Originator",
+                "replace": "$ORIGINATOR_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "State type",
+                "defaultValue": "String",
+                "replace": "$STATE_TYPE$",
                 "filename": []
             }
            
         ],
-        "selectParams": [
-            {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
-                "minNumber": 1,
-                "maxNumber": 5
-            }
-        ]
+        "selectParams": []
     }
 }
