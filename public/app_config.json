@@ -90,6 +90,11 @@
                     "configFile": "command_config.json"
                 },
                 {
+                    "patternName": "Interpreter",
+                    "patternDir": "Interpreter",
+                    "configFile": "interpreter_config.json"
+                },
+                {
                     "patternName": "Iterator",
                     "patternDir": "Iterator",
                     "configFile": "iterator_config.json"
@@ -121,7 +126,7 @@
                 },
                 {
                     "patternName": "Template Method",
-                    "patternDir": "Template Method",
+                    "patternDir": "Template_method",
                     "configFile": "template_method_config.json"
                 },
                 {

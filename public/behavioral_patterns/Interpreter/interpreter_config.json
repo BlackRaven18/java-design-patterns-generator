@@ -1,5 +1,5 @@
 {
-    "name": "Strategy",
+    "name": "Interpreter",
     "language": "java",
     "files": [
         {
@@ -8,13 +8,18 @@
             "extension": "java"
         },
         {
-            "defaultName": "Strategy.java",
-            "sourceFile": "Strategy.java",
+            "defaultName": "AbstractExpression.java",
+            "sourceFile": "AbstractExpression.java",
             "extension": "java"
         },
         {
-            "defaultName": "ConcreteStrategy.java",
-            "sourceFile": "ConcreteStrategy.java",
+            "defaultName": "TerminalExpression.java",
+            "sourceFile": "TerminalExpression.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "NonTerminalExpression.java",
+            "sourceFile": "NonTerminalExpression.java",
             "extension": "java"
         }
     ],
