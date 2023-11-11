@@ -27,10 +27,43 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Client class name",
+                "defaultValue": "Client",
+                "replace": "$CLIENT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Proxy class name",
+                "defaultValue": "Proxy",
+                "replace": "$PROXY_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Subject class name",
+                "defaultValue": "Subject",
+                "replace": "$SUBJECT_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "RealSubject class name",
+                "defaultValue": "RealSubject",
+                "replace": "$REAL_SUBJECT_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "request method name",
+                "defaultValue": "request",
+                "replace": "$REQUEST_METHOD_NAME$",
+                "filename": [
+                    "Client.java",
+                    "Subject.java",
+                    "RealSubject.java",
+                    "Proxy.java"
+                ]
             }
            
         ],
