@@ -1,0 +1,41 @@
+{
+    "name": "Memento",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Originator.java",
+            "sourceFile": "Originator.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Memento.java",
+            "sourceFile": "Memento.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Caretaker.java",
+            "sourceFile": "Caretaker.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+{
+    "name": "Command",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Client.java",
+            "sourceFile": "Client.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Invoker.java",
+            "sourceFile": "Invoker.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Receiver.java",
+            "sourceFile": "Receiver.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Command.java",
+            "sourceFile": "Command.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteCommand.java",
+            "sourceFile": "ConcreteCommand.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}
