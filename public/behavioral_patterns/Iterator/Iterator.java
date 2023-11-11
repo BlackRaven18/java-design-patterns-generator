@@ -1,8 +1,8 @@
-public interface Iterator {
+public interface $ITERATOR_CLASS_NAME$ {
 
-    Object first();
-    Object next();
-    boolean isDone();
-    Object currentItem();
+    Object $FIRST_METHOD_NAME$();
+    Object $NEXT_METHOD_NAME$();
+    boolean $ISDONE_METHOD_NAME$();
+    Object $CURRENTITEM_METHOD_NAME$();
 
 }

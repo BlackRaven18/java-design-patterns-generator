@@ -32,20 +32,68 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Client class name",
+                "defaultValue": "Client",
+                "replace": "$CLIENT_CLASS_NAME$",
                 "filename": []
-            }
-           
-        ],
-        "selectParams": [
+            },
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
-                "minNumber": 1,
-                "maxNumber": 5
+                "shouldBeVisible": true,
+                "label": "Iterator class name",
+                "defaultValue": "Iterator",
+                "replace": "$ITERATOR_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteIterator class name",
+                "defaultValue": "ConcreteIterator",
+                "replace": "$CONCRETE_ITERATOR_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Aggregate class name",
+                "defaultValue": "Aggregate",
+                "replace": "$AGGREGATE_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteAggregate class name",
+                "defaultValue": "ConcreteAggregate",
+                "replace": "$CONCRETE_AGGREGATE_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "first() method name",
+                "defaultValue": "first",
+                "replace": "$FIRST_METHOD_NAME$",
+                "filename": ["Iterator.java", "ConcreteIterator.java", "Client.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "next() method name",
+                "defaultValue": "next",
+                "replace": "$NEXT_METHOD_NAME$",
+                "filename": ["Iterator.java", "ConcreteIterator.java", "Client.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "isDone() method name",
+                "defaultValue": "isDone",
+                "replace": "$ISDONE_METHOD_NAME$",
+                "filename": ["Iterator.java", "ConcreteIterator.java", "Client.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "currentItem() method name",
+                "defaultValue": "currentItem",
+                "replace": "$CURRENTITEM_METHOD_NAME$",
+                "filename": ["Iterator.java", "ConcreteIterator.java", "Client.java"]
             }
-        ]
+        ],
+        "selectParams": []
     }
 }

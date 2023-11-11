@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConcreteAggregate implements Aggregate{
+public class $CONCRETE_AGGREGATE_CLASS_NAME$ implements $AGGREGATE_CLASS_NAME${
 
     private List<Object> items;
 
-    public ConcreteAggregate(){
+    public $CONCRETE_AGGREGATE_CLASS_NAME$(){
         this.items = new ArrayList<>();
     }
 
@@ -14,7 +14,7 @@ public class ConcreteAggregate implements Aggregate{
     }
 
     @Override
-    public Iterator createIterator() {
-        return new ConcreteIterator(items);
+    public $ITERATOR_CLASS_NAME$ createIterator() {
+        return new $CONCRETE_ITERATOR_CLASS_NAME$(items);
     }
 }
