@@ -27,17 +27,52 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Component class name",
+                "defaultValue": "Component",
+                "replace": "$COMPONENT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteComponent class name",
+                "defaultValue": "ConcreteComponent",
+                "replace": "$CONCRETE_COMPONENT_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Decorator class name",
+                "defaultValue": "Decorator",
+                "replace": "$DECORATOR_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteDecorator class name",
+                "defaultValue": "ConcreteDecorator",
+                "replace": "$CONCRETE_DECORATOR_CLASS_NAME$",
+                "filename": ["ConcreteDecorator.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "operation method name",
+                "defaultValue": "operation",
+                "replace": "$OPERATION_METHOD_NAME$",
+                "filename": ["Component.java", "ConcreteComponent.java", "ConcreteDecorator.java", "Decorator.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "addedBehaviour method name",
+                "defaultValue": "addedBehaviour",
+                "replace": "$ADDED_BEHAVIOUR_METHOD_NAME$",
+                "filename": ["ConcreteDecorator.java"]
             }
            
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "ConcreteDecorator classes number",
+                "fileNameToBeMultiplied": "ConcreteDecorator.java",
                 "minNumber": 1,
                 "maxNumber": 5
             }
