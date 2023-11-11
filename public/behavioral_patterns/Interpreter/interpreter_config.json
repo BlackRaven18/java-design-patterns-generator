@@ -27,19 +27,56 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "AbstractExpression class name",
+                "defaultValue": "AbstractExpression",
+                "replace": "$ABSTRACT_EXPRESSION_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "TerminalExpression class name",
+                "defaultValue": "TerminalExpression",
+                "replace": "$TERMINAL_EXPRESSION_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "NonTerminalExpression class name",
+                "defaultValue": "NonTerminalExpression",
+                "replace": "$NON_TERMINAL_EXPRESSION_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Context class name",
+                "defaultValue": "Context",
+                "replace": "$CONTEXT_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "interpret method name",
+                "defaultValue": "interpret",
+                "replace": "$INTERPRET_METHOD_NAME$",
+                "filename": [
+                    "AbstractExpression.java",
+                    "TerminalExpression.java",
+                    "NonTerminalExpression.java"
+                ]
             }
-           
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "TerminalExpression classes number",
+                "fileNameToBeMultiplied": "TerminalExpression.java",
                 "minNumber": 1,
-                "maxNumber": 5
+                "maxNumber": 3
+            },
+            {
+                "label": "NonTerminalExpression classes number",
+                "fileNameToBeMultiplied": "NonTerminalExpression.java",
+                "minNumber": 1,
+                "maxNumber": 3
             }
         ]
     }

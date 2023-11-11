@@ -1,7 +1,7 @@
-public class TerminalExpression implements AbstractExpression{
+public class $TERMINAL_EXPRESSION_CLASS_NAME$ implements $ABSTRACT_EXPRESSION_CLASS_NAME${
 
     @Override
-    public void interpret(Context context) {
+    public void $INTERPRET_METHOD_NAME$($CONTEXT_CLASS_NAME$ context) {
 
     }
 }

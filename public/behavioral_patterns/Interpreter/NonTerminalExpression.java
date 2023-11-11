@@ -1,17 +1,17 @@
-public class NonTerminalExpression implements AbstractExpression{
+public class $NON_TERMINAL_EXPRESSION_CLASS_NAME$ implements $ABSTRACT_EXPRESSION_CLASS_NAME${
 
-    private AbstractExpression abstractExpression;
+    private $ABSTRACT_EXPRESSION_CLASS_NAME$ abstractExpression;
 
-    public NonTerminalExpression(AbstractExpression abstractExpression) {
+    public $NON_TERMINAL_EXPRESSION_CLASS_NAME$($ABSTRACT_EXPRESSION_CLASS_NAME$ abstractExpression) {
         this.abstractExpression = abstractExpression;
     }
 
-    public void setAbstractExpression(AbstractExpression abstractExpression) {
+    public void setAbstractExpression($ABSTRACT_EXPRESSION_CLASS_NAME$ abstractExpression) {
         this.abstractExpression = abstractExpression;
     }
 
     @Override
-    public void interpret(Context context) {
+    public void $INTERPRET_METHOD_NAME$($CONTEXT_CLASS_NAME$ context) {
 
     }
 }
