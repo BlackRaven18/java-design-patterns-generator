@@ -1,23 +1,23 @@
 import java.util.List;
 
-public class ConcreteIterator implements Iterator {
+public class $CONCRETE_ITERATOR_CLASS_NAME$ implements $ITERATOR_CLASS_NAME$ {
 
     private List<Object> collection;
     private int iterationState;
 
-    public ConcreteIterator(List<Object> collection) {
+    public $CONCRETE_ITERATOR_CLASS_NAME$(List<Object> collection) {
         this.collection = collection;
         this.iterationState = 0;
     }
 
     @Override
-    public Object first() {
+    public Object $FIRST_METHOD_NAME$() {
         return collection.get(0);
     }
 
     @Override
-    public Object next() {
-        if (this.isDone()) {
+    public Object $NEXT_METHOD_NAME$() {
+        if (this.$ISDONE_METHOD_NAME$()) {
            return collection.get(iterationState++);
         } else {
             return null;
@@ -25,12 +25,12 @@ public class ConcreteIterator implements Iterator {
     }
 
     @Override
-    public boolean isDone() {
+    public boolean $ISDONE_METHOD_NAME$() {
         return iterationState < collection.size();
     }
 
     @Override
-    public Object currentItem() {
+    public Object $CURRENTITEM_METHOD_NAME$() {
         return collection.get(iterationState);
     }
 }

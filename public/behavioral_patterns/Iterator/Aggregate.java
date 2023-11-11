@@ -1,4 +1,4 @@
-public interface Aggregate {
+public interface $AGGREGATE_CLASS_NAME$ {
 
-    Iterator createIterator();
+    $ITERATOR_CLASS_NAME$ createIterator();
 }

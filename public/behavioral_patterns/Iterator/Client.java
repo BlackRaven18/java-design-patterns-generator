@@ -1,7 +1,7 @@
-public class Client {
+public class $CLIENT_CLASS_NAME$ {
 
     public void operation() {
-        ConcreteAggregate collection = new ConcreteAggregate();
+        $CONCRETE_AGGREGATE_CLASS_NAME$ collection = new $CONCRETE_AGGREGATE_CLASS_NAME$();
 
         collection.add("Element 1");
         collection.add("Element 2");
@@ -9,8 +9,8 @@ public class Client {
 
         Iterator iterator = collection.createIterator();
 
-        while(iterator.isDone()){
-            System.out.println(iterator.next());
+        while(iterator.$ISDONE_METHOD_NAME$()){
+            System.out.println(iterator.$NEXT_METHOD_NAME$());
         }
 
     }
