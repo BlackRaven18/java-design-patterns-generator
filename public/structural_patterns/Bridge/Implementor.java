@@ -1,4 +1,4 @@
-public interface Implementor {
+public interface $IMPLEMENTOR_CLASSNAME$ {
 
-    void operationImp();
+    void $OPERATION_IMPLEMENTATION_METHOD_NAME$();
 }

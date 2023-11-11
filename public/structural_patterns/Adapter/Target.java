@@ -1,3 +1,3 @@
 public interface $TARGET_CLASS_NAME$ {
-    void request();
+    void $REQUEST_METHOD_NAME$();
 }

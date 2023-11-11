@@ -32,7 +32,7 @@
                 "label": "Request method name",
                 "defaultValue": "request",
                 "replace": "$REQUEST_METHOD_NAME$",
-                "filename": ""
+                "filename": ["Target.java", "Adapter.java"]
             },
             {
                 "shouldBeVisible": true,
@@ -47,6 +47,13 @@
                 "defaultValue": "Adaptee",
                 "replace": "$ADAPTEE_CLASS_NAME$",
                 "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "specific request method name",
+                "defaultValue": "specificRequest",
+                "replace": "$SPECIFIC_REQUEST_METHOD_NAME$",
+                "filename": ["Adaptee.java", "Adapter.java"]
             },
             {
                 "shouldBeVisible": true,
