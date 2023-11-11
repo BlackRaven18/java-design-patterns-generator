@@ -2,12 +2,11 @@ import { Editor, Monaco } from "@monaco-editor/react";
 import { Box, Tab, Tabs } from "@mui/material";
 import { tabsClasses } from "@mui/material/Tabs";
 import { editor } from "monaco-editor";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSelectedPattern, setSelectedTabIndex, updatePatternFile } from "../redux/AppStateSlice";
-import { AppDispatch, RootState } from "../redux/store";
-import ExtendedPatternInfoCreator from "../utils/ExtendedPatternInfoCreator";
+import { setSelectedTabIndex, updatePatternFile } from "../redux/AppStateSlice";
 import { setIsChangesMade } from "../redux/UnsavedProgressSlice";
+import { AppDispatch, RootState } from "../redux/store";
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
