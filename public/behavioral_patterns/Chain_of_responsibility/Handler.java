@@ -1,4 +1,4 @@
-public interface Handler {
+public interface $HANDLER_CLASS_NAME$ {
 
-    void handleRequest(String request);
+    void $HANDLE_REQUEST_METHOD_NAME$(String request);
 }

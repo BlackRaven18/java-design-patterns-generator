@@ -1,9 +1,9 @@
-public class Client {
+public class $CLIENT_CLASS_NAME$ {
 
     private ConcreteHandler handler1;
     private ConcreteHandler handler2;
 
-    public Client(){
+    public $CLIENT_CLASS_NAME$(){
         this.handler1 = new ConcreteHandler();
         this.handler2 = new ConcreteHandler();
 
