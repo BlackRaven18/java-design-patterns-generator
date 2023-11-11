@@ -1,6 +1,6 @@
-public class Receiver {
+public class $RECEIVER_CLASS_NAME$ {
 
-    public void action(){
+    public void $ACTION_METHOD_NAME$(){
 
     }
 }

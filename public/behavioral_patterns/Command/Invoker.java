@@ -1,21 +1,21 @@
-public class Invoker {
+public class $INVOKER_CLASS_NAME$ {
 
-    private Command command;
+    private $COMMAND_CLASS_NAME$ command;
 
-    public Invoker(){
+    public $INVOKER_CLASS_NAME$(){
         this.command = null;
     }
 
-    public Invoker(Command command){
+    public $INVOKER_CLASS_NAME$($COMMAND_CLASS_NAME$ command){
         this.command = command;
     }
 
-    public void setCommand(Command command) {
+    public void setCommand($COMMAND_CLASS_NAME$ command) {
         this.command = command;
     }
 
     public void executeCommand(){
-        command.execute();
+        command.$EXECUTE_METHOD_NAME$();
     }
 
 
