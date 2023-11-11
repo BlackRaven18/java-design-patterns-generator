@@ -1,13 +1,13 @@
-public class Proxy implements Subject{
+public class $PROXY_CLASS_NAME$ implements $SUBJECT_CLASS_NAME${
 
-    private RealSubject realSubject;
+    private $REAL_SUBJECT_CLASS_NAME$ realSubject;
 
-    public Proxy(RealSubject realSubject){
+    public $PROXY_CLASS_NAME$($REAL_SUBJECT_CLASS_NAME$ realSubject){
         this.realSubject = realSubject;
     }
 
     @Override
-    public void Request() {
-        realSubject.Request();
+    public void $REQUEST_METHOD_NAME$() {
+        realSubject.$REQUEST_METHOD_NAME$();
     }
 }

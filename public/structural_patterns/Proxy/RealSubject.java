@@ -1,7 +1,7 @@
-public class RealSubject implements Subject{
+public class $REAL_SUBJECT_CLASS_NAME$ implements $SUBJECT_CLASS_NAME${
 
     @Override
-    public void Request() {
+    public void $REQUEST_METHOD_NAME$() {
 
     }
 }

@@ -1,14 +1,14 @@
-public class Client {
+public class $CLIENT_CLASS_NAME$ {
 
-    private Subject subject;
+    private $SUBJECT_CLASS_NAME$ subject;
 
-    public Client(Subject subject){
+    public $CLIENT_CLASS_NAME$($SUBJECT_CLASS_NAME$ subject){
         // subject can be a proxy
         this.subject = subject;
     }
 
     public void operation(){
-        subject.Request();
+        subject.$REQUEST_METHOD_NAME$();
     }
 
 }
