@@ -1,4 +1,4 @@
-public interface Flyweight {
+public interface $FLYWEIGHT_CLASS_NAME$ {
 
-    void operation(String extrinsicState);
+    void $OPERATION_METHOD_NAME$(String extrinsicState);
 }
