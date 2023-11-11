@@ -1,4 +1,4 @@
-public interface AbstractExpression {
+public interface $ABSTRACT_EXPRESSION_CLASS_NAME$ {
 
-    void interpret(Context context);
+    void $INTERPRET_METHOD_NAME$($CONTEXT_CLASS_NAME$ context);
 }
