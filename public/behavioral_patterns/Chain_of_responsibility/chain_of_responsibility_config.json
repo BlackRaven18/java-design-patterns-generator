@@ -22,17 +22,42 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Client class name",
+                "defaultValue": "Client",
+                "replace": "$CLIENT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Handler class name",
+                "defaultValue": "Handler",
+                "replace": "$HANDLER_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteHandler class name",
+                "defaultValue": "ConcreteHandler",
+                "replace": "$CONCRETE_HANDLER_CLASS_NAME$",
+                "filename": [
+                    "ConcreteHandler.java"
+                ]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "handleRequest method name",
+                "defaultValue": "handleRequest",
+                "replace": "$HANDLE_REQUEST_METHOD_NAME$",
+                "filename": [
+                    "Handler.java",
+                    "ConcreteHandler.java"
+                ]
             }
-           
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "ConcreteHandler classes number",
+                "fileNameToBeMultiplied": "ConcreteHandler.java",
                 "minNumber": 1,
                 "maxNumber": 5
             }

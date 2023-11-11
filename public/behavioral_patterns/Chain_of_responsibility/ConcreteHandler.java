@@ -1,21 +1,21 @@
-public class ConcreteHandler implements Handler {
+public class $CONCRETE_HANDLER_CLASS_NAME$ implements $HANDLER_CLASS_NAME$ {
 
-    private Handler succesor;
+    private $HANDLER_CLASS_NAME$ succesor;
 
-    public ConcreteHandler() {
+    public $CONCRETE_HANDLER_CLASS_NAME$() {
         this.succesor = null;
     }
 
-    public ConcreteHandler(Handler successor) {
+    public $CONCRETE_HANDLER_CLASS_NAME$($HANDLER_CLASS_NAME$ successor) {
         this.succesor = successor;
     }
 
-    public void setSuccesor(Handler succesor) {
+    public void setSuccesor($HANDLER_CLASS_NAME$ succesor) {
         this.succesor = succesor;
     }
 
     @Override
-    public void handleRequest(String request) {
+    public void $HANDLE_REQUEST_METHOD_NAME$(String request) {
         if (request.equals("Can handle request")) {
             //handle request here
             System.out.println("Request handled!");
@@ -23,7 +23,7 @@ public class ConcreteHandler implements Handler {
             if (succesor != null) {
 
                 // or pass it to your successor it exist
-                this.succesor.handleRequest(request);
+                this.succesor.$HANDLE_REQUEST_METHOD_NAME$(request);
             } else {
                 System.out.println("None of succesors could handle the request!");
             }
