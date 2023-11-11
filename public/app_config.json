@@ -1,6 +1,6 @@
 {
-    "defaultSelectedPatternFamillyIndex": 1,
-    "defaultSelectedPatternIndex": 1,
+    "defaultSelectedPatternFamillyIndex": 2,
+    "defaultSelectedPatternIndex": 0,
     "defaultSelectedTabIndex": 0,
     "patternFamillies": [
         {
@@ -80,53 +80,53 @@
             "patternsDir": "behavioral_patterns",
             "patterns": [
                 {
-                    "patternName": "Chain of responsibility",
-                    "patternFilesDirectory": "Chain_of_responsibility",
+                    "patternName": "Chain of Responsibility",
+                    "patternDir": "Chain_of_responsibility",
                     "configFile": "chain_of_responsibility_config.json"
                 },
                 {
                     "patternName": "Command",
-                    "patternFilesDirectory": "Command",
+                    "patternDir": "Command",
                     "configFile": "command_config.json"
                 },
                 {
                     "patternName": "Iterator",
-                    "patternFilesDirectory": "Iterator",
+                    "patternDir": "Iterator",
                     "configFile": "iterator_config.json"
                 },
                 {
                     "patternName": "Mediator",
-                    "patternFilesDirectory": "Mediator",
+                    "patternDir": "Mediator",
                     "configFile": "mediator_config.json"
                 },
                 {
                     "patternName": "Memento",
-                    "patternFilesDirectory": "Memento",
+                    "patternDir": "Memento",
                     "configFile": "memento_config.json"
                 },
                 {
                     "patternName": "Observer",
-                    "patternFilesDirectory": "Observer",
+                    "patternDir": "Observer",
                     "configFile": "observer_config.json"
                 },
                 {
                     "patternName": "State",
-                    "patternFilesDirectory": "State",
+                    "patternDir": "State",
                     "configFile": "state_config.json"
                 },
                 {
                     "patternName": "Strategy",
-                    "patternFilesDirectory": "Strategy",
+                    "patternDir": "Strategy",
                     "configFile": "strategy_config.json"
                 },
                 {
                     "patternName": "Template Method",
-                    "patternFilesDirectory": "Template Method",
+                    "patternDir": "Template Method",
                     "configFile": "template_method_config.json"
                 },
                 {
                     "patternName": "Visitor",
-                    "patternFilesDirectory": "Visitor",
+                    "patternDir": "Visitor",
                     "configFile": "visitor_config.json"
                 }
             ]

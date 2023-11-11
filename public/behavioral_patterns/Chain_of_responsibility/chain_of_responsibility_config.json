@@ -1,0 +1,41 @@
+{
+    "name": "Chain of Responsibility",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Client.java",
+            "sourceFile": "Client.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Handler.java",
+            "sourceFile": "Handler.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteHandler.java",
+            "sourceFile": "ConcreteHandler.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}
