@@ -3,11 +3,6 @@
     "language": "java",
     "files": [
         {
-            "defaultName": "Client.java",
-            "sourceFile": "Client.java",
-            "extension": "java"
-        },
-        {
             "defaultName": "Component.java",
             "sourceFile": "Component.java",
             "extension": "java"
@@ -21,26 +16,73 @@
             "defaultName": "Composite.java",
             "sourceFile": "Composite.java",
             "extension": "java"
+        },
+        {
+            "defaultName": "Client.java",
+            "sourceFile": "Client.java",
+            "extension": "java"
         }
     ],
     "params": {
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Client class name",
+                "defaultValue": "Client",
+                "replace": "$CLIENT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Component class name",
+                "defaultValue": "Component",
+                "replace": "$COMPONENT_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Composite class name",
+                "defaultValue": "Composite",
+                "replace": "$COMPOSITE_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Leaf class name",
+                "defaultValue": "Leaf",
+                "replace": "$LEAF_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "operation method name",
+                "defaultValue": "operation",
+                "replace": "$OPERATION_METHOD_NAME$",
+                "filename": ["Component.java", "Composite.java", "Leaf.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "add method name",
+                "defaultValue": "add",
+                "replace": "$ADD_METHOD_NAME$",
+                "filename": ["Component.java", "Composite.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "remove method name",
+                "defaultValue": "remove",
+                "replace": "$REMOVE_METHOD_NAME$",
+                "filename": ["Component.java", "Composite.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "getChild method name",
+                "defaultValue": "getChild",
+                "replace": "$GETCHILD_METHOD_NAME$",
+                "filename": ["Component.java", "Composite.java"]
             }
            
         ],
-        "selectParams": [
-            {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
-                "minNumber": 1,
-                "maxNumber": 5
-            }
-        ]
+        "selectParams": []
     }
 }
