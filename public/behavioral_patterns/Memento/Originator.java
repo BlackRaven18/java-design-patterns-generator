@@ -1,12 +1,12 @@
-public class Originator {
+public class $ORIGINATOR_CLASS_NAME$ {
 
-    private String state;
+    private $STATE_TYPE$ state;
 
-    public void setMemento(Memento memento){
+    public void setMemento($MEMENTO_CLASS_NAME$ memento){
         this.state = memento.getState();
     }
 
-    public Memento createMemento(){
-        return new Memento(state);
+    public $MEMENTO_CLASS_NAME$ createMemento(){
+        return new $MEMENTO_CLASS_NAME$(state);
     }
 }

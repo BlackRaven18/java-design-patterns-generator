@@ -1,20 +1,20 @@
-public class Memento {
+public class $MEMENTO_CLASS_NAME$ {
 
-    private String state;
+    private $STATE_TYPE$ state;
 
-    public Memento(){
-        this.state = "";
+    public $MEMENTO_CLASS_NAME$(){
+        this.state = null;
     }
 
-    public Memento(String state){
+    public $MEMENTO_CLASS_NAME$($STATE_TYPE$ state){
         this.state = state;
     }
 
-    public String getState() {
+    public $STATE_TYPE$ getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState($STATE_TYPE$ state) {
         this.state = state;
     }
 }

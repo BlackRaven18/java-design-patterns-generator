@@ -1,13 +1,13 @@
-public class Caretaker {
+public class $CARETAKER_CLASS_NAME$ {
 
-    private Memento memento;
+    private $MEMENTO_CLASS_NAME$ memento;
 
 
-    public Memento getMemento() {
+    public $MEMENTO_CLASS_NAME$ getMemento() {
         return memento;
     }
 
-    public void setMemento(Memento memento) {
+    public void setMemento($MEMENTO_CLASS_NAME$ memento) {
         this.memento = memento;
     }
 }
