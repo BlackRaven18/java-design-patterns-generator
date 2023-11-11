@@ -1,0 +1,41 @@
+{
+    "name": "State",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Context.java",
+            "sourceFile": "Context.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "State.java",
+            "sourceFile": "State.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteState.java",
+            "sourceFile": "ConcreteState.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}
