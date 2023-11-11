@@ -1,0 +1,51 @@
+{
+    "name": "Mediator",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Client.java",
+            "sourceFile": "Client.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Mediator.java",
+            "sourceFile": "Mediator.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteMediator.java",
+            "sourceFile": "ConcreteMediator.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Colleague.java",
+            "sourceFile": "Colleague.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteColleague.java",
+            "sourceFile": "ConcreteColleague.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}

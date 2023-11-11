@@ -1,0 +1,51 @@
+{
+    "name": "Iterator",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Client.java",
+            "sourceFile": "Client.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Iterator.java",
+            "sourceFile": "Iterator.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteIterator.java",
+            "sourceFile": "ConcreteIterator.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Aggregate.java",
+            "sourceFile": "Aggregate.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteAggregate.java",
+            "sourceFile": "ConcreteAggregate.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}
