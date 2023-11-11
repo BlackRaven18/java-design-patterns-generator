@@ -1,9 +1,9 @@
-public class Client {
+public class $CLIENT_CLASS_NAME$ {
 
     public void operation(){
-        Receiver receiver = new Receiver();
+        $RECEIVER_CLASS_NAME$ receiver = new $RECEIVER_CLASS_NAME$();
         ConcreteCommand command = new ConcreteCommand(receiver, this);
-        Invoker invoker = new Invoker(command);
+        $INVOKER_CLASS_NAME$ invoker = new $INVOKER_CLASS_NAME$(command);
 
         invoker.executeCommand();
     }

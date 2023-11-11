@@ -32,17 +32,66 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Client class name",
+                "defaultValue": "Client",
+                "replace": "$CLIENT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Invoker class name",
+                "defaultValue": "Invoker",
+                "replace": "$INVOKER_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Receiver class name",
+                "defaultValue": "Receiver",
+                "replace": "$RECEIVER_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Command class name",
+                "defaultValue": "Command",
+                "replace": "$COMMAND_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteCommand class name",
+                "defaultValue": "ConcreteCommand",
+                "replace": "$CONCRETE_COMMAND_CLASS_NAME$",
+                "filename": [
+                    "ConcreteCommand.java"
+                ]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "execute method name",
+                "defaultValue": "execute",
+                "replace": "$EXECUTE_METHOD_NAME$",
+                "filename": [
+                    "Command.java",
+                    "ConcreteCommand.java"
+                ]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "action method name",
+                "defaultValue": "action",
+                "replace": "$ACTION_METHOD_NAME$",
+                "filename": [
+                    "Receiver.java",
+                    "ConcreteCommand.java"
+                ]
             }
-           
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "ConcreteCommand classes number",
+                "fileNameToBeMultiplied": "ConcreteCommand.java",
                 "minNumber": 1,
                 "maxNumber": 5
             }

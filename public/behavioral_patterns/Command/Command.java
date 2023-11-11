@@ -1,4 +1,4 @@
-public interface Command {
+public interface $COMMAND_CLASS_NAME$ {
 
-    void execute();
+    void $EXECUTE_METHOD_NAME$();
 }
