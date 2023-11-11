@@ -1,6 +1,6 @@
 {
-    "defaultSelectedPatternFamillyIndex": 1,
-    "defaultSelectedPatternIndex": 6,
+    "defaultSelectedPatternFamillyIndex": 2,
+    "defaultSelectedPatternIndex": 0,
     "defaultSelectedTabIndex": 0,
     "patternFamillies": [
         {
@@ -144,6 +144,11 @@
                     "patternName": "Builder(C++)",
                     "patternDir": "builder_cpp",
                     "configFile": "builder_config.json"
+                },
+                {
+                    "patternName": "Object Pool(Java)",
+                    "patternDir": "Object_pool",
+                    "configFile": "object_pool_config.json"
                 }
             ]
         }
