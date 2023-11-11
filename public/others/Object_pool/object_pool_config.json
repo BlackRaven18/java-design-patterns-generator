@@ -1,0 +1,36 @@
+{
+    "name": "Object Pool",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "PooledObject.java",
+            "sourceFile": "PooledObject.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "PooledObjectPool.java",
+            "sourceFile": "PooledObjectPool.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}
