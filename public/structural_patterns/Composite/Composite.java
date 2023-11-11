@@ -1,32 +1,32 @@
 import java.util.ArrayList;
 
-public class Composite implements Component{
+public class $COMPOSITE_CLASS_NAME$ extends $COMPONENT_CLASS_NAME${
 
-    private ArrayList<Composite> children;
+    private ArrayList<$COMPONENT_CLASS_NAME$> children;
 
-    public Composite(){
+    public $COMPOSITE_CLASS_NAME$(){
         this.children = new ArrayList<>();
     }
 
     @Override
-    public void operation() {
-        for(Composite child : children){
-            child.operation();
+    public void $OPERATION_METHOD_NAME$() {
+        for($COMPONENT_CLASS_NAME$ child : children){
+            child.$OPERATION_METHOD_NAME$();
         }
     }
 
     @Override
-    public void add(Component component) {
-
+    public void $ADD_METHOD_NAME$($COMPONENT_CLASS_NAME$ component) {
+        children.add(component);
     }
 
     @Override
-    public void remove(Component component) {
-
+    public void $REMOVE_METHOD_NAME$($COMPONENT_CLASS_NAME$ component) {
+        children.remove(component);
     }
 
     @Override
-    public Component getChild(int childIndex) {
-        return null;
+    public $COMPONENT_CLASS_NAME$ $GETCHILD_METHOD_NAME$(int childIndex) {
+        return children.get(childIndex);
     }
 }
