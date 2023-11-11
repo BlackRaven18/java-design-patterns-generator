@@ -1,13 +1,13 @@
-public class Decorator implements Component{
+public class $DECORATOR_CLASS_NAME$ implements $COMPONENT_CLASS_NAME${
 
-    protected Component component;
+    protected $COMPONENT_CLASS_NAME$ component;
 
-    public Decorator(Component component){
+    public $DECORATOR_CLASS_NAME$($COMPONENT_CLASS_NAME$ component){
         this.component = component;
     }
 
     @Override
-    public void operation() {
-        component.operation();
+    public void $OPERATION_METHOD_NAME$() {
+        component.$OPERATION_METHOD_NAME$();
     }
 }

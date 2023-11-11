@@ -1,16 +1,16 @@
-public class ConcreteDecorator extends Decorator{
+public class $CONCRETE_DECORATOR_CLASS_NAME$ extends $DECORATOR_CLASS_NAME${
 
-    public ConcreteDecorator(Component component) {
+    public $CONCRETE_DECORATOR_CLASS_NAME$($COMPONENT_CLASS_NAME$ component) {
         super(component);
     }
 
     @Override
-    public void operation() {
-        super.operation();
-        addedBehaviour();
+    public void $OPERATION_METHOD_NAME$() {
+        super.$OPERATION_METHOD_NAME$();
+        $ADDED_BEHAVIOUR_METHOD_NAME$();
     }
 
-    public void addedBehaviour(){
+    public void $ADDED_BEHAVIOUR_METHOD_NAME$(){
 
     }
 }
