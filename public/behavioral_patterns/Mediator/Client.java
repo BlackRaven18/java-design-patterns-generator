@@ -1,11 +1,11 @@
-public class Client {
+public class $CLIENT_CLASS_NAME$ {
 
     public void operation(){
-        ConcreteMediator concreteMediator = new ConcreteMediator();
+        $CONCRETE_MEDIATOR_CLASS_NAME$ concreteMediator = new $CONCRETE_MEDIATOR_CLASS_NAME$();
         ConcreteColleague concreteColleague = new ConcreteColleague(concreteMediator);
 
         concreteMediator.setConcreteColleague(concreteColleague);
 
-        concreteColleague.operation();
+        concreteColleague.$OPERATION_METHOD_NAME$();
     }
 }
