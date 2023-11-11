@@ -27,12 +27,47 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "FlyweightFactory class name",
+                "defaultValue": "FlyweightFactory",
+                "replace": "$FLYWEIGHT_FACTORY_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Flyweight class name",
+                "defaultValue": "Flyweight",
+                "replace": "$FLYWEIGHT_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteFlyweight class name",
+                "defaultValue": "ConcreteFlyweight",
+                "replace": "$CONCRETE_FLYWEIGHT_CLASS_NAME$",
+                "filename": [
+                    "ConcreteFlyweight.java"
+                ]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "UnsharedConcreteFlyweight class name",
+                "defaultValue": "ConcreteFlyweight",
+                "replace": "$UNSHARED_CONCRETE_FLYWEIGHT_CLASS_NAME$",
+                "filename": [
+                    "UnsharedConcreteFlyweight.java"
+                ]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "operation method name",
+                "defaultValue": "operation",
+                "replace": "$OPERATION_METHOD_NAME$",
+                "filename": [
+                    "Flyweight.java",
+                    "ConcreteFlyweight.java",
+                    "UnsharedConcreteFlyweight.java"
+                ]
             }
-           
         ],
         "selectParams": [
             {

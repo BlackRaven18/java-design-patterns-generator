@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 
-public class FlyweightFactory {
+public class $FLYWEIGHT_FACTORY_CLASS_NAME$ {
 
-    private ArrayList<Flyweight> flyweights;
+    private ArrayList<$FLYWEIGHT_CLASS_NAME$> flyweights;
 
-    public FlyweightFactory(){
+    public $FLYWEIGHT_FACTORY_CLASS_NAME$(){
         this.flyweights = new ArrayList<>();
     }
 
-    public Flyweight getFlyweight(int key){
+    public $FLYWEIGHT_CLASS_NAME$ getFlyweight(int key){
         if(key >= 0 && key < flyweights.size()){
             return flyweights.get(key);
         } else {
-            Flyweight flyweight = new ConcreteFlyweight("intrinsicState");
+            $FLYWEIGHT_CLASS_NAME$ flyweight = new ConcreteFlyweight("intrinsicState");
             flyweights.add(flyweight);
             return flyweight;
         }
