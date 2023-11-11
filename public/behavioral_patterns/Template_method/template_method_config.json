@@ -1,0 +1,36 @@
+{
+    "name": "Template Method",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "AbstractClass.java",
+            "sourceFile": "AbstractClass.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteClass.java",
+            "sourceFile": "ConcreteClass.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}

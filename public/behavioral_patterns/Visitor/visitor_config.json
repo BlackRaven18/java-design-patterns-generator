@@ -1,0 +1,46 @@
+{
+    "name": "Visitor",
+    "language": "java",
+    "files": [
+        {
+            "defaultName": "Visitor.java",
+            "sourceFile": "Visitor.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteVisitor.java",
+            "sourceFile": "ConcreteVisitor.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "Element.java",
+            "sourceFile": "Element.java",
+            "extension": "java"
+        },
+        {
+            "defaultName": "ConcreteElement.java",
+            "sourceFile": "ConcreteElement.java",
+            "extension": "java"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Temp",
+                "defaultValue": "Temp",
+                "replace": "$TEMP$",
+                "filename": []
+            }
+           
+        ],
+        "selectParams": [
+            {
+                "label": "Temp",
+                "fileNameToBeMultiplied": "Temp.java",
+                "minNumber": 1,
+                "maxNumber": 5
+            }
+        ]
+    }
+}
