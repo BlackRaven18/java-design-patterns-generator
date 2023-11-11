@@ -1,5 +1,6 @@
-public class ConcreteMediator implements Mediator{
+public class $CONCRETE_MEDIATOR_CLASS_NAME$ implements $MEDIATOR_CLASS_NAME${
 
+    //concrete colleagues
     private ConcreteColleague concreteColleague;
 
     public void setConcreteColleague(ConcreteColleague concreteColleague) {
@@ -7,14 +8,14 @@ public class ConcreteMediator implements Mediator{
     }
 
     @Override
-    public void notify(Colleague sender) {
+    public void $NOTIFY_METHOD_NAME$($COLLEAGUE_CLASS_NAME$ sender) {
         if(sender instanceof ConcreteColleague){
             reactOnConcreteColleague();
         }
     }
 
     public void reactOnConcreteColleague(){
-        //reaction
+        //reaction on concrete colleague
         System.out.println("Reaction on ConcreteColleague");
     }
 }

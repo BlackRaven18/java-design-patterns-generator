@@ -32,17 +32,58 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Client class name",
+                "defaultValue": "Client",
+                "replace": "$CLIENT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Mediator class name",
+                "defaultValue": "Mediator",
+                "replace": "$MEDIATOR_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteMediator class name",
+                "defaultValue": "ConcreteMediator",
+                "replace": "$CONCRETE_MEDIATOR_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Colleague class name",
+                "defaultValue": "Colleague",
+                "replace": "$COLLEAGUE_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteColleague class name",
+                "defaultValue": "ConcreteColleague",
+                "replace": "$CONCRETE_COLLEAGUE_CLASS_NAME$",
+                "filename": ["ConcreteColleague.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "notify() method name",
+                "defaultValue": "notify",
+                "replace": "$NOTIFY_METHOD_NAME$",
+                "filename": ["Mediator.java", "ConcreteMediator.java", "Colleague.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "operation() method name",
+                "defaultValue": "operation",
+                "replace": "$OPERATION_METHOD_NAME$",
+                "filename": ["Colleague.java", "ConcreteColleague.java", "Client.java"]
             }
-           
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "ConcreteColleague classes number",
+                "fileNameToBeMultiplied": "ConcreteColleague.java",
                 "minNumber": 1,
                 "maxNumber": 5
             }
