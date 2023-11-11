@@ -1,12 +1,12 @@
-public abstract class Abstraction {
+public abstract class $ABSTRACTION_CLASSNAME$ {
 
-    protected Implementor imp;
+    protected $IMPLEMENTOR_CLASSNAME$ imp;
 
-    public Abstraction(Implementor imp){
+    public $ABSTRACTION_CLASSNAME$($IMPLEMENTOR_CLASSNAME$ imp){
         this.imp = imp;
     }
 
     public void operation(){
-        imp.operationImp();
+        imp.$OPERATION_IMPLEMENTATION_METHOD_NAME$();
     }
 }

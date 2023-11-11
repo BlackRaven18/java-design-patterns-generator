@@ -27,17 +27,45 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Builder class name",
-                "defaultValue": "Builder",
-                "replace": "$BUILDER_CLASSNAME$",
+                "label": "Abstraction class name",
+                "defaultValue": "Abstraction",
+                "replace": "$ABSTRACTION_CLASSNAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "RefinedAbstraction class name",
+                "defaultValue": "RefinedAbstraction",
+                "replace": "$REFINED_ABSTRACTION_CLASSNAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Implementor class name",
+                "defaultValue": "Implementor",
+                "replace": "$IMPLEMENTOR_CLASSNAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteImplementator class name",
+                "defaultValue": "ConcreteImplementator",
+                "replace": "$CONCRETE_IMPLEMENTOR_CLASSNAME$",
+                "filename": ["ConcreteImplementator.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Operation implementation method name",
+                "defaultValue": "operationImp",
+                "replace": "$OPERATION_IMPLEMENTATION_METHOD_NAME$",
+                "filename": ["Abstraction.java", "ConcreteImplementator.java", "Implementor.java"]
             }
            
         ],
         "selectParams": [
             {
-                "label": "Number of ConcreteBuilder classes",
-                "fileNameToBeMultiplied": "ConcreteBuilder.java",
+                "label": "Number of ConcreteImplementator classes",
+                "fileNameToBeMultiplied": "ConcreteImplementator.java",
                 "minNumber": 1,
                 "maxNumber": 5
             }

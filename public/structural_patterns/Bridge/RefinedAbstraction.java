@@ -1,6 +1,6 @@
-public class RefinedAbstraction extends Abstraction{
+public class $REFINED_ABSTRACTION_CLASSNAME$ extends $ABSTRACTION_CLASSNAME${
 
-    public RefinedAbstraction(Implementor imp){
+    public $REFINED_ABSTRACTION_CLASSNAME$($IMPLEMENTOR_CLASSNAME$ imp){
         super(imp);
     }
 
