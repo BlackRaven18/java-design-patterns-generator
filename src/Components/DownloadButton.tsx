@@ -40,15 +40,18 @@ const DownloadButton = (props: DownloadButtonProps) => {
                 variant='contained'
                 sx={{
                     color: "secondary.contrastText",
-                    backgroundColor: "secondary.main"
+                    backgroundColor: "secondary.main",
+                    "&:hover": {
+                        backgroundColor: "secondary.dark"
+                    }
+                    
                 }}
             >
                 Download pattern files
             </Button>
         </Box>
-        // <div>
-        //     <button onClick={handleDownload}>Pobierz archiwum ZIP</button>
-        // </div>
+
+
     );
 
 }
