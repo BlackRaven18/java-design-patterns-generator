@@ -48,14 +48,15 @@ export default function ParametersTabs(props: ParametersTabsProps) {
 
     return (
 
-        <Box>
+        <Box
+            padding={"5px"}
+        >
             <Tabs
                 value={props.selectedTabIndex}
                 onChange={(event, value) => handleTabChange(value)}
                 variant="fullWidth"
                 scrollButtons="auto"
                 sx={{
-                    height: "5svh",
                     marginBottom: "2px",
                     backgroundColor: "secondary.dark",
                     color: "#F7F1DB",
