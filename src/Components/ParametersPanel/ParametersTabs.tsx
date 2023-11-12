@@ -1,8 +1,9 @@
-import { Box, Tab, Tabs, tabsClasses } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Tab, Tabs, Theme, tabsClasses, useTheme } from "@mui/material";
+import styled from "@mui/styled-engine";
+import React, { useEffect, useState } from "react";
 import ParametersAccordion from "./ParametersAccordion";
-import styled from "@mui/styled-engine"
-import { theme } from "../../index"
+import ParametersPaper from "./ParametersPaper";
+
 
 interface ParametersTabsProps {
     children: React.ReactNode[],
@@ -12,41 +13,45 @@ interface ParametersTabsProps {
     localParamsNumber: number
 }
 
-const StyledTab = styled(Tab)({
+const StyledTab = styled(Tab)<{ theme: Theme }>(({ theme }) => ({
     textTransform: "none",
     color: theme.palette.primary.light,
     backgroundColor: theme.palette.secondary.light,
-    borderWidth: "1px",
-    border: '1px solid #5F5E58',
+    borderWidth: '1px',
+    borderColor: theme.palette.secondary.dark,
+    borderStyle: 'solid',
     '&.Mui-selected': {
         backgroundColor: theme.palette.secondary.main,
         color: theme.palette.secondary.contrastText
     },
     '&:hover': {
-        color: theme.palette.primary.contrastText,
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: theme.palette.secondary.dark,
     },
-});
+}));
+
 export default function ParametersTabs(props: ParametersTabsProps) {
 
-    const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    const theme = useTheme();
+
+    const [isPatternFileTabDisabled, setIsPatternFileDisabled] = useState(props.localParamsNumber === 0);
+
+    useEffect(() => {
+        setIsPatternFileDisabled(props.localParamsNumber === 0);
+        props.setSelectedTabIndex(0);
+    }, [props.localParamsNumber])
+
+
+    const handleTabChange = (newValue: number) => {
         props.setSelectedTabIndex(newValue);
 
     }
 
-    function isLocalParamsTabDisabled(): boolean {
-        if (props.localParamsNumber === 0) {
-            props.setSelectedTabIndex(0);
-            return true;
-        }
-        return false;
-    }
-
     return (
+
         <Box>
             <Tabs
                 value={props.selectedTabIndex}
-                onChange={handleTabChange}
+                onChange={(event, value) => handleTabChange(value)}
                 variant="fullWidth"
                 scrollButtons="auto"
                 sx={{
@@ -63,23 +68,28 @@ export default function ParametersTabs(props: ParametersTabsProps) {
                 }}
             >
 
+
                 <StyledTab
+                    theme={theme}
                     label={"Global Pattern Parameters" + "(" + props.globalParamsNumber + ")"}
                 />
 
                 <StyledTab
+                    theme={theme}
                     label={"Pattern File Parameters" + "(" + props.localParamsNumber + ")"}
-                    disabled={isLocalParamsTabDisabled()}
+                    disabled={isPatternFileTabDisabled}
                 />
+
 
 
             </Tabs>
 
-            <ParametersAccordion
+            <ParametersPaper
                 header="Parameters"
             >
                 {props.children}
-            </ParametersAccordion>
+            </ParametersPaper>
         </Box>
+
     );
 }
