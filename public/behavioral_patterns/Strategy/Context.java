@@ -1,16 +1,16 @@
-public class Context {
+public class $CONTEXT_CLASS_NAME$ {
 
-    private Strategy strategy;
+    private $STRATEGY_CLASS_NAME$ strategy;
 
-    public Context(Strategy strategy){
+    public $CONTEXT_CLASS_NAME$($CONTEXT_CLASS_NAME$ strategy){
         this.strategy = strategy;
     }
 
-    public void setStrategy(Strategy strategy) {
+    public void setStrategy($CONTEXT_CLASS_NAME$ strategy) {
         this.strategy = strategy;
     }
 
     public void contextInterface(){
-        strategy.algorithmInterface();
+        strategy.$ALGORITHM_INTERFACE_METHOD_NAME$();
     }
 }

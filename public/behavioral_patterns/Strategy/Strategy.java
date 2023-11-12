@@ -1,4 +1,4 @@
-public interface Strategy {
+public interface $CONTEXT_CLASS_NAME$ {
 
-   void algorithmInterface();
+   void $ALGORITHM_INTERFACE_METHOD_NAME$();
 }
