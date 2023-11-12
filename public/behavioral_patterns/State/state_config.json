@@ -22,17 +22,38 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Context class name",
+                "defaultValue": "Context",
+                "replace": "$CONTEXT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "State class name",
+                "defaultValue": "State",
+                "replace": "$STATE_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteState class name",
+                "defaultValue": "ConcreteState",
+                "replace": "$CONCRETE_STATE_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "handle() method name",
+                "defaultValue": "handle",
+                "replace": "$HANDLE_METHOD_NAME$",
+                "filename": ["State.java", "ConcreteState.java", "Context.java"]
             }
            
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "ConcreteState classes number",
+                "fileNameToBeMultiplied": "ConcreteState.java",
                 "minNumber": 1,
                 "maxNumber": 5
             }
