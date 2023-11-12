@@ -17,20 +17,69 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "PooledObject class name",
+                "defaultValue": "PooledObject",
+                "replace": "$POOLED_OBJECT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "PooledObjectPool class name",
+                "defaultValue": "PooledObjectPool",
+                "replace": "$POOLED_OBJECT_POOL_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Pooled Object expiration time",
+                "defaultValue": "6000",
+                "replace": "$POOLED_OBJECT_EXPIRATION_TIME$",
+                "filename": ["PooledObjectPool.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "getObject() method name",
+                "defaultValue": "getObject",
+                "replace": "$GET_OBJECT_METHOD_NAME$",
+                "filename": ["PooledObjectPool.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "createPooledObject() method name",
+                "defaultValue": "createPooledObject",
+                "replace": "$CREATE_POOLED_OBJECT_METHOD_NAME$",
+                "filename": ["PooledObjectPool.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "push() method name",
+                "defaultValue": "push",
+                "replace": "$PUSH_METHOD_NAME$",
+                "filename": ["PooledObjectPool.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "releaseObject() method name",
+                "defaultValue": "releaseObject",
+                "replace": "$RELEASE_OBJECT_METHOD_NAME$",
+                "filename": ["PooledObjectPool.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "popElement() method name",
+                "defaultValue": "popElement",
+                "replace": "$POP_ELEMENT_METHOD_NAME$",
+                "filename": ["PooledObjectPool.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "cleanUp() method name",
+                "defaultValue": "cleanUp",
+                "replace": "$CLEAN_UP_METHOD_NAME$",
+                "filename": ["PooledObjectPool.java"]
             }
            
         ],
-        "selectParams": [
-            {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
-                "minNumber": 1,
-                "maxNumber": 5
-            }
-        ]
+        "selectParams": []
     }
 }

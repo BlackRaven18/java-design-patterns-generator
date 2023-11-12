@@ -1,4 +1,4 @@
-public class PooledObject {
+public class $POOLED_OBJECT_CLASS_NAME$ {
 
     public String data;
 
