@@ -64,6 +64,9 @@ function App() {
           <Grid
             item
             xs={4}
+            sx={{
+              backgroundColor: "secondary.main"
+            }}
           >
             <ParametersPanel editorRef={parentEditorRef} />
 
