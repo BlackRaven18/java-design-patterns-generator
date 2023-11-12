@@ -17,17 +17,45 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "AbstractClass class name",
+                "defaultValue": "AbstractClass",
+                "replace": "$ABSTRACT_CLASS_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteClass class name",
+                "defaultValue": "ConcreteClass",
+                "replace": "$CONCRETE_CLASS_CLASS_NAME$",
+                "filename": [
+                    "ConcreteClass.java"
+                ]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "primitiveOperation1() method name",
+                "defaultValue": "primitiveOperation1",
+                "replace": "$PRIMITIVE_OPERATION_1_METHOD_NAME$",
+                "filename": [
+                    "AbstractClass.java",
+                    "ConcreteClass.java"
+                ]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "primitiveOperation2() method name",
+                "defaultValue": "primitiveOperation2",
+                "replace": "$PRIMITIVE_OPERATION_2_METHOD_NAME$",
+                "filename": [
+                    "AbstractClass.java",
+                    "ConcreteClass.java"
+                ]
             }
-           
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "ConcreteClass classes number",
+                "fileNameToBeMultiplied": "ConcreteClass.java",
                 "minNumber": 1,
                 "maxNumber": 5
             }

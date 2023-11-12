@@ -1,12 +1,12 @@
-public class ConcreteClass extends AbstractClass{
+public class $CONCRETE_CLASS_CLASS_NAME$ extends $ABSTRACT_CLASS_CLASS_NAME${
 
     @Override
-    public void primitiveOperation1() {
-        super.primitiveOperation1();
+    public void $PRIMITIVE_OPERATION_1_METHOD_NAME$() {
+        super.$PRIMITIVE_OPERATION_1_METHOD_NAME$();
     }
 
     @Override
-    public void primitiveOperation2() {
-        super.primitiveOperation2();
+    public void $PRIMITIVE_OPERATION_2_METHOD_NAME$() {
+        super.$PRIMITIVE_OPERATION_2_METHOD_NAME$();
     }
 }
