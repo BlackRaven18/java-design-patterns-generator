@@ -108,7 +108,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
 
             <Editor
-                height="85vh"
+                height="84svh"
                 theme="vs-dark"
                 defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
                 language={selectedPattern.language}
