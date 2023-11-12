@@ -1,4 +1,4 @@
-public interface Element {
+public interface $ELEMENT_CLASS_NAME$ {
 
-    void acceptVisitor(Visitor visitor);
+    void acceptVisitor($VISITOR_CLASS_NAME$ visitor);
 }
