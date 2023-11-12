@@ -2,7 +2,7 @@ import { Editor, Monaco } from "@monaco-editor/react";
 import { Box, Tab, Tabs } from "@mui/material";
 import { tabsClasses } from "@mui/material/Tabs";
 import { editor } from "monaco-editor";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSelectedTabIndex, updatePatternFile } from "../redux/AppStateSlice";
 import { setIsChangesMade } from "../redux/UnsavedProgressSlice";
@@ -22,9 +22,26 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
 
+    useEffect(() => {
+        let animationFrameId: number;
+    
+        const handleAnimationFrame = () => {
+          // Tutaj umieść kod, który ma być wykonany przed następną klatką animacji
+          // Na przykład, odświeżenie edytora
+          editorRef.current?.layout();
+          // Rozpocznij kolejną klatkę animacji
+          animationFrameId = requestAnimationFrame(handleAnimationFrame);
+        };
+    
+        // Rozpocznij pierwszą klatkę animacji
+        animationFrameId = requestAnimationFrame(handleAnimationFrame);
+    
+        // Zatrzymaj animację, gdy komponent zostanie odmontowany
+        return () => cancelAnimationFrame(animationFrameId);
+      }, []);
+
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         dispatch(setSelectedTabIndex(newValue));
-
     }
 
     const handleEditorChange = (value: string) => {
@@ -43,7 +60,9 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     }
 
     return (
-        <Box>
+        <Box
+            //height={"100%"}
+        >
             <Tabs
                 value={selectedTabIndex}
                 onChange={handleTabChange}
@@ -98,6 +117,9 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 onMount={handleEditorDidMount}
                 options={{
                     readOnly: isEditorReadOnly,
+                    
+                    //automaticLayout: true,
+    
 
                 }}
             />
