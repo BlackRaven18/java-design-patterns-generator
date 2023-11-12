@@ -1,4 +1,4 @@
-public interface State {
+public interface $STATE_CLASS_NAME$ {
 
-    void handle();
+    void $HANDLE_METHOD_NAME$();
 }

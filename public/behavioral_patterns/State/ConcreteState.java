@@ -1,21 +1,21 @@
-public class ConcreteState implements State{
+public class $CONCRETE_STATE_CLASS_NAME$ implements $STATE_CLASS_NAME${
 
-    private Context context;
+    private $CONTEXT_CLASS_NAME$ context;
 
-    public ConcreteState(){
-        this.context = new Context(this);
+    public $CONCRETE_STATE_CLASS_NAME$(){
+        this.context = new $CONTEXT_CLASS_NAME$(this);
     }
 
-    public ConcreteState(Context context) {
+    public $CONCRETE_STATE_CLASS_NAME$($CONTEXT_CLASS_NAME$ context) {
         this.context = context;
     }
 
-    public void setContext(Context context) {
+    public void setContext($CONTEXT_CLASS_NAME$ context) {
         this.context = context;
     }
 
     @Override
-    public void handle() {
+    public void $HANDLE_METHOD_NAME$() {
         //handle
     }
 }

@@ -1,17 +1,17 @@
-public class Context {
+public class $CONTEXT_CLASS_NAME$ {
 
-    private State state;
+    private $STATE_CLASS_NAME$ state;
 
-    public Context(State initialState) {
+    public $CONTEXT_CLASS_NAME$($STATE_CLASS_NAME$ initialState) {
         this.state = initialState;
     }
 
-    public void changeState(State state){
+    public void changeState($STATE_CLASS_NAME$ state){
         this.state = state;
     }
 
     public void request(){
-        state.handle();
+        state.$HANDLE_METHOD_NAME$();
     }
 
 
