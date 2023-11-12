@@ -1,4 +1,4 @@
-public interface Observer {
+public interface $OBSERVER_CLASS_NAME$ {
 
-    void update();
+    void $UPDATE_METHOD_NAME$();
 }

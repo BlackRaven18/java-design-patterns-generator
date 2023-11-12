@@ -21,23 +21,63 @@
             "defaultName": "ConcreteObserver.java",
             "sourceFile": "ConcreteObserver.java",
             "extension": "java"
+        },
+        {
+            "defaultName": "State.java",
+            "sourceFile": "State.java",
+            "extension": "java"
         }
     ],
     "params": {
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Subject class name",
+                "defaultValue": "Subject",
+                "replace": "$SUBJECT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteSubject class name",
+                "defaultValue": "ConcreteSubject",
+                "replace": "$CONCRETE_SUBJECT_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Observer class name",
+                "defaultValue": "Observer",
+                "replace": "$OBSERVER_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "State enum name",
+                "defaultValue": "State",
+                "replace": "$STATE_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteObserver class name",
+                "defaultValue": "ConcreteObserver",
+                "replace": "$CONCRETE_OBSERVER_CLASS_NAME$",
+                "filename": ["ConcreteObserver.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "update() method name",
+                "defaultValue": "update",
+                "replace": "$UPDATE_METHOD_NAME$",
+                "filename": ["Observer.java", "ConcreteObserver.java", "Subject.java"]
             }
            
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "ConcreteObserver classes number",
+                "fileNameToBeMultiplied": "ConcreteObserver.java",
                 "minNumber": 1,
                 "maxNumber": 5
             }

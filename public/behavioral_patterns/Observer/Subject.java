@@ -1,25 +1,25 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Subject {
+public abstract class $SUBJECT_CLASS_NAME$ {
 
-    protected List<Observer> observers;
+    protected List<$OBSERVER_CLASS_NAME$> observers;
 
-    public Subject(){
+    public $SUBJECT_CLASS_NAME$(){
         this.observers = new ArrayList<>();
     }
 
-    public void attach(Observer observer){
+    public void attach($OBSERVER_CLASS_NAME$ observer){
         observers.add(observer);
     }
 
-    public void detach(Observer observer){
+    public void detach($OBSERVER_CLASS_NAME$ observer){
         observers.remove(observer);
     }
 
     public void notifyObservers(){
-        for(Observer observer : observers){
-            observer.update();
+        for($OBSERVER_CLASS_NAME$ observer : observers){
+            observer.$UPDATE_METHOD_NAME$();
         }
     }
 }
