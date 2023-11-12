@@ -22,17 +22,37 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Context class name",
+                "defaultValue": "Context",
+                "replace": "$CONTEXT_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Strategy class name",
+                "defaultValue": "Strategy",
+                "replace": "$STRATEGY_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteStrategy class name",
+                "defaultValue": "ConcreteStrategy",
+                "replace": "$CONCRETE_STRATEGY_CLASS_NAME$",
+                "filename": ["ConcreteStrategy.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "algorithmInterface() method name",
+                "defaultValue": "algorithmInterface",
+                "replace": "$ALGORITHM_INTERFACE_METHOD_NAME$",
+                "filename": ["Strategy.java", "ConcreteStrategy.java", "Context.java"]
             }
-           
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "ConcreteStrategy classes number",
+                "fileNameToBeMultiplied": "ConcreteStrategy.java",
                 "minNumber": 1,
                 "maxNumber": 5
             }
