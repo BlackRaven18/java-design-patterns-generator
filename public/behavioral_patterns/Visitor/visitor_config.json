@@ -27,19 +27,46 @@
         "textFieldParams": [
             {
                 "shouldBeVisible": true,
-                "label": "Temp",
-                "defaultValue": "Temp",
-                "replace": "$TEMP$",
+                "label": "Visitor class name",
+                "defaultValue": "Visitor",
+                "replace": "$VISITOR_CLASS_NAME$",
                 "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteVisitor class name",
+                "defaultValue": "ConcreteVisitor",
+                "replace": "$CONCRETE_VISITOR_CLASS_NAME$",
+                "filename": ["ConcreteVisitor.java"]
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Element class name",
+                "defaultValue": "Element",
+                "replace": "$ELEMENT_CLASS_NAME$",
+                "filename": []
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "ConcreteElement class name",
+                "defaultValue": "ConcreteElement",
+                "replace": "$CONCRETE_ELEMENT_CLASS_NAME$",
+                "filename": ["ConcreteElement.java"]
             }
            
         ],
         "selectParams": [
             {
-                "label": "Temp",
-                "fileNameToBeMultiplied": "Temp.java",
+                "label": "ConcreteVisitor classes number",
+                "fileNameToBeMultiplied": "ConcreteVisitor.java",
                 "minNumber": 1,
-                "maxNumber": 5
+                "maxNumber": 3
+            },
+            {
+                "label": "ConcreteElement classes number",
+                "fileNameToBeMultiplied": "ConcreteElement.java",
+                "minNumber": 1,
+                "maxNumber": 3
             }
         ]
     }
