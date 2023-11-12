@@ -41,7 +41,7 @@ function App() {
       <Box
         sx={{
           backgroundColor: "primary.dark",
-          //height: "100%",
+          height: "100vh",
 
         }}
       >
