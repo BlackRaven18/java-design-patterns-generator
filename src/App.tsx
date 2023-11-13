@@ -63,6 +63,7 @@ function App() {
 
           <Grid
             item
+            zeroMinWidth
             xs={4}
             sx={{
               backgroundColor: "secondary.main"
