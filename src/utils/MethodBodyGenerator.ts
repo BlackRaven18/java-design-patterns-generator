@@ -8,7 +8,7 @@ enum MethodParameters{
 
 export default class MethodBodyGenerator {
 
-    private getMiddleWord(text: string, beginWord: string, endWord: string): string {
+    public getMiddleWord(text: string, beginWord: string, endWord: string): string {
         const beginWordIndes = text.indexOf(beginWord);
         const endWordIndex = text.indexOf(endWord);
 
