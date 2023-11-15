@@ -1,5 +1,5 @@
-import { Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
-import { PatternFamillyInfo } from "../../types";
+import {Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
+import {PatternFamillyInfo} from "../../types";
 
 interface UnsavedProgressDialogProps {
     open: boolean,
@@ -13,6 +13,7 @@ interface UnsavedProgressDialogProps {
 export default function UnsavedProgressDialog(props: UnsavedProgressDialogProps) {
     return (
         <Dialog
+            data-testid={'unsaved-progress-dialog-test-id'}
             open={props.open}
             onClose={props.handleClose}
         >
@@ -29,7 +30,10 @@ export default function UnsavedProgressDialog(props: UnsavedProgressDialogProps)
             </DialogContent>
             <DialogActions>
                 <Button onClick={props.handleYes}>Yes</Button>
-                <Button onClick={props.handleNo} autoFocus>No</Button>
+                <Button
+                    data-testid={'unsaved-progress-dialog-button-no-test-id'}
+                    onClick={props.handleNo}
+                    autoFocus>No</Button>
             </DialogActions>
         </Dialog>
 

@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@mui/material";
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 
 interface EditorReadOnlyDialogProps {
     open: boolean,
@@ -13,6 +13,7 @@ export default function EditorReadOnlyDialog(props: EditorReadOnlyDialogProps) {
     return (
 
         <Dialog
+            data-testid={"editor-read-only-dialog-test-id"}
             open={props.open}
             onClose={props.handleClose}
         >
@@ -31,8 +32,13 @@ export default function EditorReadOnlyDialog(props: EditorReadOnlyDialogProps) {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={props.handleYes}>Yes</Button>
-                <Button onClick={props.handleNo} autoFocus>No</Button>
+                <Button
+                    data-testid={"editor-read-only-dialog-button-yes-test-id"}
+                    onClick={props.handleYes}>Yes</Button>
+                <Button
+                    data-testid={"editor-read-only-dialog-button-no-test-id"}
+                    onClick={props.handleNo}
+                    autoFocus>No</Button>
             </DialogActions>
         </Dialog>
 

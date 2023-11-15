@@ -13,6 +13,7 @@ export default function EditorReadOnlySwitch(props: EditorReadOnlySwitchProps) {
         <FormControlLabel
             control={
                 <Switch
+                    data-testid="editor-read-only-switch-test-id"
                     checked={props.isEditorReadOnly}
                     onChange={props.handleEditorReadOnlyChange}
                     disabled={!props.isEditorReadOnly}

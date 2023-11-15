@@ -34,7 +34,7 @@ export default function EditorReadOnlyContainer(){
     }
 
     return(
-        <Box>
+        <Box data-testid={"editor-read-only-container-test-id"}>
 
         <EditorReadOnlySwitch
             isEditorReadOnly={isEditorReadOnly}
