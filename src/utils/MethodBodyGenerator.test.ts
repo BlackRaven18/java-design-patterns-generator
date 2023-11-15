@@ -22,7 +22,7 @@ describe('MethodBodyGenerator', () => {
         expect(result).toBe("");
     });
 
-    it('should return proper method', () => {
+    it('should return unsupported params warning', () => {
         let methodBodyGenerator = new MethodBodyGenerator;
 
         let methodGeneratorConfig: MethodGeneratorConfig = {
@@ -52,6 +52,45 @@ describe('MethodBodyGenerator', () => {
 
         expect(result.trim()).toEqual("// unsupported parameters in method header:");
 
+    });
+
+    it('should return proper method with body', () => {
+        let methodBodyGenerator = new MethodBodyGenerator;
+
+        let methodGeneratorConfig: MethodGeneratorConfig = {
+            generatePatterns: [
+                {
+                    language: "java",
+                    defaultAccessType: "public",
+                    accessTypes: ["public"],
+                    returnTypes: [
+                        {
+                            returnType: "void",
+                            shouldReturn: ""
+                        }
+                    ],
+                    bodyTemplate: "\t@Override\n\t$ACCESS_TYPE$ $RETURN_TYPE$ $NAME$($PARAMS$){\n\t\t$RETURN_TYPE_VALUE$\n\t}",
+                }
+            ]
+        }
+        let methodHeader: string = "void testMethod();";
+        let language = "java";
+
+        let result = methodBodyGenerator.generateMethod(
+            methodGeneratorConfig,
+            methodHeader,
+            language
+        )
+
+        expect(result).toEqual("\t@Override\n\tpublic void testMethod(){\n\t\t\n\t}");
+    })
+
+    it('should get method headers', () => {
+        let methodBodyGenerator = new MethodBodyGenerator;
+        let methods ="void testMethod()\nvoid testMethod2()";
+        let expectOutcome = ["void testMethod()", "void testMethod2()"];
+
+        expect(methodBodyGenerator.getMethodsHeaders(methods)).toEqual(expectOutcome);
     })
 
 })
