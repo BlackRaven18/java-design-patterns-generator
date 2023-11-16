@@ -8,7 +8,6 @@ import MyDrawer from './components/MyDrawer';
 import ParametersPanel from './components/ParametersPanel/ParametersPanel';
 import PatternsMenu from './components/PatternsMenu';
 import TopBar from './components/TopBar';
-import CustomBackdrop from './components/common/CustomBackdrop';
 import { AppDispatch } from './redux/store';
 import InitialStateLoader from './utils/InitialStateLoader';
 import { setState } from './redux/AppStateSlice';
@@ -16,7 +15,6 @@ import { setState } from './redux/AppStateSlice';
 function App() {
 
   const dispatch = useDispatch<AppDispatch>();
-  const [isLoading, setIsLoading] = useState(false);
 
   const parentEditorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
@@ -37,7 +35,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" data-testid={'app-test-id'}>
       <Box
         sx={{
           backgroundColor: "primary.dark",
@@ -45,9 +43,6 @@ function App() {
 
         }}
       >
-        {isLoading ? (
-          <CustomBackdrop label={"Loading..."} />
-        ) : (<></>)}
 
         <TopBar />
 

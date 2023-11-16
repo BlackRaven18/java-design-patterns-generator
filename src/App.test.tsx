@@ -1,5 +1,5 @@
 import App from "./App"
-import {render, waitFor} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 import {Config} from "./types";
 import {Provider} from "react-redux";
 import {store} from "./redux/store";
@@ -27,14 +27,8 @@ describe('App', () => {
                 <App/>
             </Provider>
         );
-        // Dodaj asercje, sprawdzając, czy komponent renderuje się poprawnie
+        expect(screen.getByTestId('app-test-id')).toBeInTheDocument();
     });
 
-    // it('should load initial state on mount', async () => {
-    //     render(<App />);
-    //     // Dodaj asercje, sprawdzając, czy loadInitialState jest wywoływane poprawnie
-    //     await waitFor(() => {
-    //         // Dodaj asercje, sprawdzając, czy stan początkowy został ustawiony poprawnie
-    //     });
-    // });
+
 });

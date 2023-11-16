@@ -3,13 +3,14 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 interface ParametersPaperProps {
     header: string,
-    children: React.ReactNode,
+    children?: React.ReactNode,
 }
 
 export default function ParametersPaper(props: ParametersPaperProps) {
 
     return (
         <Paper
+            data-testid={'parameters-paper-test-id'}
             elevation={2}
             square={false}
             sx={{

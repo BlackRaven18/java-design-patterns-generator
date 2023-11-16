@@ -6,7 +6,6 @@ import { AppDispatch, RootState } from "../../redux/store";
 import { ReplaceData } from "../../types";
 import CodeParamsReplacer from "../../utils/CodeParamsReplacer";
 import ParamTextField from "./ParamTextField";
-import ParametersAccordion from "./ParametersAccordion";
 import SelectParam from "./SelectParam";
 import { setIsChangesMade } from "../../redux/UnsavedProgressSlice";
 import ParametersTabs from "./ParametersTabs";

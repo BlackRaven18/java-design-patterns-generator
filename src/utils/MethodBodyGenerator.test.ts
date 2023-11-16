@@ -73,16 +73,25 @@ describe('MethodBodyGenerator', () => {
                 }
             ]
         }
-        let methodHeader: string = "void testMethod();";
+        let methodHeaderTest1: string = "public void testMethod();";
+        let methodHeaderTest2: string = "void testMethod();";
         let language = "java";
 
-        let result = methodBodyGenerator.generateMethod(
+        let resultTest1 = methodBodyGenerator.generateMethod(
             methodGeneratorConfig,
-            methodHeader,
+            methodHeaderTest1,
+            language
+        )
+        let resultTest2 = methodBodyGenerator.generateMethod(
+            methodGeneratorConfig,
+            methodHeaderTest2,
             language
         )
 
-        expect(result).toEqual("\t@Override\n\tpublic void testMethod(){\n\t\t\n\t}");
+
+
+        expect(resultTest1).toEqual("\t@Override\n\tpublic void testMethod(){\n\t\t\n\t}");
+        expect(resultTest2).toEqual("\t@Override\n\tpublic void testMethod(){\n\t\t\n\t}");
     })
 
     it('should get method headers', () => {

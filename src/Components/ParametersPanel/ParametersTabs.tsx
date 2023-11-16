@@ -1,12 +1,11 @@
 import { Box, Tab, Tabs, Theme, tabsClasses, useTheme } from "@mui/material";
 import styled from "@mui/styled-engine";
 import React, { useEffect, useState } from "react";
-import ParametersAccordion from "./ParametersAccordion";
 import ParametersPaper from "./ParametersPaper";
 
 
 interface ParametersTabsProps {
-    children: React.ReactNode[],
+    children?: React.ReactNode,
     selectedTabIndex: number,
     setSelectedTabIndex: (index: number) => void,
     globalParamsNumber: number,
@@ -49,6 +48,7 @@ export default function ParametersTabs(props: ParametersTabsProps) {
     return (
 
         <Box
+            data-testid={'parameters-tabs-test-id'}
             padding={"5px"}
         >
             <Tabs
@@ -76,6 +76,7 @@ export default function ParametersTabs(props: ParametersTabsProps) {
                 />
 
                 <StyledTab
+                    data-testid={'pattern-file-parameters-tab-test-id'}
                     theme={theme}
                     label={"Pattern File Parameters" + "(" + props.localParamsNumber + ")"}
                     disabled={isPatternFileTabDisabled}
