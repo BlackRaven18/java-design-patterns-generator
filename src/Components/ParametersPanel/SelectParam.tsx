@@ -1,10 +1,14 @@
-import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addFilesAndParamsToSelectedPattern, removeFilesFromPattern, removeTextFieldParams, removeTextFieldParamsConnectedToFile } from "../../redux/AppStateSlice";
-import { AppDispatch, RootState } from "../../redux/store";
-import { LoadedPatternFileInfo, TextFieldParamData } from "../../types";
-import { setIsChangesMade } from "../../redux/UnsavedProgressSlice";
+import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    addFilesAndParamsToSelectedPattern,
+    removeFileFromPattern,
+    removeTextFieldParams
+} from "../../redux/AppStateSlice";
+import {AppDispatch, RootState} from "../../redux/store";
+import {LoadedPatternFileInfo, TextFieldParamData} from "../../types";
+import {setIsChangesMade} from "../../redux/UnsavedProgressSlice";
 
 interface SelectParamProps {
     label: string,
@@ -59,7 +63,7 @@ export default function SelectParam(props: SelectParamProps) {
 
         //clear all class like filename and params connected to it
 
-        dispatch(removeFilesFromPattern({ filename: file.defaultName }));
+        dispatch(removeFileFromPattern({filename: file.defaultName}));
 
         paramsConnectedToFile.forEach(param => {
             dispatch(removeTextFieldParams({replace: param.replace}))
@@ -70,10 +74,10 @@ export default function SelectParam(props: SelectParamProps) {
         //add new params connected to filename (we need to know what params were connected)
 
         dispatch(addFilesAndParamsToSelectedPattern({
-            file: file,
-            params: paramsConnectedToFile,
-            howMany: numberOfInstances
-        }
+                file: file,
+                params: paramsConnectedToFile,
+                howMany: numberOfInstances
+            }
         ))
 
     }

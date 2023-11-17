@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit"
 
-interface UnsavedProgressState{
+export interface UnsavedProgressState{
     isChangesMade: boolean
 }
 
