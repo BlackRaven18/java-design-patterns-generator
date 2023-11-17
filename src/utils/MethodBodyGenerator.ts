@@ -1,11 +1,4 @@
 import { MethodGeneratePatternInfo, MethodGeneratorConfig, ReturnTypeInfo } from "../types";
-
-enum MethodParameters{
-    AccessType = 0,
-    ReturnType,
-    Name
-}
-
 export default class MethodBodyGenerator {
 
     public getMiddleWord(text: string, beginWord: string, endWord: string): string {

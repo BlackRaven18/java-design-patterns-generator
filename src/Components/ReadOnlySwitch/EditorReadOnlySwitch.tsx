@@ -1,4 +1,4 @@
-import { FormControlLabel, Switch, alpha } from "@mui/material";
+import {FormControlLabel, Switch} from "@mui/material";
 
 
 interface EditorReadOnlySwitchProps {
@@ -34,7 +34,7 @@ export default function EditorReadOnlySwitch(props: EditorReadOnlySwitchProps) {
             sx={{
                 color: (theme) =>
                     props.isEditorReadOnly ? theme.palette.primary.contrastText : theme.palette.primary.contrastText,
-                    
+
             }}
         />
     );
