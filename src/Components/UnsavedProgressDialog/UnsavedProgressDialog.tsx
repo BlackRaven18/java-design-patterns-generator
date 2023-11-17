@@ -1,14 +1,11 @@
-import {Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
-import {PatternFamillyInfo} from "../../types";
+import {Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from "@mui/material";
 
 interface UnsavedProgressDialogProps {
     open: boolean,
     handleClose: () => void,
     handleYes: () => void,
     handleNo: () => void,
-
 }
-
 
 export default function UnsavedProgressDialog(props: UnsavedProgressDialogProps) {
     return (

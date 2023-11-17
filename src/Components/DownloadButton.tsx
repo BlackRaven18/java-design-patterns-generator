@@ -1,12 +1,11 @@
-import { Box, Button } from '@mui/material';
-import { saveAs } from 'file-saver';
+import {Box, Button} from '@mui/material';
+import {saveAs} from 'file-saver';
 import JSZip from 'jszip';
-import { PatternConfigInfo, PatternInfo } from '../types';
+import {PatternConfigInfo} from '../types';
 
 interface DownloadButtonProps {
     selectedPattern: PatternConfigInfo;
 }
-
 
 const DownloadButton = (props: DownloadButtonProps) => {
     const zip = new JSZip();
@@ -16,14 +15,12 @@ const DownloadButton = (props: DownloadButtonProps) => {
             zip.file(file.currentName, file.currentContent);
         })
 
-        const content = await zip.generateAsync({ type: 'blob' });
+        const content = await zip.generateAsync({type: 'blob'});
 
         const zipFile = new File([content],
-            props.selectedPattern.name + ".zip", { type: 'application/zip' });
-
+            props.selectedPattern.name + ".zip", {type: 'application/zip'});
 
         saveAs(zipFile);
-
     }
 
     return (
@@ -36,6 +33,7 @@ const DownloadButton = (props: DownloadButtonProps) => {
             }}
         >
             <Button
+                data-testid={'download-button-test-id'}
                 onClick={handleDownload}
                 variant='contained'
                 sx={{
@@ -44,7 +42,7 @@ const DownloadButton = (props: DownloadButtonProps) => {
                     "&:hover": {
                         backgroundColor: "secondary.dark"
                     }
-                    
+
                 }}
             >
                 Download pattern files
@@ -55,10 +53,6 @@ const DownloadButton = (props: DownloadButtonProps) => {
     );
 
 }
-
-
-
-
 
 
 export default DownloadButton;
