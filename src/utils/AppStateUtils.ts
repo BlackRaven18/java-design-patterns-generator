@@ -87,7 +87,6 @@ export default class AppStateUtils {
 
         param.filename = param.filename.filter(filename => fileNames.includes(filename))
 
-        console.log(param)
         return param;
     }
 }

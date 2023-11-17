@@ -39,7 +39,8 @@
       "!src/index.tsx",
       "!src/react-app-env.d.ts",
       "!src/reportWebVitals.ts",
-      "!src/types.ts"
+      "!src/types.ts",
+      "!src/redux/store.ts"
     ]
   },
   "eslintConfig": {

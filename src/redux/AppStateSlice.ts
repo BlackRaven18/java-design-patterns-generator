@@ -47,19 +47,7 @@ export const appStateSlice = createSlice({
     name: 'appState',
     initialState,
     reducers: {
-        setState: (state, action: PayloadAction<AppState>) => {
-
-            state.appConfig = action.payload.appConfig;
-            state.methodGeneratorConfig = action.payload.methodGeneratorConfig;
-            state.isDrawerOpen = action.payload.isDrawerOpen;
-            state.isEditorReadOnly = action.payload.isEditorReadOnly;
-            state.selectedPatternFamillyIndex = action.payload.selectedPatternFamillyIndex;
-            state.selectedPatternIndex = action.payload.selectedPatternIndex;
-            state.selectedTabIndex = action.payload.selectedTabIndex;
-            state.selectedPattern = action.payload.selectedPattern;
-
-        },
-        removeFilesFromPattern: (state, action: PayloadAction<{ filename: string }>) => {
+        removeFileFromPattern: (state, action: PayloadAction<{ filename: string }>) => {
             state.selectedPattern.files
                 = state.selectedPattern.files.filter(file => file.sourceFile !== action.payload.filename)
         },
@@ -122,7 +110,6 @@ export const appStateSlice = createSlice({
                     if (!tmpParam.filename.includes(newFileName)) {
                         tmpParam.filename = [...tmpParam.filename, newFileName]
                     }
-                    console.log(tmpParam)
                     return tmpParam;
                 })
 
@@ -176,6 +163,19 @@ export const appStateSlice = createSlice({
             })
         },
 
+        setState: (state, action: PayloadAction<AppState>) => {
+
+            state.appConfig = action.payload.appConfig;
+            state.methodGeneratorConfig = action.payload.methodGeneratorConfig;
+            state.isDrawerOpen = action.payload.isDrawerOpen;
+            state.isEditorReadOnly = action.payload.isEditorReadOnly;
+            state.selectedPatternFamillyIndex = action.payload.selectedPatternFamillyIndex;
+            state.selectedPatternIndex = action.payload.selectedPatternIndex;
+            state.selectedTabIndex = action.payload.selectedTabIndex;
+            state.selectedPattern = action.payload.selectedPattern;
+
+        },
+
         setIsDrawerOpen: (state, action: PayloadAction<boolean>) => {
             state.isDrawerOpen = action.payload;
         },
@@ -220,26 +220,26 @@ export const appStateSlice = createSlice({
 })
 
 export const {
-    setState,
-    removeFilesFromPattern,
+    addFilesAndParamsToSelectedPattern,
+
+    removeFileFromPattern,
     removeTextFieldParamsConnectedToFile,
     removeTextFieldParams,
-    addFilesAndParamsToSelectedPattern,
 
     updatePatternTextFieldParamValue,
     updatePatternFile,
     updatePatternFilesContent,
+
+    setState,
     setIsDrawerOpen,
     setSelectedPatternFamillyIndex,
     setSelectedPatternIndex,
     setSelectedTabIndex,
     setSelectedPattern,
     setSelectedPatternFiles,
-    // setSelectedFile,
     setIsEditorReadOnly,
-    //addNewFile,
-    changeSelectedPatternCurrentFileName
 
+    changeSelectedPatternCurrentFileName
 
 } = appStateSlice.actions
 
