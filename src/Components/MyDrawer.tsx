@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "../redux/store";
 interface MyDrawerProps {
     headerLabel: string,
     width: string,
-    children: ReactNode;
+    children?: ReactNode;
 }
 
 export default function MyDrawer(props: MyDrawerProps) {
@@ -19,6 +19,7 @@ export default function MyDrawer(props: MyDrawerProps) {
 
     return (
         <Drawer
+            data-testid={'my-drawer-test-id'}
             anchor="left"
             open={isDrawerOpen}
             onClose={() => { dispatch(setIsDrawerOpen(false)) }}
