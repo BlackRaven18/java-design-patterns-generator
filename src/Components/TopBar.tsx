@@ -22,6 +22,7 @@ export default function TopBar() {
         >
 
             <Toolbar
+                data-testid={'top-bar-test-id'}
                 sx={{
                     height: "8svh",
                     backgroundColor: "primary.main",
@@ -29,6 +30,7 @@ export default function TopBar() {
                 }}
             >
                 <IconButton
+                    data-testid={'drawer-button-test-id'}
                     size="large"
                     edge="start"
                     color="inherit"
