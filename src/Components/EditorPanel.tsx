@@ -22,23 +22,23 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
     const selectedTabIndex = useSelector((state: RootState) => state.appState.selectedTabIndex);
     const isEditorReadOnly = useSelector((state: RootState) => state.appState.isEditorReadOnly);
 
-    useEffect(() => {
-        let animationFrameId: number;
-    
-        const handleAnimationFrame = () => {
-          // Tutaj umieść kod, który ma być wykonany przed następną klatką animacji
-          // Na przykład, odświeżenie edytora
-          editorRef.current?.layout();
-          // Rozpocznij kolejną klatkę animacji
-          animationFrameId = requestAnimationFrame(handleAnimationFrame);
-        };
-    
-        // Rozpocznij pierwszą klatkę animacji
-        animationFrameId = requestAnimationFrame(handleAnimationFrame);
-    
-        // Zatrzymaj animację, gdy komponent zostanie odmontowany
-        return () => cancelAnimationFrame(animationFrameId);
-      }, []);
+    // useEffect(() => {
+    //     let animationFrameId: number;
+    //
+    //     const handleAnimationFrame = () => {
+    //       // Tutaj umieść kod, który ma być wykonany przed następną klatką animacji
+    //       // Na przykład, odświeżenie edytora
+    //       editorRef.current?.layout();
+    //       // Rozpocznij kolejną klatkę animacji
+    //       animationFrameId = requestAnimationFrame(handleAnimationFrame);
+    //     };
+    //
+    //     // Rozpocznij pierwszą klatkę animacji
+    //     animationFrameId = requestAnimationFrame(handleAnimationFrame);
+    //
+    //     // Zatrzymaj animację, gdy komponent zostanie odmontowany
+    //     return () => cancelAnimationFrame(animationFrameId);
+    //   }, []);
 
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         dispatch(setSelectedTabIndex(newValue));
@@ -54,14 +54,12 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
     function handleEditorDidMount(editor: editor.IStandaloneCodeEditor, monaco: Monaco) {
         editorRef.current = editor;
-
         setEditorParentRef(editor);
-
     }
 
     return (
         <Box
-            //height={"100%"}
+            data-testid={"editor-panel-test-id"}
         >
             <Tabs
                 value={selectedTabIndex}
@@ -84,6 +82,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 {selectedPattern.files.map((file, index) => {
                     return (
                         <Tab
+                            data-testid={"editor-panel-tab-test-id"}
                             key={index}
                             label={file.currentName}
 
@@ -108,6 +107,7 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
 
 
             <Editor
+                data-testid={'editor-test-id'}
                 height="84svh"
                 theme="vs-dark"
                 defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
