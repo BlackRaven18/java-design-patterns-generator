@@ -8,7 +8,19 @@ const initialState: AppState = {
         defaultSelectedPatternFamillyIndex: 0,
         defaultSelectedPatternIndex: 0,
         defaultSelectedTabIndex: 0,
-        patternFamillies: []
+        patternFamillies: [
+            {
+                patternFamillyName: "",
+                patternsDir: "",
+                patterns: [
+                    {
+                        patternName: "",
+                        patternDir: "",
+                        configFile: ""
+                    }
+                ]
+            }
+        ]
     },
 
     methodGeneratorConfig: {

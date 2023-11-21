@@ -72,7 +72,7 @@ const PatternsMenu = () => {
    }
 
    return (
-      <Box>
+      <Box data-testid={"patterns-menu-test-id"}>
          <UnsavedProgressContainer
             open={isUnsavedProgressDialogOpen}
             setOpen={setIsUnsavedProgressDialogOpen}
