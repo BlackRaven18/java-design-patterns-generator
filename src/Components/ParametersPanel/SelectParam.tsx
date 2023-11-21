@@ -90,8 +90,7 @@ export default function SelectParam(props: SelectParamProps) {
         >
             <InputLabel>{props.label}</InputLabel>
             <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                data-testid={'select-param-test-id'}
                 value={value}
                 label={props.label}
                 onChange={handleChange}
