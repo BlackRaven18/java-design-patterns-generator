@@ -5,21 +5,6 @@ import { } from "../redux/AppStateSlice";
 
 export default class FileReader {
 
-    async readMultipleFiles(filePaths: string[]): Promise<string[]> {
-        const fileContents: string[] = [];
-
-        for (const filePath of filePaths) {
-            try {
-                const content = await this.handleFileRead(filePath);
-                fileContents.push(content);
-            } catch (error) {
-                console.error(`File read error: ${filePath}: ${error}`);
-                fileContents.push("");
-            }
-        }
-
-        return fileContents;
-    }
 
     async handleFileRead(path: string): Promise<string> {
 
@@ -42,6 +27,21 @@ export default class FileReader {
         } finally {
             return content;
         }
+    }
+    async readMultipleFiles(filePaths: string[]): Promise<string[]> {
+        const fileContents: string[] = [];
+
+        for (const filePath of filePaths) {
+            // try {
+                const content = await this.handleFileRead(filePath);
+                fileContents.push(content);
+            // } catch (error) {
+            //     console.error(`File read error: ${filePath}: ${error}`);
+            //     fileContents.push("");
+            // }
+        }
+
+        return fileContents;
     }
 
 }

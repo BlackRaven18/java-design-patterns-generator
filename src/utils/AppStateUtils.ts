@@ -79,7 +79,10 @@ export default class AppStateUtils {
         return patternFilesContentWithReplacedParams;
     }
 
-    public removeDeletedFilesReferenceFromConnectedParam(files: LoadedPatternFileInfo[], param: TextFieldParamData){
+    public removeDeletedFilesReferenceFromConnectedParam(
+        files: LoadedPatternFileInfo[],
+        param: TextFieldParamData
+    ){
 
         let fileNames = [...files.map(file => {
             return file.defaultName;
