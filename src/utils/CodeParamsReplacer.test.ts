@@ -12,10 +12,16 @@ describe('CodeParamsReplacer', () => {
     it('should return code with replaced param', () => {
 
         let codeWithParams = "$MOCK_PARAM$";
-        let replaceData: ReplaceData[] = [{
-            replace: "$MOCK_PARAM$",
-            value: "replaced mock param\nvalue"
-        }]
+        let replaceData: ReplaceData[] = [
+            {
+                replace: "$MOCK_PARAM$",
+                value: "replaced mock param\nvalue"
+            },
+            {
+                replace: "$MOCK_PARAM_OTHER$",
+                value: "$MOCK_PARAM$"
+            }
+        ]
 
         let codeWithReplacedParams = codeParamsReplacer.getReplacedContent(
             methodGeneratorConfig,
@@ -27,21 +33,4 @@ describe('CodeParamsReplacer', () => {
         expect(codeWithReplacedParams).toEqual("replaced mock param\n\tvalue");
     })
 
-    it('should return code with replaced param', () => {
-
-        let codeWithParams = "$MOCK_PARAM$";
-        let replaceData: ReplaceData[] = [{
-            replace: "$MOCK_PARAM$",
-            value: "replaced mock param\nvalue"
-        }]
-
-        let codeWithReplacedParams = codeParamsReplacer.getReplacedContent(
-            methodGeneratorConfig,
-            "",
-            codeWithParams,
-            replaceData
-        )
-
-        expect(codeWithReplacedParams).toEqual("replaced mock param\n\tvalue");
-    })
 })
