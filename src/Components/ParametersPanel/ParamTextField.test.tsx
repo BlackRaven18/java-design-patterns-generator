@@ -19,19 +19,11 @@ describe('ParamTextInfo', () => {
             <ParamTextField index={0} label={""} handleOnChange={onChangeMock}/>
         )
 
-        act(() => {
+        const paramTextField = screen.getByTestId("param-text-field-test-id");
+        fireEvent.change(paramTextField, {target: {value: 'foo'}});
 
-            userEvent.type(screen.getByRole('textbox'), "foo");
-        })
+        expect(paramTextField).toBeInTheDocument();
+        expect(onChangeMock).toHaveBeenCalledTimes(1);
 
-        expect(onChangeMock).toHaveBeenCalledTimes(3);
-
-
-        // @ts-ignore
-        //fireEvent.change(screen.getBy('param-text-field-test-id', { target: { value: 'foo' } }));
-
-        //expect(onChangeMock.mock.calls.length).toBe(1);
-
-        //expect(screen.getByTestId("param-text-field-test-id")).toBeInTheDocument();
     })
 })
