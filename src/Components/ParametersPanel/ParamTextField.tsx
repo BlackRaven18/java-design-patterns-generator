@@ -12,7 +12,9 @@ export default function ParamTextField(props: ParamTextFieldProps) {
 
     return (
         <TextField
-            data-testid={'param-text-field-test-id'}
+            inputProps={{
+                "data-testid": "param-text-field-test-id"
+            }}
             key={props.index}
             label={props.label}
             variant={"outlined"}

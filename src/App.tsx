@@ -64,7 +64,7 @@ function App() {
                             backgroundColor: "secondary.main"
                         }}
                     >
-                        <ParametersPanel editorRef={parentEditorRef}/>
+                        <ParametersPanel />
 
                     </Grid>
                     <Grid

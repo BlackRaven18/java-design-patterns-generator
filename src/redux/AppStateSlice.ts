@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { AppState, LoadedPatternFileInfo, PatternConfigInfo, TextFieldParamData } from "../types";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {AppState, LoadedPatternFileInfo, PatternConfigInfo, TextFieldParamData} from "../types";
 import AppStateUtils from "../utils/AppStateUtils";
 
 
@@ -39,7 +39,7 @@ const initialState: AppState = {
         files: [
             {
                 sourceFile: "",
-                defaultName: "",
+                defaultName: "foo",
                 currentName: "",
                 extension: "",
                 defaultContent: "",
@@ -48,8 +48,22 @@ const initialState: AppState = {
             }
         ],
         params: {
-            textFieldParams: [],
-            selectParams: []
+            textFieldParams: [{
+                shouldBeVisible: true,
+                label: "",
+                defaultValue: "",
+                currentValue: "",
+                replace: "",
+                filename: []
+            }],
+            selectParams: [
+                {
+                    label: "",
+                    fileNameToBeMultiplied: "foo",
+                    minNumber: 1,
+                    maxNumber: 5
+                }
+            ]
         }
     }
 
@@ -69,24 +83,24 @@ export const appStateSlice = createSlice({
 
             state.selectedPattern.params.textFieldParams
                 = state.selectedPattern.params.textFieldParams
-                    .filter(param => {
-                        let isParamConnectedWithFile = false;
-                        param.filename.forEach(fileName => {
-                            if (fileName === action.payload.filename) {
-                                isParamConnectedWithFile = true;
-                                return;
-                            }
-                        })
-                        return isParamConnectedWithFile;
-                        //param.filename !== action.payload.filename
+                .filter(param => {
+                    let isParamConnectedWithFile = false;
+                    param.filename.forEach(fileName => {
+                        if (fileName === action.payload.filename) {
+                            isParamConnectedWithFile = true;
+                            return;
+                        }
                     })
+                    return isParamConnectedWithFile;
+                    //param.filename !== action.payload.filename
+                })
         },
 
         //-------------------------------
         removeTextFieldParams: (state, action: PayloadAction<{ replace: string }>) => {
             state.selectedPattern.params.textFieldParams
                 = state.selectedPattern.params.textFieldParams
-                    .filter(param => param.replace !== action.payload.replace)
+                .filter(param => param.replace !== action.payload.replace)
         },
 
         addFilesAndParamsToSelectedPattern: (
@@ -107,7 +121,6 @@ export const appStateSlice = createSlice({
                 [...action.payload.params.filter(param => param.filename.length > 1)]
 
 
-
             for (let i = 0; i < action.payload.howMany; i++) {
 
                 let newFileName: string = i === 0 ?
@@ -117,7 +130,7 @@ export const appStateSlice = createSlice({
                 let modifableParams = [...action.payload.params.filter(param => param.filename.length <= 1)];
 
                 paramsConnectedWithMultipleFiles = paramsConnectedWithMultipleFiles.map(connectedParam => {
-                    let tmpParam = { ...connectedParam };
+                    let tmpParam = {...connectedParam};
 
                     if (!tmpParam.filename.includes(newFileName)) {
                         tmpParam.filename = [...tmpParam.filename, newFileName]
@@ -225,7 +238,6 @@ export const appStateSlice = createSlice({
         ) => {
             state.selectedPattern.files[action.payload.fileIndex].currentName = action.payload.currentName;
         },
-
 
 
     }
