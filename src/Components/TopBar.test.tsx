@@ -1,8 +1,8 @@
 import {fireEvent, render, screen} from "@testing-library/react";
-import TopBar from "../TopBar";
+import TopBar from "./TopBar";
 import {Provider} from "react-redux";
-import {store} from "../../redux/store";
-import MyDrawer from "../MyDrawer";
+import {store} from "../redux/store";
+import MyDrawer from "./MyDrawer";
 
 describe('TopBar', () => {
 

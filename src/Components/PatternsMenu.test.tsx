@@ -5,6 +5,7 @@ import PatternsMenu from "./PatternsMenu";
 
 describe('PatternsMenu', () => {
 
+
     it("should render", () => {
         render(
             <Provider store={store}>

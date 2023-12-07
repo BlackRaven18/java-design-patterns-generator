@@ -25,7 +25,10 @@ yarn-error.log*
 *.bak
 
 #WebStorm
-.idea/
+.idea/*
+
+#VSCodeCounter
+/.VSCodeCounter
 
 
 #Visual Studio Code

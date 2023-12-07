@@ -45,6 +45,15 @@ const initialState: AppState = {
                 defaultContent: "",
                 currentContent: ""
 
+            },
+            {
+                sourceFile: "",
+                defaultName: "foo",
+                currentName: "",
+                extension: "",
+                defaultContent: "",
+                currentContent: ""
+
             }
         ],
         params: {
