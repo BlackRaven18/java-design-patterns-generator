@@ -1,5 +1,5 @@
 import EditorReadOnlySwitch from "./EditorReadOnlySwitch";
-import {render} from "@testing-library/react";
+import {render, screen} from "@testing-library/react";
 import mock = jest.mock;
 
 describe("EditorReadOnlySwitch", () => {
@@ -11,6 +11,8 @@ describe("EditorReadOnlySwitch", () => {
                 handleEditorReadOnlyChange={jest.fn()}
             />
         )
+
+        expect(screen.getByTestId("editor-read-only-switch-test-id")).toBeInTheDocument()
     })
 
     it('should render disabled switch', () => {
@@ -20,6 +22,5 @@ describe("EditorReadOnlySwitch", () => {
                 handleEditorReadOnlyChange={jest.fn()}
             />
         )
-
     })
 })
