@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import UnsavedProgressDialog from "./UnsavedProgressDialog";
-import { PatternFamillyInfo } from "../../types";
+import { PatternFamilyInfo } from "../../types";
 
 interface UnsavedProgressContainerProps{
     open: boolean,

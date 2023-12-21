@@ -1,41 +1,41 @@
 {
-    "defaultSelectedPatternFamillyIndex": 0,
+    "defaultSelectedPatternFamilyIndex": 0,
     "defaultSelectedPatternIndex": 0,
     "defaultSelectedTabIndex": 0,
-    "patternFamillies": [
+    "patternFamilies": [
         {
-            "patternFamillyName": "Creational",
+            "patternFamilyName": "Creational",
             "patternsDir": "creational_patterns",
             "patterns": [
                 {
                     "patternName": "Singleton",
-                    "patternDir": "singleton",
+                    "patternDir": "Singleton",
                     "configFile": "singleton_config.json"
                 },
                 {
                     "patternName": "Builder",
-                    "patternDir": "builder",
+                    "patternDir": "Builder",
                     "configFile": "builder_config.json"
                 },
                 {
                     "patternName": "Abstract Factory",
-                    "patternDir": "abstract_factory",
+                    "patternDir": "Abstract_factory",
                     "configFile": "abstract_factory_config.json"
                 },
                 {
                     "patternName": "Factory Method",
-                    "patternDir": "factory_method",
+                    "patternDir": "Factory_method",
                     "configFile": "factory_method_config.json"
                 },
                 {
                     "patternName": "Prototype",
-                    "patternDir": "prototype",
+                    "patternDir": "Prototype",
                     "configFile": "prototype_config.json"
                 }
             ]
         },
         {
-            "patternFamillyName": "Structural",
+            "patternFamilyName": "Structural",
             "patternsDir": "structural_patterns",
             "patterns": [
                 {
@@ -76,7 +76,7 @@
             ]
         },
         {
-            "patternFamillyName": "Behavioral",
+            "patternFamilyName": "Behavioral",
             "patternsDir": "behavioral_patterns",
             "patterns": [
                 {
@@ -137,12 +137,12 @@
             ]
         },
         {
-            "patternFamillyName": "Others",
+            "patternFamilyName": "Others",
             "patternsDir": "others",
             "patterns": [
                 {
                     "patternName": "Builder(C++)",
-                    "patternDir": "builder_cpp",
+                    "patternDir": "Builder_cpp",
                     "configFile": "builder_config.json"
                 },
                 {

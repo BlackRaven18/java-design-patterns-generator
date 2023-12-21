@@ -10,12 +10,12 @@ describe('InitialStateLoader', () => {
         const initialStateLoader = new InitialStateLoader();
 
         const mockConfig: Config = {
-            defaultSelectedPatternFamillyIndex: 0,
+            defaultSelectedPatternFamilyIndex: 0,
             defaultSelectedPatternIndex: 0,
             defaultSelectedTabIndex: 0,
-            patternFamillies: [
+            patternFamilies: [
                 {
-                   patternFamillyName: "fooFamilly",
+                   patternFamilyName: "fooFamilly",
                    patternsDir: "fooDir",
                    patterns: [
                        {
@@ -114,7 +114,7 @@ describe('InitialStateLoader', () => {
         const expectedAppState: AppState = {
             appConfig: mockConfig,
             methodGeneratorConfig: mockMethodGeneratorConfig,
-            selectedPatternFamillyIndex: mockConfig.defaultSelectedPatternFamillyIndex,
+            selectedPatternFamilyIndex: mockConfig.defaultSelectedPatternFamilyIndex,
             selectedPatternIndex: mockConfig.defaultSelectedPatternIndex,
             selectedTabIndex: mockConfig.defaultSelectedTabIndex,
             isDrawerOpen: false,

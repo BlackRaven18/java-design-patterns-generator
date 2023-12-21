@@ -5,13 +5,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     setIsEditorReadOnly,
     setSelectedPattern,
-    setSelectedPatternFamillyIndex,
+    setSelectedPatternFamilyIndex,
     setSelectedPatternIndex,
     setSelectedTabIndex
 } from "../redux/AppStateSlice";
 import {setIsChangesMade} from "../redux/UnsavedProgressSlice";
 import {AppDispatch, RootState} from "../redux/store";
-import {PatternFamillyInfo} from "../types";
+import {PatternFamilyInfo} from "../types";
 import ExtendedPatternInfoCreator from "../utils/ExtendedPatternInfoCreator";
 import UnsavedProgressContainer from "./UnsavedProgressDialog/UnsavedProgressContainter";
 
@@ -20,7 +20,7 @@ const PatternsMenu = () => {
     const dispatch = useDispatch<AppDispatch>();
 
     const appConfig = useSelector((state: RootState) => state.appState.appConfig);
-    const selectedPatternFamillyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamillyIndex);
+    const selectedPatternFamilyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamilyIndex);
     const selectedPatternIndex = useSelector((state: RootState) => state.appState.selectedPatternIndex);
 
     const isChangesMade = useSelector((state: RootState) => state.unsavedProgressState.isChangesMade);
@@ -28,33 +28,32 @@ const PatternsMenu = () => {
 
     const extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
 
-    const [tmpSelectedPatternFamilly, setTmpSelectedPatternFamilly] = useState<PatternFamillyInfo>(
-        appConfig.patternFamillies[selectedPatternFamillyIndex]
+    const [tmpSelectedPatternFamily, setTmpSelectedPatternFamily] = useState<PatternFamilyInfo>(
+        appConfig.patternFamilies[selectedPatternFamilyIndex]
     );
     const [tmpSelectedPatternIndex, setTmpSelectedPatternIndex] = useState<number>(0);
 
-    const handlePatterFamillyChange = (patternFamilly: PatternFamillyInfo, index: number) => {
+    const handlePatterFamilyChange = (patternFamily: PatternFamilyInfo, index: number) => {
 
-        dispatch(setSelectedPatternFamillyIndex(index));
-        //handlePatternChange(patternFamilly, 0);
+        dispatch(setSelectedPatternFamilyIndex(index));
     }
 
 
-    const handlePatternChange = (patternFamilly: PatternFamillyInfo, patternIndex: number) => {
+    const handlePatternChange = (patternFamily: PatternFamilyInfo, patternIndex: number) => {
 
-        setTmpSelectedPatternFamilly(patternFamilly);
+        setTmpSelectedPatternFamily(patternFamily);
         setTmpSelectedPatternIndex(patternIndex);
 
         if (isChangesMade) {
             setIsUnsavedProgressDialogOpen(true);
         } else {
-            handleYes(patternFamilly, patternIndex);
+            handleYes(patternFamily, patternIndex);
         }
 
 
     }
 
-    const handleYes = (patternFamilly: PatternFamillyInfo, patternIndex: number) => {
+    const handleYes = (patternFamily: PatternFamilyInfo, patternIndex: number) => {
 
         dispatch(setIsChangesMade(false));
         setIsUnsavedProgressDialogOpen(false);
@@ -62,7 +61,7 @@ const PatternsMenu = () => {
         dispatch(setIsEditorReadOnly(true));
 
         extendedPatternInfoCreator.getExtendedPatternInfo(
-            patternFamilly, patternFamilly.patterns[patternIndex]).then(extendedPatternInfo => {
+            patternFamily, patternFamily.patterns[patternIndex]).then(extendedPatternInfo => {
 
             dispatch(setSelectedPattern(extendedPatternInfo));
             dispatch(setSelectedPatternIndex(patternIndex));
@@ -77,12 +76,12 @@ const PatternsMenu = () => {
                 open={isUnsavedProgressDialogOpen}
                 setOpen={setIsUnsavedProgressDialogOpen}
                 handleYes={() => {
-                    handleYes(tmpSelectedPatternFamilly, tmpSelectedPatternIndex)
+                    handleYes(tmpSelectedPatternFamily, tmpSelectedPatternIndex)
                 }}
             />
             <List component="nav">
 
-                {appConfig.patternFamillies.map((patternFamilly, index) => {
+                {appConfig.patternFamilies.map((patternFamily, index) => {
                     return (
                         <Box key={index}>
                             <ListItemButton
@@ -93,18 +92,18 @@ const PatternsMenu = () => {
                                     },
                                 }}
                                 key={index}
-                                selected={selectedPatternFamillyIndex === index}
-                                onClick={() => handlePatterFamillyChange(patternFamilly, index)}
+                                selected={selectedPatternFamilyIndex === index}
+                                onClick={() => handlePatterFamilyChange(patternFamily, index)}
                             >
-                                <ListItemText primary={patternFamilly.patternFamillyName}/>
-                                {selectedPatternFamillyIndex === index ? <ExpandLess/> : <ExpandMore/>}
+                                <ListItemText primary={patternFamily.patternFamilyName}/>
+                                {selectedPatternFamilyIndex === index ? <ExpandLess/> : <ExpandMore/>}
 
                             </ListItemButton>
 
 
-                            <Collapse in={selectedPatternFamillyIndex === index} timeout="auto" unmountOnExit>
+                            <Collapse in={selectedPatternFamilyIndex === index} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
-                                    {patternFamilly.patterns.map((pattern, index) => {
+                                    {patternFamily.patterns.map((pattern, index) => {
                                         return (
                                             <ListItemButton
                                                 key={index}
@@ -116,7 +115,7 @@ const PatternsMenu = () => {
                                                     },
                                                 }}
                                                 selected={selectedPatternIndex === index}
-                                                onClick={() => handlePatternChange(appConfig.patternFamillies[selectedPatternFamillyIndex], index)}
+                                                onClick={() => handlePatternChange(appConfig.patternFamilies[selectedPatternFamilyIndex], index)}
                                             >
                                                 <ListItemText primary={pattern.patternName}/>
                                             </ListItemButton>

@@ -6,7 +6,7 @@ import {
     removeTextFieldParams,
     removeTextFieldParamsConnectedToFile,
     setIsDrawerOpen, setIsEditorReadOnly, setSelectedPattern,
-    setSelectedPatternFamillyIndex, setSelectedPatternFiles,
+    setSelectedPatternFamilyIndex, setSelectedPatternFiles,
     setSelectedPatternIndex, setSelectedTabIndex,
     setState,
     updatePatternFile,
@@ -19,17 +19,17 @@ function getInitialState() {
 
     let initialState: AppState = {
         appConfig: {
-            defaultSelectedPatternFamillyIndex: 0,
+            defaultSelectedPatternFamilyIndex: 0,
             defaultSelectedPatternIndex: 0,
             defaultSelectedTabIndex: 0,
-            patternFamillies: []
+            patternFamilies: []
         },
 
         methodGeneratorConfig: {
             generatePatterns: [],
         },
 
-        selectedPatternFamillyIndex: 0,
+        selectedPatternFamilyIndex: 0,
         selectedPatternIndex: 0,
         selectedTabIndex: 0,
         isDrawerOpen: false,
@@ -267,17 +267,17 @@ describe('AppStateSlice', () => {
 
         const fooAppState: AppState = {
             appConfig: {
-                defaultSelectedPatternFamillyIndex: 1,
+                defaultSelectedPatternFamilyIndex: 1,
                 defaultSelectedPatternIndex: 1,
                 defaultSelectedTabIndex: 1,
-                patternFamillies: []
+                patternFamilies: []
             },
 
             methodGeneratorConfig: {
                 generatePatterns: [],
             },
 
-            selectedPatternFamillyIndex: 1,
+            selectedPatternFamilyIndex: 1,
             selectedPatternIndex: 1,
             selectedTabIndex: 1,
             isDrawerOpen: true,
@@ -325,15 +325,15 @@ describe('AppStateSlice', () => {
         expect(newState.isDrawerOpen).toBeTruthy();
     })
 
-    it('should setSelectedPatternFamillyIndex', () => {
+    it('should setSelectedPatternFamilyIndex', () => {
 
         const action: PayloadAction<number> = {
-            type: setSelectedPatternFamillyIndex.type,
+            type: setSelectedPatternFamilyIndex.type,
             payload: 2
         }
 
         const newState = appStateSlice.reducer(initialState, action);
-        expect(newState.selectedPatternFamillyIndex).toBe(2);
+        expect(newState.selectedPatternFamilyIndex).toBe(2);
     })
 
     it('should setSelectedPatternIndex', () => {
