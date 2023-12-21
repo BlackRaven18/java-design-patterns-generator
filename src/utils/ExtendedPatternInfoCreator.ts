@@ -1,11 +1,11 @@
-import { PatternConfigInfo, LoadedPatternFileInfo, PatternFamillyInfo, PatternInfo, TextFieldParamData } from "../types";
+import { PatternConfigInfo, LoadedPatternFileInfo, PatternFamilyInfo, PatternInfo, TextFieldParamData } from "../types";
 import AppStateUtils from "./AppStateUtils";
 
 export default class ExtendedPatternInfoCreator {
 
     private appStateUtils = new AppStateUtils();
 
-    public async getExtendedPatternInfo(patternFamillyInfo: PatternFamillyInfo, patternInfo: PatternInfo) {
+    public async getExtendedPatternInfo(patternFamillyInfo: PatternFamilyInfo, patternInfo: PatternInfo) {
 
         const methodGeneratorConfig
             = await this.appStateUtils.getMethodGeneratorConfig("method_generator_config.json");

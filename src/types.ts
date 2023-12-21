@@ -2,7 +2,7 @@ export interface AppState{
     appConfig: Config,
     methodGeneratorConfig: MethodGeneratorConfig,
 
-    selectedPatternFamillyIndex: number,
+    selectedPatternFamilyIndex: number,
     selectedPatternIndex: number,
     selectedTabIndex: number,
     
@@ -12,8 +12,8 @@ export interface AppState{
     isEditorReadOnly: boolean,
 }
 
-export interface PatternFamillyInfo {
-    patternFamillyName: string,
+export interface PatternFamilyInfo {
+    patternFamilyName: string,
     patternsDir: string,
     patterns: PatternInfo[],
 }
@@ -32,10 +32,10 @@ export interface PatternConfigInfo {
 }
 
 export interface Config{
-    defaultSelectedPatternFamillyIndex: number,
+    defaultSelectedPatternFamilyIndex: number,
     defaultSelectedPatternIndex: number,
     defaultSelectedTabIndex: number,
-    patternFamillies: PatternFamillyInfo[];
+    patternFamilies: PatternFamilyInfo[];
 }
 
 export interface PatternFileInfo {

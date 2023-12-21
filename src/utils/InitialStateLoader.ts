@@ -13,14 +13,14 @@ export default class InitialStateLoader {
             = await this.appStateUtils.getMethodGeneratorConfig("method_generator_config.json");
 
         const patternInfo = await this.appStateUtils.getPatternConfigFile(
-            appConfig.patternFamillies[appConfig.defaultSelectedPatternFamillyIndex],
-            appConfig.patternFamillies[appConfig.defaultSelectedPatternFamillyIndex].patterns[appConfig.defaultSelectedPatternIndex]
+            appConfig.patternFamilies[appConfig.defaultSelectedPatternFamilyIndex],
+            appConfig.patternFamilies[appConfig.defaultSelectedPatternFamilyIndex].patterns[appConfig.defaultSelectedPatternIndex]
         )
 
         const patternFilesContent = await this.appStateUtils.getPatternFilesContent(
             patternInfo,
-            appConfig.patternFamillies[appConfig.defaultSelectedPatternFamillyIndex],
-            appConfig.patternFamillies[appConfig.defaultSelectedPatternFamillyIndex].patterns[appConfig.defaultSelectedPatternIndex]
+            appConfig.patternFamilies[appConfig.defaultSelectedPatternFamilyIndex],
+            appConfig.patternFamilies[appConfig.defaultSelectedPatternFamilyIndex].patterns[appConfig.defaultSelectedPatternIndex]
         )
         const patternFilesContentWithReplacedParams = this.appStateUtils.getPatternFilesContentWithReplacedParams(
             methodGeneratorConfig,
@@ -33,7 +33,7 @@ export default class InitialStateLoader {
             appConfig: appConfig,
             methodGeneratorConfig: methodGeneratorConfig,
 
-            selectedPatternFamillyIndex: appConfig.defaultSelectedPatternFamillyIndex,
+            selectedPatternFamilyIndex: appConfig.defaultSelectedPatternFamilyIndex,
             selectedPatternIndex: appConfig.defaultSelectedPatternIndex,
             selectedTabIndex: appConfig.defaultSelectedTabIndex,
             isDrawerOpen: false,

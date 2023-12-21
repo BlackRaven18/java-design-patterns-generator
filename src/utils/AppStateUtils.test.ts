@@ -3,7 +3,7 @@ import {
     Config, LoadedPatternFileInfo,
     MethodGeneratorConfig,
     PatternConfigInfo,
-    PatternFamillyInfo,
+    PatternFamilyInfo,
     PatternInfo,
     TextFieldParamData
 } from "../types";
@@ -25,8 +25,8 @@ const getMockPatternConfig = () => {
 }
 
 const getMockPatternFamilyInfo = () => {
-    let mockPatternFamillInfo: PatternFamillyInfo = {
-        patternFamillyName: "",
+    let mockPatternFamillInfo: PatternFamilyInfo = {
+        patternFamilyName: "",
         patternsDir: "",
         patterns: []
     }
@@ -46,10 +46,10 @@ describe("AppStateUtils", () => {
 
     let appStateUtils = new AppStateUtils();
     let mockConfig: Config = {
-        defaultSelectedPatternFamillyIndex: 0,
+        defaultSelectedPatternFamilyIndex: 0,
         defaultSelectedPatternIndex: 0,
         defaultSelectedTabIndex: 0,
-        patternFamillies: []
+        patternFamilies: []
     }
 
     let mockMethodConfigGenerator: MethodGeneratorConfig = {
@@ -80,7 +80,7 @@ describe("AppStateUtils", () => {
 
     it('should get pattern config file', async () => {
         let mockPatternConfig: PatternConfigInfo = getMockPatternConfig();
-        let mockPatternFamillInfo: PatternFamillyInfo = getMockPatternFamilyInfo();
+        let mockPatternFamillInfo: PatternFamilyInfo = getMockPatternFamilyInfo();
         let mockPatternInfo: PatternInfo = getMockPatternInfo()
 
         const handleFileReadSpy = jest

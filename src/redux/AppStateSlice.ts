@@ -5,12 +5,12 @@ import AppStateUtils from "../utils/AppStateUtils";
 
 const initialState: AppState = {
     appConfig: {
-        defaultSelectedPatternFamillyIndex: 0,
+        defaultSelectedPatternFamilyIndex: 0,
         defaultSelectedPatternIndex: 0,
         defaultSelectedTabIndex: 0,
-        patternFamillies: [
+        patternFamilies: [
             {
-                patternFamillyName: "",
+                patternFamilyName: "",
                 patternsDir: "",
                 patterns: [
                     {
@@ -27,7 +27,7 @@ const initialState: AppState = {
         generatePatterns: [],
     },
 
-    selectedPatternFamillyIndex: 0,
+    selectedPatternFamilyIndex: 0,
     selectedPatternIndex: 0,
     selectedTabIndex: 0,
     isDrawerOpen: false,
@@ -203,7 +203,7 @@ export const appStateSlice = createSlice({
             state.methodGeneratorConfig = action.payload.methodGeneratorConfig;
             state.isDrawerOpen = action.payload.isDrawerOpen;
             state.isEditorReadOnly = action.payload.isEditorReadOnly;
-            state.selectedPatternFamillyIndex = action.payload.selectedPatternFamillyIndex;
+            state.selectedPatternFamilyIndex = action.payload.selectedPatternFamilyIndex;
             state.selectedPatternIndex = action.payload.selectedPatternIndex;
             state.selectedTabIndex = action.payload.selectedTabIndex;
             state.selectedPattern = action.payload.selectedPattern;
@@ -214,8 +214,8 @@ export const appStateSlice = createSlice({
             state.isDrawerOpen = action.payload;
         },
 
-        setSelectedPatternFamillyIndex: (state, action: PayloadAction<number>) => {
-            state.selectedPatternFamillyIndex = action.payload;
+        setSelectedPatternFamilyIndex: (state, action: PayloadAction<number>) => {
+            state.selectedPatternFamilyIndex = action.payload;
         },
 
         setSelectedPatternIndex: (state, action: PayloadAction<number>) => {
@@ -265,7 +265,7 @@ export const {
 
     setState,
     setIsDrawerOpen,
-    setSelectedPatternFamillyIndex,
+    setSelectedPatternFamilyIndex,
     setSelectedPatternIndex,
     setSelectedTabIndex,
     setSelectedPattern,

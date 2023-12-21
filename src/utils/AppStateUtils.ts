@@ -1,4 +1,4 @@
-import { PatternFamillyInfo, PatternInfo, PatternConfigInfo, TextFieldParamData, Config, MethodGeneratorConfig, LoadedPatternFileInfo } from "../types";
+import { PatternFamilyInfo, PatternInfo, PatternConfigInfo, TextFieldParamData, Config, MethodGeneratorConfig, LoadedPatternFileInfo } from "../types";
 import CodeParamsReplacer from "./CodeParamsReplacer";
 import FileReader from "./FileReader";
 
@@ -23,7 +23,7 @@ export default class AppStateUtils {
 
     }
 
-    public async getPatternConfigFile(patternFamillyInfo: PatternFamillyInfo, patternInfo: PatternInfo) {
+    public async getPatternConfigFile(patternFamillyInfo: PatternFamilyInfo, patternInfo: PatternInfo) {
         let patternConfigFilePath = patternFamillyInfo.patternsDir + "/" + patternInfo.patternDir + "/" + patternInfo.configFile;
         const patternConfigFile = await this.fileReader.handleFileRead(patternConfigFilePath);
         const patternConfigFileJSON: PatternConfigInfo = JSON.parse(patternConfigFile);
@@ -33,7 +33,7 @@ export default class AppStateUtils {
 
     public async getPatternFilesContent(
         patternConfigFile: PatternConfigInfo,
-        patternFamillyInfo: PatternFamillyInfo,
+        patternFamillyInfo: PatternFamilyInfo,
         patternInfo: PatternInfo
     ) {
         let patternFilePaths: string[] = [...patternConfigFile.files.map(file => {

@@ -24,7 +24,6 @@ const getArrayWithNumbersBetweenMinAndMax = (min: number, max: number): number[]
     for (let i = min; i <= max; i++) {
         array.push(i);
     }
-
     return array;
 }
 
@@ -52,7 +51,6 @@ export default function SelectParam(props: SelectParamProps) {
 
         let paramsConnectedToFile: TextFieldParamData[] = [];
 
-
         //get the params connected to filename
         selectedPattern.params.textFieldParams.forEach(param => {
             if (param.filename.includes(file.defaultName)) {
@@ -60,26 +58,21 @@ export default function SelectParam(props: SelectParamProps) {
             }
         })
 
-
         //clear all class like filename and params connected to it
-
         dispatch(removeFileFromPattern({filename: file.defaultName}));
 
         paramsConnectedToFile.forEach(param => {
             dispatch(removeTextFieldParams({replace: param.replace}))
         })
 
-
         //add new filenames
         //add new params connected to filename (we need to know what params were connected)
-
         dispatch(addFilesAndParamsToSelectedPattern({
                 file: file,
                 params: paramsConnectedToFile,
                 howMany: numberOfInstances
             }
         ))
-
     }
 
 

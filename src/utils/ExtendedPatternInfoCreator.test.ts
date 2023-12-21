@@ -1,4 +1,4 @@
-import {MethodGeneratorConfig, PatternConfigInfo, PatternFamillyInfo, PatternInfo} from "../types";
+import {MethodGeneratorConfig, PatternConfigInfo, PatternFamilyInfo, PatternInfo} from "../types";
 import AppStateUtils from "./AppStateUtils";
 import ExtendedPatternInfoCreator from "./ExtendedPatternInfoCreator";
 
@@ -10,8 +10,8 @@ describe('ExtendedPatternInfoCreator', () => {
 
         let extendedPatternInfoCreator = new ExtendedPatternInfoCreator();
 
-        const mockPatternFamillyInfo: PatternFamillyInfo = {
-            patternFamillyName: "fooFamilyName",
+        const mockPatternFamillyInfo: PatternFamilyInfo = {
+            patternFamilyName: "fooFamilyName",
             patternsDir: "fooPatternsDir",
             patterns: [],
         }
