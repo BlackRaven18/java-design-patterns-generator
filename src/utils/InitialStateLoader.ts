@@ -8,9 +8,10 @@ export default class InitialStateLoader {
 
     public async loadInitialState(): Promise<AppState> {
 
-        const appConfig = await this.appStateUtils.getConfig("app_config.json");
+        const appConfig = await this.appStateUtils.getConfig(process.env.REACT_APP_APP_CONFIG_FILE ?? "app_config.json");
         const methodGeneratorConfig
-            = await this.appStateUtils.getMethodGeneratorConfig("method_generator_config.json");
+            = await this.appStateUtils.getMethodGeneratorConfig(
+                process.env.REACT_APP_METHOD_GENERATOR_CONFIG_FILE ?? "method_generator_config.json");
 
         const patternInfo = await this.appStateUtils.getPatternConfigFile(
             appConfig.patternFamilies[appConfig.defaultSelectedPatternFamilyIndex],
