@@ -2,6 +2,7 @@ import {fireEvent, render, screen} from "@testing-library/react";
 import {Provider, useDispatch} from "react-redux";
 import {store} from "../../redux/store";
 import ParametersPanel from "./ParametersPanel";
+import React from "react";
 
 describe('ParametersPanel', () => {
 
@@ -30,19 +31,36 @@ describe('ParametersPanel', () => {
 
     })
 
-    it('should change invoke param onChange()', () => {
+    it('should invoke param onChange()', () => {
+
         render(
             <Provider store={store}>
                 <ParametersPanel/>
             </Provider>
         )
 
-        const paramField = screen.getByTestId('param-text-field-test-id');
+        const paramField = screen.getAllByTestId('param-text-field-test-id')[0];
 
         fireEvent.change(paramField, {target: {value: 'foo'}})
         expect(paramField).toBeInTheDocument();
         //expect(paramField).toHaveAttribute("value", "foo")
         console.log(paramField.getAttributeNames());
+
+    })
+
+    it('should render local params', () => {
+
+        const realUseState = React.useState;
+        jest
+            .spyOn(React, 'useState')
+            .mockImplementationOnce(() => [1, () => null])
+
+        render(
+            <Provider store={store}>
+                <ParametersPanel/>
+            </Provider>
+        )
+
 
     })
 

@@ -17,6 +17,22 @@ const initialState: AppState = {
                         patternName: "",
                         patternDir: "",
                         configFile: ""
+                    },
+                ]
+            },
+            {
+                patternFamilyName: "foo",
+                patternsDir: "foo",
+                patterns: [
+                    {
+                        patternName: "fooPattern",
+                        patternDir: "foo",
+                        configFile: "foo"
+                    },
+                    {
+                        patternName: "fooPattern2",
+                        patternDir: "foo",
+                        configFile: "foo"
                     }
                 ]
             }
@@ -57,14 +73,24 @@ const initialState: AppState = {
             }
         ],
         params: {
-            textFieldParams: [{
+            textFieldParams: [
+                {
                 shouldBeVisible: true,
                 label: "",
                 defaultValue: "",
                 currentValue: "",
                 replace: "",
                 filename: []
-            }],
+                },
+                {
+                    shouldBeVisible: true,
+                    label: "",
+                    defaultValue: "",
+                    currentValue: "",
+                    replace: "",
+                    filename: ["foo"]
+                }
+            ],
             selectParams: [
                 {
                     label: "",
