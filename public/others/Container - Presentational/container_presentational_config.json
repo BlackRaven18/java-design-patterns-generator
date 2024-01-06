@@ -1,0 +1,36 @@
+{
+    "name": "Container - Presentational",
+    "language": "typescript",
+    "files": [
+        {
+            "defaultName": "ContainerComponent.tsx",
+            "sourceFile": "ContainerComponent.tsx",
+            "extension": "tsx"
+        },
+        {
+            "defaultName": "PresentationalComponent.tsx",
+            "sourceFile": "PresentationalComponent.tsx",
+            "extension": "tsx"
+        }
+    ],
+    "params": {
+        "textFieldParams": [
+            {
+                "shouldBeVisible": true,
+                "label": "Container Component name",
+                "defaultValue": "ContainerComponent",
+                "replace": "$CONTAINER_COMPONENT_NAME$",
+                "filename": ""
+            },
+            {
+                "shouldBeVisible": true,
+                "label": "Presentation Component name",
+                "defaultValue": "PresentationComponent",
+                "replace": "$PRESENTATION_COMPONENT_NAME$",
+                "filename": ""
+            }
+            
+        ],
+        "selectParams": []
+    }
+}

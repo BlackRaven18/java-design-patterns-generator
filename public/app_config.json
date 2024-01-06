@@ -149,6 +149,11 @@
                     "patternName": "Object Pool(Java)",
                     "patternDir": "Object_pool",
                     "configFile": "object_pool_config.json"
+                },
+                {
+                    "patternName": "Container - Presentational",
+                    "patternDir": "Container - Presentational",
+                    "configFile": "container_presentational_config.json"
                 }
             ]
         }
