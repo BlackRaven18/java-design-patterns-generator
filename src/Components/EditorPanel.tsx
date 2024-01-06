@@ -1,12 +1,12 @@
-import {Editor, Monaco} from "@monaco-editor/react";
-import {Box, Tab, Tabs} from "@mui/material";
-import {tabsClasses} from "@mui/material/Tabs";
-import {editor} from "monaco-editor";
-import {useRef} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {setSelectedTabIndex, updatePatternFile} from "../redux/AppStateSlice";
-import {setIsChangesMade} from "../redux/UnsavedProgressSlice";
-import {AppDispatch, RootState} from "../redux/store";
+import { Editor, Monaco } from "@monaco-editor/react";
+import { Box, Tab, Tabs } from "@mui/material";
+import { tabsClasses } from "@mui/material/Tabs";
+import { editor } from "monaco-editor";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedTabIndex, updatePatternFile } from "../redux/AppStateSlice";
+import { setIsChangesMade } from "../redux/UnsavedProgressSlice";
+import { AppDispatch, RootState } from "../redux/store";
 
 interface EditorPanelProps {
     setEditorParentRef: (editorRef: editor.IStandaloneCodeEditor | null) => void;
@@ -86,21 +86,26 @@ const EditorPanel: React.FC<EditorPanelProps> = ({ setEditorParentRef }) => {
                 })}
 
             </Tabs>
-
-
-            <Editor
-                data-testid={'editor-test-id'}
-                height="84svh"
-                theme="vs-dark"
-                defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
-                language={selectedPattern.language}
-                value={selectedPattern.files[selectedTabIndex].currentContent}
-                onChange={(value) => handleEditorChange(value ?? "")}
-                onMount={handleEditorDidMount}
-                options={{
-                    readOnly: isEditorReadOnly,
+            <Box
+                sx={{
+                    padding: "5px"
                 }}
-            />
+            >
+                <Editor
+                    data-testid={'editor-test-id'}
+                    height="84svh"
+                    theme="vs-dark"
+                    defaultPath={selectedPattern.files[selectedTabIndex].defaultName}
+                    language={selectedPattern.language}
+                    value={selectedPattern.files[selectedTabIndex].currentContent}
+                    onChange={(value) => handleEditorChange(value ?? "")}
+                    onMount={handleEditorDidMount}
+                    options={{
+                        readOnly: isEditorReadOnly,
+                    }}
+                />
+
+            </Box>
         </Box>
     );
 
