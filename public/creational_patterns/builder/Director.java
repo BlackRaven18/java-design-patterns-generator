@@ -10,7 +10,7 @@ public class $DIRECTOR_CLASSNAME$ {
 		this.builder = builder;
 	}
 
-	public void Construct() {
+	public void construct() {
 		builder.buildStepA();
 		builder.buildStepB();
 		builder.buildStepZ();

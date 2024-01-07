@@ -35,7 +35,7 @@
             {
                 "shouldBeVisible": true,
                 "label": "Builder methods",
-                "defaultValue": "virtual void ProducePartA() const = 0;\nvirtual void ProducePartB() const = 0;\nvirtual void ProducePartC() const = 0;",
+                "defaultValue": "virtual void ProducePartA() const = 0;\n\tvirtual void ProducePartB() const = 0;\n\tvirtual void ProducePartC() const = 0;\n\tvirtual $PRODUCT_CLASSNAME$ getResult();",
                 "replace": "$BUILDER_METHODS$",
                 "filename": ""
             },

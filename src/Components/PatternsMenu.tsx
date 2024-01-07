@@ -15,6 +15,11 @@ import {PatternFamilyInfo} from "../types";
 import ExtendedPatternInfoCreator from "../utils/ExtendedPatternInfoCreator";
 import UnsavedProgressContainer from "./UnsavedProgressDialog/UnsavedProgressContainter";
 
+type ActivePatternProps = [
+    activePatternFamilyIndex: number,
+    activePatternIndex: number
+]
+
 const PatternsMenu = () => {
 
     const dispatch = useDispatch<AppDispatch>();
@@ -22,6 +27,8 @@ const PatternsMenu = () => {
     const appConfig = useSelector((state: RootState) => state.appState.appConfig);
     const selectedPatternFamilyIndex = useSelector((state: RootState) => state.appState.selectedPatternFamilyIndex);
     const selectedPatternIndex = useSelector((state: RootState) => state.appState.selectedPatternIndex);
+
+    const activePatternIndex = useState<ActivePatternProps>([selectedPatternFamilyIndex, selectedPatternIndex]);
 
     const isChangesMade = useSelector((state: RootState) => state.unsavedProgressState.isChangesMade);
     const [isUnsavedProgressDialogOpen, setIsUnsavedProgressDialogOpen] = useState(false);
@@ -81,9 +88,9 @@ const PatternsMenu = () => {
             />
             <List component="nav">
 
-                {appConfig.patternFamilies.map((patternFamily, index) => {
+                {appConfig.patternFamilies.map((patternFamily, familyIndex) => {
                     return (
-                        <Box key={index}>
+                        <Box key={familyIndex}>
                             <ListItemButton
                                 sx={{
                                     backgroundColor: "primary.dark",
@@ -91,22 +98,22 @@ const PatternsMenu = () => {
                                         backgroundColor: 'primary.dark',
                                     },
                                 }}
-                                key={index}
-                                selected={selectedPatternFamilyIndex === index}
-                                onClick={() => handlePatterFamilyChange(patternFamily, index)}
+                                key={familyIndex}
+                                selected={selectedPatternFamilyIndex === familyIndex}
+                                onClick={() => handlePatterFamilyChange(patternFamily, familyIndex)}
                             >
                                 <ListItemText primary={patternFamily.patternFamilyName}/>
-                                {selectedPatternFamilyIndex === index ? <ExpandLess/> : <ExpandMore/>}
+                                {selectedPatternFamilyIndex === familyIndex ? <ExpandLess/> : <ExpandMore/>}
 
                             </ListItemButton>
 
 
-                            <Collapse in={selectedPatternFamilyIndex === index} timeout="auto" unmountOnExit>
+                            <Collapse in={selectedPatternFamilyIndex === familyIndex} timeout="auto" unmountOnExit>
                                 <List component="div" disablePadding>
-                                    {patternFamily.patterns.map((pattern, index) => {
+                                    {patternFamily.patterns.map((pattern, patternIndex) => {
                                         return (
                                             <ListItemButton
-                                                key={index}
+                                                key={patternIndex}
                                                 sx={{
                                                     pl: 4,
                                                     backgroundColor: "primary.main",
@@ -114,8 +121,8 @@ const PatternsMenu = () => {
                                                         backgroundColor: 'action.active',
                                                     },
                                                 }}
-                                                selected={selectedPatternIndex === index}
-                                                onClick={() => handlePatternChange(appConfig.patternFamilies[selectedPatternFamilyIndex], index)}
+                                                selected={selectedPatternIndex === patternIndex}
+                                                onClick={() => handlePatternChange(appConfig.patternFamilies[selectedPatternFamilyIndex], patternIndex)}
                                             >
                                                 <ListItemText primary={pattern.patternName}/>
                                             </ListItemButton>

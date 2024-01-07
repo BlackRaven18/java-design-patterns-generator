@@ -35,7 +35,7 @@
             {
                 "shouldBeVisible": true,
                 "label": "Builder methods",
-                "defaultValue": "void buildPartA();\nvoid buildPartB();",
+                "defaultValue": "public void buildPartA();\n\tpublic void buildPartB();\n\tpublic $PRODUCT_CLASSNAME$ getResult(); ",
                 "replace": "$BUILDER_METHODS$",
                 "filename": []
             },
