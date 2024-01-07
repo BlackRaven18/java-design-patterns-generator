@@ -213,6 +213,10 @@ export const appStateSlice = createSlice({
             state.selectedPattern.params.textFieldParams[action.payload.index].currentValue = action.payload.value;
         },
 
+        updateSelectParamCurrentValue: (state, action: PayloadAction<{ value: number, index: number }>) => {
+            state.selectedPattern.params.selectParams[action.payload.index].currentValue = action.payload.value;
+        },
+
         updatePatternFile: (state, action: PayloadAction<{ newContent: string, fileIndex: number }>) => {
             state.selectedPattern.files[action.payload.fileIndex].currentContent = action.payload.newContent;
         },
@@ -286,6 +290,7 @@ export const {
     removeTextFieldParams,
 
     updatePatternTextFieldParamValue,
+    updateSelectParamCurrentValue,
     updatePatternFile,
     updatePatternFilesContent,
 

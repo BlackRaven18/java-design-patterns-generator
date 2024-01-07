@@ -1,20 +1,23 @@
-import {FormControl, InputLabel, MenuItem, Select, SelectChangeEvent} from "@mui/material";
-import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
     addFilesAndParamsToSelectedPattern,
     removeFileFromPattern,
-    removeTextFieldParams
+    removeTextFieldParams,
+    updateSelectParamCurrentValue
 } from "../../redux/AppStateSlice";
-import {AppDispatch, RootState} from "../../redux/store";
-import {LoadedPatternFileInfo, TextFieldParamData} from "../../types";
-import {setIsChangesMade} from "../../redux/UnsavedProgressSlice";
+import { AppDispatch, RootState } from "../../redux/store";
+import { LoadedPatternFileInfo, TextFieldParamData } from "../../types";
+import { setIsChangesMade } from "../../redux/UnsavedProgressSlice";
 
 interface SelectParamProps {
+    index: number,
     label: string,
     fileNameToBeMultiplied: string,
     minValue: number,
     maxValue: number,
+    currentValue: number,
     disabled: boolean,
 }
 
@@ -32,7 +35,7 @@ export default function SelectParam(props: SelectParamProps) {
 
     const dispatch = useDispatch<AppDispatch>();
 
-    const [value, setValue] = useState<string>(props.minValue.toString());
+    const [value, setValue] = useState<string>(props.currentValue?.toString());
     const rangeArray: number[] = getArrayWithNumbersBetweenMinAndMax(props.minValue, props.maxValue);
 
     const selectedPattern = useSelector((state: RootState) => state.appState.selectedPattern);
@@ -40,6 +43,11 @@ export default function SelectParam(props: SelectParamProps) {
 
     const handleChange = (event: SelectChangeEvent) => {
         dispatch(setIsChangesMade(true));
+        dispatch(updateSelectParamCurrentValue({
+            value: parseInt(event.target.value),
+            index: props.index
+        }
+        ))
         setValue(event.target.value);
 
         let file = selectedPattern.files.filter(file => file.sourceFile === props.fileNameToBeMultiplied)[0];
@@ -59,19 +67,19 @@ export default function SelectParam(props: SelectParamProps) {
         })
 
         //clear all class like filename and params connected to it
-        dispatch(removeFileFromPattern({filename: file.defaultName}));
+        dispatch(removeFileFromPattern({ filename: file.defaultName }));
 
         paramsConnectedToFile.forEach(param => {
-            dispatch(removeTextFieldParams({replace: param.replace}))
+            dispatch(removeTextFieldParams({ replace: param.replace }))
         })
 
         //add new filenames
         //add new params connected to filename (we need to know what params were connected)
         dispatch(addFilesAndParamsToSelectedPattern({
-                file: file,
-                params: paramsConnectedToFile,
-                howMany: numberOfInstances
-            }
+            file: file,
+            params: paramsConnectedToFile,
+            howMany: numberOfInstances
+        }
         ))
     }
 

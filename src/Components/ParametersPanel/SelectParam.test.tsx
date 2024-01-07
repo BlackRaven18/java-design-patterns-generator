@@ -10,10 +10,12 @@ describe('SelectParam', () => {
         render(
             <Provider store={store}>
                 <SelectParam
+                    index={0}
                     label={'foo'}
                     fileNameToBeMultiplied={"foo"}
                     minValue={1}
                     maxValue={5}
+                    currentValue={1}
                     disabled={false}
                 />
             </Provider>
@@ -25,10 +27,12 @@ describe('SelectParam', () => {
         render(
             <Provider store={store}>
                 <SelectParam
+                    index={0}
                     label={'foo'}
                     fileNameToBeMultiplied={""}
                     minValue={1}
                     maxValue={5}
+                    currentValue={1}
                     disabled={false}
                 />
             </Provider>
