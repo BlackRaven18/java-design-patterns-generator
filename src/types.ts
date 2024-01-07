@@ -73,7 +73,7 @@ export interface SelectParamData {
     fileNameToBeMultiplied: string,
     minNumber: number,
     maxNumber: number,
-    currentValue?: number
+    currentValue: number
 }
 
 

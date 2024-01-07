@@ -96,7 +96,8 @@ const initialState: AppState = {
                     label: "",
                     fileNameToBeMultiplied: "foo",
                     minNumber: 1,
-                    maxNumber: 5
+                    maxNumber: 5,
+                    currentValue: 1
                 }
             ]
         }

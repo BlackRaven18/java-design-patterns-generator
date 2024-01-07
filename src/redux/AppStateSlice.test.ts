@@ -11,7 +11,7 @@ import {
     setState,
     updatePatternFile,
     updatePatternFilesContent,
-    updatePatternTextFieldParamValue
+    updatePatternTextFieldParamValue, updateSelectParamCurrentValue
 } from "./AppStateSlice";
 import {PayloadAction} from "@reduxjs/toolkit";
 
@@ -217,6 +217,29 @@ describe('AppStateSlice', () => {
 
         expect(newState.selectedPattern.params.textFieldParams.length).not.toBe(0);
         expect(newState.selectedPattern.params.textFieldParams[0].currentValue).toBe("fooCurrentValue");
+    })
+
+    it('should update SelectParamCurrentValue', () => {
+        initialState.selectedPattern.params.selectParams.push({
+            label:"fooLabel",
+            fileNameToBeMultiplied: "fooFile",
+            minNumber: 1,
+            maxNumber: 5,
+            currentValue: 1
+        })
+
+        const action: PayloadAction<{ value: number, index: number }> = {
+            type: updateSelectParamCurrentValue.type,
+            payload: {
+                value: 2,
+                index: 0,
+            }
+        }
+
+        const newState = appStateSlice.reducer(initialState, action);
+
+        expect(newState.selectedPattern.params.selectParams[0].currentValue).toBe(2);
+
     })
 
     it('should updatePatternFile', () => {

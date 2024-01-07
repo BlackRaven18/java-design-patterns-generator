@@ -42,7 +42,8 @@
       "!src/reportWebVitals.ts",
       "!src/types.ts",
       "!src/redux/store.ts",
-      "!src/cypress.config.ts"
+      "!src/cypress.config.ts",
+      "!src/ResizeObserverManager.ts"
     ]
   },
   "eslintConfig": {

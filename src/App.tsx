@@ -11,6 +11,7 @@ import TopBar from './components/TopBar';
 import { AppDispatch } from './redux/store';
 import InitialStateLoader from './utils/InitialStateLoader';
 import { setState } from './redux/AppStateSlice';
+import ResizeObserverManager from "./ResizeObserverManager";
 
 function App() {
 
@@ -26,27 +27,10 @@ function App() {
 
     useEffect(() => {
         loadInitialState();
-        registerResizeObserverEventListener();
+        ResizeObserverManager.registerResizeObserverEventListener();
     }, [])
 
-    const registerResizeObserverEventListener = () => {
-        window.addEventListener('error', e => {
-            if (e.message === 'ResizeObserver loop completed with undelivered notifications.') {
-                const resizeObserverErrDiv = document.getElementById(
-                    'webpack-dev-server-client-overlay-div'
-                );
-                const resizeObserverErr = document.getElementById(
-                    'webpack-dev-server-client-overlay'
-                );
-                if (resizeObserverErr) {
-                    resizeObserverErr.setAttribute('style', 'display: none');
-                }
-                if (resizeObserverErrDiv) {
-                    resizeObserverErrDiv.setAttribute('style', 'display: none');
-                }
-            }
-        });
-    }
+
 
     const loadInitialState = () => {
         initialStateLoader.loadInitialState().then(appState => {
