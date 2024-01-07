@@ -1,16 +1,16 @@
-import {Box, Grid} from '@mui/material';
-import {editor} from 'monaco-editor';
-import {useEffect, useRef} from 'react';
-import {useDispatch} from 'react-redux';
+import { Box, Grid } from '@mui/material';
+import { editor } from 'monaco-editor';
+import { useEffect, useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
 import EditorPanel from './components/EditorPanel';
 import MyDrawer from './components/MyDrawer';
 import ParametersPanel from './components/ParametersPanel/ParametersPanel';
 import PatternsMenu from './components/PatternsMenu';
 import TopBar from './components/TopBar';
-import {AppDispatch} from './redux/store';
+import { AppDispatch } from './redux/store';
 import InitialStateLoader from './utils/InitialStateLoader';
-import {setState} from './redux/AppStateSlice';
+import { setState } from './redux/AppStateSlice';
 
 function App() {
 
@@ -26,7 +26,27 @@ function App() {
 
     useEffect(() => {
         loadInitialState();
+        registerResizeObserverEventListener();
     }, [])
+
+    const registerResizeObserverEventListener = () => {
+        window.addEventListener('error', e => {
+            if (e.message === 'ResizeObserver loop completed with undelivered notifications.') {
+                const resizeObserverErrDiv = document.getElementById(
+                    'webpack-dev-server-client-overlay-div'
+                );
+                const resizeObserverErr = document.getElementById(
+                    'webpack-dev-server-client-overlay'
+                );
+                if (resizeObserverErr) {
+                    resizeObserverErr.setAttribute('style', 'display: none');
+                }
+                if (resizeObserverErrDiv) {
+                    resizeObserverErrDiv.setAttribute('style', 'display: none');
+                }
+            }
+        });
+    }
 
     const loadInitialState = () => {
         initialStateLoader.loadInitialState().then(appState => {
@@ -44,16 +64,16 @@ function App() {
                 }}
             >
 
-                <TopBar/>
+                <TopBar />
 
                 <MyDrawer headerLabel="Design Patterns" width="250px">
-                    <PatternsMenu/>
+                    <PatternsMenu />
                 </MyDrawer>
 
                 <Grid
                     container
                     direction="row"
-                    //height="90%"
+                //height="90%"
                 >
 
                     <Grid
@@ -73,7 +93,7 @@ function App() {
 
                     >
 
-                        <EditorPanel setEditorParentRef={setEditorRef}/>
+                        <EditorPanel setEditorParentRef={setEditorRef} />
 
                     </Grid>
                 </Grid>

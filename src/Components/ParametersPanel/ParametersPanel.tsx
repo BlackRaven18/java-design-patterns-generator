@@ -177,10 +177,12 @@ const ParametersPanel = () => {
                                         return (
                                             <SelectParam
                                                 key={index}
+                                                index={index}
                                                 label={selectParamData.label}
                                                 fileNameToBeMultiplied={selectParamData.fileNameToBeMultiplied}
                                                 minValue={selectParamData.minNumber}
                                                 maxValue={selectParamData.maxNumber}
+                                                currentValue={selectParamData.currentValue ?? selectParamData.minNumber}
                                                 disabled={!isEditorReadOnly}
                                             />
                                         );
