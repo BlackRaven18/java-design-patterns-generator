@@ -11,18 +11,6 @@ public:
 
 $BUILDER_METHODS_EXTENDED$
 
-    // void ProducePartA() const override
-    // {
-    // }
-
-    // void ProducePartB() const override
-    // {
-    // }
-
-    // void ProducePartC() const override
-    // {
-    // }
-
     $PRODUCT_CLASSNAME$ *GetProduct()
     {
         $PRODUCT_CLASSNAME$ *result = this->product;

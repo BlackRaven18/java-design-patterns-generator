@@ -10,7 +10,7 @@ public:
     }
 
 
-    void Construct()
+    void construct()
     {
         //this->builder->ProducePartA();
         //this->builder->ProducePartB();
