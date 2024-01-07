@@ -11,14 +11,6 @@ jest.mock('react-redux', () => ({
     useDispatch: jest.fn(),
 }));
 
-// Mock funkcji loadInitialState
-// jest.mock('./utils/InitialStateLoader', () => ({
-//     __esModule: true,
-//     default: {
-//
-//         loadInitialState: jest.fn(() => Promise.resolve({ /* mock stanu początkowego */ })),
-//     },
-// }));
 
 describe('App', () => {
     it('should render without errors', () => {
