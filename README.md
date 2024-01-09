@@ -1,8 +1,8 @@
-###Wymagania do uruchomienia aplikacji:
+### Wymagania do uruchomienia aplikacji:
 - Node.js: v16.18.0 (brak danych na temat działania aplikacji na innych wersjach)
 - połączenie z internetem
 
-###Uruchamianie aplikacji
+### Uruchamianie aplikacji
 W celu uruchomienia aplikacji należy otworzyć terminal w folderze zawierającym aplikacje. Przy pierwszym uruchomieniu aplikacji należy pobrać moduły, z których korzysta aplikacja. W tym celu należy wywołać polecenie: 
 
 `$ npm init`
