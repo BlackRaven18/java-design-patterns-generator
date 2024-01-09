@@ -5,7 +5,7 @@
 ### Uruchamianie aplikacji
 W celu uruchomienia aplikacji należy otworzyć terminal w folderze zawierającym aplikacje. Przy pierwszym uruchomieniu aplikacji należy pobrać moduły, z których korzysta aplikacja. W tym celu należy wywołać polecenie: 
 
-`$ npm init`
+`$ npm install`
 
 Następnie aplikację można uruchomić komendą: 
 
