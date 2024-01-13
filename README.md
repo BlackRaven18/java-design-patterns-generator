@@ -1,5 +1,6 @@
 ### Wymagania do uruchomienia aplikacji:
 - Node.js: v16.18.0 (brak danych na temat działania aplikacji na innych wersjach)
+- Npm: v9.7.1 (brak danych na temat działania aplikacji na innych wersjach)
 - połączenie z internetem
 
 ### Uruchamianie aplikacji
