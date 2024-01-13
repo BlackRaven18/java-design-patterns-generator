@@ -3,7 +3,7 @@ public class $CONCRETE_BUILDER_CLASSNAME1$ implements $BUILDER_CLASSNAME$ {
 
     private $PRODUCT_CLASSNAME$ product;
 
-    public $CONCRETE_BUILDER_CLASSNAME1$() {
+    public $CONCRETE_BUILDER_CLASSNAME$() {
         this.product = new $PRODUCT_CLASSNAME$();
     }
 

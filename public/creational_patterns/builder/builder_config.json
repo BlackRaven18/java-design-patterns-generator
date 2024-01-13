@@ -64,7 +64,7 @@
                 "shouldBeVisible": true,
                 "label": "Concrete Builder class name",
                 "defaultValue": "ConcreteBuilder",
-                "replace": "$CONCRETE_BUILDER_CLASSNAME1$",
+                "replace": "$CONCRETE_BUILDER_CLASSNAME$",
                 "filename": ["ConcreteBuilder.java"]
             }
         ],
